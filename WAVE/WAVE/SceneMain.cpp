@@ -11,6 +11,7 @@ using namespace GameL;
 //使用ヘッダー
 #include "SceneMain.h"
 #include "GameHead.h"
+//#include "CObjBullet.h"
 
 //コンストラクタ
 CSceneMain::CSceneMain()
@@ -28,7 +29,7 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",0,TEX_SIZE_512);
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
@@ -43,6 +44,14 @@ void CSceneMain::InitScene()
 	CObjEnemy* obje = new CObjEnemy();
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 
+	/*//テスト用:弾丸オブジェクト作成
+	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
+	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+	*/
+
+
+	CObjMain* p = new CObjMain();
+	Objs::InsertObj(p, OBJ_MAIN, 1);
 }
 
 //実行中メソッド

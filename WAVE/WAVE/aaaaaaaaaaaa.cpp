@@ -1,0 +1,13 @@
+/*
+xprogdf
+gbskdghvksdg
+hvshfgh
+v
+dfgjh
+h
+dgh
+vfdgvfg
+kehph‚“‚Š‚†‚Š‚†‚Š‚Š‚Š‚†‚Š‚†
+‚Û‚Û‚Û‚±‚±‚±‚±‚¿‚¿‚¿‚¿‚¿‚”‚ñ‚ñ‚ñ‚Ž
+‚Û‚±‚¿‚ñ
+*/
