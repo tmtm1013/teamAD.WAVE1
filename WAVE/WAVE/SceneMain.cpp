@@ -29,7 +29,7 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",0,TEX_SIZE_512);
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
@@ -40,6 +40,9 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+
+	CObjMain* p = new CObjMain();
+	Objs::InsertObj(p, OBJ_MAIN, 1);
 }
 
 //実行中メソッド
