@@ -11,6 +11,7 @@ using namespace GameL;
 //使用ヘッダー
 #include "SceneMain.h"
 #include "GameHead.h"
+//#include "CObjBullet.h"
 
 //コンストラクタ
 CSceneMain::CSceneMain()
@@ -33,6 +34,11 @@ void CSceneMain::InitScene()
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	/*//テスト用:弾丸オブジェクト作成
+	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
+	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+	*/
 
 }
 

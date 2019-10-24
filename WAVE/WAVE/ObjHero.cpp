@@ -15,6 +15,8 @@ void CObjHero::Init()
 {
 	m_px = 0.0f;    //位置
 	m_py = 0.0f;
+	m_f = true;   //弾丸制御
+
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 1.0f;  //右向き0.0f 左向き1.0f
@@ -34,6 +36,30 @@ void CObjHero::Action()
 	//移動ベクトルの破棄
 	//m_vx = 0.0f;
 	//m_vy = 0.0f;
+
+	//主人公の弾丸発射
+	if (Input::GetMouButtonL()==true)
+	{
+		if (m_f==true)
+		{
+
+			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+			CObjBullet* obj_b = new CObjBullet(m_px+30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+
+		}
+
+	}
+	else
+	{
+		m_f = true;
+	}
+
+
+
+	
 
 	//Xキー入力でジャンプ
 	if (Input::GetVKey('W')==true)
