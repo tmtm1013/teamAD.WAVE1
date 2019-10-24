@@ -28,13 +28,14 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",0,TEX_SIZE_512);
-
-	Draw::LoadImage(L"タイトル2.png", 0, TEX_SIZE_1024);
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	CObjMain* p = new CObjMain();
+	Objs::InsertObj(p, OBJ_MAIN, 1);
 
 }
 
