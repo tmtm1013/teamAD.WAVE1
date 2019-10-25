@@ -129,6 +129,7 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="CObjBullet.cpp" />
+    <ClCompile Include="ObjEnemy.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="SceneMain.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjMain.h" />
