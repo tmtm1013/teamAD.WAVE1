@@ -129,9 +129,11 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="CObjBullet.cpp" />
+    <ClCompile Include="ObjClear.cpp" />
     <ClCompile Include="ObjEnemy.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="SceneClear.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
@@ -154,6 +156,7 @@
     <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneTitle.h" />
