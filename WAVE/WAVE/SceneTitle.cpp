@@ -32,7 +32,7 @@ CSceneTitle::~CSceneTitle()
 //ゲームタイトル初期化メソッド
 void CSceneTitle::InitScene()
 {
-	Draw::LoadImageW(L"title3.png", 1, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Title5.png", 1, TEX_SIZE_1024);
 	CObjTitle* p = new CObjTitle();
 	Objs::InsertObj(p, OBJ_TITLE, 10);
 }

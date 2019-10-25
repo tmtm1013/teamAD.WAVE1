@@ -1,9 +1,9 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
-
 #include "GameHead.h"
 #include "ObjHero.h"
+#include "GameL\HitBoxManager.h"
 
 #define GRAUND (536.0f)
 
@@ -27,6 +27,12 @@ void CObjHero::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
+
+	m_hp = 3;//主人公HP
+
+
+	//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 }
 
 //アクション
@@ -116,7 +122,9 @@ void CObjHero::Action()
 		m_ani_frame = 0;
 	}
 
-
+	//HitBoxの位置の変更a
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px, m_py);
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -132,6 +140,30 @@ void CObjHero::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+
+	
+
+
+	//主人公が敵と接触したとき主人公のHｐが減る
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+
+		m_hp -= 1;
+
+
+	}
+	//HPが0になったら破棄
+	if (m_hp <= 0)
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+	}
+
+
+
 
 
 	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
