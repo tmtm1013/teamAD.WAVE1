@@ -6,6 +6,7 @@
 
 #include "ObjTitle.h"
 #include "GameHead.h"
+#include "SceneMain.h"
 
 //使用するヘッダーファイル
 using namespace GameL;
@@ -26,6 +27,16 @@ void CObjTitle::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//マウスの位置とクリックする場所で当たり判定
+	if (m_mou_x > 240 && m_mou_x < 450 && m_mou_y > 350 && m_mou_y < 400)
+	{
+		//マウスのボタンが押されたらメインに移行
+		if (m_mou_r == true || m_mou_l == true)
+		{
+			Scene::SetScene(new CSceneMain());
+		}
+	}
 }
 
 void CObjTitle::Draw()

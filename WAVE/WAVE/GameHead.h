@@ -12,6 +12,7 @@ enum OBJ_NAME
 	OBJ_MAIN,
 	OBJ_BULLET,
 	OBJ_CLEAR,
+	OBJ_HOMING_BULLET,
 
 };
 //------------------------------------------------
@@ -63,6 +64,7 @@ struct UserData
 #include "ObjTitle.h"
 #include "ObjMain.h"
 #include "ObjClear.h"
+//#include "CObjHomingBullet.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -74,5 +76,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------
