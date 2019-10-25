@@ -7,6 +7,7 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_HERO,
+	OBJ_Block,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
@@ -58,6 +59,7 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
+#include "ObjBlock.h"
 #include "ObjEnemy.h"
 
 #include "CObjBullet.h"
