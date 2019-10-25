@@ -32,20 +32,7 @@ void CObjTitle::Draw()
 {
 	float c[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	//仮マウス位置表示
-	wchar_t str[256];
-	swprintf_s(str, L"x = %f, y = %f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, c);
-	//仮マウスのボタンの状態
-	if (m_mou_r == true)
-		Font::StrDraw(L"R=押している", 20, 30, 12, c);
-	else
-		Font::StrDraw(L"R=押していない", 20, 30, 12, c);
-	if (m_mou_l == true)
-		Font::StrDraw(L"L=押している", 20, 40, 12, c);
-	else
-		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
-
+	
 
 	RECT_F src;
 	RECT_F dst;
@@ -65,5 +52,20 @@ void CObjTitle::Draw()
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+	//仮マウス位置表示
+	wchar_t str[256];
+	swprintf_s(str, L"x = %f, y = %f", m_mou_x, m_mou_y);
+	Font::StrDraw(str, 20, 20, 12, c);
+	//仮マウスのボタンの状態
+	if (m_mou_r == true)
+		Font::StrDraw(L"R=押している", 20, 30, 12, c);
+	else
+		Font::StrDraw(L"R=押していない", 20, 30, 12, c);
+	if (m_mou_l == true)
+		Font::StrDraw(L"L=押している", 20, 40, 12, c);
+	else
+		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
+
 }
 

@@ -65,6 +65,6 @@ void CObjBullet::Draw()
 	dst.m_bottom = 16.0f + m_py;
 
 	//•`‰æ
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 	
 }
