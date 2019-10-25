@@ -129,9 +129,14 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="CObjBullet.cpp" />
+    <ClCompile Include="HomingBullet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ObjClear.cpp" />
     <ClCompile Include="ObjEnemy.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="SceneClear.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
@@ -149,11 +154,15 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="HomingBullet.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="main.h" />
     <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneTitle.h" />

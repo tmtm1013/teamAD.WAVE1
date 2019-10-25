@@ -35,7 +35,7 @@ void CObjBullet::Action()
 	m_px += m_vx;
 
 	//—ÌˆæŠO‚Éo‚½‚ç’eŠÛ‚ğ”jŠü‚·‚é
-	if (m_px>800.0f)
+	if (m_px > 800.0f)
 	{
 		this->SetStatus(false);
 	}

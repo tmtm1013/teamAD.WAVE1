@@ -11,6 +11,8 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_MAIN,
 	OBJ_BULLET,
+	OBJ_CLEAR,
+	OBJ_HOMING_BULLET,
 
 };
 //------------------------------------------------
@@ -61,12 +63,15 @@ struct UserData
 #include "CObjBullet.h"
 #include "ObjTitle.h"
 #include "ObjMain.h"
+#include "ObjClear.h"
+//#include "CObjHomingBullet.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
+#include "SceneClear.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
