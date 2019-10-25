@@ -26,13 +26,13 @@ void CObjEnemy::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
-	m_hp = 30;　　　　//ENEMYのHP
+	m_hp = 5;//ENEMYのHP
 
 
 	m_move = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY,  1);
 
 
 	
@@ -100,7 +100,7 @@ void CObjEnemy::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-
+	
 	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
@@ -124,15 +124,16 @@ void CObjEnemy::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+
+
+
 	//敵と弾丸が接触したらHPが減る
-
-
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
 	{
 	
-	
 		m_hp -= 1;
 	
+
 	}
 	//HPが0になったら破棄
 	if (m_hp <= 0)
@@ -142,9 +143,6 @@ void CObjEnemy::Action()
 		Hits::DeleteHitBox(this);
 
 	}
-
-
-
 
 
 }

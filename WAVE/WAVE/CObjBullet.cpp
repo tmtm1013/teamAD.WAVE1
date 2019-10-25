@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameHead.h"
-#include "CObjBullet.h"
+#include "CObjBullet.h"]
+#include "GameL\HitBoxManager.h"
 
 
 //使用するネームスペース
@@ -12,6 +13,11 @@ CObjBullet::CObjBullet(float x, float y)
 	m_px = x;
 	m_py = y;
 	
+
+	//当たり判定用のHitBoxを作成
+Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_WHITE,  OBJ_BULLET, 1);
+
+
 }
 
 
@@ -32,6 +38,19 @@ void CObjBullet::Action()
 	if (m_px>800.0f)
 	{
 		this->SetStatus(false);
+	}
+
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px, m_py);
+
+	//敵機オブジェクトと接触したら弾丸消去
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
+
 	}
 
 }
@@ -65,6 +84,6 @@ void CObjBullet::Draw()
 	dst.m_bottom = 16.0f + m_py;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 	
 }
