@@ -13,9 +13,17 @@ class CObjHero :public CObj
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション
 		   void Draw();   //ドロー
+
+		   float m_mou_px; //マウスの位置X
+		   float m_mou_py; //マウスの位置Y
+
 	private:
 		float m_px;    //位置
 		float m_py;
+
+		bool m_mou_pr; //マウスの右ボタン
+		bool m_mou_pl; //マウス左ボタン
+
 		bool  m_f;     //弾丸発射制御用
 
 		float m_vx;    //移動ベクトル
