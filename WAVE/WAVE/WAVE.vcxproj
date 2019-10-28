@@ -140,6 +140,7 @@
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="UtilityModule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
