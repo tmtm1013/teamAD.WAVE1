@@ -15,4 +15,8 @@ public:
 	void Draw();
 private:
 	//¶ƒNƒŠƒbƒN
+
+	float m_mou_x;
+	float m_mou_y;
+	float m_mou_r;
 };

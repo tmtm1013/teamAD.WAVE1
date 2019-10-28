@@ -16,4 +16,8 @@ public:
 private:
 	int m_map[30][30];//マップ情報（仮）
 
+	float len;
+	int r;
+	float y;
+
 };

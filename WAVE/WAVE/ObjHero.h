@@ -13,6 +13,24 @@ class CObjHero :public CObj
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション
 		   void Draw();   //ドロー
+
+		   float GetX() { return m_px; }
+		   float GetY() { return m_py; }
+		   float GetVY() { return m_vy; }
+		   float GetVX() { return m_vx; }
+		   float GetVK_SPACE() { return m_vy; };
+
+		   void SetX(float x) { m_px = x; }
+		   void SetY(float y) { m_py = y; }
+		   void SetVY(float vy) { m_vy = vy; }
+		   void SetVX(float vx) { m_vx = vx; }
+		   
+		   void SetUp(bool b) { m_hit_up = b; }
+		   void SetDown(bool b) { m_hit_down = b; }
+		   void SetLeft(bool b) { m_hit_left = b; }
+		   void SetRight(bool b) { m_hit_right = b; }
+
+
 	private:
 		float m_px;    //位置
 		float m_py;
@@ -29,6 +47,12 @@ class CObjHero :public CObj
 		float m_ani_max_time; //アニメーション動作間隔最大値
 
 		int m_hp;//主人公のHP
+
+		//blockとの衝突状態確認用
+		bool m_hit_up ;
+		bool m_hit_down;
+		bool m_hit_left ;
+		bool m_hit_right ;
 
 
 };

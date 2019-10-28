@@ -5,12 +5,15 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+//#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
 
 //使用ヘッダー
 #include "SceneMain.h"
 #include "GameHead.h"
+#include "ObjBackground.h"
+//#include "ObjMain.h"
 //#include "CObjBullet.h"
 
 //コンストラクタ
@@ -31,13 +34,21 @@ void CSceneMain::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
+	//ブロックのグラフィック読み込み
+	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
+
+	//ゲームオーバーのグラフィック読み込み
+	Draw::LoadImageW(L"GameOver1.png", 3, TEX_SIZE_512);
+
 
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	//背景のオブジェクト作成
+	CObjBackground* objbg = new CObjBackground();
+	Objs::InsertObj(objbg, OBJ_BACKGROUND, 9);
 
 
 	//Test用　　　敵オブジェクト作成
@@ -52,6 +63,8 @@ void CSceneMain::InitScene()
 
 	CObjMain* p = new CObjMain();
 	Objs::InsertObj(p, OBJ_MAIN, 1);
+
+	
 }
 
 //実行中メソッド

@@ -72,22 +72,30 @@ void CObjBlock::Action()
 	hero->SetLeft(false);
 	hero->SetRight(false);
 
-	//角度で上下左右を判定
-	
-	if (r > 45 && r, 135)
+	//lenがある一定の長さのより短い場合判定に入る
+	if (len < 88.0f)
 	{
-		//上
-		hero->SetDown(true);
-		hero->SetY(y - 64.0f);
-		hero->SetVY(0.0f);
-	}
-	
-	if (r > 225 && r < 315)
-	{
-		//下
-		hero->SetUp(true);
-		hero->SetY(y +64.0f);
-		if (hero->GetVY(0.0f));
+
+		//角度で上下左右を判定
+
+		if (r > 45 && r < 135)
+		{
+			//上
+			hero->SetDown(true);
+			hero->SetY(y - 64.0f);
+			hero->SetVY(0.0f);
+		}
+
+		if (r > 225 && r < 315)
+		{
+			//下
+			hero->SetUp(true);
+			hero->SetY(y + 64.0f);
+			if (hero->GetVY() < 0)
+			{
+				hero->SetVY(0.0f);
+			}
+		}
 	}
 
 	//m_mapの全要素にアクセス

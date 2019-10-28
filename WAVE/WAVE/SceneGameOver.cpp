@@ -2,6 +2,12 @@
 #define _SECURE_SCL (0)
 #define _HAS_ITERATOR_DEBUGGING (0)
 
+//GameLで使用するヘッダー
+#include "GameL\SceneObjManager.h"
+#include "GameL\DrawFont.h"
+#include"GameL\DrawTexture.h"
+
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -24,13 +30,15 @@ CSceneGameOver::~CSceneGameOver()
 //初期化メソッド
 void CSceneGameOver::InitScene()
 {
-	/*Font::SetStrTex(L"GAMEOVER");
-	Font::SetStrTex(L"RESTART");
-	Font::SetStrTex(L"TITlE");*/
+	
+	Draw::LoadImage(L"GameOver1.png", 0, TEX_SIZE_512);
+
 
 	//ゲームオーバーオブジェクト作成
-	CObjGameOver*obj = new CObjGameOver();
-	Objs::InsertObj(obj, OBJ_GAME_OVER, 10);
+	CObjGameOver*objf = new CObjGameOver();
+    Objs::InsertObj(objf, OBJ_GAME_OVER, 3);
+
+	
 }
 
 //実行中メソッド
