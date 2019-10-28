@@ -35,4 +35,8 @@ class CObjHero :public CObj
 
 		float m_speed_power;  //スピードパワー
 		float m_ani_max_time; //アニメーション動作間隔最大値
+
+		int m_hp;//主人公のHP
+
+
 };

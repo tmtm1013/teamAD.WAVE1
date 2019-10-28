@@ -14,8 +14,6 @@ class CObjBullet :public CObj
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション
 		   void Draw();   //ドロー
-
-
 	private:
 		float m_bx;    //弾丸の X 方向の位置用変数
 		float m_by;    //弾丸の Y 方向の位置用変数

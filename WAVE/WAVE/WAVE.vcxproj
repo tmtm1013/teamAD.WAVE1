@@ -158,8 +158,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="main.h" />
-    <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="SceneClear.h" />
