@@ -5,7 +5,7 @@
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
 
-#define GRAUND (536.0f)
+#define GRAUND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,12 +34,19 @@ void CObjHero::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 
 	m_hp = 3;//主人公HP
 
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
+
+	
 }
 
 //アクション
@@ -75,7 +82,7 @@ void CObjHero::Action()
 	
 
 	//Xキー入力でジャンプ
-	if (Input::GetVKey('W')==true)
+	if (Input::GetVKey(VK_SPACE)==true)
 	{
 		if (m_py + 64.0f == GRAUND)
 		{
@@ -192,6 +199,9 @@ void CObjHero::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+		//主人公消滅でシーンをゲームオーバーに移行する
+		Scene::SetScene(new CSceneGameOver());
 
 	}
 	*/
