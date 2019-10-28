@@ -14,8 +14,8 @@ using namespace GameL;
 //コンストラクタ
 CObjBullet::CObjBullet(float x, float y)
 {
-	m_bx = x;
-	m_by = y;
+	m_px = x;
+	m_py = y;
 	
 
 	//当たり判定用のHitBoxを作成
@@ -24,6 +24,8 @@ Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_WHITE,  OBJ_BULLET, 1);
 
 }
 
+	
+}
 
 //イニシャライズ
 void CObjBullet::Init()
