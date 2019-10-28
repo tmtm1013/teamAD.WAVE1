@@ -15,6 +15,13 @@ void CObjHero::Init()
 {
 	m_px = 0.0f;    //位置
 	m_py = 0.0f;
+
+	m_mou_px = 0.0f;//向き
+	m_mou_py = 0.0f;
+
+	m_mou_pr = 0.0f;
+	m_mou_pl = 0.0f;
+
 	m_f = true;   //弾丸制御
 
 	m_vx = 0.0f;    //移動ベクトル
@@ -98,18 +105,44 @@ void CObjHero::Action()
 	}
 
 
+
+	//主人公の向きを制御
+	//マウスの位置を取得
+	m_mou_px = (float)Input::GetPosX();
+	m_mou_py = (float)Input::GetPosY();
+	//マウスのボタンの状態
+	m_mou_pr = Input::GetMouButtonR();
+	m_mou_pl = Input::GetMouButtonL();
+
+	
+
+	
+	if (m_px > m_mou_px)
+	{
+
+			m_posture = 0.0f;
+
+	}
+	else
+	{
+			m_posture = 1.0f;
+
+	}
+
+		
+
 	//キーの入力方向
 	if (Input::GetVKey('D')==true)
 	{
 		m_vx += m_speed_power;
-		m_posture = 1.0f;
+		//m_posture = 1.0f;
 		m_ani_time += 1;
 	}
 	//キーの入力方向
 	else if (Input::GetVKey('A') == true)
 	{
 		m_vx -= m_speed_power;
-		m_posture = 0.0f;
+		//m_posture = 0.0f;
 		m_ani_time += 1;
 	}
 	else
