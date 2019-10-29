@@ -6,7 +6,7 @@
 #include "ObjEnemy.h"
 #include "GameL\HitBoxManager.h"
 
-#define GRAUND (536.0f)
+#define GRAUND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
