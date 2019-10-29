@@ -128,13 +128,17 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="CObjBullet.cpp" />
+    <ClCompile Include="CObjBullet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="HomingBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjClear.cpp" />
     <ClCompile Include="ObjEnemy.cpp" />
-    <ClCompile Include="ObjHero.cpp" />
+    <ClCompile Include="ObjHero.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="SceneClear.cpp" />
     <ClCompile Include="SceneMain.cpp" />
@@ -158,9 +162,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="main.h" />
-    <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="CObjBullet.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjEnemy.h" />
-    <ClInclude Include="ObjHero.h" />
+    <ClInclude Include="ObjHero.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneMain.h" />

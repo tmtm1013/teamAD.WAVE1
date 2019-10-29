@@ -20,7 +20,7 @@ void CObjClear::Init()
 void CObjClear::Action()
 {
 	//エンターキーを押してシーン：ゲームTitleに移行する
-	/*if (Input::GetVKey(VK_RETURN) == true)
+	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		if (m_Key_flag == true)
 		{
@@ -35,7 +35,7 @@ void CObjClear::Action()
 
 	}
 
-	*/
+	
 
 	
 }
@@ -45,12 +45,12 @@ void CObjClear::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	//スコア
+	/*//スコア
 	Font::StrDraw(L"score", 200, 250, 30, c);
 	for (int i = 0; i < 15; i++)
 	{
 
-	}
+	}*/
 
 
 	Font::StrDraw(L"GameClear", 250, 100, 70, c);
