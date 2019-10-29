@@ -48,7 +48,7 @@ void CSceneMain::InitScene()
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
-	Objs::InsertObj(objbg, OBJ_BACKGROUND, 9);
+	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
 
 
 	//Test用　　　敵オブジェクト作成
