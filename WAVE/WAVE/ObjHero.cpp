@@ -13,6 +13,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
+
 	m_px = 0.0f;    //位置
 	m_py = 0.0f;
 

@@ -142,6 +142,9 @@ void CObjEnemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+		//敵消滅でシーンをゲームオーバーに移行する
+		Scene::SetScene(new CSceneClear());
+
 	}
 
 

@@ -20,7 +20,7 @@ void CObjClear::Init()
 void CObjClear::Action()
 {
 	//エンターキーを押してシーン：ゲームTitleに移行する
-	/*if (Input::GetVKey(VK_RETURN) == true)
+	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		if (m_Key_flag == true)
 		{
@@ -35,7 +35,7 @@ void CObjClear::Action()
 
 	}
 
-	*/
+	
 
 	
 }
