@@ -195,7 +195,7 @@ void CObjHero::Action()
 
 	}
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
-	/*if (m_hp <= 0)
+	if (m_hp <= 0)
 	{
 
 		this->SetStatus(false);
@@ -205,7 +205,7 @@ void CObjHero::Action()
 		Scene::SetScene(new CSceneGameOver());
 
 	}
-	*/
+
 
 
 
