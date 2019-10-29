@@ -45,12 +45,12 @@ void CObjClear::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	//スコア
+	/*//スコア
 	Font::StrDraw(L"score", 200, 250, 30, c);
 	for (int i = 0; i < 15; i++)
 	{
 
-	}
+	}*/
 
 
 	Font::StrDraw(L"GameClear", 250, 100, 70, c);

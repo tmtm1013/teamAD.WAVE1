@@ -20,6 +20,9 @@ class CObjBullet :public CObj
 		float m_vx;    //弾丸の X 方向の速度用変数
 		float m_vy;    //弾丸の Y 方向の速度用変数
 
+		float bx;      //
+		float by;      //
+
 		bool flag;
 
 		int speed;     //弾丸の速度
