@@ -35,9 +35,9 @@ void CObjHero::Init()
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
+	m_hit_up    = false;
+	m_hit_down  = false;
+	m_hit_left  = false;
 	m_hit_right = false;
 
 	m_hp = 3;//主人公HP
@@ -194,7 +194,7 @@ void CObjHero::Action()
 
 	}
 	//HPが0になったら破棄
-	/*if (m_hp <= 0)
+	if (m_hp <= 0)
 	{
 
 		this->SetStatus(false);
@@ -204,7 +204,7 @@ void CObjHero::Action()
 		Scene::SetScene(new CSceneGameOver());
 
 	}
-	*/
+	
 
 
 

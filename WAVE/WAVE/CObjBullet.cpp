@@ -2,10 +2,12 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 
-#include "ObjHero.h"
 #include "GameHead.h"
 #include "CObjBullet.h"
 #include "GameL\HitBoxManager.h"
+
+
+#define BULLET_SPEED (30.0f)
 
 
 //使用するネームスペース
@@ -36,8 +38,6 @@ void CObjBullet::Init()
 	by = 0.0f;
 
 	flag = true;
-
-	speed = 5;
 
 }
 
@@ -76,22 +76,13 @@ void CObjBullet::Action()
 	}
 
 	//弾丸に速度つける
-	m_vx *= 30.0f;
-	m_vy *= 30.0f;
+	m_vx *= BULLET_SPEED;
+	m_vy *= BULLET_SPEED;
 
 	//移動ベクトルを座標に加算する
 	m_bx += m_vx;
 	m_by += m_vy;
 	
-	//m_bx += speed * cosf((90)*3.14 / 180.0f);
-	//m_by += speed * sinf((90)*3.14 / 180.0f);
-
-	//m_vx += speed * cos(angle / 180 * 3.14);
-	//m_vy += speed * sin(angle / 180 * 3.14);
-
-	//m_bx = m_vx;
-	//m_by = m_vy;
-	//if (flag == true)
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -130,12 +121,6 @@ void CObjBullet::Action()
 //ドロー
 void CObjBullet::Draw()
 {
-	/*//歩くアニメーション情報を登録
-	int AniData[4] =
-	{
-		1 , 0 , 2 , 0,
-	};w
-	*/
 
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -144,10 +129,10 @@ void CObjBullet::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top    = 64.0f;
-	src.m_left   = 256.0f;
-	src.m_right  = 320.0f;
-	src.m_bottom = 128.0f;
+	src.m_top    = 0.0f;
+	src.m_left   = 0.0f;
+	src.m_right  = 64.0f;
+	src.m_bottom = 64.0f;
 
 	//表示位置の設定
 	dst.m_top    = 0.0f  + m_by;
@@ -156,6 +141,17 @@ void CObjBullet::Draw()
 	dst.m_bottom = 16.0f + m_by;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(4, &src, &dst, c, 0.0f);
 	
 }
+
+
+// m_bx += speed * cosf((90)*3.14 / 180.0f);
+//m_by += speed * sinf((90)*3.14 / 180.0f);
+
+//m_vx += speed * cos(angle / 180 * 3.14);
+//m_vy += speed * sin(angle / 180 * 3.14);
+
+//m_bx = m_vx;
+//m_by = m_vy;
+//if (flag == true)

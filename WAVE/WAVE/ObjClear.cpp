@@ -14,7 +14,6 @@ using namespace GameL;
 void CObjClear::Init()
 {
 	m_Key_flag = false;//キーフラグ
-
 }
 //アクション
 void CObjClear::Action()
