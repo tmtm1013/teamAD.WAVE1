@@ -10,6 +10,40 @@
 //使用するネームスペース
 using namespace GameL;
 
+//位置情報X変更用
+void  CObjHero::SetXX(float x)
+{
+
+	m_px = x;
+
+
+
+}
+//位置情報Y変更用
+void  CObjHero::SetYY(float y)
+{
+
+
+	m_py = y;
+
+
+}
+//位置情報X取得用
+float  CObjHero::GetXX()
+{
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float  CObjHero::GetYY()
+{
+
+	return m_py;
+
+}
+
 //イニシャライズ
 void CObjHero::Init()
 {
@@ -46,6 +80,13 @@ void CObjHero::Init()
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
+
+
+
+
+
+
+
 
 	
 }
