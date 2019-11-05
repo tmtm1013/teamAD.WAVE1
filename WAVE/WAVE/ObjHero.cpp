@@ -24,6 +24,8 @@ void CObjHero::Init()
 	m_mou_pl = 0.0f;
 
 	m_f = true;   //弾丸制御
+	m_time = 0.0f; //弾丸発射頻度制限
+	bullet_type = 1;
 
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -53,31 +55,62 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	//m_vy = 0;
-	//移動ベクトルの破棄
-	//m_vx = 0.0f;
-	//m_vy = 0.0f;
+	if (Input::GetVKey('1') == true)
+		bullet_type = 1;
+	if (Input::GetVKey('2') == true)
+		bullet_type = 2;
+	if (Input::GetVKey('3') == true)
+		bullet_type = 3;
+	
 
-	//主人公の弾丸発射
-	if (Input::GetMouButtonL()==true)
+
+
+
+
+	m_time += 0.1;
+
+	//主人公のハンドガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 2.0f&&bullet_type == 1)
 	{
 		if (m_f==true)
 		{
-
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjBullet* obj_b = new CObjBullet(m_px+30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			m_f = false;
+			m_time = 0.0f;
 
 		}
-
 	}
 	else
 	{
 		m_f = true;
 	}
 
+	//サブマシンガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
+	{
+	
+			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+			CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+			Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_time = 0.0f;
+
+	}
+
+	//ショットガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 1.8f&&bullet_type == 3)
+	{
+
+		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+		CObjDiffusionBullet* obj_db = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_db, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+		 
+		m_time = 0.0f;
+
+	}
 
 
 	

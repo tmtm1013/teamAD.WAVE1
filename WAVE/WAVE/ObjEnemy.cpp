@@ -25,8 +25,8 @@ void CObjEnemy::Init()
 
 	m_speed_power = 0.5f;  //’Êí‘¬“x
 	m_ani_max_time = 2;    //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
-
-	m_hp = 5;//ENEMY‚ÌHP
+	
+	m_hp = 100;//ENEMY‚ÌHP
 
 
 	m_move = false;
@@ -126,13 +126,29 @@ void CObjEnemy::Action()
 
 
 
-
+	
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
 	{
 	
-		m_hp -= 1;
+		m_hp -= 15;
 	
+
+	}
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+	{
+
+		m_hp -= 10;
+
+
+	}
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+	{
+
+		m_hp -= 40;
+
 
 	}
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü

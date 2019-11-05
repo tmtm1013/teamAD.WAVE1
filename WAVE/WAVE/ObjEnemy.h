@@ -6,6 +6,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+
 //オブジェクト：敵
 class CObjEnemy :public CObj
 {
@@ -31,6 +32,8 @@ private:
 	bool m_move;
 
 	//ENEMYのHP
-	int   m_hp;
+	int m_hp;
+
+
 
 };
