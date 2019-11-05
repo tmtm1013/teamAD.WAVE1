@@ -35,6 +35,14 @@ class CObjHero :public CObj
 		   float m_mou_px; //マウスの位置X
 		   float m_mou_py; //マウスの位置Y
 
+
+		   void SetXX(float x);//位置情報X変更用
+		   void SetYY(float y);//位置情報Y変更用
+		   float GetXX();//位置情報ｘ取得用
+		   float GetYY();//位置情報Y取得用
+
+
+
 	private:
 		float m_px;    //位置
 		float m_py;
