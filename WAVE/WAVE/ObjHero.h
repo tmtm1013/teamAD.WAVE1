@@ -39,6 +39,14 @@ class CObjHero :public CObj
 		   float m_mou_px; //マウスの位置X
 		   float m_mou_py; //マウスの位置Y
 
+
+		   void SetXX(float x);//位置情報X変更用
+		   void SetYY(float y);//位置情報Y変更用
+		   float GetXX();//位置情報ｘ取得用
+		   float GetYY();//位置情報Y取得用
+
+
+
 	private:
 		float m_px;    //位置
 		float m_py;
@@ -47,6 +55,8 @@ class CObjHero :public CObj
 		bool m_mou_pl; //マウス左ボタン
 
 		bool  m_f;     //弾丸発射制御用
+		float m_time;  //弾丸発射可能頻度制御
+		int bullet_type;//弾丸の種類
 
 		float m_vx;    //移動ベクトル
 		float m_vy;

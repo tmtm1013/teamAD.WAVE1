@@ -14,22 +14,22 @@ using namespace GameL;
 //イニシャライズ
 void CObjEnemy::Init()
 {
-	m_px = 100.0f;    //位置
+	m_px = 750.0f;    //位置
 	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
-	m_posture = 1.0f;  //右向き0.0f 左向き1.0f
+	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
+	
+	m_hp = 100;//ENEMYのHP
 
-	m_hp = 5;//ENEMYのHP
 
-
-	m_move = false;
+	m_move = false;//true=右
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY,  1);
@@ -48,30 +48,50 @@ void CObjEnemy::Action()
 	
 	
 		//通常速度
-		m_speed_power = 0.5f;
+		m_speed_power = 0.1f;
 		m_ani_max_time = 2;
 	
 
-	if (false)
+		//主人公の位置情報をここで取得
+		CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+		float x = obj->GetXX();
+		float y = obj->GetYY();
+
+
+		//ここに敵が主人公の向きに移動する条件を書く。
+		if (x <= m_px)//右
+		{
+
+			m_move = true;
+
+
+
+		}
+		if (x >= m_px)//左
+		{
+
+
+			m_move = false;
+
+
+
+		}
+
+	if (m_move==false)
 	{
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
 	
-	else if (false)
+	else if (m_move==true)
 	{
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
 	}
 
-	else
-	{
-		m_ani_frame = 1; //静止フレーム
-		m_ani_time = 0;
-	}
-
+	
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
@@ -126,13 +146,29 @@ void CObjEnemy::Action()
 
 
 
-
+	
 	//敵と弾丸が接触したらHPが減る
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
 	{
 	
-		m_hp -= 1;
+		m_hp -= 15;
 	
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+	{
+
+		m_hp -= 10;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+	{
+
+		m_hp -= 40;
+
 
 	}
 	//HPが0になったら破棄

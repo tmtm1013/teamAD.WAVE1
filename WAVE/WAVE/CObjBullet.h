@@ -20,15 +20,12 @@ class CObjBullet :public CObj
 		float m_vx;    //弾丸の X 方向の速度用変数
 		float m_vy;    //弾丸の Y 方向の速度用変数
 
-		float bx;      //
-		float by;      //
+		float bx;      //弾丸の X ベクトル値収納用変数 
+		float by;      //弾丸の Y ベクトル値収納用変数
 
-		bool flag;
+		bool flag;     //発射角度制御フラグ
 
-		int speed;     //弾丸の速度
-		float angle;   //マウスの中心点と角度返納
-
-		float m_mou_bx;//弾丸の X 方向の位置用変数
-		float m_mou_by;//弾丸の Y 方向の位置用変数
+		float m_mou_bx;//マウスの X 方向の位置用変数
+		float m_mou_by;//マウスの Y 方向の位置用変数
 		
 };
