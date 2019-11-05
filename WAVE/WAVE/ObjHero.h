@@ -8,7 +8,7 @@ using namespace GameL;
 //シーン:主人公
 class CObjHero :public CObj
 {
-    public:CObjHero() {};
+	public:CObjHero(){}
 	       ~CObjHero() {};
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション
@@ -30,6 +30,10 @@ class CObjHero :public CObj
 		   void SetLeft(bool b) { m_hit_left = b; }
 		   void SetRight(bool b) { m_hit_right = b; }
 
+		  
+		   
+
+		  
 
 
 		   float m_mou_px; //マウスの位置X
@@ -62,5 +66,10 @@ class CObjHero :public CObj
 		bool m_hit_left ;
 		bool m_hit_right ;
 
+		int hp;
+		int hp_max;
+		int hp_now;
+
+		
 
 };

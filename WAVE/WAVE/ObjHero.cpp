@@ -41,13 +41,11 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 3;//主人公HP
-
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
-
 	
+	hp = 50;
 }
 
 //アクション
@@ -163,7 +161,7 @@ void CObjHero::Action()
 		m_ani_frame = 0;
 	}
 
-	//HitBoxの位置の変更a
+	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
@@ -178,36 +176,27 @@ void CObjHero::Action()
 		m_vy = 0;
 	}
 
+	
+
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
+	}
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
-
-
-	
-
-
-	//主人公が敵と接触したとき主人公のHｐが減る
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
-	{
-
-		m_hp -= 1;
-
-
-	}
-	//HPが0になったら破棄
-	if (m_hp <= 0)
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-		//主人公消滅でシーンをゲームオーバーに移行する
-		Scene::SetScene(new CSceneGameOver());
-
-	}
-
-
-
 
 
 	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
@@ -228,6 +217,18 @@ void CObjHero::Action()
 	{
 		m_px = 0.0f;
 	}
+	
+	
+
+	if (hp <= 0)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+	
+		//Scene::SetScene(new CSceneGameOver());
+	}
+
 	
 }
 
@@ -262,4 +263,16 @@ void CObjHero::Draw()
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
+	//切り取り位置の設定HPバー
+	src.m_top = 64.0f;
+	src.m_left = 256.0f;
+	src.m_right = 320.0f;
+	src.m_bottom = 128.0f;
+
+	//表示位置の設定
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 256.0f*(hp_now/hp_max);
+	dst.m_bottom = 64.0f;
+	
 }
