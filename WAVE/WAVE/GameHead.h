@@ -11,11 +11,15 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
-	OBJ_BULLET,
-	OBJ_CLEAR,
-	OBJ_HOMING_BULLET,
-	OBJ_BACKGROUND,
 
+	OBJ_BULLET,
+	OBJ_FULL_BULLET,
+	OBJ_DIFFUSION_BULLET,
+	OBJ_HOMING_BULLET,
+
+
+	OBJ_BACKGROUND,
+	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 
@@ -67,6 +71,10 @@ struct UserData
 #include "ObjEnemy.h"
 
 #include "CObjBullet.h"
+#include "CObjFullBullet.h"
+#include "CObjDiffusionBullet.h"
+
+
 #include "ObjTitle.h"
 #include "ObjMain.h"
 #include "ObjClear.h"

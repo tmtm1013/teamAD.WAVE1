@@ -41,6 +41,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"GameOver1.png", 3, TEX_SIZE_512);
 
 
+	//弾丸グラフィック読み込み
+	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+
+
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
