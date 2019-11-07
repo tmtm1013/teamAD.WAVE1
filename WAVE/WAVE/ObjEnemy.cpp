@@ -14,7 +14,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjEnemy::Init()
 {
-	m_px = 100.0f;    //位置
+	m_px = 0.0f;    //位置
 	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -141,10 +141,9 @@ void CObjEnemy::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
-
 	}
 
-
+	
 }
 
 //ドロー
