@@ -183,7 +183,7 @@ void CObjEnemy::Action()
 
 	}
 
-
+	
 }
 
 //ƒhƒ[
