@@ -77,11 +77,13 @@ void CObjHero::Init()
 	m_hit_left  = false;
 	m_hit_right = false;
 
+	flag = true;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
-	hp = 50;
+	hp = 5;
+	hp_time = 0.0f;
 }
 
 //アクション
@@ -93,11 +95,6 @@ void CObjHero::Action()
 		bullet_type = 2;
 	if (Input::GetVKey('3') == true)
 		bullet_type = 3;
-	
-
-
-
-
 
 	m_time += 0.1;
 
@@ -243,10 +240,23 @@ void CObjHero::Action()
 		m_vy = 0;
 	}
 
-	
+	hp_time -= 0.1;
 
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
+		if (flag == true&&hp_time<=0.0f)
+		{
+			hp -= 1;
+
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time>=0.0f)
+		{
+			flag = true;
+		}
+			
+
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
@@ -285,18 +295,19 @@ void CObjHero::Action()
 		m_px = 0.0f;
 	}
 	
-	
-
 	if (hp <= 0)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+
 	
-		//Scene::SetScene(new CSceneGameOver());
+		Scene::SetScene(new CSceneGameOver());
 	}
 
 	
+
+
 }
 
 //ドロー
