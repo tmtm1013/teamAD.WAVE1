@@ -21,7 +21,7 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y)
 
 
 	//ìñÇΩÇËîªíËópÇÃHitBoxÇçÏê¨
-	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_DIFFUSION_BULLET, 1);
+	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_DIFFUSION_BULLET, 1);
 
 }
 
@@ -146,8 +146,8 @@ void CObjDiffusionBullet::Draw()
 	//ï\é¶à íuÇÃê›íË
 	dst.m_top = 0.0f + m_by;
 	dst.m_left = 0.0f + m_bx;
-	dst.m_right = 16.0f + m_bx;
-	dst.m_bottom = 16.0f + m_by;
+	dst.m_right = 32.0f + m_bx;
+	dst.m_bottom = 32.0f + m_by;
 
 	//ï`âÊ
 	Draw::Draw(4, &src, &dst, c, 0.0f);

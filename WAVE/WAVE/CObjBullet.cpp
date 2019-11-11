@@ -4,6 +4,7 @@
 
 #include "GameHead.h"
 #include "CObjBullet.h"
+#include "ObjEnemy.h"
 #include "GameL\HitBoxManager.h"
 
 
@@ -87,6 +88,16 @@ void CObjBullet::Action()
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
+
+
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	/*if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+
+		m_hp -= 15;
+
+
+	}*/
 
 	//“G‹@ƒIƒuƒWƒFƒNƒg‚ÆÚG‚µ‚½‚ç’eŠÛÁ‹Ž
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)

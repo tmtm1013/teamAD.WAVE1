@@ -67,9 +67,10 @@ void CObjHero::Init()
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
+	m_ani_move = 1;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 2;    //アニメーション間隔幅
+	m_ani_max_time = 4;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
 	m_hit_up    = false;
@@ -102,6 +103,26 @@ void CObjHero::Action()
 		bullet_type = 2;
 	if (Input::GetVKey('3') == true)
 		bullet_type = 3;
+	/*
+	//初期ハンドガンアニメーション
+	if (bullet_type==1)
+	{
+		m_ani_time += 1;//アニメーションタイムを+1加算
+		m_ani_move = 2;//アニメーションデータを指定
+	}
+	//初期サブマシンガンアニメーション
+	if (bullet_type == 2)
+	{
+
+	}
+	//初期ショットガンアニメーション
+	if (bullet_type == 3)
+	{
+
+	}
+	*/
+
+
 	
 
 
@@ -109,10 +130,13 @@ void CObjHero::Action()
 
 
 	m_time += 0.1;
+	
 
 	//主人公のハンドガン弾丸発射
 	if (Input::GetMouButtonL() == true && m_time >= 2.0f&&bullet_type == 1)
 	{
+		
+	
 		if (m_f==true)
 		{
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -121,14 +145,16 @@ void CObjHero::Action()
 
 			m_f = false;
 			m_time = 0.0f;
-
+			
 		}
+
 	}
-	else
+	else if(Input::GetMouButtonL() == false)
 	{
 		m_f = true;
 	}
-
+	
+	
 	//サブマシンガン弾丸発射
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
 	{
@@ -142,8 +168,9 @@ void CObjHero::Action()
 	}
 
 	//ショットガン弾丸発射
-	if (Input::GetMouButtonL() == true && m_time >= 1.8f&&bullet_type == 3)
+	if (Input::GetMouButtonL() == true && m_time >= 2.8f&&bullet_type == 3)
 	{
+		
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjDiffusionBullet* obj_db = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
@@ -152,7 +179,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
-
+	
 
 	
 
@@ -189,53 +216,52 @@ void CObjHero::Action()
 	m_mou_pr = Input::GetMouButtonR();
 	m_mou_pl = Input::GetMouButtonL();
 
-	
-
-	
-	if (m_px > m_mou_px)
-	{
-
-			m_posture = 0.0f;
-
-	}
-	else
-	{
-			m_posture = 1.0f;
-
-	}
-
-		
-
-	//キーの入力方向
+	//左に移動時の処理
 	if (Input::GetVKey('D')==true)
 	{
-		m_vx += m_speed_power;
+		m_vx += m_speed_power;//右に移動ベクトル加算
 		//m_posture = 1.0f;
-		m_ani_time += 1;
+		m_ani_time += 1;//アニメーションタイムを+1加算
+		m_ani_move = 0;//歩くアニメーションデータを指定
 	}
-	//キーの入力方向
+	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
-		m_vx -= m_speed_power;
+		m_vx -= m_speed_power;//左に移動ベクトル減算
 		//m_posture = 0.0f;
-		m_ani_time += 1;
+		m_ani_time += 1;//アニメーションタイムを+1加算
+		m_ani_move = 0;//歩くアニメーションデータを指定
 	}
 	else
 	{
-		m_ani_frame = 1; //キー入力がない場合は静止フレームにする
-		m_ani_time = 0;
+		 //キー入力がない場合は静止フレームにする
+		m_ani_time += 1;//アニメーションタイムを+1加算
+		m_ani_move = 1;//静止アニメーションデータを指定
 	}
-
-	if (m_ani_time>m_ani_max_time)
+	//アニメーション間隔制御
+	if (m_ani_time > m_ani_max_time)
 	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
+		m_ani_frame += 1;//アニメーションフレームを+1加算
+		m_ani_time = 0; //アニメーションタイムを初期化
 	}
-
+	//アニメーションを初期化
 	if (m_ani_frame==4)
 	{
-		m_ani_frame = 0;
+		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
+
+	//主人公を軸にマウスの方向に向く処理
+	if (m_px > m_mou_px)
+	{
+		//左に向く
+		m_posture = 0.0f;
+	}
+	else
+	{
+		//右に向く
+		m_posture = 1.0f;
+	}
+
 
 	//HitBoxの位置の変更a
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -290,28 +316,34 @@ void CObjHero::Action()
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
 	}
+	if (m_px < 0.0f)
+	{
+		m_px = 0.0f;//はみ出ない位置に移動させる
+	}
 
+
+	//テスト用落下制限
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;
 		m_py = GRAUND - 64.0f;
 	
 	}
-	
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-	
 }
 
 //ドロー
 void CObjHero::Draw()
 {
-	//歩くアニメーション情報を登録
-	int AniData[4] =
+
+	
+
+	//キャラクターのアニメーション情報を登録
+	int AniData[4][4] =
 	{
-		1 , 0 , 2 , 0,
+		1 , 0 , 2 , 0, //1ハンドガン
+		1 , 2 , 2 , 1, //2サブマシンガン
+		1 , 1 , 1 , 1, //3ショットガン
+		1 , 1 , 1 , 1, //0静止アニメーション情報を登録
 	};
 
 
@@ -321,12 +353,22 @@ void CObjHero::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//切り取り位置の設定
-	src.m_top    = 64.0f;
-	src.m_left   = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right  = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
-
+	//主人公が移動している時の描画
+	if (Input::GetVKey('D') == true || Input::GetVKey('A') == true)
+	{
+		//切り取り位置の設定
+		src.m_top = 64.0f;
+		src.m_left = 256.0f + AniData[m_ani_frame][m_ani_move] * 64;
+		src.m_right = 320.0f + AniData[m_ani_frame][m_ani_move] * 64;
+		src.m_bottom = 128.0f;
+	}
+	else//主人公が静止状態の時の描画
+	{
+		src.m_top = 320.0f;
+		src.m_left = 256.0f + AniData[m_ani_frame][m_ani_move] * 64;
+		src.m_right = 320.0f + AniData[m_ani_frame][m_ani_move] * 64;
+		src.m_bottom = 386.0f;
+	}
 	//表示位置の設定
 	dst.m_top    = 0.0f + m_py;
 	dst.m_left   = (      64.0f * m_posture ) + m_px;
