@@ -15,6 +15,8 @@ enum OBJ_NAME
 	OBJ_CLEAR,
 	OBJ_HOMING_BULLET,
 	OBJ_BACKGROUND,
+	OBJ_ENEMYLEFT,
+	OBJ_ENEMYJUMP,
 
 	OBJ_GAME_OVER,
 
@@ -64,6 +66,8 @@ struct UserData
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
+#include "ObjEnemyleft.h"
+#include "ObjEnemyJump.h"
 
 #include "CObjBullet.h"
 #include "ObjTitle.h"

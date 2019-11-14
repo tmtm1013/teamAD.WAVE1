@@ -3,8 +3,12 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemy.h"
+#include "ObjEnemyJump.h"
 #include "GameL\HitBoxManager.h"
+
+#include "stdio.h" //乱数用ヘッダー
+#include "stdlib.h"//乱数用ヘッダー
+#include "time.h"  //乱数用ヘッダー
 
 #define GRAUND (546.0f)
 
@@ -12,7 +16,7 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjEnemy::Init()
+void CObjEnemyJump::Init()
 {
 	m_px = 0.0f;    //位置
 	m_py = 0.0f;
@@ -28,71 +32,97 @@ void CObjEnemy::Init()
 
 	m_hp = 5;//ENEMYのHP
 
+	m_time = 0;//ジャンプ用タイム
 
 	m_move = false;//true=右
 
+	m_rnd = 0;//ジャンプ用ランダム変数
+
+
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY,  1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
 
-	
+
 }
 
-	
+
 
 
 
 //アクション
-void CObjEnemy::Action()
+void CObjEnemyJump::Action()
 {
+
+	//乱数の種を初期化
+	srand(time(NULL));
+	//1～100のランダムな数値
+	m_rnd = rand() % 3 + 1;
 	
-	
-		//通常速度
-		m_speed_power = 0.1f;
-		m_ani_max_time = 2;
-	
 
-
-		//主人公の位置情報をここで取得
-		CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		float x = obj->GetXX();
-		float y = obj->GetYY();
-
-
-		//ここに敵が主人公の向きに移動する条件を書く。
-		if (x <= m_px)//右
-		{
-
-			m_move = true;
+	//通常速度
+	m_speed_power = 0.1f;
+	m_ani_max_time = 2;
 
 
 
-		}
-		if (x >= m_px)//左
-		{
+	//主人公の位置情報をここで取得
+	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float x = obj->GetXX();
+	float y = obj->GetYY();
 
 
-			m_move = false;
-
-
-
-		}
-
-	if (m_move==false)
+	//ここに敵が主人公の向きに移動する条件を書く。
+	if (x <= m_px)//右
 	{
+
+		m_move = true;
+
+
+
+	}
+	if (x >= m_px)//左
+	{
+
+
+		m_move = false;
+
+
+
+	}
+	
+	if (m_move == false)
+	{
+
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
+		if (m_rnd==1) {//間隔をあけてジャンプする
+
+			if (m_py + 64.0f == GRAUND)//ジャンププログラム
+			{
+				m_vy = -16;
+			}
+
+			
+		}
 	}
-	
-	else if (m_move==true)
+
+	else if (m_move == true)
 	{
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
+		if (m_rnd == 3) {//間隔をあけてジャンプする
+			if (m_py + 64.0f == GRAUND)//ジャンププログラム
+			{
+				m_vy = -16;
+			}
+			
+		}
 	}
 
-	
+
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
@@ -121,7 +151,7 @@ void CObjEnemy::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	
+
 	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
@@ -140,7 +170,7 @@ void CObjEnemy::Action()
 	{
 		m_px = 0.0f;
 	}
-	
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
@@ -149,11 +179,11 @@ void CObjEnemy::Action()
 
 
 	//敵と弾丸が接触したらHPが減る
-	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
-	
+
 		m_hp -= 1;
-	
+
 
 	}
 	//HPが0になったら破棄
@@ -172,7 +202,7 @@ void CObjEnemy::Action()
 }
 
 //ドロー
-void CObjEnemy::Draw()
+void CObjEnemyJump::Draw()
 {
 	//歩くアニメーション情報を登録
 	int AniData[4] =
