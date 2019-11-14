@@ -1,4 +1,5 @@
 
+
 #pragma once
 //使用するヘッダーファイル
 #include "GameL\SceneObjManager.h"
@@ -6,16 +7,15 @@
 //使用するネームスペース
 using namespace GameL;
 
-
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjEnemyleft :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjEnemyleft() {};
+	   ~CObjEnemyleft() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
-   
+
 private:
 	float m_px;    //位置
 	float m_py;
@@ -33,8 +33,6 @@ private:
 	bool m_move;
 
 	//ENEMYのHP
-	int m_hp;
-
-
+	int   m_hp;
 
 };
