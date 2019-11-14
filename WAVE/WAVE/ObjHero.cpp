@@ -83,6 +83,8 @@ void CObjHero::Init()
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
 	hp = 5;
+	hp_max = 5;
+//	hp_now = hp_max;
 	hp_time = 0.0f;
 }
 
@@ -154,7 +156,7 @@ void CObjHero::Action()
 	}
 
 	//Zキー入力で速度アップ
-	if (Input::GetVKey('Z')==true)
+	if (Input::GetVKey(VK_SHIFT)==true)
 	{
 		//ダッシュ時の速度
 		m_speed_power = 1.1f;
@@ -242,6 +244,8 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
+
+	//主人公のHP計算
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
 		if (flag == true&&hp_time<=0.0f)
@@ -332,6 +336,7 @@ void CObjHero::Draw()
 	src.m_right  = 320.0f + AniData[m_ani_frame] * 64;
 	src.m_bottom = 128.0f;
 
+	
 	//表示位置の設定
 	dst.m_top    = 0.0f + m_py;
 	dst.m_left   = (      64.0f * m_posture ) + m_px;
@@ -341,16 +346,18 @@ void CObjHero::Draw()
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
-	//切り取り位置の設定HPバー
-	src.m_top = 64.0f;
-	src.m_left = 256.0f;
-	src.m_right = 320.0f;
-	src.m_bottom = 128.0f;
+	//HP
+	//切り取り位置
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 16.0f;
 
-	//表示位置の設定
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 256.0f*(hp_now/hp_max);
-	dst.m_bottom = 64.0f;
-	
+	//表示位置設定
+	dst.m_top = 32.0f;
+	dst.m_left = 32.0f;
+	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
+	dst.m_bottom = 40.0f;
+
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 }

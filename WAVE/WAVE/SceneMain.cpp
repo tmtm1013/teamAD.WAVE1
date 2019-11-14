@@ -44,6 +44,9 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
+	//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
+
 
 
 	//主人公オブジェクト作成

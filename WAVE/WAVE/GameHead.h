@@ -50,6 +50,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
+	int m_point; //GameMain出たポイント
 	
 };
 //------------------------------------------------
@@ -95,5 +96,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneItem
+#define SET_GAME_START CSceneMain
 //-----------------------------------------------
