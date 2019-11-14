@@ -58,6 +58,8 @@ void CObjHero::Init()
 	m_mou_pl = 0.0f;
 
 	m_f = true;   //弾丸制御
+	m_time = 0.0f; //弾丸発射頻度制限
+	bullet_type = 1;
 
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -75,50 +77,69 @@ void CObjHero::Init()
 	m_hit_left  = false;
 	m_hit_right = false;
 
-	m_hp = 3;//主人公HP
-
+	flag = true;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
-
-
-
-
-
-
-
-
 	
+	hp = 5;
+	hp_time = 0.0f;
 }
 
 //アクション
 void CObjHero::Action()
 {
-	//m_vy = 0;
-	//移動ベクトルの破棄
-	//m_vx = 0.0f;
-	//m_vy = 0.0f;
+	if (Input::GetVKey('1') == true)
+		bullet_type = 1;
+	if (Input::GetVKey('2') == true)
+		bullet_type = 2;
+	if (Input::GetVKey('3') == true)
+		bullet_type = 3;
 
-	//主人公の弾丸発射
-	if (Input::GetMouButtonL()==true)
+	m_time += 0.1;
+
+	//主人公のハンドガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 2.0f&&bullet_type == 1)
 	{
 		if (m_f==true)
 		{
-
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjBullet* obj_b = new CObjBullet(m_px+30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			m_f = false;
+			m_time = 0.0f;
 
 		}
-
 	}
 	else
 	{
 		m_f = true;
 	}
 
+	//サブマシンガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
+	{
+	
+			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+			CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+			Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_time = 0.0f;
+
+	}
+
+	//ショットガン弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 1.8f&&bullet_type == 3)
+	{
+
+		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+		CObjDiffusionBullet* obj_db = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_db, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+		 
+		m_time = 0.0f;
+
+	}
 
 
 	
@@ -204,7 +225,7 @@ void CObjHero::Action()
 		m_ani_frame = 0;
 	}
 
-	//HitBoxの位置の変更a
+	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
@@ -219,36 +240,40 @@ void CObjHero::Action()
 		m_vy = 0;
 	}
 
+	hp_time -= 0.1;
+
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (flag == true&&hp_time<=0.0f)
+		{
+			hp -= 1;
+
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time>=0.0f)
+		{
+			flag = true;
+		}
+			
+
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
+	}
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
-
-
-	
-
-
-	//主人公が敵と接触したとき主人公のHｐが減る
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
-	{
-
-		m_hp -= 1;
-
-
-	}
-	//HPが0になったら破棄
-	if (m_hp <= 0)
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-		//主人公消滅でシーンをゲームオーバーに移行する
-		Scene::SetScene(new CSceneGameOver());
-
-	}
-
-
-
 
 
 	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
@@ -270,6 +295,19 @@ void CObjHero::Action()
 		m_px = 0.0f;
 	}
 	
+	if (hp <= 0)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+
+	
+		Scene::SetScene(new CSceneGameOver());
+	}
+
+	
+
+
 }
 
 //ドロー
@@ -303,4 +341,16 @@ void CObjHero::Draw()
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
+	//切り取り位置の設定HPバー
+	src.m_top = 64.0f;
+	src.m_left = 256.0f;
+	src.m_right = 320.0f;
+	src.m_bottom = 128.0f;
+
+	//表示位置の設定
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 256.0f*(hp_now/hp_max);
+	dst.m_bottom = 64.0f;
+	
 }

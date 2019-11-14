@@ -25,8 +25,8 @@ void CObjEnemy::Init()
 
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
-
-	m_hp = 5;//ENEMYのHP
+	
+	m_hp = 100;//ENEMYのHP
 
 
 	m_move = false;//true=右
@@ -147,13 +147,29 @@ void CObjEnemy::Action()
 
 
 
-
+	
 	//敵と弾丸が接触したらHPが減る
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
 	{
 	
-		m_hp -= 1;
+		m_hp -= 15;
 	
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+	{
+
+		m_hp -= 10;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+	{
+
+		m_hp -= 40;
+
 
 	}
 	//HPが0になったら破棄
@@ -163,12 +179,12 @@ void CObjEnemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//敵消滅でシーンをクリアに移行する
+		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());
 
 	}
 
-
+	
 }
 
 //ドロー
