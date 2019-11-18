@@ -65,6 +65,9 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
+	//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
+
 
 
 	//主人公オブジェクト作成
@@ -75,27 +78,87 @@ void CSceneMain::InitScene()
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
 
-
-	//Test用　　　敵オブジェクト作成
-	CObjEnemy* obje = new CObjEnemy();
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
+	
 
 	/*//テスト用:弾丸オブジェクト作成
 	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	
 
 	CObjMain* p = new CObjMain();
 	Objs::InsertObj(p, OBJ_MAIN, 1);
-
 	
+	
+	
+	m_time = 0;
+	m_time2 = 0;
+	m_time3= 0;
+	Enemy = 1;
+	Enemyleft = 1;
+	EnemyJump = 1;
 }
 
 //実行中メソッド
  void CSceneMain::Scene()
 {
+	 m_time++;
+	 m_time2++;
+	 m_time3++;
+	 /*
+		 if (m_time > 100)//敵が出てくる間隔
+		 {
 
+			 if (Enemy <=2) {//敵の数を決める数字
+				 //敵オブジェクト作成
+				 CObjEnemy* obj_enemy = new CObjEnemy();
+				 Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
+				 
+			 }
+
+			 Enemy++;
+			 
+			
+			 m_time = 0;
+		 }
+		 if (m_time2>250) {
+
+			 if (Enemyleft <= 2) {
+
+				 CObjEnemyleft* obj_enemyleft = new CObjEnemyleft();
+				 Objs::InsertObj(obj_enemyleft, OBJ_ENEMY, 10);
+
+
+			 }
+
+			 Enemyleft++;
+
+			 m_time2 = 0;
+
+		 }
+		 */
+		 if (m_time3>100) {
+
+			 if (EnemyJump <= 2) {
+
+				 CObjEnemyJump* obj_enemyjump = new CObjEnemyJump();
+				 Objs::InsertObj(obj_enemyjump, OBJ_ENEMY, 10);
+
+
+			 }
+
+			 EnemyJump++;
+
+			 m_time3 = 0;
+
+
+
+
+
+		 }
+
+
+
+		
 }
-
-

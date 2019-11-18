@@ -251,9 +251,6 @@
     <ClInclude Include="ObjClear.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGameOver.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CObjBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
@@ -262,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="CObjDiffusionBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneItem.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
