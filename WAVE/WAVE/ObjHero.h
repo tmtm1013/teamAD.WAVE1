@@ -62,12 +62,15 @@ class CObjHero :public CObj
 		float m_vy;
 		float m_posture;  //姿勢
 
-		int m_ani_time;  //アニメーションフレーム動作間隔
-		int m_ani_frame; //描画フレーム
+		int  m_ani_time;  //アニメーションフレーム動作間隔
+		int  m_ani_frame; //描画フレーム
 
 		float m_speed_power;  //スピードパワー
 		float m_ani_max_time; //アニメーション動作間隔最大値
 		int m_ani_move;//アニメーション切り替え用
+		int m_ret;  //アニメーションターン用変数
+		int m_SEtime;//SEの再生頻度制御用変数1
+
 
 		int m_hp;//主人公のHP
 
@@ -82,6 +85,22 @@ class CObjHero :public CObj
 		int hp_max;
 		int hp_now;
 		float hp_time;
+
+		//RECT srcAnim[28];
+
+
+		float cy;//アニメーション管理用変数
+		float cx;
+		float dx;//マツコDX
+		float dy;
+
+
+		float top;
+		float left;
+		float right;
+		float bottom;
+
+		int i = 0;
 		
 
 };
