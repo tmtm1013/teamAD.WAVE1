@@ -55,6 +55,8 @@ void CObjClear::Draw()
 	src.m_right = 512.0f;
 	src.m_bottom = 512.0f;
 
+
+
 	//表示位置の設定
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
@@ -62,28 +64,18 @@ void CObjClear::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(6, &src, &dst, c, 0.0f);
+
+
+	//クリア画面グラフィック読み込み
+	//Draw::LoadImage(L".png", 6, TEX_SIZE_512);
+
+
+	Font::StrDraw(L"GAME CLEAR", 220, 100, 72, c);
+
+	Font::StrDraw(L"Enter to Title", 180, 450, 62, c);
 
 
 
-
-
-	/*//スコア
-	Font::StrDraw(L"score", 200, 250, 30, c);
-	for (int i = 0; i < 15; i++)
-	{
-
-	}*/
-	Draw::LoadImage(L"Clear1.png", 0, TEX_SIZE_512);
-
-	CObjClear*objr = new CObjClear();
-	Objs::InsertObj(objr, OBJ_CLEAR, 2);
-
-
-	/*Font::StrDraw(L"GameClear", 250, 100, 70, c);
-
-	//タイトルに戻るキー
-	Font::StrDraw(L"Enter to title",220,500,50, c);
-	*/
 
 }

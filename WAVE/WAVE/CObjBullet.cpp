@@ -6,7 +6,6 @@
 #include "CObjBullet.h"
 #include "GameL\HitBoxManager.h"
 
-
 #define BULLET_SPEED (30.0f)
 
 

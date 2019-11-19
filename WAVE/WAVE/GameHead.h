@@ -22,6 +22,7 @@ enum OBJ_NAME
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
+	OBJ_GRENADE,
 
 };
 //------------------------------------------------
@@ -82,6 +83,7 @@ struct UserData
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjGrenade.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -95,5 +97,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneItem
+#define SET_GAME_START CSceneClear
 //-----------------------------------------------

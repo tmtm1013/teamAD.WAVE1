@@ -4,6 +4,7 @@
 #include "GameHead.h"
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
+#include "ObjGrenade.h"
 
 #define GRAUND (546.0f)
 
@@ -143,6 +144,26 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
+	//手榴弾発射
+	if (Input::GetVKey('Q') == true && m_time >= 10.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGrenade* obj_g = new CObjGrenade(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GRENADE, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
+	}
 
 
 	
@@ -232,6 +253,8 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+	
+
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -272,7 +295,6 @@ void CObjHero::Action()
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
 	}
-
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;

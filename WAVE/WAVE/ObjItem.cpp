@@ -10,11 +10,14 @@
 //使用するネームスペース
 using namespace GameL;
 
+
+
 //イニシャライズ
 void CObjItem::Init()
 {
-
-
+	
+	
+	
 
 }
 
@@ -22,7 +25,6 @@ void CObjItem::Init()
 //アクション
 void CObjItem::Action()
 {
-	//
 	
 
 	
@@ -60,7 +62,9 @@ void CObjItem::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 
-	Draw::LoadImage(L"Item.png", 0, TEX_SIZE_512);
+	//Draw::LoadImage(L"Item.png", 0, TEX_SIZE_512);
+
+	//Draw::LoadImage(L"dannyaku.png", 0, TEX_SIZE_512);
 
 	CObjItem*obju = new CObjItem();
 	Objs::InsertObj(obju, OBJ_ITEM, 4);

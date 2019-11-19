@@ -44,6 +44,8 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
+	//手榴弾グラフィック読み込み
+	Draw::LoadImage(L"Grenade.png", 5, TEX_SIZE_512);
 
 
 	//主人公オブジェクト作成
@@ -53,7 +55,6 @@ void CSceneMain::InitScene()
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
-
 
 	//Test用　　　敵オブジェクト作成
 	CObjEnemy* obje = new CObjEnemy();
