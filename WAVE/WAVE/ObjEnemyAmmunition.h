@@ -1,3 +1,4 @@
+#pragma once
 
 #pragma once
 //使用するヘッダーファイル
@@ -8,10 +9,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjEnemyAmmunition :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjEnemyAmmunition() {};
+	   ~CObjEnemyAmmunition() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -32,8 +33,9 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
-
 	//ENEMYのHP
 	int m_hp;
+
+
 
 };

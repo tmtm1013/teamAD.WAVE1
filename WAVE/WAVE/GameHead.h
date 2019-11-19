@@ -11,12 +11,29 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
+
 	OBJ_BULLET,
-	OBJ_CLEAR,
+	OBJ_FULL_BULLET,
+	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
 	OBJ_BACKGROUND,
+	OBJ_ENEMYLEFT,
+	OBJ_ENEMYJUMP,
+	OBJ_ENEMYJUMPLEFT,
+	OBJ_ENEMYRECOVERY,
+	OBJ_ENEMYRECOVERYLEFT,
+	OBJ_ENEMYAMMUNITION,
+	OBJ_ENEMYAMMUNITIONLIFT,
+	OBJ_ENEMYLONGDISTANCE,
+	OBJ_ENEMYLONGDISTANCELEFT,
+	
 
+
+
+	
+	OBJ_CLEAR,
 	OBJ_GAME_OVER,
+	OBJ_ITEM,
 
 };
 //------------------------------------------------
@@ -64,14 +81,29 @@ struct UserData
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
+#include "ObjEnemyleft.h"
+#include "ObjEnemyJump.h"
+#include "ObjEnemyJumpleft.h"
+#include "ObjEnemyRecovery.h"
+#include "ObjEnemyRecoveryleft.h"
+#include "ObjEnemyAmmunition.h"
+#include "ObjEnemyAmmunitionleft.h"
+#include "ObjEnemyLongdistance.h"
+#include "ObjEnemyLongdistanceleft.h"
 
 #include "CObjBullet.h"
+#include "CObjFullBullet.h"
+#include "CObjDiffusionBullet.h"
+#include "COHomingBullet.h "
+
+
 #include "ObjTitle.h"
 #include "ObjMain.h"
 #include "ObjClear.h"
 #include "ObjBackground.h"
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
+#include "ObjItem.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -80,6 +112,7 @@ struct UserData
 #include "SceneMain.h"
 #include "SceneClear.h"
 #include "SceneGameOver.h"
+#include "SceneItem.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

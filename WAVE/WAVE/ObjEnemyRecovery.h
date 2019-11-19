@@ -1,4 +1,3 @@
-
 #pragma once
 //使用するヘッダーファイル
 #include "GameL\SceneObjManager.h"
@@ -8,10 +7,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjEnemyRecovery :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjEnemyRecovery() {};
+	   ~CObjEnemyRecovery() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -32,8 +31,9 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
-
 	//ENEMYのHP
 	int m_hp;
+
+
 
 };

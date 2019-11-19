@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //シーン:主人公
-class CObjBullet :public CObj
+class CObjFullBullet :public CObj
 {
 public:
-	CObjBullet(float x, float y);  //コンストラクタ
-	~CObjBullet() {};
+	CObjFullBullet(float x, float y);  //コンストラクタ
+	~CObjFullBullet() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
@@ -24,7 +24,10 @@ private:
 	float by;      //弾丸の Y ベクトル値収納用変数
 
 	bool flag;     //発射角度制御フラグ
+	float m_time;  //弾丸発射頻度制御用変数
 
 	float m_mou_bx;//マウスの X 方向の位置用変数
 	float m_mou_by;//マウスの Y 方向の位置用変数
+
 };
+
