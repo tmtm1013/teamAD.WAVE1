@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\DrawFont.h"
 //#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
@@ -31,6 +32,9 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
+	//Font作成
+	Font::SetStrTex(L"0123456789分秒");
+
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
@@ -56,6 +60,10 @@ void CSceneMain::InitScene()
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
+
+	//タイムオブジェクト作成
+	CObjTime* objt = new CObjTime();
+	Objs::InsertObj(objt, OBJ_TIME, 11);
 
 	
 

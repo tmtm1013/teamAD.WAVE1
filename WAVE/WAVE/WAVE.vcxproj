@@ -154,6 +154,7 @@
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjTime.cpp" />
     <ClCompile Include="SceneClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -195,6 +196,7 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjTime.h" />
     <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneItem.h" />
