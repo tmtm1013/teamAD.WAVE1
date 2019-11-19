@@ -15,7 +15,7 @@ public:CObjEnemy() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
-   
+
 private:
 	float m_px;    //位置
 	float m_py;
@@ -32,9 +32,8 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
+
 	//ENEMYのHP
 	int m_hp;
-
-
 
 };

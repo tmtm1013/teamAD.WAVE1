@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 //#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
@@ -31,8 +32,28 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
+	/*
+	//音楽読み込み
+	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
+	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	*/
+	//SE読み込み
+	Audio::LoadAudio(2, L"SEgan/gun2.wav",SOUND_TYPE::EFFECT);//ハンドガン発射音読み込み
+	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み
+	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//ショットガン発射音読み込み
+	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
+	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
+	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
+
+	//ボリュームを1.0に戻す
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster(1.0 - v);
+	
+	//主人公(待機)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait2.png",5,TEX_SIZE_1024);
+
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/forward.png", 6, TEX_SIZE_1024);
 
 	//ブロックのグラフィック読み込み
 	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
@@ -43,6 +64,9 @@ void CSceneMain::InitScene()
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+
+	//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
 
 
 

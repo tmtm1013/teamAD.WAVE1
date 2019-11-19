@@ -4,6 +4,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\DrawTexture.h"
 
+#include "GameL\UserData.h"
 #include "GameHead.h"
 #include "ObjClear.h"
 
@@ -14,16 +15,19 @@ using namespace GameL;
 //イニシャライズ
 void CObjClear::Init()
 {
-	m_Key_flag = false;//キーフラグ
+	m_Key_flag =true;//キーフラグ
 }
 //アクション
 void CObjClear::Action()
 {
+
+
 	//エンターキーを押してシーン：ゲームTitleに移行する
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		if (m_Key_flag == true)
 		{
+
 			Scene::SetScene(new CSceneTitle());
 			m_Key_flag = false;
 
@@ -34,10 +38,6 @@ void CObjClear::Action()
 		m_Key_flag = true;
 
 	}
-
-	
-
-	
 }
 
 //ドロー
@@ -64,7 +64,11 @@ void CObjClear::Draw()
 	//描画
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-
+	//得点を描画：右上
+	float cc[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	wchar_t str[128];
+	swprintf_s(str, L"得点 : %d点", ((UserData*)Save::GetData())->m_point);
+	Font::StrDraw(str, 650, 10, 20, cc);
 
 
 

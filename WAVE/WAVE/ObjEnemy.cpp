@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\UserData.h"
 
 #include "GameHead.h"
 #include "ObjEnemy.h"
@@ -178,6 +179,10 @@ void CObjEnemy::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
+
 
 		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());

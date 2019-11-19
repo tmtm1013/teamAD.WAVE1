@@ -22,8 +22,8 @@
     <Filter Include="ソース ファイル\Hero">
       <UniqueIdentifier>{7a861923-b9a7-4e44-bc7f-77316bc4a3cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Enemy">
-      <UniqueIdentifier>{75875906-e52c-454b-8fb0-f2c6019dd242}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\Bullet">
+      <UniqueIdentifier>{6eb574e3-6a0c-467f-953a-16c5a59ea08c}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Bullet">
       <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
@@ -70,6 +70,9 @@
       <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Audio.cpp">
@@ -401,6 +404,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
