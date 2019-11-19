@@ -15,10 +15,6 @@ void CObjBackground::Init()
 
 }
 
-
-
-
-
 //ƒAƒNƒVƒ‡ƒ“
 void CObjBackground::Action()
 {

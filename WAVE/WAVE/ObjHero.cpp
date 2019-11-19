@@ -255,10 +255,40 @@ void CObjHero::Action()
 		{
 			flag = true;
 		}
-			
 
+			HIT_DATA** hit_data;
+			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+
+			float r = hit_data[0]->r;
+			if ((r < 45 && r >= 0) || r > 315)
+			{
+				m_vx = -5.0f; //左に移動させる。
+			}
+			if (r > 135 && r < 225)
+			{
+				m_vx = +5.0f; //右に移動させる。
+			}
+		
+	}
+
+
+
+	//遠距離敵の攻撃接触でHeroのHPが減る
+	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+	{
+		if (flag == true && hp_time <= 0.0f)
+		{
+			hp -= 10;
+
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time >= 0.0f)
+		{
+			flag = true;
+		}
 		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
 
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
@@ -270,6 +300,9 @@ void CObjHero::Action()
 			m_vx = +5.0f; //右に移動させる。
 		}
 	}
+
+
+
 
 	//位置の更新
 	m_px += m_vx;
