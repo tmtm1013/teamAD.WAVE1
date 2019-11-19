@@ -41,6 +41,8 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_block_type = 0;
+
 	m_hp = 3;//主人公HP
 
 
@@ -85,9 +87,9 @@ void CObjHero::Action()
 	//Xキー入力でジャンプ
 	if (Input::GetVKey(VK_SPACE)==true)
 	{
-		if (m_py + 64.0f == GRAUND)
+		if (m_hit_down==true)
 		{
-			m_vy = -16;
+  			m_vy = -20;
 		}
 	}
 
@@ -117,7 +119,7 @@ void CObjHero::Action()
 
 	
 
-	
+	//主人公の位置を軸にマウス位置でグラフィック反転
 	if (m_px > m_mou_px)
 	{
 
@@ -173,10 +175,17 @@ void CObjHero::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
+	/*if (m_vy > 26 && m_py <= GRAUND)
 	{
 		m_vy = 0;
-	}
+	}*/
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 
 	//位置の更新
 	m_px += m_vx;
@@ -216,19 +225,27 @@ void CObjHero::Action()
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
 	}
-
+	/*
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;
 		m_py = GRAUND - 64.0f;
 	
 	}
-	
+	*/
 	if (m_px < 0.0f)
 	{
 		m_px = 0.0f;
 	}
 	
+
+	/*//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, 
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);*/
+
 }
 
 //ドロー
