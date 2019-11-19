@@ -16,9 +16,21 @@ enum OBJ_NAME
 	OBJ_FULL_BULLET,
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
-
-
 	OBJ_BACKGROUND,
+	OBJ_ENEMYLEFT,
+	OBJ_ENEMYJUMP,
+	OBJ_ENEMYJUMPLEFT,
+	OBJ_ENEMYRECOVERY,
+	OBJ_ENEMYRECOVERYLEFT,
+	OBJ_ENEMYAMMUNITION,
+	OBJ_ENEMYAMMUNITIONLIFT,
+	OBJ_ENEMYLONGDISTANCE,
+	OBJ_ENEMYLONGDISTANCELEFT,
+	
+
+
+
+	
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
@@ -70,10 +82,20 @@ struct UserData
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
+#include "ObjEnemyleft.h"
+#include "ObjEnemyJump.h"
+#include "ObjEnemyJumpleft.h"
+#include "ObjEnemyRecovery.h"
+#include "ObjEnemyRecoveryleft.h"
+#include "ObjEnemyAmmunition.h"
+#include "ObjEnemyAmmunitionleft.h"
+#include "ObjEnemyLongdistance.h"
+#include "ObjEnemyLongdistanceleft.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
 #include "CObjDiffusionBullet.h"
+#include "COHomingBullet.h "
 
 
 #include "ObjTitle.h"
@@ -97,5 +119,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneClear
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------

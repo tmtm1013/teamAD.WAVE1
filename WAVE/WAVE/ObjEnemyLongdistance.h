@@ -8,10 +8,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjEnemyLongdistance :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjEnemyLongdistance() {};
+	   ~CObjEnemyLongdistance() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -32,8 +32,12 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
-
 	//ENEMYのHP
 	int m_hp;
+
+	//弾丸用時間制限タイム変数
+	int m_time;
+
+
 
 };
