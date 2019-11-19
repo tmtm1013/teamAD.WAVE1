@@ -346,6 +346,12 @@
     <ClInclude Include="SceneItem.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyleft.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="ObjEnemyJumpleft.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>

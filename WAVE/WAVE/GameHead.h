@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
+	OBJ_TIME,
 
 	OBJ_BULLET,
 	OBJ_FULL_BULLET,
@@ -106,6 +107,7 @@ struct UserData
 #include "ObjGameOver.h"
 #include "ObjItem.h"
 #include "ObjGrenade.h"
+#include "ObjTime.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

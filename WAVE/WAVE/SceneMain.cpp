@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\Audio.h"
+#include "GameL\DrawFont.h"
 //#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
@@ -44,6 +45,11 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
 	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
 	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
+	//Font作成
+	Font::SetStrTex(L"0123456789分秒");
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -83,6 +89,11 @@ void CSceneMain::InitScene()
 	//Test用　　　敵オブジェクト作成
 	CObjEnemy* obje = new CObjEnemy();
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
+	//タイムオブジェクト作成
+	CObjTime* objt = new CObjTime();
+	Objs::InsertObj(objt, OBJ_TIME, 11);
+
+	
 
 	/*//テスト用:弾丸オブジェクト作成
 	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
