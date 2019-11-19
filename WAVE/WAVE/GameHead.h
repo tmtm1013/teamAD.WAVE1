@@ -20,6 +20,15 @@ enum OBJ_NAME
 	OBJ_BACKGROUND,
 	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
+	OBJ_ENEMYJUMPLEFT,
+	OBJ_ENEMYRECOVERY,
+	OBJ_ENEMYRECOVERYLEFT,
+	OBJ_ENEMYAMMUNITION,
+	OBJ_ENEMYAMMUNITIONLIFT,
+	OBJ_ENEMYLONGDISTANCE,
+	OBJ_ENEMYLONGDISTANCELEFT,
+	
+
 
 
 	
@@ -54,7 +63,6 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
-	int m_point; //GameMain出たポイント
 	
 };
 //------------------------------------------------
@@ -76,10 +84,18 @@ struct UserData
 #include "ObjEnemy.h"
 #include "ObjEnemyleft.h"
 #include "ObjEnemyJump.h"
+#include "ObjEnemyJumpleft.h"
+#include "ObjEnemyRecovery.h"
+#include "ObjEnemyRecoveryleft.h"
+#include "ObjEnemyAmmunition.h"
+#include "ObjEnemyAmmunitionleft.h"
+#include "ObjEnemyLongdistance.h"
+#include "ObjEnemyLongdistanceleft.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
 #include "CObjDiffusionBullet.h"
+#include "COHomingBullet.h "
 
 
 #include "ObjTitle.h"

@@ -116,6 +116,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjBoss.cpp" />
+    <ClCompile Include="ObjEnemyAmmunitionleft.cpp" />
+    <ClCompile Include="ObjEnemyLongdistance.cpp" />
+    <ClCompile Include="ObjEnemyLongdistanceleft.cpp" />
+    <ClCompile Include="ObjEnemyRecoveryleft.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -134,8 +139,8 @@
     <ClCompile Include="CObjBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="HomingBullet.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    <ClCompile Include="COHomingBullet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBackground.cpp" />
     <ClCompile Include="ObjBlock.cpp">
@@ -143,8 +148,11 @@
     </ClCompile>
     <ClCompile Include="ObjClear.cpp" />
     <ClCompile Include="ObjEnemy.cpp" />
+    <ClCompile Include="ObjEnemyAmmunition.cpp" />
     <ClCompile Include="ObjEnemyJump.cpp" />
+    <ClCompile Include="ObjEnemyJumpleft.cpp" />
     <ClCompile Include="ObjEnemyleft.cpp" />
+    <ClCompile Include="ObjEnemyRecovery.cpp" />
     <ClCompile Include="ObjHero.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -167,6 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="OBJBoss.h" />
+    <ClInclude Include="ObjEnemyAmmunitionleft.h" />
+    <ClInclude Include="ObjEnemyLongdistance.h" />
+    <ClInclude Include="ObjEnemyLongdistanceleft.h" />
+    <ClInclude Include="ObjEnemyRecoveryleft.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />
     <ClInclude Include="GameHead.h" />
@@ -181,16 +194,19 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="ObjEnemyAmmunition.h" />
     <ClInclude Include="ObjEnemyJump.h" />
+    <ClInclude Include="ObjEnemyJumpleft.h" />
     <ClInclude Include="ObjEnemyleft.h" />
-    <ClInclude Include="HomingBullet.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    <ClInclude Include="COHomingBullet.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjBackground.h" />
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjClear.h" />
     <ClInclude Include="ObjEnemy.h" />
+    <ClInclude Include="ObjEnemyRecovery.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

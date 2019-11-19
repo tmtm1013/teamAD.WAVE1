@@ -15,7 +15,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjClear::Init()
 {
-	m_Key_flag = false;//キーフラグ
+	m_Key_flag =true;//キーフラグ
 }
 //アクション
 void CObjClear::Action()
@@ -27,6 +27,7 @@ void CObjClear::Action()
 	{
 		if (m_Key_flag == true)
 		{
+
 			Scene::SetScene(new CSceneTitle());
 			m_Key_flag = false;
 

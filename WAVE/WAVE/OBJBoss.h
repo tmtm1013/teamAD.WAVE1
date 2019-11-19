@@ -1,3 +1,4 @@
+#pragma once
 
 #pragma once
 //使用するヘッダーファイル
@@ -32,8 +33,9 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
-
 	//ENEMYのHP
 	int m_hp;
+
+
 
 };
