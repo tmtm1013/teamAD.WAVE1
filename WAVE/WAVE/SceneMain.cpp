@@ -40,11 +40,11 @@ void CSceneMain::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
 
-	int map[30][30];
+	int map[10][100];
 	int count = 1;
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 30; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -129,8 +129,8 @@ void CSceneMain::InitScene()
 
 	
 
-	CObjMain* p = new CObjMain();
-	Objs::InsertObj(p, OBJ_MAIN, 1);
+	CObjMain* s = new CObjMain();
+	Objs::InsertObj(s, OBJ_MAIN, 1);
 	
 	
 	
