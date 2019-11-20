@@ -4,15 +4,19 @@
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクトメイン
-class CObjMain : public CObj
+//オブジェクトタイム
+class CObjTime : public CObj
 {
 public :
-	CObjMain() {};
-	~CObjMain() {};
+	CObjTime() {};
+	~CObjTime() {};
 	void Init();
 	void Action();
 	void Draw();
-private :
 
+	void SetTimeFlag(bool b) { m_flag_time = b; }
+private :
+	int m_time;
+	bool m_flag_time;
+	
 };

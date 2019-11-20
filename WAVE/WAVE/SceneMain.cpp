@@ -17,6 +17,7 @@ using namespace GameL;
 #include "GameHead.h"
 #include "ObjBlock.h"
 #include "ObjBackground.h"
+#include "ObjEnemyJump.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
@@ -75,16 +76,25 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
 	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
 	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
+	//Font作成
+	Font::SetStrTex(L"0123456789分秒");
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
 	
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png",5,TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait2.png",7,TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/forward.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
+
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
+
 
 
 	//背景のグラフィック読み込み
@@ -119,6 +129,10 @@ void CSceneMain::InitScene()
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
+
+	//タイムオブジェクト作成
+	CObjTime* objt = new CObjTime();
+	Objs::InsertObj(objt, OBJ_TIME, 11);
 
 	
 

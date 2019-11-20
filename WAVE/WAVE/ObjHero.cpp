@@ -73,13 +73,10 @@ void CObjHero::Init()
 	m_ani_move = 1;    //アニメーション選択
 	m_ret = 8;  //アニメーション往復
 
-	top=96.0;
+	top=0.0;
 	left=0.0;
 	right=80.0;
-	bottom=192.0;
-
-
-	i = 0;
+	bottom=96.0;
 
 	m_SEtime = 0;
 
@@ -148,20 +145,24 @@ void CObjHero::Action()
 	//初期ハンドガンアニメーション
 	if (bullet_type==1)
 	{
-		m_ani_time += 1;//アニメーションタイムを+1加算
-		m_ani_move = 1;//アニメーションデータを指定
+		if (Input::GetMouButtonL()==true)
+		{
+			m_ani_time += 1;//アニメーションタイムを+1加算
+			m_ani_move = 3;//アニメーションデータを指定
+		}
+		
 	}
 	//初期サブマシンガンアニメーション
 	if (bullet_type == 2)
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
-		m_ani_move = 2;//アニメーションデータを指定
+		m_ani_move = 4;//アニメーションデータを指定
 	}
 	//初期ショットガンアニメーション
 	if (bullet_type == 3)
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
-		m_ani_move = 3;//アニメーションデータを指定
+		m_ani_move = 5;//アニメーションデータを指定
 	}
 	
 
@@ -227,7 +228,7 @@ void CObjHero::Action()
 	{
 		if (m_hit_down==true)
 		{
-			//m_vy = -16;
+			m_vy = -16;
 		}
 	}
 	//Zキー入力で速度アップ
@@ -256,44 +257,62 @@ void CObjHero::Action()
 	if (Input::GetVKey('D')==true)
 	{
 		m_vx += m_speed_power;//右に移動ベクトル加算
-		//m_posture = 1.0f;
+		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
-		//m_ani_move = 1;//歩くアニメーションデータを指定
+		m_ani_move = 1;//歩くアニメーションデータを指定
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
 		m_vx -= m_speed_power;//左に移動ベクトル減算
-		//m_posture = 0.0f;
+		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
-		//m_ani_move = 1;//歩くアニメーションデータを指定
+		m_ani_move = 1;//歩くアニメーションデータを指定
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
-	if (Input::GetVKey(VK_SPACE) == true)//ジャンプアニメーション
+	if (m_py + 64.0f != GRAUND)//ジャンプアニメーション
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 	}
 
 	//アニメーション間隔制御
-	if ((m_ani_time/6) > m_ani_max_time)
+	if (m_ani_time/2 > m_ani_max_time)
 	{
 		m_ani_frame += 1;//アニメーションフレームを+1加算
 		m_ani_time = 0; //アニメーションタイムを初期化
 	}
 
 	//アニメーションを初期化
-	if (m_ani_frame==11)
+	if (m_ani_frame==10)
 	{
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
 
+	/*
+	if (m_ani_frame == 8)
+	{
+		top = 192.0;
+		left = 0.0;
+		right = 80.0;
+		bottom = 288.0;
+	}
+	if (m_ani_frame == 10)
+	{
+		top = 96.0;
+		left = 0.0;
+		right = 80.0;
+		bottom = 192.0;
+
+	}
+	*/
+
 	//主人公を軸にマウスの方向に向く処理
-	if (m_px > m_mou_px)
+	/*if (m_px > m_mou_px)
 	{
 		//左に向く
 		m_posture = 0.0f;
@@ -304,7 +323,7 @@ void CObjHero::Action()
 		//右に向く
 		m_posture = 1.0f;
 	}
-
+	*/
 
 	//HitBoxの位置の変更a
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -457,8 +476,8 @@ void CObjHero::Draw()
 	{
 			//切り取り位置の設定
 		src.m_top    = 0.0f  + (80.0f - 80.0f*m_ani_move + 1);
-		src.m_left   = 0.0f  + AniData[m_ani_move][m_ani_frame] * 80;
-		src.m_right  = 80.0f + AniData[m_ani_move][m_ani_frame] * 80;
+		src.m_left   = 0.0f  + AniData[m_ani_move][m_ani_frame] * 78;
+		src.m_right  = 78.0f + AniData[m_ani_move][m_ani_frame] * 78;
 		src.m_bottom = 96.0  + (96.0f - 96.0f *m_ani_move + 1);
 
 		
@@ -468,6 +487,8 @@ void CObjHero::Draw()
 		dst.m_right  = (64 - 64.0f * m_posture) + m_px;
 		dst.m_bottom = 64.0f + m_py;
 		
+		m_posture = 0.0;
+
 		//描画
 		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
@@ -486,7 +507,7 @@ void CObjHero::Draw()
 		dst.m_bottom = 64.0f + m_py;
 
 		//描画
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		Draw::Draw(7, &src, &dst, c, 0.0f);
 
 		
 
@@ -502,22 +523,6 @@ void CObjHero::Draw()
 	if (m_ani_move==2)//ジャンプアニメーション
 	{
 	
-		
-		if (m_ani_frame == 8)
-		{
-			top = 192.0;
-			left = 0.0;
-			right = 80.0;
-			bottom = 288.0;
-		}
-		if (m_ani_frame == 10)
-		{
-			top = 96.0;
-			left = 0.0;
-            right = 80.0;
-			bottom = 192.0;
-
-		}
 	    
 		
 			//切り取り位置の設定
@@ -525,14 +530,14 @@ void CObjHero::Draw()
 			src.m_left = left + AniData[m_ani_move][m_ani_frame] * 80;
 			src.m_right = right + AniData[m_ani_move][m_ani_frame] * 80;
 			src.m_bottom = bottom ;
-			//表示位置の設定
+			//表示位置の設定s
 			dst.m_top = 0.0f + m_py;
 			dst.m_left = (64.0f * m_posture) + m_px;
 			dst.m_right = (64 - 64.0f * m_posture) + m_px;
 			dst.m_bottom = 64.0f + m_py;
 
 			//描画
-			Draw::Draw(5, &src, &dst, c, 0.0f);
+			Draw::Draw(8, &src, &dst, c, 0.0f);
 			
 			
 

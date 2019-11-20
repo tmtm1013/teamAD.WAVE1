@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
+	OBJ_TIME,
 
 	OBJ_BULLET,
 	OBJ_FULL_BULLET,
@@ -62,7 +63,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
-	int m_point;    //スコアセーブ
+	int m_point;    //GameMain出たポイント
 	
 };
 //------------------------------------------------
@@ -105,6 +106,7 @@ struct UserData
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjTime.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -118,5 +120,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneMain
 //-----------------------------------------------
