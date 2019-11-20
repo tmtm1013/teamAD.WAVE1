@@ -14,6 +14,7 @@ using namespace GameL;
 #include "SceneMain.h"
 #include "GameHead.h"
 #include "ObjBackground.h"
+#include "ObjEnemyJump.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
@@ -50,10 +51,14 @@ void CSceneMain::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 	
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png",5,TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait2.png",7,TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/forward.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
+
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
+
 
 	//ブロックのグラフィック読み込み
 	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
