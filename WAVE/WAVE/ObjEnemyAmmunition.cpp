@@ -3,13 +3,8 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemyJump.h"
+#include "ObjEnemyAmmunition.h"
 #include "GameL\HitBoxManager.h"
-#include "GameL\UserData.h"
-
-#include "stdio.h" //乱数用ヘッダー
-#include "stdlib.h"//乱数用ヘッダー
-#include "time.h"  //乱数用ヘッダー
 
 #define GRAUND (546.0f)
 
@@ -17,7 +12,7 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjEnemyJump::Init()
+void CObjEnemyAmmunition::Init()
 {
 	m_px = 0.0f;    //位置
 	m_py = 0.0f;
@@ -31,15 +26,10 @@ void CObjEnemyJump::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
-	m_hp = 5;//ENEMYのHP
+	m_hp = 100;//ENEMYのHP
 
-	m_time = 0;//ジャンプ用タイム
 
 	m_move = false;//true=右
-
-	m_rnd = 0;//ジャンプ用ランダム変数
-
-	EnemyCount++;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -53,14 +43,9 @@ void CObjEnemyJump::Init()
 
 
 //アクション
-void CObjEnemyJump::Action()
+void CObjEnemyAmmunition::Action()
 {
 
-	//乱数の種を初期化
-	srand(time(NULL));
-	//1～100のランダムな数値
-	m_rnd = rand() % 3 + 1;
-	
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -92,22 +77,12 @@ void CObjEnemyJump::Action()
 
 
 	}
-	
+
 	if (m_move == false)
 	{
-
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
-		if (m_rnd==1) {//間隔をあけてジャンプする
-
-			if (m_py + 64.0f == GRAUND)//ジャンププログラム
-			{
-				m_vy = -16;
-			}
-
-			
-		}
 	}
 
 	else if (m_move == true)
@@ -115,13 +90,6 @@ void CObjEnemyJump::Action()
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
-		if (m_rnd == 3) {//間隔をあけてジャンプする
-			if (m_py + 64.0f == GRAUND)//ジャンププログラム
-			{
-				m_vy = -16;
-			}
-			
-		}
 	}
 
 
@@ -184,7 +152,23 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 1;
+		m_hp -= 15;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+	{
+
+		m_hp -= 10;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+	{
+
+		m_hp -= 40;
 
 
 	}
@@ -195,22 +179,16 @@ void CObjEnemyJump::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
-
-		//敵消滅でシーンをクリアに移行する
-		//Scene::SetScene(new CSceneClear());
+		//敵消滅でシーンをゲームクリアに移行する
+		Scene::SetScene(new CSceneClear());
 
 	}
 
-	
 
 }
 
-
-
 //ドロー
-void CObjEnemyJump::Draw()
+void CObjEnemyAmmunition::Draw()
 {
 	//歩くアニメーション情報を登録
 	int AniData[4] =
@@ -241,5 +219,3 @@ void CObjEnemyJump::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 }
-
-int CObjEnemyJump::EnemyCount = 0;

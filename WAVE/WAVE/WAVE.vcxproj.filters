@@ -25,6 +25,9 @@
     <Filter Include="ソース ファイル\Bullet">
       <UniqueIdentifier>{6eb574e3-6a0c-467f-953a-16c5a59ea08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Bullet">
+      <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -129,9 +132,6 @@
     <ClCompile Include="SceneClear.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="HomingBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBlock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -150,11 +150,11 @@
     <ClCompile Include="CObjBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClCompile Include="ObjEnemyJumpleft.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="CObjDiffusionBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClCompile Include="ObjEnemyRecovery.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソース ファイル</Filter>
@@ -162,20 +162,50 @@
     <ClCompile Include="SceneItem.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
+    <ClCompile Include="ObjEnemyAmmunition.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyRecoveryleft.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyAmmunitionleft.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyleft.cpp">
+    <ClCompile Include="ObjEnemyLongdistanceleft.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソース ファイル\Hero</Filter>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjDiffusionBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjFullBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +263,6 @@
     <ClInclude Include="SceneClear.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="HomingBullet.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SceneGameOver.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -257,14 +284,20 @@
     <ClInclude Include="ObjClear.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyleft.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="CObjBullet.h">
-      <Filter>ソース ファイル\Bullet</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjFullBullet.h">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="CObjDiffusionBullet.h">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ヘッダー ファイル</Filter>

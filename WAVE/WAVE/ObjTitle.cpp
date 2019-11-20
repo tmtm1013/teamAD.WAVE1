@@ -29,7 +29,7 @@ void CObjTitle::Action()
 	m_mou_l = Input::GetMouButtonL();
 
 	//マウスの位置とクリックする場所で当たり判定
-	if (m_mou_x > 240 && m_mou_x < 450 && m_mou_y > 350 && m_mou_y < 400)
+	if (m_mou_x > 240 && m_mou_x < 550 && m_mou_y > 400 && m_mou_y < 450)
 	{
 		//マウスのボタンが押されたらメインに移行
 		if (m_mou_r == true || m_mou_l == true)
@@ -52,8 +52,8 @@ void CObjTitle::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 972.0f;
-	src.m_bottom = 483.0f;
+	src.m_right = 1024.0f;
+	src.m_bottom = 1024.0f;
 
 	//表示位置
 	dst.m_top = 0.0f;
@@ -63,6 +63,8 @@ void CObjTitle::Draw()
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+	
 
 	//仮マウス位置表示
 	wchar_t str[256];
@@ -78,5 +80,8 @@ void CObjTitle::Draw()
 	else
 		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
 
+	float d[4] = { 0, 0, 0, 1.0f };
+
+	Font::StrDraw(L"GAME START", 240, 400, 60, d);	
 }
 

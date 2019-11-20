@@ -3,9 +3,8 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemyJump.h"
+#include "ObjEnemyJumpleft.h"
 #include "GameL\HitBoxManager.h"
-#include "GameL\UserData.h"
 
 #include "stdio.h" //乱数用ヘッダー
 #include "stdlib.h"//乱数用ヘッダー
@@ -17,9 +16,9 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjEnemyJump::Init()
+void CObjEnemyJumpleft::Init()
 {
-	m_px = 0.0f;    //位置
+	m_px = 750.0f;    //位置
 	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -39,7 +38,6 @@ void CObjEnemyJump::Init()
 
 	m_rnd = 0;//ジャンプ用ランダム変数
 
-	EnemyCount++;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -53,14 +51,14 @@ void CObjEnemyJump::Init()
 
 
 //アクション
-void CObjEnemyJump::Action()
+void CObjEnemyJumpleft::Action()
 {
 
 	//乱数の種を初期化
 	srand(time(NULL));
 	//1～100のランダムな数値
 	m_rnd = rand() % 3 + 1;
-	
+
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -92,21 +90,21 @@ void CObjEnemyJump::Action()
 
 
 	}
-	
+
 	if (m_move == false)
 	{
 
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
-		if (m_rnd==1) {//間隔をあけてジャンプする
+		if (m_rnd == 1) {//間隔をあけてジャンプする
 
 			if (m_py + 64.0f == GRAUND)//ジャンププログラム
 			{
 				m_vy = -16;
 			}
 
-			
+
 		}
 	}
 
@@ -120,7 +118,7 @@ void CObjEnemyJump::Action()
 			{
 				m_vy = -16;
 			}
-			
+
 		}
 	}
 
@@ -195,22 +193,16 @@ void CObjEnemyJump::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
-
 		//敵消滅でシーンをクリアに移行する
-		//Scene::SetScene(new CSceneClear());
+		Scene::SetScene(new CSceneClear());
 
 	}
 
-	
 
 }
 
-
-
 //ドロー
-void CObjEnemyJump::Draw()
+void CObjEnemyJumpleft::Draw()
 {
 	//歩くアニメーション情報を登録
 	int AniData[4] =
@@ -241,5 +233,3 @@ void CObjEnemyJump::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 }
-
-int CObjEnemyJump::EnemyCount = 0;

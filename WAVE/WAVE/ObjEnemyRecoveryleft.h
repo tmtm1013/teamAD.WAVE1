@@ -5,16 +5,16 @@
 //使用するネームスペース
 using namespace GameL;
 
+
 //オブジェクト：敵
-class CObjEnemyJump :public CObj
+class ObjEnemyRecoveryleft :public CObj
 {
-public:CObjEnemyJump() {};
-	   ~CObjEnemyJump() {};
+public:ObjEnemyRecoveryleft() {};
+	   ~ObjEnemyRecoveryleft() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
-	
-	   static int EnemyCount;
+
 private:
 	float m_px;    //位置
 	float m_py;
@@ -32,11 +32,8 @@ private:
 	bool m_move;
 
 	//ENEMYのHP
-	int   m_hp;
+	int m_hp;
 
-	int m_time;//ジャンプ用タイム
 
-	int m_rnd;//ジャンプ用ランダム変数
 
-	
 };
