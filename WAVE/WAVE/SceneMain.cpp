@@ -101,7 +101,8 @@ void CSceneMain::InitScene()
 	m_time7 = 0;
 	m_time8 = 0;
 	m_time9 = 0;
-	m_time10  = 0;
+	m_time10 = 0;
+	m_time11 = 0;
 
 	Enemy = 1;
 	Enemyleft = 1;
@@ -113,6 +114,7 @@ void CSceneMain::InitScene()
 	EnemyAmmunitionleft = 1;
 	EnemyLongdistance = 1;
 	EnemyLongdistanceleft = 1;
+	Boss = 1;
 	
 }
 
@@ -129,12 +131,13 @@ void CSceneMain::InitScene()
 	 m_time8++;
 	 m_time9++;
 	 m_time10++;
-
+	 m_time11++;
 
 
 
 
 	 /*
+	 
 	 //通常敵表示用プログラム（左画面出現）
 		 if (m_time > 100)//敵の出現間隔
 		 {
@@ -256,7 +259,7 @@ void CSceneMain::InitScene()
 
 		 }
 		 
-
+		 
 		//遠距離攻撃敵出現プログラム（右画面出現）
 		 if (m_time9 > 100) {//敵の出現間隔
 
@@ -271,8 +274,8 @@ void CSceneMain::InitScene()
 			 m_time9 = 0;
 
 		 }
-		 */
-		 //遠距離攻撃敵出現プログラム（右画面出現）
+		 
+		 //遠距離攻撃敵出現プログラム（左画面出現）
 		 if (m_time10 > 100) {//敵の出現間隔
 
 			 if (EnemyLongdistanceleft <= 1) {//敵の出現数
@@ -286,9 +289,23 @@ void CSceneMain::InitScene()
 			 m_time10 = 0;
 
 		 }
+		 */
+		 //BOSSプログラム（右画面出現）
+		 if (m_time10 > 100) {//敵の出現間隔
 
+			 if (Boss <= 1) {//敵の出現数
 
+				 CObjBoss* obj_boss = new CObjBoss();
+				 Objs::InsertObj(obj_boss, OBJ_ENEMY, 10);
+			 }
 
+			 Boss++;
+
+			 m_time11 = 0;
+
+		 }
+		 
+		 
 
 
 

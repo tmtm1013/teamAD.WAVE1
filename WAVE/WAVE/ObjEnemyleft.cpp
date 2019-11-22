@@ -125,7 +125,7 @@ void CObjEnemyleft::Action()
 	m_py += m_vy;
 
 
-	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
@@ -166,8 +166,7 @@ void CObjEnemyleft::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//敵消滅でシーンをゲームオーバーに移行する
-		Scene::SetScene(new CSceneClear());
+		
 
 	}
 

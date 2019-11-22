@@ -16,6 +16,8 @@ enum OBJ_NAME
 	OBJ_FULL_BULLET,
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
+	OBJ_ANGLE_BULLET,
+
 	OBJ_BACKGROUND,
 	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
@@ -26,6 +28,7 @@ enum OBJ_NAME
 	OBJ_ENEMYAMMUNITIONLIFT,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_ENEMYLONGDISTANCELEFT,
+	OBJ_BOSS,
 	
 
 
@@ -62,7 +65,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
-	
+	int m_point;
 };
 //------------------------------------------------
 
@@ -90,11 +93,13 @@ struct UserData
 #include "ObjEnemyAmmunitionleft.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjEnemyLongdistanceleft.h"
+#include "ObjBoss.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
 #include "CObjDiffusionBullet.h"
 #include "COHomingBullet.h "
+#include "CObjAngleBullet.h"
 
 
 #include "ObjTitle.h"

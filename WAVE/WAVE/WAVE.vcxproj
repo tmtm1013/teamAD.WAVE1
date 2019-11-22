@@ -116,6 +116,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObjAngleBullet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjBoss.cpp" />
     <ClCompile Include="ObjEnemyAmmunitionleft.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
@@ -173,8 +176,11 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CObjAngleBullet.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="CObjBullet.h" />
-    <ClInclude Include="OBJBoss.h" />
+    <ClInclude Include="ObjBoss.h" />
     <ClInclude Include="ObjEnemyAmmunitionleft.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="ObjEnemyLongdistanceleft.h" />

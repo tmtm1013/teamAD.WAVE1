@@ -9,10 +9,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjBoss :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjBoss() {};
+	   ~CObjBoss() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -36,6 +36,10 @@ private:
 	//ENEMYのHP
 	int m_hp;
 
+	//弾丸用プログラム
+	int m_time;
+	int m_time2;
+	
 
 
 };
