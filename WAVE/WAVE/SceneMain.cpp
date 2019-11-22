@@ -87,7 +87,7 @@ void CSceneMain::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 	
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png",7,TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait21.png",7,TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
