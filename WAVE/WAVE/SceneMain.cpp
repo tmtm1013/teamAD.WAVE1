@@ -6,6 +6,8 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\Audio.h"
+#include "GameL/DrawFont.h"
+#include "GameL/UserData.h"
 //#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
@@ -13,7 +15,9 @@ using namespace GameL;
 //使用ヘッダー
 #include "SceneMain.h"
 #include "GameHead.h"
+#include "ObjBlock.h"
 #include "ObjBackground.h"
+#include "ObjEnemyJump.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
@@ -32,6 +36,34 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
+	//外部データの読み取り（ステージ情報）
+	unique_ptr<wchar_t>p;//ステージ情報ポインター
+	int size;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
+
+	int map[10][100];
+	int count = 1;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			int w = 0;
+			swscanf_s(&p.get()[count], L"%d", &w);
+
+			map[i][j] = w;
+			count += 2;
+
+		}
+	}
+
+
+
+	//Font作成
+	//Font::SetStrTex(L"0123456789分秒");
+
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 	/*
 	//音楽読み込み
 	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
@@ -44,23 +76,42 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
 	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
 	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
+	//Font作成
+	Font::SetStrTex(L"0123456789分秒");
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
 	
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png",5,TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait21.png",7,TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/forward.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
 
-	//ブロックのグラフィック読み込み
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
+
+
+
+	//背景のグラフィック読み込み
 	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
+
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GameOver1.png", 3, TEX_SIZE_512);
 
+
+	//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+
+	//blockオブジェクト作成
+	
+	CObjBlock*objb = new CObjBlock(map);
+	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
@@ -74,9 +125,14 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
+
+	//タイムオブジェクト作成
+	CObjTime* objt = new CObjTime();
+	Objs::InsertObj(objt, OBJ_TIME, 11);
 
 	
 
@@ -87,8 +143,8 @@ void CSceneMain::InitScene()
 
 	
 
-	CObjMain* p = new CObjMain();
-	Objs::InsertObj(p, OBJ_MAIN, 1);
+	CObjMain* s = new CObjMain();
+	Objs::InsertObj(s, OBJ_MAIN, 1);
 	
 	
 	

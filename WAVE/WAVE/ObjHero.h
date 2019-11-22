@@ -18,13 +18,15 @@ class CObjHero :public CObj
 		   float GetY() { return m_py; }
 		   float GetVY() { return m_vy; }
 		   float GetVX() { return m_vx; }
+		   int GetBT() { return m_block_type; }
 		   float GetVK_SPACE() { return m_vy; };
 
 		   void SetX(float x) { m_px = x; }
 		   void SetY(float y) { m_py = y; }
 		   void SetVY(float vy) { m_vy = vy; }
 		   void SetVX(float vx) { m_vx = vx; }
-		   
+		   void SetBT(int t) { m_block_type = t; }
+
 		   void SetUp(bool b) { m_hit_up = b; }
 		   void SetDown(bool b) { m_hit_down = b; }
 		   void SetLeft(bool b) { m_hit_left = b; }
@@ -63,6 +65,7 @@ class CObjHero :public CObj
 		float m_posture;  //姿勢
 
 		int  m_ani_time;  //アニメーションフレーム動作間隔
+		int  m_ani_timeJump;
 		int  m_ani_frame; //描画フレーム
 
 		float m_speed_power;  //スピードパワー
@@ -102,5 +105,9 @@ class CObjHero :public CObj
 
 		int i = 0;
 		
+
+		//踏んでいるblockの種類を確認用
+		int m_block_type;
+
 
 };

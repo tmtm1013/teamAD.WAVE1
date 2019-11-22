@@ -14,6 +14,7 @@ public:CObjEnemyJump() {};
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 	
+	   static int EnemyCount;
 private:
 	float m_px;    //位置
 	float m_py;
@@ -37,4 +38,5 @@ private:
 
 	int m_rnd;//ジャンプ用ランダム変数
 
+	
 };

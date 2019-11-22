@@ -5,6 +5,7 @@
 #include "GameHead.h"
 #include "ObjEnemyJump.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\UserData.h"
 
 #include "stdio.h" //乱数用ヘッダー
 #include "stdlib.h"//乱数用ヘッダー
@@ -38,6 +39,7 @@ void CObjEnemyJump::Init()
 
 	m_rnd = 0;//ジャンプ用ランダム変数
 
+	EnemyCount++;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -193,12 +195,19 @@ void CObjEnemyJump::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
+
+		//敵消滅でシーンをクリアに移行する
+		//Scene::SetScene(new CSceneClear());
 
 	}
 
+	
 
 }
+
+
 
 //ドロー
 void CObjEnemyJump::Draw()
@@ -232,3 +241,5 @@ void CObjEnemyJump::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 }
+
+int CObjEnemyJump::EnemyCount = 0;
