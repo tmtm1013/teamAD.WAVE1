@@ -3,7 +3,7 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemy.h"
+#include "ObjBoss.h"
 #include "GameL\HitBoxManager.h"
 
 #define GRAUND (546.0f)
@@ -12,7 +12,7 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjEnemy::Init()
+void CObjBoss::Init()
 {
 	m_px = 750.0f;    //位置
 	m_py = 0.0f;

@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 //使用するヘッダーファイル
 #include "GameL\SceneObjManager.h"
 
@@ -9,10 +7,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjEnemy :public CObj
+class CObjBoss :public CObj
 {
-public:CObjEnemy() {};
-	   ~CObjEnemy() {};
+public:CObjBoss() {};
+	   ~CObjBoss() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー

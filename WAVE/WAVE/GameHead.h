@@ -63,6 +63,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
+	float m_point;
 	
 };
 //------------------------------------------------
@@ -119,5 +120,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneMain
 //-----------------------------------------------

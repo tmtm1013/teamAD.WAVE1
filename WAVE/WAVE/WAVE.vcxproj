@@ -116,7 +116,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjBoss.cpp" />
+    <ClCompile Include="ObjBoss.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjEnemyAmmunitionleft.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="ObjEnemyLongdistanceleft.cpp" />
@@ -175,7 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjBullet.h" />
-    <ClInclude Include="OBJBoss.h" />
+    <ClInclude Include="OBJBoss.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjEnemyAmmunitionleft.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="ObjEnemyLongdistanceleft.h" />

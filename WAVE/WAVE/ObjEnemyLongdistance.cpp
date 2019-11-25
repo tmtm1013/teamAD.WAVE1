@@ -66,6 +66,7 @@ void CObjEnemyLongdistance::Action()
 	//弾丸用プログラム
 	if (m_time > 300)
 	{
+
 		m_time = 0;
 		//弾丸オブジェクト
 		CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成

@@ -15,28 +15,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjClear::Init()
 {
-	m_Key_flag =true;//キーフラグ
+	
 }
 //アクション
 void CObjClear::Action()
 {
-
-
 	//エンターキーを押してシーン：ゲームTitleに移行する
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
-		if (m_Key_flag == true)
-		{
-
-			Scene::SetScene(new CSceneTitle());
-			m_Key_flag = false;
-
-		}
-	}
-	else
-	{
-		m_Key_flag = true;
-
+		Scene::SetScene(new CSceneTitle());
 	}
 }
 
@@ -80,9 +67,9 @@ void CObjClear::Draw()
 	}*/
 	Draw::LoadImage(L"Clear1.png", 0, TEX_SIZE_512);
 
-	CObjClear*objr = new CObjClear();
+	/*CObjClear*objr = new CObjClear();
 	Objs::InsertObj(objr, OBJ_CLEAR, 2);
-
+	*/
 
 	/*Font::StrDraw(L"GameClear", 250, 100, 70, c);
 

@@ -110,10 +110,10 @@ void CObjHomingBullet::Draw()
 	src.m_bottom = 64.0f;
 
 	//ï\é¶à íuÇÃê›íË
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 16.0f + m_x;
-	dst.m_bottom = 16.0f + m_y;
+	dst.m_top = 16.0f + m_y;
+	dst.m_left = 16.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
 
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 }
