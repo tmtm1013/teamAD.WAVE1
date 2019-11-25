@@ -34,6 +34,10 @@ private:
 	//ENEMY‚ÌHP
 	int m_hp;
 
+	//’eŠÛ—pƒvƒƒOƒ‰ƒ€
+	int m_time;
+	int m_time2;
+	
 
 
 };

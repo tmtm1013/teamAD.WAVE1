@@ -11,7 +11,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyLongdistanceleft :public CObj
 {
-public:CObjEnemyLongdistanceleft() {};
+public:CObjEnemyLongdistanceleft(float x, float y) ;
 	   ~CObjEnemyLongdistanceleft() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション

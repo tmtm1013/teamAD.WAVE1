@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\UserData.h"
 
 #include "GameL\UserData.h"
 #include "GameHead.h"

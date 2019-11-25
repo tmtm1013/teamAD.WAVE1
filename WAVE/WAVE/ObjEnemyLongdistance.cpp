@@ -31,7 +31,7 @@ void CObjEnemyLongdistance::Init()
 
 	m_move = false;//true=右
 
-	m_time = 0;
+	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -63,18 +63,24 @@ void CObjEnemyLongdistance::Action()
 
 	m_time++;//弾丸発射用タイムインクリメント
 
-	//弾丸用プログラム
-	if (m_time > 300)
-	{
+	if (!(x+60.0f>m_px&&x-60.0f<m_px)) {
 
-		m_time = 0;
-		//弾丸オブジェクト
-		CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
-		Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+
+		//弾丸用プログラム
+		if (m_time > 300)
+		{
+			if (!(x + 200.0f > m_px&&x - 200.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
+				m_time = 0;
+
+				//弾丸オブジェクト
+				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
+				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+
+			}
+		}
 
 	}
-
-
 
 
 
@@ -143,7 +149,7 @@ void CObjEnemyLongdistance::Action()
 	m_py += m_vy;
 
 
-	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
@@ -200,8 +206,7 @@ void CObjEnemyLongdistance::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
+	
 
 	}
 

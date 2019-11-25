@@ -31,8 +31,13 @@ void CObjBoss::Init()
 
 	m_move = false;//true=右
 
+	m_time = 0;//拡散弾用変数
+	m_time2 = 0;//普通遠距離攻撃用変数
+
+	
+
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
 
 
 
@@ -43,12 +48,12 @@ void CObjBoss::Init()
 
 
 //アクション
-void CObjEnemy::Action()
+void CObjBoss::Action()
 {
 
 
 	//通常速度
-	m_speed_power = 0.1f;
+	m_speed_power = 0.01f;
 	m_ani_max_time = 2;
 
 
@@ -58,7 +63,7 @@ void CObjEnemy::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-
+	/*
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -77,20 +82,17 @@ void CObjEnemy::Action()
 
 
 	}
-
-	if (m_move == false)
-	{
+	*/
+	/*
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
-	}
+	*/
 
-	else if (m_move == true)
-	{
-		m_vx -= m_speed_power;
+		m_vx -= m_speed_power;//右から左にゆっくり進んでいく
 		m_posture = 0.0f;
 		m_ani_time += 1;
-	}
+	
 
 
 	if (m_ani_time > m_ani_max_time)
@@ -122,7 +124,7 @@ void CObjEnemy::Action()
 	m_py += m_vy;
 
 
-	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
@@ -141,13 +143,48 @@ void CObjEnemy::Action()
 		m_px = 0.0f;
 	}
 
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
 
 
+	//BOSSの周り20°間隔で発射
+	m_time++;//弾丸発射間隔をあけるインクリメント
+	if (m_time>300)//50の間隔で拡散弾攻撃をする
+	{
+		
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
+			//19発同時発射
+			CObjAngleBullet*obj_b;
+			for (int i = 01; i < 360; i += 20)
+			{
+				m_time = 0;
+				//弾丸オブジェクト
+				CObjAngleBullet* obj_b = new CObjAngleBullet(m_px, m_py, i, 5.0f);//オブジェ作成
+				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+
+
+			}
+		}
+	}
+	
+	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
+	if (m_time2>100) {
+
+
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
+			m_time2 = 0;
+			//弾丸オブジェクト
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+		}
+
+	}
+	
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -178,7 +215,7 @@ void CObjEnemy::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
-
+		
 		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());
 
@@ -188,7 +225,7 @@ void CObjEnemy::Action()
 }
 
 //ドロー
-void CObjEnemy::Draw()
+void CObjBoss::Draw()
 {
 	//歩くアニメーション情報を登録
 	int AniData[4] =
