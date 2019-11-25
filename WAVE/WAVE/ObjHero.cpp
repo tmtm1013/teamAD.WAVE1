@@ -99,6 +99,8 @@ void CObjHero::Init()
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
 	hp = 5;//主人公のヒットポイント用
+	hp_max = 5;
+	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
 	/*
@@ -185,13 +187,13 @@ void CObjHero::Action()
 		if (m_f==true)
 		{
 			//発射音を鳴らす
-			Audio::Start(2);
+			//Audio::Start(2);
 			
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjBullet* obj_b = new CObjBullet(m_px+30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 			
-				Audio::Start(6);//薬莢落下音
+				//Audio::Start(6);//薬莢落下音
 			
 			m_f = false;
 			m_time = 0.0f;
@@ -206,22 +208,22 @@ void CObjHero::Action()
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
 	{
 		    //発射音を鳴らす
-		    Audio::Start(2);//サブマシンガン発射音再生
-			m_SEtime++;
+		    /*Audio::Start(2);//サブマシンガン発射音再生
+			m_SEtime++;*/
 
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 			
 			m_time = 0.0f;
-			Audio::Start(7);//薬莢落下音
+			//Audio::Start(7);//薬莢落下音
 	}
 
 	//ショットガン弾丸発射
 	if (Input::GetMouButtonL() == true && m_time >= 2.8f&&bullet_type == 3)
 	{
 		//発射音を鳴らす
-		Audio::Start(4);//ショットガン発射音再生
+		//Audio::Start(4);//ショットガン発射音再生
 
 		
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -370,8 +372,8 @@ void CObjHero::Action()
 				flag = true;
 			}
 
-			HIT_DATA** hit_data;
-			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
 			float r = hit_data[0]->r;
@@ -541,18 +543,19 @@ void CObjHero::Draw()
 
 
 	
-	//切り取り位置の設定HPバー
-	src.m_top = 64.0f;
-	src.m_left = 256.0f;
-	src.m_right = 320.0f;
-	src.m_bottom = 128.0f;
+	//HP
+	//切り取り位置
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 16.0f;
 
-	//表示位置の設定
-	dst.m_top = 16.0f;
-	dst.m_left = 8.0f;
-	dst.m_right = 256.0f*(hp_now/hp_max);
-	dst.m_bottom = 16.0f;
-	
+	//表示位置設定
+	dst.m_top = 32.0f;
+	dst.m_left = 32.0f;
+	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
+	dst.m_bottom = 40.0f;
+
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
