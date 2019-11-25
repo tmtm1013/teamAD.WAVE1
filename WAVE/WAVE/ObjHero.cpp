@@ -81,9 +81,11 @@ void CObjHero::Init()
 	bottom=96.0;
 
 	m_SEtime = 0;
+	second = 0;
+	SE_flag = false;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 10000	;    //アニメーション間隔幅
+	m_ani_max_time = 10	;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
 	m_hit_up    = false;
@@ -118,7 +120,12 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 	//SE制御time
+	second++;
+
 	m_SEtime++;
+	
+	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
+
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//ハンドガン
 	{ 
@@ -270,6 +277,7 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
+		SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -278,19 +286,40 @@ void CObjHero::Action()
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
+		SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
+
+
+	//テストSE
+	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
+	{
+		
+		SE_flag = false;
+		Audio::Start(8);
+	
+		m_SEtime = 0;
+	}
+
 	
 
 	if (m_hit_down==false)//ジャンプアニメーション
 	{
+		
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 
+		SE_flag = true;
+
+	}
+	if(m_hit_down == true &&SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
+	{
+		SE_flag = false;
+		Audio::Start(9);
 	}
 
 	//アニメーション間隔制御
@@ -411,6 +440,8 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
+	//テスト
+
 	//キャラクターのアニメーション情報を登録
 	int AniData[6][10] =
 	{
@@ -420,6 +451,7 @@ void CObjHero::Draw()
 		{ 0 , 1 , 2 , 3 , 4 , 0 , 0 , 0 , 0 , 0 }, //サブマシンガン所持---------------(4列目) m_ani_move = 3
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ショットガン所持-----------------(5列目) m_ani_move = 4
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ダメージアニメーション-----------(6列目) m_ani_move = 5
+		
 	};
 
 	//描画カラー情報

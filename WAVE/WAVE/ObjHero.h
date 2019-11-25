@@ -73,6 +73,9 @@ class CObjHero :public CObj
 		int m_ani_move;//アニメーション切り替え用
 		int m_ret;  //アニメーションターン用変数
 		int m_SEtime;//SEの再生頻度制御用変数1
+		bool SE_flag;
+
+		int second; //秒間用変数
 
 
 		int m_hp;//主人公のHP
@@ -88,15 +91,6 @@ class CObjHero :public CObj
 		int hp_max;
 		int hp_now;
 		float hp_time;
-
-		//RECT srcAnim[28];
-
-
-		float cy;//アニメーション管理用変数
-		float cx;
-		float dx;//マツコDX
-		float dy;
-
 
 		float top;
 		float left;
