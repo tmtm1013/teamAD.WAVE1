@@ -31,7 +31,7 @@ void CSceneClear::InitScene()
 	//クリア画面オブジェクト作成
 	CObjClear*objr = new CObjClear();
 	Objs::InsertObj(objr, OBJ_CLEAR, 10);
-
+	
 
 	//音楽読み込み
 	/*Audio::LoadAudio(0, L"BGMClear.wav", BACK_MUSIC);

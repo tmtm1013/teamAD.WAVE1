@@ -32,8 +32,14 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
+	//アイテムフラグ
+	bool flag;
+
 
 	//ENEMYのHP
 	int m_hp;
+
+
+	float m_f;
 
 };

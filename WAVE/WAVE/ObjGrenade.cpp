@@ -23,7 +23,6 @@ CObjGrenade::CObjGrenade(float x, float y)
 
 	m_bx = x;
 	m_by = y;
-
 	
 	//“–‚½‚è”»’èHitBox‚ğì¬
 	Hits::SetHitBox(this, m_x, m_y, 30, 30, ELEMENT_PLAYER, OBJ_GRENADE, 1);
@@ -47,8 +46,14 @@ void CObjGrenade::Init()
 
 	flag = true;
 
-	x += vx;
-	y += vy;
+
+	x = 0;
+	y = 0;
+	
+	vx = 4;
+	vy = 4;
+
+	m_vv = 0.0;
 
 	
 }
@@ -57,14 +62,17 @@ void CObjGrenade::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjGrenade::Action()
 {
-	vx = 4;
-	vy = -40;
+	/*
+	x += m_vx;
+	y += m_vy;
 
-	vy+=1.0f;
+	vy += 1.0f;
+	*/
 
 	//ƒ}ƒEƒX‚ÌˆÊ’u‚ğæ“¾
 	if (flag == true)
 	{
+
 		m_mou_bx = (float)Input::GetPosX();
 		m_mou_by = (float)Input::GetPosY();
 
@@ -72,6 +80,7 @@ void CObjGrenade::Action()
 		by = (m_by - m_mou_by)*m_vy;
 
 		flag = false;
+
 	}
 
 	float r = 0.0f;
@@ -96,6 +105,7 @@ void CObjGrenade::Action()
 	m_vy *= BULLET_SPEED;
 	
 	//ˆÚ“®ƒxƒNƒgƒ‹‚ğÀ•W‚É‰ÁZ‚·‚é
+
 	m_bx += m_vx;
 	m_by += m_vy;
 
@@ -135,16 +145,17 @@ void CObjGrenade::Action()
 	}
 
 	//–€C‚ÌŒvZ   -(‰^“®energy X –€CŒW”)
-	m_vx += -(m_vx*0.098);
+	vx += -(vx*0.09);
 
+	/*
 
 	//©—R—‰º‰^“®
-	m_vy += 9.8 / (16.0f);
-	if (m_vy > 26 && m_by <= GRAND)
+	vy += 9.8 / (16.0f);
+	if (vy > 26 && m_by <= GRAND)
 	{
-		m_vy = 0;
+		vy += 1.0f;
 	}
-	
+	*/
 
 	//’eŠÛÁ–Åˆ—@-----
 	if (m_del == true)

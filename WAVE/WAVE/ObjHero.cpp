@@ -5,7 +5,7 @@
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
-#include "ObjGrenade.h"
+#include "ObjItem.h"
 
 #define GRAUND (546.0f)
 #define ANIMAITON_FRAME (8)
@@ -223,7 +223,7 @@ void CObjHero::Action()
 
 	}
 	//手榴弾発射
-	if (Input::GetVKey('Q') == true && m_time >= 10.0f)
+	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
 	{
 		if (m_f == true)
 		{
@@ -248,7 +248,7 @@ void CObjHero::Action()
 	{
 		if (m_py + 64.0f == GRAUND)
 		{
-			//m_vy = -16;
+			m_vy = -16;
 		}
 	}
 	//Zキー入力で速度アップ
@@ -344,6 +344,18 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
+	//回復薬に当たるとhpを+する
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	{
+
+		m_hp += 10;
+
+
+	}
+
+
+
+
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -362,7 +374,7 @@ void CObjHero::Action()
 			HIT_DATA** hit_data;
 			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
-			float r = hit_data[0]->r;
+     			float r = hit_data[0]->r;
 			if ((r < 45 && r >= 0) || r > 315)
 			{
 				m_vx = -5.0f; //左に移動させる。

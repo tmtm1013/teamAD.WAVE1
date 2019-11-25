@@ -36,7 +36,7 @@ enum OBJ_NAME
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 	OBJ_GRENADE,
-
+	
 };
 //------------------------------------------------
 
@@ -64,6 +64,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
+	int m_point;    //スコアセーブ
 	
 };
 //------------------------------------------------
