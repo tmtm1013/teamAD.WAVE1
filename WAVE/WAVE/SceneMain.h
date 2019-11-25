@@ -23,6 +23,7 @@ class CSceneMain :public CScene
 		 int m_time8;
 		 int m_time9;
 		 int m_time10;
+		 int m_time11;
 
 
 
@@ -36,4 +37,5 @@ class CSceneMain :public CScene
 		 int EnemyAmmunitionleft;//“G’eŠÛŠ‰E—p“G•Ï”
 		 int EnemyLongdistance;//‰“‹——£UŒ‚Œ^“G—p•Ï”
 		 int EnemyLongdistanceleft;//‰“‹——£UŒ‚Œ^“G—p•Ï”
+		 int Boss;
 }; 

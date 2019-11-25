@@ -353,24 +353,26 @@ void CObjHero::Action()
 	
 
 	hp_time -= 0.1;
-
-	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
-	{
-		if (flag == true&&hp_time<=0.0f)
+	
+	
+		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+		if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 		{
-			hp -= 1;
+			if (flag == true && hp_time <= 0.0f)
+			{
+				hp -= 1;
 
-			flag = false;
-			hp_time = 1.6f;
-		}
-		if (hp_time>=0.0f)
-		{
-			flag = true;
-		}
+				flag = false;
+				hp_time = 1.6f;
+			}
+			if (hp_time >= 0.0f)
+			{
+				flag = true;
+			}
 
 			HIT_DATA** hit_data;
 			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+
 
 			float r = hit_data[0]->r;
 			if ((r < 45 && r >= 0) || r > 315)
@@ -381,43 +383,51 @@ void CObjHero::Action()
 			{
 				m_vx = +5.0f; //右に移動させる。
 			}
-		
+
+		}
+
+
+
+		//遠距離敵の攻撃接触でHeroのHPが減る
+		if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+		{
+			if (flag == true && hp_time <= 0.0f)
+			{
+				hp -= 1;
+
+				flag = false;
+				hp_time = 1.6f;
+			}
+			if (hp_time >= 0.0f)
+			{
+				flag = true;
+			}
+
+			//OBJ_ENEMYと当たると主人公がノックバックする
+			HIT_DATA** hit_data;
+			hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
+
+			float r = hit_data[0]->r;
+			if ((r < 45 && r >= 0) || r > 315)
+			{
+				m_vx = -5.0f; //左に移動させる。
+			}
+			if (r > 135 && r < 225)
+			{
+				m_vx = +5.0f; //右に移動させる。
+			}
+		}
+	
+	//主人公のHPがゼロになった時主人公が消える
+	if (hp<=0) {
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
+		Scene::SetScene(new CSceneGameOver());
 	}
-
-
-
-	//遠距離敵の攻撃接触でHeroのHPが減る
-	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
-	{
-		if (flag == true && hp_time <= 0.0f)
-		{
-			hp -= 10;
-
-			flag = false;
-			hp_time = 1.6f;
-		}
-		if (hp_time >= 0.0f)
-		{
-			flag = true;
-		}
-		
-		//OBJ_ENEMYと当たると主人公がノックバックする
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-
-		float r = hit_data[0]->r;
-		if ((r < 45 && r >= 0) || r > 315)
-		{
-			m_vx = -5.0f; //左に移動させる。
-		}
-		if (r > 135 && r < 225)
-		{
-			m_vx = +5.0f; //右に移動させる。
-		}
-	}
-
-
-
+	
 
 	//位置の更新
 	m_px += m_vx;
