@@ -22,6 +22,9 @@ void CObjMain::Init()
 void CObjMain::Action()
 {
 
+
+
+
 }
 
 //ƒhƒ[

@@ -3,37 +3,39 @@
 #include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
-#include "COHomingBullet.h "
+#include "CObjAngleBullet.h "
 
 #include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
 
-CObjHomingBullet::CObjHomingBullet(float x, float y)
+CObjAngleBullet::CObjAngleBullet(float x, float y,float r,float speed)
 {
 	m_x = x;
 	m_y = y;
+	m_r = r;
+	m_speed = speed;
 }
 
 //イニシャライズ
-void CObjHomingBullet::Init()
+void CObjAngleBullet::Init()
 {
-	//距離
-	leng = 0;
-	m_vx = 10.0;
-	m_vy = 10.0f;
-	x = 0;
-	y = 0;
-	button = false;
+	m_vx = cos(3.14f / 180.0f*m_r);
+	m_vy = sin(3.14f / 180.0f*m_r);
 
-	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_HOMING_BULLET, OBJ_HOMING_BULLET,  1);
+		//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_ANGLE_BULLET, OBJ_HOMING_BULLET, 1);
 }
 
 //アクション
-void CObjHomingBullet::Action()
+void CObjAngleBullet::Action()
 {
+	//移動
+	m_x += m_vx * m_speed;
+	m_y -= m_vy * m_speed;
+
+
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -44,26 +46,7 @@ void CObjHomingBullet::Action()
 		this->SetStatus(false);
 	}
 
-	//主人公期と誘導弾丸で角度をとる。
-	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
-
-	//主人公機が存在する場合、誘導角度の計算をする
-	if (button == false)
-	{
-		x = obj->GetX() - m_x;
-		y = obj->GetY() - m_y;
-	}
-
-	leng = x * x + y * y;
-
-	leng = sqrt(leng);
-
-	m_x += (x / leng)*m_vx;
-	m_y += (y / leng)*m_vy;
-	button = true;
-
-
+	
 
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -97,7 +80,7 @@ void CObjHomingBullet::Action()
 }
 
 //ドロー
-void CObjHomingBullet::Draw()
+void CObjAngleBullet::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
@@ -105,15 +88,15 @@ void CObjHomingBullet::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_left = 126.0f;
+	src.m_right = 96.0f;
+	src.m_bottom = 32.0f;
 
 	//表示位置の設定
-	dst.m_top = 16.0f + m_y;
-	dst.m_left = 16.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 16.0f + m_x;
+	dst.m_bottom = 16.0f + m_y;
 
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	Draw::Draw(4, &src, &dst, c, m_r);
 }

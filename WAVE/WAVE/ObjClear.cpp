@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\UserData.h"
 
 #include "GameL\UserData.h"
 #include "GameHead.h"
@@ -15,28 +16,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjClear::Init()
 {
-	m_Key_flag =true;//キーフラグ
+	
 }
 //アクション
 void CObjClear::Action()
 {
-
-
 	//エンターキーを押してシーン：ゲームTitleに移行する
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
-		if (m_Key_flag == true)
-		{
-
-			Scene::SetScene(new CSceneTitle());
-			m_Key_flag = false;
-
-		}
-	}
-	else
-	{
-		m_Key_flag = true;
-
+		Scene::SetScene(new CSceneTitle());
 	}
 }
 
