@@ -11,8 +11,6 @@
 #define ANIMAITON_FRAME (8)
 
 
-float idou;//アイテム用グローバル変数
-
 //使用するネームスペース
 using namespace GameL;
 
@@ -80,38 +78,38 @@ void CObjHero::Init()
 	m_ani_move = 1;    //アニメーション選択
 	//m_ret = 8;  //アニメーション往復
 
-	top=0.0;
-	left=0.0;
-	right=80.0;
-	bottom=96.0;
+	top = 0.0;
+	left = 0.0;
+	right = 80.0;
+	bottom = 96.0;
 
 	m_SEtime = 0;
 	second = 0;
 	SE_flag = false;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 10	;    //アニメーション間隔幅
+	m_ani_max_time = 10;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
-	m_hit_up    = false;
-	m_hit_down  = false;
-	m_hit_left  = false;
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
 	m_hit_right = false;
 
 	flag = true;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
-	
-	hp = 5;//主人公のヒットポイント用
-	hp_max = 5;
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+
+	hp = 50;//主人公のヒットポイント用
+	hp_max = 50;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
 	/*
 	for (int i = 0; i < 28; i++)
 	{
-		
+
 
 
 		srcAnim[i].top = top+;
@@ -126,13 +124,16 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	idou=0;
-
-
 	//SE制御time
 	second++;
 
-	m_SEtime++;
+	if (second >= 60)
+	{
+		m_SEtime++;
+		SE_flag = true;
+	}
+
+
 
 	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
 
@@ -309,7 +310,7 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		//SE_flag = true;
+		SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -320,25 +321,25 @@ void CObjHero::Action()
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		//SE_flag = true;
+		SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{
+		idou = 3;//主人公の動いているかどうかの確認
+
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
 
 
-	/*//テストSE
-	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
-	{
 
-		SE_flag = false;
+	//テストSE
+	if (m_hit_down == true && SE_flag == true && m_SEtime >= 1)
+	{
 		Audio::Start(8);
 
 		m_SEtime = 0;
 	}
-	*/
 
 
 	if (m_hit_down == false)//ジャンプアニメーション
@@ -347,7 +348,6 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 
-		SE_flag = true;
 
 	}
 	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
@@ -394,12 +394,10 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
 
-		hp += 3;
+		m_hp += 10;
 
 
 	}
-
-
 
 
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
@@ -409,105 +407,98 @@ void CObjHero::Action()
 		{
 			hp -= 1;
 
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time >= 0.0f)
+		{
+			flag = true;
+		}
 
-			//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
-			if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
-			{
-				if (flag == true && hp_time <= 0.0f)
-				{
-					hp -= 1;
-
-					flag = false;
-					hp_time = 1.6f;
-				}
-				if (hp_time >= 0.0f)
-				{
-					flag = true;
-				}
-
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
-				float r = hit_data[0]->r;
-				if ((r < 45 && r >= 0) || r > 315)
-				{
-					m_vx = -5.0f; //左に移動させる。
-				}
-				if (r > 135 && r < 225)
-				{
-					m_vx = +5.0f; //右に移動させる。
-				}
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
 
-			}
+	}
 
 
 
-			//遠距離敵の攻撃接触でHeroのHPが減る
-			if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
-			{
-				if (flag == true && hp_time <= 0.0f)
-				{
-					hp -= 1;
+	//遠距離敵の攻撃接触でHeroのHPが減る
+	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+	{
+		if (flag == true && hp_time <= 0.0f)
+		{
+			hp -= 1;
 
-					flag = false;
-					hp_time = 1.6f;
-				}
-				if (hp_time >= 0.0f)
-				{
-					flag = true;
-				}
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time >= 0.0f)
+		{
+			flag = true;
+		}
 
-				//OBJ_ENEMYと当たると主人公がノックバックする
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
+		//OBJ_ENEMYと当たると主人公がノックバックする
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
 
-				float r = hit_data[0]->r;
-				if ((r < 45 && r >= 0) || r > 315)
-				{
-					m_vx = -5.0f; //左に移動させる。
-				}
-				if (r > 135 && r < 225)
-				{
-					m_vx = +5.0f; //右に移動させる。
-				}
-			}
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
+	}
+	/*
+	//主人公のHPがゼロになった時主人公が消える
+	if (hp<=0) {
 
-			//主人公のHPがゼロになった時主人公が消える
-			if (hp <= 0) {
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 
-				this->SetStatus(false);
-				Hits::DeleteHitBox(this);
+		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
+		Scene::SetScene(new CSceneGameOver());
+	}
+	*/
 
-				//主人公のHPがゼロになった時ゲームオーバー画面に移行する
-				Scene::SetScene(new CSceneGameOver());
-			}
-
-
-			//位置の更新
-			m_px += m_vx;
-			m_py += m_vy;
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
 
 
-			//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-			if (m_px + 64.0f > 800.0f)
-			{
-				m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
+	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	if (m_px + 64.0f > 800.0f)
+	{
+		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
-			}
-			if (m_px < 0.0f)
-			{
-				m_px = 0.0f;//はみ出ない位置に移動させる
-			}
+	}
+	if (m_px < 0.0f)
+	{
+		m_px = 0.0f;//はみ出ない位置に移動させる
+	}
 
-			
 }
+
 
 //ドロー
 void CObjHero::Draw()
 {
 
-	
+
+
 	//テスト
 
 	//キャラクターのアニメーション情報を登録
@@ -519,7 +510,7 @@ void CObjHero::Draw()
 		{ 0 , 1 , 2 , 3 , 4 , 0 , 0 , 0 , 0 , 0 }, //サブマシンガン所持---------------(4列目) m_ani_move = 3
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ショットガン所持-----------------(5列目) m_ani_move = 4
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ダメージアニメーション-----------(6列目) m_ani_move = 5
-		
+
 	};
 
 	//描画カラー情報
@@ -528,59 +519,59 @@ void CObjHero::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	if (m_ani_move==1)//主人公が移動している時の描画
+	if (m_ani_move == 1)//主人公が移動している時の描画
 	{
-			//切り取り位置の設定
-		src.m_top    = 0.0f  + (80.0f - 80.0f*m_ani_move + 1);
-		src.m_left   = 0.0f  + AniData[m_ani_move][m_ani_frame] * 78;
-		src.m_right  = 78.0f + AniData[m_ani_move][m_ani_frame] * 78;
-		src.m_bottom = 96.0  + (96.0f - 96.0f *m_ani_move + 1);
+		//切り取り位置の設定
+		src.m_top = 0.0f + (80.0f - 80.0f*m_ani_move + 1);
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 78;
+		src.m_right = 78.0f + AniData[m_ani_move][m_ani_frame] * 78;
+		src.m_bottom = 96.0 + (96.0f - 96.0f *m_ani_move + 1);
 
 		//表示位置の設定
-		dst.m_top    = 0.0f  + m_py;
-		dst.m_left   = ( 64.0f      * m_posture) + m_px;
-		dst.m_right  = ( 64 - 64.0f * m_posture) + m_px;
+		dst.m_top = 0.0f + m_py;
+		dst.m_left = (64.0f      * m_posture) + m_px;
+		dst.m_right = (64 - 64.0f * m_posture) + m_px;
 		dst.m_bottom = 64.0f + m_py;
-		
+
 		m_posture = 0.0;
 
 		//描画
-		Draw::Draw(6, &src, &dst, c, 0.0f);
+		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
-	if (m_ani_move==0)//主人公が静止状態の時の描画
+	if (m_ani_move == 0)//主人公が静止状態の時の描画
 	{
 		//切り取り位置
-		src.m_top    = 0.0f;
-		src.m_left   = 0.0f  + AniData[m_ani_move][m_ani_frame] * 80;
-		src.m_right  = 80.0f + AniData[m_ani_move][m_ani_frame] * 80;
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 80;
+		src.m_right = 80.0f + AniData[m_ani_move][m_ani_frame] * 80;
 		src.m_bottom = 96.0f;
 
 		//表示位置の設定
-		dst.m_top    = 0.0f  + m_py;
-		dst.m_left   = ( 64.0f      * m_posture) + m_px;
-		dst.m_right  = ( 64 - 64.0f * m_posture) + m_px;
+		dst.m_top = 0.0f + m_py;
+		dst.m_left = (64.0f      * m_posture) + m_px;
+		dst.m_right = (64 - 64.0f * m_posture) + m_px;
 		dst.m_bottom = 64.0f + m_py;
 
 		//描画
-		Draw::Draw(7, &src, &dst, c, 0.0f);
+		Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
-	if (m_ani_move==2)//ジャンプアニメーション
+	if (m_ani_move == 2)//ジャンプアニメーション
 	{
 		//切り取り位置の設定
-		src.m_top    = top;
-		src.m_left   = left  + AniData[m_ani_move][m_ani_frame] * 80;
-		src.m_right  = right + AniData[m_ani_move][m_ani_frame] * 80;
-		src.m_bottom = bottom ;
+		src.m_top = top;
+		src.m_left = left + AniData[m_ani_move][m_ani_frame] * 80;
+		src.m_right = right + AniData[m_ani_move][m_ani_frame] * 80;
+		src.m_bottom = bottom;
 		//表示位置の設定s
-		dst.m_top    =  0.0f  + m_py;
-		dst.m_left   = ( 64.0f        * m_posture) + m_px;
-		dst.m_right  = ( 64  -  64.0f * m_posture) + m_px;
-		dst.m_bottom =  64.0f + m_py;
+		dst.m_top = 0.0f + m_py;
+		dst.m_left = (64.0f        * m_posture) + m_px;
+		dst.m_right = (64 - 64.0f * m_posture) + m_px;
+		dst.m_bottom = 64.0f + m_py;
 
 		//描画
-		Draw::Draw(8, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
-	if (m_ani_move == 3)//
+	/*if (m_ani_move == 3)//
 	{
 		//切り取り位置の設定
 		src.m_top    = top;
@@ -595,10 +586,10 @@ void CObjHero::Draw()
 
 		//描画
 		Draw::Draw(8, &src, &dst, c, 0.0f);
-	}
+	}*/
 
 
-	
+
 	//HP
 	//切り取り位置
 	src.m_top = 0.0f;
@@ -612,7 +603,7 @@ void CObjHero::Draw()
 	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
 	dst.m_bottom = 40.0f;
 
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+	Draw::Draw(6, &src, &dst, c, 0.0f);
 }
 
 
@@ -626,18 +617,18 @@ if (n > 90)
 	*/
 
 
-/*
-if (hit_data != NILL)
-{
-
-	float r = hit_data[0]->r;
-
-	if ((r < 45 && r >= 0) || r > 315)
+	/*
+	if (hit_data != NILL)
 	{
-		m_vx = -5.0f; //左に移動させる。
-	}
-	if (r > 135 && r < 225)
-	{
-		m_vx = +5.0f; //右に移動させる。
-	}
-}*/
+
+		float r = hit_data[0]->r;
+
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
+	}*/

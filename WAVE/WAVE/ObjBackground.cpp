@@ -11,7 +11,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
-	
+
 
 }
 
