@@ -14,6 +14,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+float idou;//ヒーローが動いているか確認するグローバル変数
+
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
 {
@@ -52,7 +54,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 
-	m_px = 0.0f;    //位置
+	m_px = 300.0f;    //位置
 	m_py = 500.0f;
 
 	m_mou_px = 0.0f;//向き
@@ -296,6 +298,8 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true)
 	{
+		idou = 1;//主人公の動いているかどうかの確認
+
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
@@ -305,6 +309,8 @@ void CObjHero::Action()
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
+		idou = 2;//主人公の動いているかどうかの確認
+
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
