@@ -27,6 +27,12 @@ public:
 		float*vx, float*vy, int*bt
 	);
 
+	//ブロックとの当たり判定
+	void BlockHit(
+		float x, float y, float vx, float vy,
+		float *out_px, float *out_py, float*out_len
+	);
+
 	//主人公と壁の交差判定
 	bool HeroBlockCrossPoint(
 		float x, float y, float vx, float vy,

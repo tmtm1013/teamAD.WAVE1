@@ -5,6 +5,7 @@
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
+#include "ObjItem.h"
 
 #define GRAUND (546.0f)
 #define ANIMAITON_FRAME (8)
@@ -12,6 +13,8 @@
 
 //使用するネームスペース
 using namespace GameL;
+
+float idou;//ヒーローが動いているか確認するグローバル変数
 
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
@@ -51,7 +54,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 
-	m_px = 0.0f;    //位置
+	m_px = 300.0f;    //位置
 	m_py = 500.0f;
 
 	m_mou_px = 0.0f;//向き
@@ -233,6 +236,26 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
+	//手榴弾発射
+	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGrenade* obj_g = new CObjGrenade(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GRENADE, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
+	}
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -275,23 +298,29 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D')==true)
 	{
+		idou = 1;//主人公の動いているかどうかの確認
+
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
+		idou = 2;//主人公の動いているかどうかの確認
+
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
+		idou = 3;//主人公の動いているかどうかの確認
+
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
@@ -325,7 +354,7 @@ void CObjHero::Action()
 	}
 
 	//アニメーション間隔制御
-	if (m_ani_time > m_ani_max_time)
+	if (m_ani_time * 0.6> m_ani_max_time)
 	{
 		m_ani_frame += 1;//アニメーションフレームを+1加算
 		m_ani_time = 0; //アニメーションタイムを初期化
@@ -341,6 +370,8 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+	
+
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -355,6 +386,25 @@ void CObjHero::Action()
 	
 
 	hp_time -= 0.1;
+
+	//回復薬に当たるとhpを+する
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	{
+
+		m_hp += 10;
+
+
+	}
+
+
+
+
+	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (flag == true&&hp_time<=0.0f)
+		{
+			hp -= 1;
 	
 	
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
@@ -419,7 +469,7 @@ void CObjHero::Action()
 				m_vx = +5.0f; //右に移動させる。
 			}
 		}
-	
+	/*
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) {
 
@@ -429,7 +479,7 @@ void CObjHero::Action()
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
 	}
-	
+	*/
 
 	//位置の更新
 	m_px += m_vx;

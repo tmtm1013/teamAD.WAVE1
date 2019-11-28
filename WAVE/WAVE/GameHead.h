@@ -20,15 +20,10 @@ enum OBJ_NAME
 	OBJ_ANGLE_BULLET,
 
 	OBJ_BACKGROUND,
-	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYJUMPLEFT,
 	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYRECOVERYLEFT,
 	OBJ_ENEMYAMMUNITION,
-	OBJ_ENEMYAMMUNITIONLIFT,
 	OBJ_ENEMYLONGDISTANCE,
-	OBJ_ENEMYLONGDISTANCELEFT,
 	OBJ_BOSS,
 	
 
@@ -38,7 +33,8 @@ enum OBJ_NAME
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
-
+	OBJ_GRENADE,
+	
 };
 //------------------------------------------------
 
@@ -67,13 +63,14 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
+	int m_point;    //スコアセーブ
 	
 };
 //------------------------------------------------
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern float idou;
 
 
 //------------------------------------------------
@@ -111,6 +108,7 @@ struct UserData
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjGrenade.h"
 #include "ObjTime.h"
 //------------------------------------------------
 

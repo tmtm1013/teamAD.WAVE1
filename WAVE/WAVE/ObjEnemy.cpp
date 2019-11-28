@@ -19,6 +19,8 @@ CObjEnemy::CObjEnemy(float x,float y)
 	m_py = y;
 }
 
+extern float idou;
+
 //イニシャライズ
 void CObjEnemy::Init()
 {
@@ -32,14 +34,17 @@ void CObjEnemy::Init()
 
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
+	m_ani_move = 0;
 	
 	m_hp = 100;//ENEMYのHP
+
+	flag = true;
 
 
 	m_move = false;//true=右
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY,  1);
+	Hits::SetHitBox(this, m_px, m_py, 131, 132, ELEMENT_ENEMY, OBJ_ENEMY,  1);
 
 
 	
@@ -120,6 +125,23 @@ void CObjEnemy::Action()
 		m_vy = 0;
 	}
 
+	//試しに
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -150,6 +172,14 @@ void CObjEnemy::Action()
 
 
 
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
+	{
+
+		m_hp -= 50;
+
+
+	}
 	
 	//敵と弾丸が接触したらHPが減る
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
@@ -175,30 +205,47 @@ void CObjEnemy::Action()
 
 
 	}
+	
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
 
+
+			if (flag == true)
+			{
+				//アイテムオブジェクト作成	
+				CObjItem*obju = new CObjItem(m_px,m_py);
+				Objs::InsertObj(obju, OBJ_ITEM, 7);
+				flag = false;
+			}
+		
+
+
 		//敵が消滅したら+100点
 		((UserData*)Save::GetData())->m_point += 100;
 
+		
+
+
+		//敵消滅でシーンをゲームクリアに移行する
+		//Scene::SetScene(new CSceneClear());
 
 	}
 
-	
 }
 
 //ドロー
 void CObjEnemy::Draw()
 {
 	//歩くアニメーション情報を登録
-	int AniData[4] =
+	int AniData[1][6] =
 	{
-		1 , 0 , 2 , 0,
+		0, 1, 2, 3, 4, 5,
 	};
 
 
@@ -209,16 +256,16 @@ void CObjEnemy::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 64.0f;
-	src.m_left = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 131;
+	src.m_right = 131.0f + AniData[m_ani_move][m_ani_frame] * 132;
+	src.m_bottom = 132.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_left = (131.0f * m_posture) + m_px;
+	dst.m_right = (131 - 131.0f * m_posture) + m_px;
+	dst.m_bottom = 132.0f + m_py;
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
