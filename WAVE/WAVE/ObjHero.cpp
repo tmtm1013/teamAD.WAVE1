@@ -11,6 +11,8 @@
 #define ANIMAITON_FRAME (8)
 
 
+float idou;//アイテム用グローバル変数
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -124,6 +126,9 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	idou=0;
+
+
 	//SE制御time
 	second++;
 
@@ -389,7 +394,7 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
 
-		m_hp += 10;
+		hp += 3;
 
 
 	}
@@ -502,6 +507,8 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
+
+	
 	//テスト
 
 	//キャラクターのアニメーション情報を登録

@@ -144,7 +144,7 @@ void CObjBullet::Draw()
 	src.m_left   = 0.0f;
 	src.m_right  = 64.0f;
 	src.m_bottom = 64.0f;
-
+	
 	//ï\é¶à íuÇÃê›íË
 	dst.m_top    = 0.0f  + m_by;
 	dst.m_left   = 0.0f  + m_bx;

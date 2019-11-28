@@ -9,7 +9,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyRecovery :public CObj
 {
-public:CObjEnemyRecovery() {};
+public:CObjEnemyRecovery(float x,float y);
 	   ~CObjEnemyRecovery() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション

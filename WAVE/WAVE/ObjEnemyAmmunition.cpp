@@ -11,18 +11,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float idou;
-
 //コンストラクタ
 CObjEnemyAmmunition::CObjEnemyAmmunition(float x,float y)
 {
-
 	m_px = x;    //位置
 	m_py = y;
 
-
 }
-
 
 //イニシャライズ
 void CObjEnemyAmmunition::Init()

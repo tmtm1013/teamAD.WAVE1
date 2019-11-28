@@ -11,7 +11,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyAmmunition :public CObj
 {
-public:CObjEnemyAmmunition(float x,float y);
+public:CObjEnemyAmmunition(float x,float y) ;
 	   ~CObjEnemyAmmunition() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
