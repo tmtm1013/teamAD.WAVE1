@@ -233,7 +233,7 @@ void CObjEnemy::Action()
 
 
 		//敵消滅でシーンをゲームクリアに移行する
-		//Scene::SetScene(new CSceneClear());
+		Scene::SetScene(new CSceneClear());
 
 	}
 
@@ -268,6 +268,6 @@ void CObjEnemy::Draw()
 	dst.m_bottom = 132.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 }

@@ -43,5 +43,5 @@ void CObjBackground::Draw()
 	dst.m_bottom = 600.0f;
 
 	//•`‰æ
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(9, &src, &dst, c, 0.0f);
 }

@@ -152,6 +152,7 @@
     <ClCompile Include="ObjEnemyJump.cpp" />
     <ClCompile Include="ObjEnemyRecovery.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="ObjGrenade.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
@@ -160,7 +161,9 @@
     <ClCompile Include="SceneGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="SceneItem.cpp" />
+    <ClCompile Include="SceneItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
@@ -198,6 +201,7 @@
     <ClInclude Include="ObjClear.h" />
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjEnemyRecovery.h" />
+    <ClInclude Include="ObjGrenade.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
