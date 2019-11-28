@@ -28,14 +28,14 @@ class CSceneMain :public CScene
 
 
 		 int Enemy;//通常敵の数用変数
-		 int Enemyleft;//通常右敵の数用変数
+		
 		 int EnemyJump;//ジャンプ用の敵数用変数
-		 int EnemyJumpleft;//ジャンプ用の敵右の数用変数
+	
 		 int EnemyRecovery;//主人公回復用の敵の数用変数
-		 int EnemyRecoveryleft;//主人公回復用の敵の数用変数
+		
 		 int EnemyAmmunition;//敵弾丸所持用敵変数
-		 int EnemyAmmunitionleft;//敵弾丸所持右用敵変数
+
 		 int EnemyLongdistance;//遠距離攻撃型敵用変数
-		 int EnemyLongdistanceleft;//遠距離攻撃型敵用変数
+		
 		 int Boss;
 }; 

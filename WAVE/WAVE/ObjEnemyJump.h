@@ -8,7 +8,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyJump :public CObj
 {
-public:CObjEnemyJump() {};
+public:CObjEnemyJump(float x,float y) ;
 	   ~CObjEnemyJump() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
