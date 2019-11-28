@@ -16,7 +16,7 @@ float idou;//アイテム用グローバル変数
 //使用するネームスペース
 using namespace GameL;
 
-float idou;//ヒーローが動いているか確認するグローバル変数
+
 
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
