@@ -63,7 +63,7 @@ void CSceneMain::InitScene()
 
 
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
+	//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 	/*
 	//音楽読み込み
 	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
@@ -84,7 +84,7 @@ void CSceneMain::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
+	Draw::LoadImageW(L"Animation/motion2.png",1,TEX_SIZE_2048); //敵のグラフィック読み込み
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -198,21 +198,7 @@ void CSceneMain::InitScene()
 
 	 /*
 	 
-	 //通常敵表示用プログラム（左画面出現）
-		 if (m_time > 100)//敵の出現間隔
-		 {
-
-			 if (Enemy <=2) {//敵の出現数
-
-				 //敵オブジェクト作成
-				 CObjEnemy* obj_enemy = new CObjEnemy();
-				 Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
-			 }
-
-			 Enemy++;
-
-			 m_time = 0;
-		 }
+	
 		 //通常敵表示用プログラム（右画面出現）
 		 if (m_time2>250) {//敵の出現間隔
 
@@ -350,7 +336,7 @@ void CSceneMain::InitScene()
 
 		 }
 		 */
-		 //BOSSプログラム（右画面出現）
+		 /*//BOSSプログラム（右画面出現）
 		 if (m_time10 > 100) {//敵の出現間隔
 
 			 if (Boss <= 1) {//敵の出現数
@@ -363,9 +349,23 @@ void CSceneMain::InitScene()
 
 			 m_time11 = 0;
 
-		 }
+		 }*/
 		 
-		 
+		 //通常敵表示用プログラム（左画面出現）
+		if (m_time > 100)//敵の出現間隔
+		{
+
+			if (Enemy <= 2) {//敵の出現数
+
+			//敵オブジェクト作成
+			CObjEnemy* obj_enemy = new CObjEnemy();
+			Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
+			}
+
+				Enemy++;
+
+				m_time = 0;
+		}
 
 
 

@@ -279,7 +279,7 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -288,7 +288,7 @@ void CObjHero::Action()
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
@@ -297,7 +297,7 @@ void CObjHero::Action()
 	}
 
 
-	//テストSE
+	/*//テストSE
 	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
 	{
 		
@@ -306,7 +306,7 @@ void CObjHero::Action()
 	
 		m_SEtime = 0;
 	}
-
+	*/
 	
 
 	if (m_hit_down==false)//ジャンプアニメーション
@@ -325,7 +325,7 @@ void CObjHero::Action()
 	}
 
 	//アニメーション間隔制御
-	if (m_ani_time > m_ani_max_time)
+	if (m_ani_time * 0.6> m_ani_max_time)
 	{
 		m_ani_frame += 1;//アニメーションフレームを+1加算
 		m_ani_time = 0; //アニメーションタイムを初期化
