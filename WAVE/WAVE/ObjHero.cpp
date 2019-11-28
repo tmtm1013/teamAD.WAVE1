@@ -488,8 +488,7 @@ void CObjHero::Action()
 				m_px = 0.0f;//‚Í‚Ýo‚È‚¢ˆÊ’u‚ÉˆÚ“®‚³‚¹‚é
 			}
 
-		}
-	}
+			
 }
 
 
