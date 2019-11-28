@@ -5,6 +5,7 @@
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
+#include "ObjItem.h"
 
 #define GRAUND (546.0f)
 #define ANIMAITON_FRAME (8)
@@ -83,9 +84,11 @@ void CObjHero::Init()
 	bottom=96.0;
 
 	m_SEtime = 0;
+	second = 0;
+	SE_flag = false;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 10000	;    //アニメーション間隔幅
+	m_ani_max_time = 10	;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
 	m_hit_up    = false;
@@ -99,6 +102,8 @@ void CObjHero::Init()
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
 	hp = 5;//主人公のヒットポイント用
+	hp_max = 5;
+	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
 	/*
@@ -120,7 +125,12 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 	//SE制御time
+	second++;
+
 	m_SEtime++;
+	
+	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
+
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//ハンドガン
 	{ 
@@ -180,13 +190,13 @@ void CObjHero::Action()
 		if (m_f==true)
 		{
 			//発射音を鳴らす
-			Audio::Start(2);
+			//Audio::Start(2);
 			
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjBullet* obj_b = new CObjBullet(m_px+30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 			
-				Audio::Start(6);//薬莢落下音
+				//Audio::Start(6);//薬莢落下音
 			
 			m_f = false;
 			m_time = 0.0f;
@@ -201,22 +211,22 @@ void CObjHero::Action()
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
 	{
 		    //発射音を鳴らす
-		    Audio::Start(2);//サブマシンガン発射音再生
-			m_SEtime++;
+		    /*Audio::Start(2);//サブマシンガン発射音再生
+			m_SEtime++;*/
 
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 			
 			m_time = 0.0f;
-			Audio::Start(7);//薬莢落下音
+			//Audio::Start(7);//薬莢落下音
 	}
 
 	//ショットガン弾丸発射
 	if (Input::GetMouButtonL() == true && m_time >= 2.8f&&bullet_type == 3)
 	{
 		//発射音を鳴らす
-		Audio::Start(4);//ショットガン発射音再生
+		//Audio::Start(4);//ショットガン発射音再生
 
 		
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -225,6 +235,26 @@ void CObjHero::Action()
 		 
 		m_time = 0.0f;
 
+	}
+	//手榴弾発射
+	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGrenade* obj_g = new CObjGrenade(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GRENADE, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
 	}
 
 	//ブロックとの当たり判定
@@ -274,6 +304,7 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
+		SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -284,6 +315,7 @@ void CObjHero::Action()
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
+		SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
@@ -292,13 +324,33 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
+
+
+	//テストSE
+	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
+	{
+		
+		SE_flag = false;
+		Audio::Start(8);
+	
+		m_SEtime = 0;
+	}
+
 	
 
 	if (m_hit_down==false)//ジャンプアニメーション
 	{
+		
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 
+		SE_flag = true;
+
+	}
+	if(m_hit_down == true &&SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
+	{
+		SE_flag = false;
+		Audio::Start(9);
 	}
 
 	//アニメーション間隔制御
@@ -318,6 +370,8 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+	
+
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -332,6 +386,25 @@ void CObjHero::Action()
 	
 
 	hp_time -= 0.1;
+
+	//回復薬に当たるとhpを+する
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	{
+
+		m_hp += 10;
+
+
+	}
+
+
+
+
+	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (flag == true&&hp_time<=0.0f)
+		{
+			hp -= 1;
 	
 	
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
@@ -349,8 +422,8 @@ void CObjHero::Action()
 				flag = true;
 			}
 
-			HIT_DATA** hit_data;
-			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
 			float r = hit_data[0]->r;
@@ -429,6 +502,8 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
+	//テスト
+
 	//キャラクターのアニメーション情報を登録
 	int AniData[6][10] =
 	{
@@ -438,6 +513,7 @@ void CObjHero::Draw()
 		{ 0 , 1 , 2 , 3 , 4 , 0 , 0 , 0 , 0 , 0 }, //サブマシンガン所持---------------(4列目) m_ani_move = 3
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ショットガン所持-----------------(5列目) m_ani_move = 4
 		{ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }, //ダメージアニメーション-----------(6列目) m_ani_move = 5
+		
 	};
 
 	//描画カラー情報
@@ -517,18 +593,19 @@ void CObjHero::Draw()
 
 
 	
-	//切り取り位置の設定HPバー
-	src.m_top = 64.0f;
-	src.m_left = 256.0f;
-	src.m_right = 320.0f;
-	src.m_bottom = 128.0f;
+	//HP
+	//切り取り位置
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 16.0f;
 
-	//表示位置の設定
-	dst.m_top = 16.0f;
-	dst.m_left = 8.0f;
-	dst.m_right = 256.0f*(hp_now/hp_max);
-	dst.m_bottom = 16.0f;
-	
+	//表示位置設定
+	dst.m_top = 32.0f;
+	dst.m_left = 32.0f;
+	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
+	dst.m_bottom = 40.0f;
+
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
@@ -541,3 +618,20 @@ Draw::Draw(5, &src[n++ / 15], &dst, c, 0.0f);
 if (n > 90)
 	n = 0;
 	*/
+
+
+/*
+if (hit_data != NILL)
+{
+
+	float r = hit_data[0]->r;
+
+	if ((r < 45 && r >= 0) || r > 315)
+	{
+		m_vx = -5.0f; //左に移動させる。
+	}
+	if (r > 135 && r < 225)
+	{
+		m_vx = +5.0f; //右に移動させる。
+	}
+}*/
