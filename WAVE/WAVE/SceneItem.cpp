@@ -33,8 +33,7 @@ CSceneItem::~CSceneItem()
 void CSceneItem::InitScene()
 {
 	CObjItem* obj = new CObjItem();
-	Objs::InsertObj(obj, OBJ_ITEM, 10);
-
+	Objs::InsertObj(obj, OBJ_ITEM, 7);
 	
 
 }

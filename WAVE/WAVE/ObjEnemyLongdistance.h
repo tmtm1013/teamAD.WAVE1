@@ -10,7 +10,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyLongdistance :public CObj
 {
-public:CObjEnemyLongdistance() {};
+public:CObjEnemyLongdistance(float x,float y) ;
 	   ~CObjEnemyLongdistance() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション

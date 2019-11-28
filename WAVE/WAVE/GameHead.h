@@ -19,24 +19,23 @@ enum OBJ_NAME
 	OBJ_FULL_BULLET,
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
+	OBJ_ANGLE_BULLET,
+
 	OBJ_BACKGROUND,
-	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYJUMPLEFT,
 	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYRECOVERYLEFT,
 	OBJ_ENEMYAMMUNITION,
-	OBJ_ENEMYAMMUNITIONLIFT,
 	OBJ_ENEMYLONGDISTANCE,
-	OBJ_ENEMYLONGDISTANCELEFT,
-    OBJ_OBSTACLE,
+	OBJ_BOSS,
 
 
 
-	
+
+
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
+	OBJ_GRENADE,
 
 };
 //------------------------------------------------
@@ -57,7 +56,6 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
-	ELEMENT_OBSTACLE,
 };
 //------------------------------------------------
 
@@ -67,7 +65,7 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
-	
+
 };
 //------------------------------------------------
 
@@ -75,6 +73,7 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 extern float m_hp;
 extern float kazu;
+extern float idou;
 
 
 //------------------------------------------------
@@ -89,21 +88,23 @@ extern float kazu;
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
 #include "ObjEnemy.h"
-#include "ObjEnemyleft.h"
+
 #include "ObjEnemyJump.h"
-#include "ObjEnemyJumpleft.h"
+
 #include "ObjEnemyRecovery.h"
-#include "ObjEnemyRecoveryleft.h"
+
 #include "ObjEnemyAmmunition.h"
-#include "ObjEnemyAmmunitionleft.h"
+
 #include "ObjEnemyLongdistance.h"
-#include "ObjEnemyLongdistanceleft.h"
+
+#include "ObjBoss.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
 #include "CObjDiffusionBullet.h"
 #include "COHomingBullet.h "
-#include "ObjObstacle.h"
+#include "CObjAngleBullet.h"
+
 
 #include "ObjTitle.h"
 #include "ObjMain.h"
@@ -112,6 +113,7 @@ extern float kazu;
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjGrenade.h"
 #include "ObjTime.h"
 //------------------------------------------------
 
@@ -128,5 +130,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START CSceneGameOver
 //-----------------------------------------------

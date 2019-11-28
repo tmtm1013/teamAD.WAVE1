@@ -7,8 +7,7 @@
 #include "ObjEnemy.h"
 #include "GameL\HitBoxManager.h"
 
-
-#define BULLET_SPEED (30.0f)
+#define BULLET_SPEED (10.0f)
 
 
 //使用するネームスペース
@@ -84,6 +83,7 @@ void CObjBullet::Action()
 	m_bx += m_vx;
 	m_by += m_vy;
 	
+	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -144,7 +144,7 @@ void CObjBullet::Draw()
 	src.m_left   = 0.0f;
 	src.m_right  = 64.0f;
 	src.m_bottom = 64.0f;
-
+	
 	//表示位置の設定
 	dst.m_top    = 0.0f  + m_by;
 	dst.m_left   = 0.0f  + m_bx;

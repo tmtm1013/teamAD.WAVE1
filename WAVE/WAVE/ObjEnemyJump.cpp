@@ -16,11 +16,17 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjEnemyJump::CObjEnemyJump(float x,float y)
+{
+	m_px = x;    //位置
+	m_py = y;
+
+}
+
 //イニシャライズ
 void CObjEnemyJump::Init()
 {
-	m_px = 0.0f;    //位置
-	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -154,7 +160,7 @@ void CObjEnemyJump::Action()
 	m_py += m_vy;
 
 
-	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
