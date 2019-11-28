@@ -121,14 +121,12 @@ void CSceneMain::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 	
 	//blockオブジェクト作成
-	
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
-
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
