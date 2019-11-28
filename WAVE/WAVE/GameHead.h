@@ -20,15 +20,10 @@ enum OBJ_NAME
 	OBJ_ANGLE_BULLET,
 
 	OBJ_BACKGROUND,
-	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYJUMPLEFT,
 	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYRECOVERYLEFT,
 	OBJ_ENEMYAMMUNITION,
-	OBJ_ENEMYAMMUNITIONLIFT,
 	OBJ_ENEMYLONGDISTANCE,
-	OBJ_ENEMYLONGDISTANCELEFT,
 	OBJ_BOSS,
 	
 
@@ -73,7 +68,7 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern float idou;
 
 
 //------------------------------------------------
@@ -86,15 +81,9 @@ struct UserData
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
-#include "ObjEnemyleft.h"
 #include "ObjEnemyJump.h"
-#include "ObjEnemyJumpleft.h"
-#include "ObjEnemyRecovery.h"
-#include "ObjEnemyRecoveryleft.h"
 #include "ObjEnemyAmmunition.h"
-#include "ObjEnemyAmmunitionleft.h"
 #include "ObjEnemyLongdistance.h"
-#include "ObjEnemyLongdistanceleft.h"
 #include "ObjBoss.h"
 
 #include "CObjBullet.h"

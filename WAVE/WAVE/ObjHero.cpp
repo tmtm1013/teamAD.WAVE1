@@ -13,6 +13,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+float idou;//ヒーローが動いているか確認するグローバル変数
+
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
 {
@@ -51,7 +53,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 
-	m_px = 0.0f;    //位置
+	m_px = 300.0f;    //位置
 	m_py = 500.0f;
 
 	m_mou_px = 0.0f;//向き
@@ -266,6 +268,8 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D')==true)
 	{
+		idou = 1;//主人公の動いているかどうかの確認
+
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
@@ -274,6 +278,8 @@ void CObjHero::Action()
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
+		idou = 2;//主人公の動いているかどうかの確認
+
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
@@ -281,6 +287,8 @@ void CObjHero::Action()
 	}
 	else//キー入力がない場合は静止フレームにする
 	{		
+		idou = 3;//主人公の動いているかどうかの確認
+
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
@@ -388,7 +396,7 @@ void CObjHero::Action()
 				m_vx = +5.0f; //右に移動させる。
 			}
 		}
-	
+	/*
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) {
 
@@ -398,7 +406,7 @@ void CObjHero::Action()
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
 	}
-	
+	*/
 
 	//位置の更新
 	m_px += m_vx;

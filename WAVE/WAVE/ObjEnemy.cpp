@@ -12,6 +12,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+extern float idou;
+
 //イニシャライズ
 void CObjEnemy::Init()
 {
@@ -117,6 +119,23 @@ void CObjEnemy::Action()
 	{
 		m_vy = 0;
 	}
+
+	//試しに
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//位置の更新
 	m_px += m_vx;
