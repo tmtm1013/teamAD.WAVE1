@@ -25,9 +25,7 @@ void  CObjHero::SetXX(float x)
 void  CObjHero::SetYY(float y)
 {
 
-
 	m_py = y;
-
 
 }
 //位置情報X取得用
@@ -62,7 +60,6 @@ void CObjHero::Init()
 	m_f = true;   //弾丸制御
 	m_time = 0.0f; //弾丸発射頻度制限
 	bullet_type = 1;//弾丸の種類(初期ハンドガン)
-
 
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -188,6 +185,7 @@ void CObjHero::Action()
 			m_time = 0.0f;
 		}
 	}
+
 	else if(Input::GetMouButtonL() == false)
 	{
 		m_f = true;
@@ -231,6 +229,7 @@ void CObjHero::Action()
 			m_vy = -16;
 		}
 	}
+
 	//Zキー入力で速度アップ
 	if (Input::GetVKey('Z')==true)
 	{
@@ -238,6 +237,7 @@ void CObjHero::Action()
 		m_speed_power = 1.1f;
 		m_ani_max_time = 1;
 	}
+
 	else
 	{
 		//通常速度
@@ -253,7 +253,7 @@ void CObjHero::Action()
 	m_mou_pr = Input::GetMouButtonR();
 	m_mou_pl = Input::GetMouButtonL();
 
-	//左に移動時の処理
+	//右に移動時の処理
 	if (Input::GetVKey('D')==true)
 	{
 		m_vx += m_speed_power;//右に移動ベクトル加算
@@ -261,7 +261,7 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
 	}
-	//右に移動時の処理
+	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
 		m_vx -= m_speed_power;//左に移動ベクトル減算
@@ -274,11 +274,11 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
-	if (m_py + 64.0f != GRAUND)//ジャンプアニメーション
+	/*if (m_py + 64.0f != GRAUND)//ジャンプアニメーション
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
-	}
+	}*/
 
 	//アニメーション間隔制御
 	if (m_ani_time/2 > m_ani_max_time)
@@ -349,6 +349,8 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
+
+
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -377,16 +379,30 @@ void CObjHero::Action()
 				m_vx = +5.0f; //右に移動させる。
 			}
 		
+	
+	//HPが0になったら破棄
+	/*if (m_hp <= 0)
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+		//主人公消滅でシーンをゲームオーバーに移行する
+		Scene::SetScene(new CSceneGameOver());
+
+	}*/
+	
 	}
-
-
 
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
+
+		
+
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 10;
+			hp -= 1;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -399,21 +415,19 @@ void CObjHero::Action()
 		//OBJ_ENEMYと当たると主人公がノックバックする
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-
+		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
 		}
+
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
 		}
 	}
-
-
-
-
+	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -431,21 +445,17 @@ void CObjHero::Action()
 	}
 
 
+	/*
 	//テスト用落下制限
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;
 		m_py = GRAUND - 64.0f;
 	
-	}
+	}*/
 	
 
-	/*//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, 
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
-	);*/
+	
 
 }
 
@@ -474,6 +484,7 @@ void CObjHero::Draw()
 	//主人公が移動している時の描画
 	if (m_ani_move==1)//Input::GetVKey('D') == true || Input::GetVKey('A') == true
 	{
+
 			//切り取り位置の設定
 		src.m_top    = 0.0f  + (80.0f - 80.0f*m_ani_move + 1);
 		src.m_left   = 0.0f  + AniData[m_ani_move][m_ani_frame] * 78;
@@ -509,8 +520,6 @@ void CObjHero::Draw()
 		//描画
 		Draw::Draw(7, &src, &dst, c, 0.0f);
 
-		
-
 		/*
 		n / 10;
 
@@ -539,8 +548,6 @@ void CObjHero::Draw()
 			//描画
 			Draw::Draw(8, &src, &dst, c, 0.0f);
 			
-			
-
 
 	}
 	

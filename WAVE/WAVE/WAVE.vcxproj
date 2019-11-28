@@ -116,6 +116,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjBlock2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ObjBlock3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjBoss.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -160,7 +166,10 @@
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjObstacle.cpp" />
     <ClCompile Include="ObjTime.cpp" />
+    <ClCompile Include="SceneBlock2.cpp" />
+    <ClCompile Include="SceneBlock3.cpp" />
     <ClCompile Include="SceneClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -173,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="ObjBlock2.h" />
+    <ClInclude Include="ObjBlock3.h" />
     <ClInclude Include="OBJBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -212,7 +223,10 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjObstacle.h" />
     <ClInclude Include="ObjTime.h" />
+    <ClInclude Include="SceneBlock2.h" />
+    <ClInclude Include="SceneBlock3.h" />
     <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneItem.h" />

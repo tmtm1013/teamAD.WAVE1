@@ -11,11 +11,20 @@
 //使用するネームスペース
 using namespace GameL;
 
+float m_hp = 100;
+float kazu = 0; //敵制御
+
+//コントラスタ
+CObjEnemyLongdistanceleft::CObjEnemyLongdistanceleft(float x, float y)
+{
+	m_px = x;    //位置
+	m_py = y;
+}
+
 //イニシャライズ
 void CObjEnemyLongdistanceleft::Init()
 {
-	m_px = 750.0f;    //位置
-	m_py = 0.0f;
+	
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -26,10 +35,18 @@ void CObjEnemyLongdistanceleft::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
+	m_move = false;//true=左 true=右
+
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
+
 	m_hp = 100;//ENEMYのHP
 
 
-	m_move = false;//true=右
+	
 
 	m_time = 0;
 
@@ -53,13 +70,20 @@ void CObjEnemyLongdistanceleft::Action()
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
-
+	//ブロック衝突で向き変更
+	if (m_hit_left == true)
+	{
+		m_move = true;
+	}
+	if (m_hit_right == true)
+	{
+		m_move = false;
+	}
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
-
 
 	m_time++;//弾丸発射用タイムインクリメント
 
@@ -74,13 +98,9 @@ void CObjEnemyLongdistanceleft::Action()
 	}
 
 
-
-
-
-
-
+	
 	//ここに敵が主人公の向きに移動する条件を書く。
-	if (x <= m_px)//右
+	if (x < m_px)//右
 	{
 
 		m_move = true;
@@ -97,7 +117,8 @@ void CObjEnemyLongdistanceleft::Action()
 
 
 	}
-
+	
+	//方向
 	if (m_move == false)
 	{
 		m_vx += m_speed_power;
@@ -124,8 +145,6 @@ void CObjEnemyLongdistanceleft::Action()
 		m_ani_frame = 0;
 	}
 
-
-
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -139,20 +158,35 @@ void CObjEnemyLongdistanceleft::Action()
 
 	//位置の更新
 	m_px += m_vx;
+
 	m_py += m_vy;
+	
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
 
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+	
 
-	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
+	
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	}
+	////主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//if (m_px + 64.0f > 800.0f)
+	//{
+	//	m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
+	//}
+	
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;
-		m_py = GRAUND - 64.0f;
+		//m_py = GRAUND;
 
 	}
 
@@ -163,7 +197,7 @@ void CObjEnemyLongdistanceleft::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
 
@@ -176,6 +210,7 @@ void CObjEnemyLongdistanceleft::Action()
 
 
 	}
+
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
@@ -184,6 +219,7 @@ void CObjEnemyLongdistanceleft::Action()
 
 
 	}
+
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
@@ -192,19 +228,41 @@ void CObjEnemyLongdistanceleft::Action()
 
 
 	}
+	
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+		if (kazu == 0) {
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
 
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+			kazu++;
 
-		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
+			//敵消滅でシーンをゲームクリアに移行する
+			Scene::SetScene(new CSceneBlock2());
+		}
+		else if (kazu == 1) {
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			//敵消滅でシーンをゲームクリアに移行する
+			Scene::SetScene(new CSceneBlock3());
+		}
+
+		else 
+        {
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			//敵消滅でシーンをゲームクリアに移行する
+			Scene::SetScene(new CSceneClear());
+		}
+
 
 	}
 
-
+	
 }
 
 //ドロー
@@ -229,10 +287,13 @@ void CObjEnemyLongdistanceleft::Draw()
 	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
 	src.m_bottom = 128.0f;
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
+	dst.m_left = (64.0f * m_posture) +m_px + block->GetScroll();
+	dst.m_right = (64 - 64.0f * m_posture) + m_px+block->GetScroll();
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
