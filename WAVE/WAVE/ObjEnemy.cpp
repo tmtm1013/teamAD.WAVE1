@@ -30,6 +30,8 @@ void CObjEnemy::Init()
 	
 	m_hp = 100;//ENEMYのHP
 
+	flag = true;
+
 
 	m_move = false;//true=右
 
@@ -149,6 +151,14 @@ void CObjEnemy::Action()
 
 
 
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
+	{
+
+		m_hp -= 50;
+
+
+	}
 	
 	//敵と弾丸が接触したらHPが減る
 	if(hit->CheckObjNameHit(OBJ_BULLET)!=nullptr)
@@ -174,21 +184,38 @@ void CObjEnemy::Action()
 
 
 	}
+	
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
 
+
+			if (flag == true)
+			{
+				//アイテムオブジェクト作成	
+				CObjItem*obju = new CObjItem(m_px,m_py);
+				Objs::InsertObj(obju, OBJ_ITEM, 7);
+				flag = false;
+			}
+		
+
+
 		//敵が消滅したら+100点
 		((UserData*)Save::GetData())->m_point += 100;
 
+		
+
+
+		//敵消滅でシーンをゲームクリアに移行する
+		//Scene::SetScene(new CSceneClear());
 
 	}
 
-	
 }
 
 //ドロー

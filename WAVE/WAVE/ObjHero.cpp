@@ -5,6 +5,7 @@
 #include "ObjHero.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
+#include "ObjItem.h"
 
 #define GRAUND (546.0f)
 #define ANIMAITON_FRAME (8)
@@ -233,6 +234,26 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
+	//手榴弾発射
+	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGrenade* obj_g = new CObjGrenade(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GRENADE, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
+	}
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -341,6 +362,8 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+	
+
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -355,6 +378,25 @@ void CObjHero::Action()
 	
 
 	hp_time -= 0.1;
+
+	//回復薬に当たるとhpを+する
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	{
+
+		m_hp += 10;
+
+
+	}
+
+
+
+
+	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (flag == true&&hp_time<=0.0f)
+		{
+			hp -= 1;
 	
 	
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
@@ -558,3 +600,30 @@ void CObjHero::Draw()
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
+
+
+
+/*
+n / 10;
+
+Draw::Draw(5, &src[n++ / 15], &dst, c, 0.0f);
+if (n > 90)
+	n = 0;
+	*/
+
+
+/*
+if (hit_data != NILL)
+{
+
+	float r = hit_data[0]->r;
+
+	if ((r < 45 && r >= 0) || r > 315)
+	{
+		m_vx = -5.0f; //左に移動させる。
+	}
+	if (r > 135 && r < 225)
+	{
+		m_vx = +5.0f; //右に移動させる。
+	}
+}*/

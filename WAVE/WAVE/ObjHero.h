@@ -99,6 +99,8 @@ class CObjHero :public CObj
 
 		int i = 0;
 		
+		float  m_x;       //弾丸のX方向の位置用変数
+		float  m_y;       //弾丸のY方向の位置用変数
 
 		//踏んでいるblockの種類を確認用
 		int m_block_type;

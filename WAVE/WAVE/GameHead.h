@@ -38,7 +38,8 @@ enum OBJ_NAME
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
-
+	OBJ_GRENADE,
+	
 };
 //------------------------------------------------
 
@@ -67,6 +68,7 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
+	int m_point;    //スコアセーブ
 	
 };
 //------------------------------------------------
@@ -111,6 +113,7 @@ struct UserData
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjGrenade.h"
 #include "ObjTime.h"
 //------------------------------------------------
 
