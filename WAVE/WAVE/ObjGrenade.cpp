@@ -255,7 +255,7 @@ void CObjGrenade::Draw()
 
 
 	//•`‰æ
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+	Draw::Draw(10, &src, &dst, c, 0.0f);
 
 
 }

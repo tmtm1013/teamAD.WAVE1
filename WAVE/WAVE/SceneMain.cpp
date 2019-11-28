@@ -121,13 +121,13 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
 	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Grenade.png", 10, TEX_SIZE_512);
 
 	//体力グラフィック読み込み
 	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 9, TEX_SIZE_512);
 
 
 	//主人公オブジェクト作成
@@ -210,7 +210,7 @@ void CSceneMain::InitScene()
 		 if (m_time > 100)//敵の出現間隔
 		 {
 
-			 if (Enemy <=2) {//敵の出現数
+			 if (Enemy <=1) {//敵の出現数
 
 				 //敵オブジェクト作成
 				 CObjEnemy* obj_enemy = new CObjEnemy();
@@ -221,6 +221,7 @@ void CSceneMain::InitScene()
 
 			 m_time = 0;
 		 }
+		 /*
 		 //通常敵表示用プログラム（右画面出現）
 		 if (m_time2>250) {//敵の出現間隔
 
@@ -234,6 +235,7 @@ void CSceneMain::InitScene()
 
 			 m_time2 = 0;
 		 }
+		 */
 
 		/*
 		 //ジャンプする敵出現用プログラム（左画面出現）
@@ -360,6 +362,7 @@ void CSceneMain::InitScene()
 
 		 }
 		 */
+/*
 		 //BOSSプログラム（右画面出現）
 		 if (m_time10 > 100) {//敵の出現間隔
 
@@ -374,10 +377,10 @@ void CSceneMain::InitScene()
 			 m_time11 = 0;
 
 		 }
-		 
+	*/	 
 		 
 
-		 */
+		 
 
 
 }

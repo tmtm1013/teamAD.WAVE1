@@ -68,14 +68,14 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
-	int m_point;    //スコアセーブ
+	
 	
 };
 //------------------------------------------------
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern float idou;
 
 
 //------------------------------------------------
@@ -128,5 +128,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------
