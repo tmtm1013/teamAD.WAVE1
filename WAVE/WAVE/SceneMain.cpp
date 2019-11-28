@@ -39,7 +39,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book11.csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
@@ -55,7 +55,6 @@ void CSceneMain::InitScene()
 
 		}
 	}
-
 
 
 	//Font作成
@@ -118,7 +117,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GameOver1.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 3, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -128,6 +127,14 @@ void CSceneMain::InitScene()
 
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+
+	//弾丸グラフィック読み込み
+	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+
+	//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
+
+
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
@@ -153,14 +160,37 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
-
-
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 1);
+	
+
+
+	//外部データの読み取り（ステージ情報）
+	unique_ptr<wchar_t>p2;//ステージ情報ポインター
+	int size2;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
+
+	int map2[10][100];
+	int count2 = 1;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			int w = 0;
+			swscanf_s(&p.get()[count2], L"%d", &w);
+
+			map[i][j] = w;
+			count += 2;
+
+
+		}
+	}
 
 
 
-	m_time = 0;
+
+	
+	m_time  = 0;
 	m_time2 = 0;
 	m_time3 = 0;
 	m_time4 = 0;

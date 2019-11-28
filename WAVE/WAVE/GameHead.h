@@ -8,6 +8,8 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_HERO,
 	OBJ_BLOCK,
+	OBJ_BLOCL2,
+	OBJ_BLOCK3,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
@@ -69,6 +71,8 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
+extern float m_hp;
+extern float kazu;
 extern float idou;
 
 
@@ -81,6 +85,8 @@ extern float idou;
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
 #include "ObjBlock.h"
+#include "ObjBlock2.h"
+#include "ObjBlock3.h"
 #include "ObjEnemy.h"
 
 #include "ObjEnemyJump.h"
@@ -113,6 +119,8 @@ extern float idou;
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneMain.h"
+#include "SceneBlock2.h"
+#include "SceneBlock3.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"

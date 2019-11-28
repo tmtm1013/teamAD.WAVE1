@@ -29,9 +29,7 @@ void  CObjHero::SetXX(float x)
 void  CObjHero::SetYY(float y)
 {
 
-
 	m_py = y;
-
 
 }
 //位置情報X取得用
@@ -66,7 +64,6 @@ void CObjHero::Init()
 	m_f = true;   //弾丸制御
 	m_time = 0.0f; //弾丸発射頻度制限
 	bullet_type = 1;//弾丸の種類(初期ハンドガン)
-
 
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -279,6 +276,7 @@ void CObjHero::Action()
 			m_vy = -16;
 		}
 	}
+
 	//Zキー入力で速度アップ
 	if (Input::GetVKey('Z') == true)
 	{
@@ -286,6 +284,7 @@ void CObjHero::Action()
 		m_speed_power = 1.1f;
 		m_ani_max_time = 1;
 	}
+
 	else
 	{
 		//通常速度
@@ -312,7 +311,7 @@ void CObjHero::Action()
 		m_ani_move = 1;//歩くアニメーションデータを指定
 		SE_flag = true;
 	}
-	//右に移動時の処理
+	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
 		idou = 2;//主人公の動いているかどうかの確認
@@ -330,11 +329,7 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
-
-
-
-	//テストSE
-	if (m_hit_down == true && SE_flag == true && m_SEtime >= 1)
+	if (m_py + 64.0f != GRAUND)//ジャンプアニメーション
 	{
 		Audio::Start(8);
 
@@ -431,11 +426,19 @@ void CObjHero::Action()
 
 	}
 
+		//主人公消滅でシーンをゲームオーバーに移行する
+		Scene::SetScene(new CSceneGameOver());
 
+	}*/
+	
+	}
 
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
+
+		
+
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 1;
@@ -451,12 +454,13 @@ void CObjHero::Action()
 		//OBJ_ENEMYと当たると主人公がノックバックする
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-
+		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
 		}
+
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
