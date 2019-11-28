@@ -63,7 +63,7 @@ void CObjBoss::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-	/*
+	
 	//‚±‚±‚É“G‚ªŽålŒö‚ÌŒü‚«‚ÉˆÚ“®‚·‚éðŒ‚ð‘‚­B
 	if (x <= m_px)//‰E
 	{
@@ -82,7 +82,7 @@ void CObjBoss::Action()
 
 
 	}
-	*/
+	
 	/*
 		m_vx += m_speed_power;
 		m_posture = 1.0f;

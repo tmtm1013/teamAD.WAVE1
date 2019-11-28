@@ -11,11 +11,22 @@
 //使用するネームスペース
 using namespace GameL;
 
+extern float idou;
+
+//コンストラクタ
+CObjEnemyAmmunition::CObjEnemyAmmunition(float x,float y)
+{
+
+	m_px = x;    //位置
+	m_py = y;
+
+
+}
+
+
 //イニシャライズ
 void CObjEnemyAmmunition::Init()
 {
-	m_px = 0.0f;    //位置
-	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -31,10 +42,12 @@ void CObjEnemyAmmunition::Init()
 
 	m_move = false;//true=右
 
+
+
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
-
+	
 
 }
 
@@ -58,6 +71,9 @@ void CObjEnemyAmmunition::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
+	
+
+
 
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
@@ -79,20 +95,67 @@ void CObjEnemyAmmunition::Action()
 	}
 
 	if (m_move == false)
+		
 	{
+		if (x==80||x==300) {
+			//主人公が停止しているときスクロール分の値を省いた行動をする
+			if (idou == 1) {
+
+
+				m_vx += m_speed_power - 0.3f;
+				m_posture = 1.0f;
+				m_ani_time += 1;
+
+
+
+
+			}
+		}
+		
+		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
+
+
 	}
 
 	else if (m_move == true)
 	{
-		m_vx -= m_speed_power;
-		m_posture = 0.0f;
-		m_ani_time += 1;
+		if (x == 80 || x == 300) {
+			 
+			//主人公が停止しているときスクロール分の値を省いた行動をする
+			if (idou == 1) {
+
+
+
+				m_vx -= m_speed_power + 0.05f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+
+
+			//主人公が停止しているときスクロール分の値を省いた行動をする
+			if (idou == 2) {
+
+
+
+				m_vx -= m_speed_power - 0.3f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+		}
+			m_vx -= m_speed_power;
+			m_posture = 0.0f;
+			m_ani_time += 1;
+		
 	}
 
-
+	
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
@@ -103,6 +166,9 @@ void CObjEnemyAmmunition::Action()
 	{
 		m_ani_frame = 0;
 	}
+
+
+
 
 
 
@@ -121,25 +187,18 @@ void CObjEnemyAmmunition::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
 
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
 
-	}
 
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
 
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -182,7 +241,7 @@ void CObjEnemyAmmunition::Action()
 	
 	}
 
-
+	
 }
 
 //ドロー

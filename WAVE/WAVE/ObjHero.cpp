@@ -16,6 +16,8 @@ float idou;//アイテム用グローバル変数
 //使用するネームスペース
 using namespace GameL;
 
+float idou;//ヒーローが動いているか確認するグローバル変数
+
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
 {
@@ -54,7 +56,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 
-	m_px = 0.0f;    //位置
+	m_px = 300.0f;    //位置
 	m_py = 500.0f;
 
 	m_mou_px = 0.0f;//向き
@@ -301,25 +303,24 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true)
 	{
-		idou += 1;//ヒーローが動いているかどうかの変数
+		idou = 1;//主人公の動いているかどうかの確認
 
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
-
-		idou += 2;//ヒーローが動いているかどうかの変数
+		idou = 2;//主人公の動いているかどうかの確認
 
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{
@@ -328,8 +329,8 @@ void CObjHero::Action()
 	}
 
 
-	//テストSE
-	if (m_hit_down == true && SE_flag == true && m_SEtime > 10)
+	/*//テストSE
+	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
 	{
 
 		SE_flag = false;
@@ -337,7 +338,7 @@ void CObjHero::Action()
 
 		m_SEtime = 0;
 	}
-
+	*/
 
 
 	if (m_hit_down == false)//ジャンプアニメーション
@@ -356,7 +357,7 @@ void CObjHero::Action()
 	}
 
 	//アニメーション間隔制御
-	if (m_ani_time > m_ani_max_time)
+	if (m_ani_time * 0.6 > m_ani_max_time)
 	{
 		m_ani_frame += 1;//アニメーションフレームを+1加算
 		m_ani_time = 0; //アニメーションタイムを初期化
@@ -397,6 +398,17 @@ void CObjHero::Action()
 
 
 	}
+
+
+
+
+	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (flag == true && hp_time <= 0.0f)
+		{
+			hp -= 1;
+
 
 			//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
 			if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
@@ -488,7 +500,8 @@ void CObjHero::Action()
 				m_px = 0.0f;//はみ出ない位置に移動させる
 			}
 
-		
+		}
+	}
 }
 
 //ドロー
