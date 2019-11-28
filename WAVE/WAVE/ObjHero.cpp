@@ -14,7 +14,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-
+float idou;//ヒーローが動いているか確認するグローバル変数
 
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
@@ -605,17 +605,6 @@ void CObjHero::Draw()
 
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 }
-
-
-
-/*
-n / 10;
-
-Draw::Draw(5, &src[n++ / 15], &dst, c, 0.0f);
-if (n > 90)
-	n = 0;
-	*/
-
 
 	/*
 	if (hit_data != NILL)

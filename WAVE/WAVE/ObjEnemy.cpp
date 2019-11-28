@@ -125,20 +125,6 @@ void CObjEnemy::Action()
 		m_vy = 0;
 	}
 
-	//試しに
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -146,25 +132,6 @@ void CObjEnemy::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
-
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -231,9 +198,8 @@ void CObjEnemy::Action()
 
 
 
-
 		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
+		//daScene::SetScene(new CSceneClear());
 
 	}
 
@@ -243,9 +209,10 @@ void CObjEnemy::Action()
 void CObjEnemy::Draw()
 {
 	//歩くアニメーション情報を登録
-	int AniData[1][6] =
+	int AniData[2][6] =
 	{
-		0, 1, 2, 3, 4, 5,
+		0, 1, 2, 3, 4, 5, //敵が歩くモーション
+		0, 1, 2, 3, //攻撃モーション
 	};
 
 
