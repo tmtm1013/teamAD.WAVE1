@@ -99,21 +99,16 @@ void CSceneMain::InitScene()
 	//主人公(前進)グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
 
-
-
 	//背景のグラフィック読み込み
 	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
 
-
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GameOver1.png", 3, TEX_SIZE_512);
-
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
 
 	//blockオブジェクト作成
-	
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
@@ -129,11 +124,9 @@ void CSceneMain::InitScene()
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
-
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
-
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
@@ -376,8 +369,5 @@ void CSceneMain::InitScene()
 
 				m_time = 0;
 		}
-
-		 */
-
 
 }

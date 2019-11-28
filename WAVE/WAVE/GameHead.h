@@ -68,8 +68,6 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
-	int m_point;    //スコアセーブ
-	
 };
 //------------------------------------------------
 
