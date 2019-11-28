@@ -11,6 +11,8 @@
 #define ANIMAITON_FRAME (8)
 
 
+float idou;//アイテム用グローバル変数
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -101,8 +103,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
-	hp = 50;//主人公のヒットポイント用
-	hp_max = 50;
+	hp = 5;//主人公のヒットポイント用
+	hp_max = 5;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
@@ -124,16 +126,13 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	idou=0;
+
+
 	//SE制御time
 	second++;
 
-	if (second>=60)
-	{
-		m_SEtime++;
-		SE_flag = true;
-	}
-
-
+	m_SEtime++;
 
 	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
 
@@ -310,7 +309,7 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	//右に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -321,7 +320,7 @@ void CObjHero::Action()
 		m_posture = 0.0f;
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-		SE_flag = true;
+		//SE_flag = true;
 	}
 	else//キー入力がない場合は静止フレームにする
 	{
@@ -330,14 +329,16 @@ void CObjHero::Action()
 	}
 
 
-
-	//テストSE
-	if (m_hit_down == true && SE_flag == true && m_SEtime>=1 )
+	/*//テストSE
+	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
 	{
+
+		SE_flag = false;
 		Audio::Start(8);
 
 		m_SEtime = 0;
 	}
+	*/
 
 
 	if (m_hit_down == false)//ジャンプアニメーション
@@ -346,6 +347,7 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 
+		SE_flag = true;
 
 	}
 	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
@@ -392,42 +394,52 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
 
-		m_hp += 10;
+		hp += 3;
 
 
 	}
+
+
 
 
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
-    if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
-	       if (flag == true && hp_time <= 0.0f)
+		if (flag == true && hp_time <= 0.0f)
+		{
+			hp -= 1;
+
+
+			//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
+			if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 			{
-			    hp -= 1;
+				if (flag == true && hp_time <= 0.0f)
+				{
+					hp -= 1;
 
 					flag = false;
 					hp_time = 1.6f;
-			}
-			if (hp_time >= 0.0f)
-			{
+				}
+				if (hp_time >= 0.0f)
+				{
 					flag = true;
-			}
+				}
 
-			HIT_DATA** hit_data;
-			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
-			float r = hit_data[0]->r;
-			if ((r < 45 && r >= 0) || r > 315)
-			{
+				float r = hit_data[0]->r;
+				if ((r < 45 && r >= 0) || r > 315)
+				{
 					m_vx = -5.0f; //左に移動させる。
-			}
-			if (r > 135 && r < 225)
-			{
+				}
+				if (r > 135 && r < 225)
+				{
 					m_vx = +5.0f; //右に移動させる。
-			}
+				}
 
-	}
+			}
 
 
 
@@ -460,9 +472,9 @@ void CObjHero::Action()
 					m_vx = +5.0f; //右に移動させる。
 				}
 			}
-			/*
+
 			//主人公のHPがゼロになった時主人公が消える
-			if (hp<=0) {
+			if (hp <= 0) {
 
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
@@ -470,7 +482,7 @@ void CObjHero::Action()
 				//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 				Scene::SetScene(new CSceneGameOver());
 			}
-			*/
+
 
 			//位置の更新
 			m_px += m_vx;
@@ -491,13 +503,11 @@ void CObjHero::Action()
 			
 }
 
-
 //ドロー
 void CObjHero::Draw()
 {
+
 	
-
-
 	//テスト
 
 	//キャラクターのアニメーション情報を登録
@@ -535,7 +545,7 @@ void CObjHero::Draw()
 		m_posture = 0.0;
 
 		//描画
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_move==0)//主人公が静止状態の時の描画
 	{
@@ -552,7 +562,7 @@ void CObjHero::Draw()
 		dst.m_bottom = 64.0f + m_py;
 
 		//描画
-		Draw::Draw(2, &src, &dst, c, 0.0f);
+		Draw::Draw(7, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_move==2)//ジャンプアニメーション
 	{
@@ -568,9 +578,9 @@ void CObjHero::Draw()
 		dst.m_bottom =  64.0f + m_py;
 
 		//描画
-		Draw::Draw(3, &src, &dst, c, 0.0f);
+		Draw::Draw(8, &src, &dst, c, 0.0f);
 	}
-	/*if (m_ani_move == 3)//
+	if (m_ani_move == 3)//
 	{
 		//切り取り位置の設定
 		src.m_top    = top;
@@ -585,7 +595,7 @@ void CObjHero::Draw()
 
 		//描画
 		Draw::Draw(8, &src, &dst, c, 0.0f);
-	}*/
+	}
 
 
 	
@@ -602,7 +612,7 @@ void CObjHero::Draw()
 	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
 	dst.m_bottom = 40.0f;
 
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
 

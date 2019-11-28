@@ -116,10 +116,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CObjAngleBullet.cpp" />
-    <ClCompile Include="ObjBoss.cpp">
+    <ClCompile Include="CObjAngleBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjBoss.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
@@ -150,8 +150,9 @@
     <ClCompile Include="ObjEnemy.cpp" />
     <ClCompile Include="ObjEnemyAmmunition.cpp" />
     <ClCompile Include="ObjEnemyJump.cpp" />
-    <ClCompile Include="ObjEnemyRecovery.cpp" />
-    <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="ObjGameOver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjGrenade.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
@@ -170,11 +171,10 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CObjAngleBullet.h" />
-    <ClInclude Include="CObjBullet.h" />
-    <ClInclude Include="OBJBoss.h">
+    <ClInclude Include="CObjAngleBullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />
@@ -200,7 +200,6 @@
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjClear.h" />
     <ClInclude Include="ObjEnemy.h" />
-    <ClInclude Include="ObjEnemyRecovery.h" />
     <ClInclude Include="ObjGrenade.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -210,7 +209,9 @@
     <ClInclude Include="ObjTime.h" />
     <ClInclude Include="SceneClear.h" />
     <ClInclude Include="SceneGameOver.h" />
-    <ClInclude Include="SceneItem.h" />
+    <ClInclude Include="SceneItem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneTitle.h" />

@@ -64,6 +64,7 @@ struct UserData
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
 	
+	
 };
 //------------------------------------------------
 
@@ -82,15 +83,9 @@ extern float idou;
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
-
 #include "ObjEnemyJump.h"
-
-#include "ObjEnemyRecovery.h"
-
 #include "ObjEnemyAmmunition.h"
-
 #include "ObjEnemyLongdistance.h"
-
 #include "ObjBoss.h"
 
 #include "CObjBullet.h"
@@ -122,5 +117,5 @@ extern float idou;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameOver
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------

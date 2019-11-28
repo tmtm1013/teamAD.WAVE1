@@ -36,7 +36,7 @@ void CObjEnemy::Init()
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 	
-	m_hp = 100;//ENEMYのHP
+	m_hp = 10;//ENEMYのHP
 
 	flag = true;
 
