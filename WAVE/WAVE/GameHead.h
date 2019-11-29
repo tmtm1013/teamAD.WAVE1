@@ -34,6 +34,7 @@ enum OBJ_NAME
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 	OBJ_GRENADE,
+	OBJ_GREN,
 
 };
 //------------------------------------------------
@@ -109,6 +110,7 @@ extern float idou;
 #include "ObjItem.h"
 #include "ObjGrenade.h"
 #include "ObjTime.h"
+#include "ObjGren.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -122,5 +124,5 @@ extern float idou;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameOver
+#define SET_GAME_START CSceneMain
 //-----------------------------------------------

@@ -243,7 +243,7 @@ void CObjHero::Action()
 
 	}
 	//手榴弾発射
-	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
+	/*if (Input::GetVKey('Q') == true && m_time >= 10.0f)
 	{
 		if (m_f == true)
 		{
@@ -262,6 +262,28 @@ void CObjHero::Action()
 	{
 		m_f = true;
 	}
+	*/
+
+	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGren* obj_g = new CObjGren(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GREN, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
+	}
+	
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -394,7 +416,7 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
 
-		m_hp += 10;
+		hp += 50;
 
 
 	}

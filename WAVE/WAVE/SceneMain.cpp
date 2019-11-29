@@ -152,7 +152,7 @@ void CSceneMain::InitScene()
 
 
 	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 1);
+	Objs::InsertObj(s, OBJ_MAIN, 14);
 
 
 

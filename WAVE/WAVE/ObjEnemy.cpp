@@ -233,7 +233,7 @@ void CObjEnemy::Action()
 
 
 		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
+		//Scene::SetScene(new CSceneClear());
 
 	}
 
