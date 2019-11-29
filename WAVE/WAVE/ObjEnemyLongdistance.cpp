@@ -46,10 +46,6 @@ void CObjEnemyLongdistance::Init()
 
 }
 
-
-
-
-
 //ƒAƒNƒVƒ‡ƒ“
 void CObjEnemyLongdistance::Action()
 {

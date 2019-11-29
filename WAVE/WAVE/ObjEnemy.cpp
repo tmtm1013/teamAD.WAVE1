@@ -29,6 +29,16 @@ void CObjEnemy::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	m_sx = 132;
+	m_sy = 132;
+
+
+	m_hit_up=false;
+	m_hit_down=false;
+	m_hit_left=false;
+	m_hit_right=false;
+
+
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
@@ -53,7 +63,8 @@ void CObjEnemy::Init()
 //アクション
 void CObjEnemy::Action()
 {
-
+	
+	
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -66,6 +77,12 @@ void CObjEnemy::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
+	// ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true, &m_sx, &m_sy,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
@@ -111,66 +128,23 @@ void CObjEnemy::Action()
 	{
 		m_ani_frame = 0;
 	}
-
-
-
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-	m_vy += 9.8 / (16.0f);
-
-	if (m_vy > 26 && m_py <= GRAUND)
+	
+	if (m_hit_down == false)
+	{
+		m_vy += 9.8 / (16.0f);
+	}
+	else if (m_hit_down==true)
 	{
 		m_vy = 0;
 	}
-
-	//試しに
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
-
-
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
-
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-
+		
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
-
-
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
@@ -232,10 +206,21 @@ void CObjEnemy::Action()
 
 
 
-		//敵消滅でシーンをゲームクリアに移行する
+		/*//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());
-
+		*/
 	}
+
+
+
+	
+
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
+
+	
+
 
 }
 
@@ -258,13 +243,13 @@ void CObjEnemy::Draw()
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 131;
-	src.m_right = 131.0f + AniData[m_ani_move][m_ani_frame] * 132;
+	src.m_right = 131.0f + AniData[m_ani_move][m_ani_frame] * 131;
 	src.m_bottom = 132.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (131.0f * m_posture) + m_px;
-	dst.m_right = (131 - 131.0f * m_posture) + m_px;
+	dst.m_right = (131.0f - 131.0f * m_posture) + m_px;
 	dst.m_bottom = 132.0f + m_py;
 
 	//描画

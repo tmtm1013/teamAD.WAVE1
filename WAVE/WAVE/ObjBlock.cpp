@@ -340,8 +340,6 @@ void CObjBlock::Draw()
 			}
 		}
 	}
-
-
 }
 //	BrockDrawMethod関数
 //引数1 float x:リソース切り取り位置 x
@@ -352,7 +350,6 @@ void CObjBlock::Draw()
 //設定でできる
 void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 {
-
 	RECT_F src;
 	src.m_top = y;
 	src.m_left = x;
@@ -366,7 +363,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 
 //BlockHit関数
 void CObjBlock::BlockHit(
-	float *x, float *y, bool scroll_on,
+	float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -388,14 +385,14 @@ void CObjBlock::BlockHit(
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{
 				//要素番号を座標に変更
-				float bx = j * 64.0f;
-				float by = i * 64.0f;
+				float bx = j * (*m_sx);
+				float by = i * (*m_sy);
 
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
+				if ((*x + (-scroll) + *m_sx > bx) && (*x + (-scroll) < bx + *m_sx) && (*y + *m_sy > by) && (*y < by + *m_sy))
 				{
 					//上下左右判定
 
@@ -421,14 +418,14 @@ void CObjBlock::BlockHit(
 						{
 							//右
 							*right = true;
-							*x = bx + 64.0f + (scroll);
+							*x = bx + *m_sx, + (scroll);
 							*vx = -(*vx)*0.1f;
 						}
 						if (r > 45 && r < 135)
 						{
 							//上
 							*down = true;
-							*y = by - 64.0f;
+							*y = by - *m_sy;
 							//種類を渡すのスタートとゴールのみ変更する
 							if (m_map[i][j] == 2)
 								*bt = m_map[i][j];
@@ -438,28 +435,21 @@ void CObjBlock::BlockHit(
 						{
 							//左
 							*left = true;
-							*x = bx - 64.0f + (scroll);
+							*x = bx - *m_sx, + (scroll);
 							*vx = -(*vx)*0.1f;
 						}
 						if (r > 225 && r < 315)
 						{
 							//下
 							*up = true;
-							*y = by + 64.0f;
+							*y = by + *m_sy;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
 							}
 						}
 					}
-
-
-
-
-
-
 				}
-
 			}
 		}
 	}

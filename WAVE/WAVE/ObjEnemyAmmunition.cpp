@@ -26,6 +26,9 @@ void CObjEnemyAmmunition::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	m_sx=64.0f; 
+	m_sy=64.0f;
+
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
@@ -187,7 +190,7 @@ void CObjEnemyAmmunition::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
+	pb->BlockHit(&m_px, &m_py, true, &m_sx, &m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);

@@ -20,6 +20,10 @@ private:
 	float m_vx;
 	float m_vy;
 
+	float m_sx ;  //画像サイズ用
+	float m_sy ;
+
+
 	float m_ix;
 	float m_iy;
 

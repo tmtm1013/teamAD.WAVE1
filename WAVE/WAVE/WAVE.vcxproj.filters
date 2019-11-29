@@ -28,9 +28,6 @@
     <Filter Include="ソース ファイル\Bullet">
       <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\NewFilter1">
-      <UniqueIdentifier>{e64f2c15-59c3-47d3-975c-a0a750068a32}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -290,9 +287,6 @@
     <ClInclude Include="CObjBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -328,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="ObjGrenade.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

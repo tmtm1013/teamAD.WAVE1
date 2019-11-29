@@ -29,6 +29,9 @@ void CObjItem::Init()
    //移動ベクトル
 	m_vy = 0.0f;
 
+	m_sx = 36.0f;
+	m_sy = 30.0f;
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
@@ -60,7 +63,7 @@ void CObjItem::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_ix, &m_iy, true,
+	pb->BlockHit(&m_ix, &m_iy, true, &m_sx,&m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
@@ -129,7 +132,7 @@ void CObjItem::Draw()
 
 
 	//描画
-	Draw::Draw(9, &src, &dst, c, 0.0f);
+	Draw::Draw(7, &src, &dst, c, 0.0f);
 
 
 	

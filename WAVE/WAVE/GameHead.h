@@ -122,5 +122,5 @@ extern float idou;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameOver
+#define SET_GAME_START CSceneMain
 //-----------------------------------------------
