@@ -188,11 +188,11 @@ void CObjEnemy::Action()
 	m_py += m_vy;
 
 
-	
+	/*
 	//HitBox�̈ʒu�̕ύX
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px+32, m_py);
-
+	*/
 
 
 

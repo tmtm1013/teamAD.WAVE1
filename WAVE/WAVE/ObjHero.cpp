@@ -287,7 +287,7 @@ void CObjHero::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true, &m_sx, &m_sy,
+	pb->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
@@ -452,7 +452,7 @@ void CObjHero::Action()
 				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
-		/*float r = hit_data[0]->r;
+		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。

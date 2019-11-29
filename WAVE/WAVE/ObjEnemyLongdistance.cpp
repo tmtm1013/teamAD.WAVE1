@@ -209,8 +209,6 @@ void CObjEnemyLongdistance::Action()
 	m_py += m_vy;
 
 
-	//Blockの情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
 	//ブロックタイプ検知用の変数がないためのダミー
@@ -222,7 +220,7 @@ void CObjEnemyLongdistance::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
-	*/
+	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -240,8 +238,7 @@ void CObjEnemyLongdistance::Action()
 		m_px = 0.0f;
 	}
 	
-	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);

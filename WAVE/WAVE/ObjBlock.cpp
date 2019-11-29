@@ -312,7 +312,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 
 //BlockHitä÷êî
 void CObjBlock::BlockHit(
-	float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
+	float *x, float *y, bool scroll_on, 
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -391,7 +391,7 @@ void CObjBlock::BlockHit(
 						{
 							//â∫
 							*up = true;
-							*y = by + *m_sy;
+							*y = by + 64.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
