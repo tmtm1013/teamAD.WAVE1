@@ -34,7 +34,7 @@ void CObjBoss::Init()
 
 	m_hp = 100;//ENEMY‚ÌHP
 
-
+	
 	m_move = false;//true=‰E
 
 	m_time = 0;//ŠgU’e—p•Ï”

@@ -447,8 +447,8 @@ void CObjHero::Action()
 			flag = true;
 		}
 
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
 
 		float r = hit_data[0]->r;
@@ -506,9 +506,9 @@ void CObjHero::Action()
 	}
 	
 
-	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
+			//位置の更新
+			m_px += m_vx;
+			m_py += m_vy;
 
 	
 }

@@ -8,6 +8,11 @@
 
 #define GRAUND (546.0f)
 
+
+
+extern float idou;//主人公が動いているか確認用グローバル変数
+
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -27,6 +32,9 @@ void CObjEnemyLongdistance::Init()
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
+
+	m_sx=64;  //画像サイズをBlockHitに渡す用
+	m_sy=64;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
@@ -74,13 +82,10 @@ void CObjEnemyLongdistance::Action()
 
 	m_time++;//弾丸発射用タイムインクリメント
 
-	if (!(x+60.0f>m_px&&x-60.0f<m_px)) {
-
-
 		//弾丸用プログラム
-		if (m_time > 300)
+		if (m_time >10)
 		{
-			if (!(x + 200.0f > m_px&&x - 200.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+			if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 				m_time = 0;
 
@@ -91,12 +96,8 @@ void CObjEnemyLongdistance::Action()
 				m_ani_move = 1;
 
 			}
+
 		}
-
-	}
-
-
-
 
 
 	//ここに敵が主人公の向きに移動する条件を書く。
@@ -121,6 +122,22 @@ void CObjEnemyLongdistance::Action()
 	//方向
 	if (m_move == false)
 	{
+		if (x == 80 || x == 300) {
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
+
+
+				m_vx += m_speed_power - 0.3f;
+				m_posture = 1.0f;
+				m_ani_time += 1;
+
+
+
+
+			}
+		}
+
+		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
@@ -129,6 +146,34 @@ void CObjEnemyLongdistance::Action()
 
 	else if (m_move == true)
 	{
+		if (x == 80 || x == 300) {
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
+
+
+
+				m_vx -= m_speed_power + 0.05f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 2) {
+
+
+
+				m_vx -= m_speed_power - 0.3f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+		}
+			//主人公が移動していない時のプログラム
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
@@ -161,12 +206,21 @@ void CObjEnemyLongdistance::Action()
 		m_vy = 0;
 	}
 
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
+
+
+	//Blockの情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
 
 	//ブロックとの当たり判定
-	/*CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,&m_sx,&m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
