@@ -8,6 +8,11 @@
 
 #define GRAUND (546.0f)
 
+
+
+extern float idou;//主人公が動いているか確認用グローバル変数
+
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -63,13 +68,10 @@ void CObjEnemyLongdistance::Action()
 
 	m_time++;//弾丸発射用タイムインクリメント
 
-	if (!(x+60.0f>m_px&&x-60.0f<m_px)) {
-
-
 		//弾丸用プログラム
-		if (m_time > 300)
+		if (m_time >10)
 		{
-			if (!(x + 200.0f > m_px&&x - 200.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+			if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 				m_time = 0;
 
@@ -78,12 +80,8 @@ void CObjEnemyLongdistance::Action()
 				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
 			}
+
 		}
-
-	}
-
-
-
 
 
 	//ここに敵が主人公の向きに移動する条件を書く。
@@ -107,16 +105,63 @@ void CObjEnemyLongdistance::Action()
 
 	if (m_move == false)
 	{
+		if (x == 80 || x == 300) {
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
+
+
+				m_vx += m_speed_power - 0.3f;
+				m_posture = 1.0f;
+				m_ani_time += 1;
+
+
+
+
+			}
+		}
+
+		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
+
+
 	}
 
 	else if (m_move == true)
 	{
+		if (x == 80 || x == 300) {
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
+
+
+
+				m_vx -= m_speed_power + 0.05f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 2) {
+
+
+
+				m_vx -= m_speed_power - 0.3f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+			}
+		}
+			//主人公が移動していない時のプログラム
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
+
 	}
 
 
@@ -149,24 +194,16 @@ void CObjEnemyLongdistance::Action()
 	m_py += m_vy;
 
 
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
 
-	}
-
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);

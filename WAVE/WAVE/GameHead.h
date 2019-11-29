@@ -25,7 +25,8 @@ enum OBJ_NAME
 	OBJ_ENEMYAMMUNITION,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
-	
+	OBJ_BOSS1,
+	OBJ_BOSS2,
 
 
 
@@ -63,7 +64,7 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
-	int m_point;    //スコアセーブ
+
 	
 };
 //------------------------------------------------

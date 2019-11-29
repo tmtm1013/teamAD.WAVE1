@@ -28,13 +28,13 @@ void CObjBoss::Init()
 
 	m_hp = 100;//ENEMYのHP
 
-	
+
 	m_move = false;//true=右
 
 	m_time = 0;//拡散弾用変数
 	m_time2 = 0;//普通遠距離攻撃用変数
 
-	
+
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
@@ -63,7 +63,7 @@ void CObjBoss::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-	
+
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -82,17 +82,17 @@ void CObjBoss::Action()
 
 
 	}
-	
+
 	/*
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	*/
 
-		m_vx -= m_speed_power;//右から左にゆっくり進んでいく
-		m_posture = 0.0f;
-		m_ani_time += 1;
-	
+	m_vx -= m_speed_power;//右から左にゆっくり進んでいく
+	m_posture = 0.0f;
+	m_ani_time += 1;
+
 
 
 	if (m_ani_time > m_ani_max_time)
@@ -152,9 +152,9 @@ void CObjBoss::Action()
 
 	//BOSSの周り20°間隔で発射
 	m_time++;//弾丸発射間隔をあけるインクリメント
-	if (m_time>300)//50の間隔で拡散弾攻撃をする
+	if (m_time > 300)//50の間隔で拡散弾攻撃をする
 	{
-		
+
 		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			//19発同時発射
@@ -170,9 +170,9 @@ void CObjBoss::Action()
 			}
 		}
 	}
-	
+
 	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
-	if (m_time2>100) {
+	if (m_time2 > 100) {
 
 
 		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
@@ -184,7 +184,7 @@ void CObjBoss::Action()
 		}
 
 	}
-	
+
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -215,7 +215,7 @@ void CObjBoss::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
-		
+
 		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());
 

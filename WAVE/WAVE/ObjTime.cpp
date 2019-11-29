@@ -14,13 +14,19 @@ using namespace GameL;
 void CObjTime::Init()
 {
 	m_time = 600;
+	m_time_count = 0;
 	m_flag_time = false;
 }
 
 //アクション
 void CObjTime::Action()
 {
-	m_time--;
+	m_time_count++;
+	if (m_time_count >= 60)
+	{
+		m_time--;
+		m_time_count = 0;
+	}
 }
 
 //ドロー
@@ -29,8 +35,8 @@ void CObjTime::Draw()
 	int minute;
 	int second;
 
-	second = (m_time / 60) % 60; // 600 / 10 = 10秒
-	minute = (m_time / 60) / 60;
+	second = m_time % 60; // 600 / 10 = 10秒
+	minute = m_time / 60;
 
 	float c[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 

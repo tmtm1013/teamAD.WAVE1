@@ -28,154 +28,157 @@
     <Filter Include="ソース ファイル\Bullet">
       <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\NewFilter1">
+      <UniqueIdentifier>{e64f2c15-59c3-47d3-975c-a0a750068a32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DirectXDevice.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawFont.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawTexture.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\GameL_Main.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\HitBoxManager.cpp">
-      <Filter>ヘッダーファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBackground.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>ヘッダーファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjBullet.cpp">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjDiffusionBullet.cpp">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="COHomingBullet.cpp">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMain.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjTime.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneManager.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneObjManager.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SetWindow.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\UserData.cpp">
-      <Filter>ヘッダーファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>ソースファイル\Clear</Filter>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneClear.cpp">
-      <Filter>ソースファイル\Clear</Filter>
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjGameOver.cpp">
-      <Filter>ソースファイル\GameOver</Filter>
+    <ClCompile Include="GameL\DirectXDevice.cpp">
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneGameOver.cpp">
-      <Filter>ソースファイル\GameOver</Filter>
+    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>ソースファイル\Title</Filter>
+    <ClCompile Include="GameL\DrawFont.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DrawTexture.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\GameL_Main.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\HitBoxManager.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\MultiThread.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneManager.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneObjManager.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SetWindow.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\UserData.cpp">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\WinInputs.cpp">
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
-      <Filter>ソースファイル\Title</Filter>
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneClear.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjBlock.cpp">
-      <Filter>ソースファイル\Block</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJumpleft.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyRecovery.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBackground.cpp">
+      <Filter>ソース ファイル\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjItem.cpp">
-      <Filter>ソースファイル\item</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunition.cpp">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunitionleft.cpp">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJumpleft.cpp">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBoss.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunitionleft.cpp">
+    <ClCompile Include="SceneItem.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistance.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistanceleft.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyRecoveryleft.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunition.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソースファイル\Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGrenade.cpp">
-      <Filter>ソースファイル\Gre</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGre.cpp">
-      <Filter>ソースファイル\Gre</Filter>
     </ClCompile>
     <ClCompile Include="COHomingBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyleft.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="CObjDiffusionBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyRecovery.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjFullBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル</Filter>
@@ -186,177 +189,242 @@
     <ClCompile Include="CObjAngleBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="ObjTime.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyAmmunition.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGrenade.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss1.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss2.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawFont.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>リソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>リソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\MultiThread.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBackground.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjBullet.h">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjFullBullet.h">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjDiffusionBullet.h">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="COHomingBullet.h">
-      <Filter>ソースファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTime.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>リソースファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneManager.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SetWindow.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\UserData.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\WinInputs.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjClear.h">
-      <Filter>ソースファイル\Clear</Filter>
+    <ClInclude Include="GameHead.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneClear.h">
-      <Filter>ソースファイル\Clear</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameOver.h">
-      <Filter>ソースファイル\GameOver</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGrenade.h">
-      <Filter>ソースファイル\Gre</Filter>
+    <ClInclude Include="ObjBackground.h">
+      <Filter>ソース ファイル\Background</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyJump.h">
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyleft.h">
+    <ClInclude Include="ObjHero.h">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjClear.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBoss.h">
-      <Filter>ソース ファイル\Enemy</Filter>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneItem.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjItem.h">
-      <Filter>ソースファイル\item</Filter>
+    <ClInclude Include="CObjFullBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjDiffusionBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="COHomingBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTime.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
-      <Filter>ソースファイル\Enemy</Filter>
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemyAmmunition.h">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyAmmunitionleft.h">
-      <Filter>ソースファイル\Enemy</Filter>
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyJumpleft.h">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyleft.h">
-      <Filter>ソースファイル\Enemy</Filter>
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemyLongdistance.h">
-      <Filter>ソースファイル\Enemy</Filter>
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyLongdistanceleft.h">
-      <Filter>ソースファイル\Enemy</Filter>
+    <ClInclude Include="ObjGrenade.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyRecovery.h">
-      <Filter>ソースファイル\Enemy</Filter>
+    <ClInclude Include="ObjBoss1.h">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyRecoveryleft.h">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="OBJBoss.h">
-      <Filter>ソースファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjHero.h">
-      <Filter>ソースファイル\Hero</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGre.h">
-      <Filter>ソースファイル\Gre</Filter>
+    <ClInclude Include="ObjBoss2.h">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="ソースファイル">
-      <UniqueIdentifier>{89190daa-5d68-4510-8062-fb3f68e74350}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Bullet">
-      <UniqueIdentifier>{5447bde8-1c2b-400d-87ed-1c28dce5da05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="リソースファイル">
-      <UniqueIdentifier>{61bbb519-77af-4d83-a7f6-3c616391e579}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Clear">
-      <UniqueIdentifier>{3e4f667f-5e2c-4802-8df8-30f25223da82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\GameOver">
-      <UniqueIdentifier>{47cf5302-a23e-4760-a2e9-54a1b89f30fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Gre">
-      <UniqueIdentifier>{4cdb7197-1e60-418d-9f8d-515c2c753fe9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Title">
-      <UniqueIdentifier>{4b28f4e3-05b9-402d-8404-f908b7cd4714}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Block">
-      <UniqueIdentifier>{d1772ca2-7200-4c2f-b088-0283e3a3a0f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\item">
-      <UniqueIdentifier>{121c8a8d-3c09-4af5-818d-051b9bfcd588}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Enemy">
-      <UniqueIdentifier>{49fab4f8-e981-4d65-9e9b-b84ec1f6dcf3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\Hero">
-      <UniqueIdentifier>{49591f59-c0bb-46c3-b26f-254739c5019d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダーファイル">
-      <UniqueIdentifier>{94be50a8-62ff-454a-9125-1c4b781c421c}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="GameL\Audio.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DirectXDevice.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawFont.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawTexture.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\HitBoxManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\MultiThread.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneObjManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SetWindow.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\UserData.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\WinInputs.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameL\Audio.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DirectXDevice.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawFont.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawTexture.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\HitBoxManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\MultiThread.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneObjManager.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SetWindow.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\UserData.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\WinInputs.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

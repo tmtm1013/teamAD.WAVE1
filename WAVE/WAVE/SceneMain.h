@@ -18,24 +18,14 @@ class CSceneMain :public CScene
 		 int m_time3;
 		 int m_time4;
 		 int m_time5;
-		 int m_time6;
-		 int m_time7;
-		 int m_time8;
-		 int m_time9;
-		 int m_time10;
-		 int m_time11;
+	
 
 
 
 		 int Enemy;//’Êí“G‚Ì”—p•Ï”
-		 int Enemyleft;//’Êí‰E“G‚Ì”—p•Ï”
 		 int EnemyJump;//ƒWƒƒƒ“ƒv—p‚Ì“G”—p•Ï”
-		 int EnemyJumpleft;//ƒWƒƒƒ“ƒv—p‚Ì“G‰E‚Ì”—p•Ï”
-		 int EnemyRecovery;//ålŒö‰ñ•œ—p‚Ì“G‚Ì”—p•Ï”
-		 int EnemyRecoveryleft;//ålŒö‰ñ•œ—p‚Ì“G‚Ì”—p•Ï”
-		 int EnemyAmmunition;//“G’eŠÛŠ—p“G•Ï”
-		 int EnemyAmmunitionleft;//“G’eŠÛŠ‰E—p“G•Ï”
+		 int EnemyRecovery;//ålŒö‰ñ•œ—p‚Ì“G‚Ì”—p•Ï
+		 int EnemyAmmunition;//“G’eŠÛŠ—p“G•Ï
 		 int EnemyLongdistance;//‰“‹——£UŒ‚Œ^“G—p•Ï”
-		 int EnemyLongdistanceleft;//‰“‹——£UŒ‚Œ^“G—p•Ï”
 		 int Boss;
 }; 

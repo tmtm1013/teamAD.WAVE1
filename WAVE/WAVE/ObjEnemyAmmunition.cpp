@@ -11,7 +11,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float idou;
+extern float idou;//主人公が動いているか確認用グローバル変数
 
 //コンストラクタ
 CObjEnemyAmmunition::CObjEnemyAmmunition(float x,float y)
@@ -95,7 +95,6 @@ void CObjEnemyAmmunition::Action()
 	}
 
 	if (m_move == false)
-		
 	{
 		if (x==80||x==300) {
 			//主人公が停止しているときスクロール分の値を省いた行動をする
@@ -205,6 +204,14 @@ void CObjEnemyAmmunition::Action()
 	hit->SetPos(m_px, m_py);
 
 
+
+
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
 
 
 	//敵と弾丸が接触したらHPが減る

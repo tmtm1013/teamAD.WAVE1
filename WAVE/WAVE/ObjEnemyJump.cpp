@@ -13,6 +13,9 @@
 
 #define GRAUND (546.0f)
 
+extern float idou;//主人公が動いているか確認用グローバル変数
+
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -28,7 +31,7 @@ void CObjEnemyJump::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.1f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
 	m_hp = 5;//ENEMYのHP
@@ -92,38 +95,104 @@ void CObjEnemyJump::Action()
 
 
 	}
-	
 	if (m_move == false)
 	{
+		if (x == 80 || x == 300) {
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
 
+
+				m_vx += m_speed_power - 0.3f;
+				m_posture = 1.0f;
+				m_ani_time += 1;
+
+
+				//ランダムで決まる数値が1の時ジャンプする
+				if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+					if (m_hit_down == true)//敵が地面にいるときジャンプする
+					{
+						m_vy = -16;
+					}
+
+
+				}
+
+
+			}
+		}
+
+		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
-		if (m_rnd==1) {//間隔をあけてジャンプする
 
-			if (m_py + 64.0f == GRAUND)//ジャンププログラム
-			{
-				m_vy = -16;
+
+		//ランダムで決まる数値が1の時ジャンプする
+			if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+				if (m_hit_down == true)//敵が地面にいるときジャンプする
+				{
+					m_vy = -16;
+				}
+
+
 			}
 
-			
-		}
+
 	}
 
 	else if (m_move == true)
 	{
+		if (x == 80 || x == 300) {
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 1) {
+
+
+
+				m_vx -= m_speed_power + 0.05f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+				//ランダムで決まる数値が1の時ジャンプする
+				if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+					if (m_hit_down == true)//敵が地面にいるときジャンプする
+					{
+						m_vy = -16;
+					}
+
+				}
+			}
+
+
+			//主人公が動いてるときスクロール分の値を適用させた行動をする
+			if (idou == 2) {
+
+
+
+				m_vx -= m_speed_power - 0.3f;
+				m_posture = 0.0f;
+				m_ani_time += 1;
+
+
+				//ランダムで決まる数値が1の時ジャンプする
+				if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+					if (m_hit_down == true)//敵が地面にいるときジャンプする
+					{
+						m_vy = -16;
+					}
+				}
+			}
+		}
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
 		m_ani_time += 1;
-		if (m_rnd == 3) {//間隔をあけてジャンプする
-			if (m_py + 64.0f == GRAUND)//ジャンププログラム
-			{
-				m_vy = -16;
-			}
-			
-		}
-	}
 
+	}
 
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -152,31 +221,30 @@ void CObjEnemyJump::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+	
 
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
 
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
-
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
 
+
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
 
 
 
@@ -194,7 +262,7 @@ void CObjEnemyJump::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
-
+		
 		//敵が消滅したら+100点
 		((UserData*)Save::GetData())->m_point += 100;
 
