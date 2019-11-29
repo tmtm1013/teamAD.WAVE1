@@ -149,6 +149,8 @@ void CObjBlock::Action()
 	//敵出現ラインを要素番号化
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
+	int dx = ((int)line) / 64;
+
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
@@ -159,8 +161,8 @@ void CObjBlock::Action()
 			{
 
 				//4があれば、敵を出現
-				CObjEnemyLongdistanceleft*obje = new CObjEnemyLongdistanceleft(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCELEFT, 10);
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
 
 				//敵出現場所の値を0にする
 				m_map[i][ex] = 0;
@@ -170,8 +172,8 @@ void CObjBlock::Action()
 			//列の中から6を探す
 			if (m_map[i][rx] == 6)
 			{
-				CObjEnemyLongdistanceleft*obje = new CObjEnemyLongdistanceleft(rx*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCELEFT, 11);
+				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_BOSS, 11);
 
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;
@@ -193,6 +195,15 @@ void CObjBlock::Action()
 
 			}
 
+			/*//列の中から７を探す
+			if (m_map[i][dx] == 7)
+			{
+
+				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY, 13);
+
+
+			}*/
 			
 	}
 	
@@ -260,9 +271,13 @@ void CObjBlock::Draw()
 
 				if (m_map[i][j] == 6)
 				{
-					
+					;
 				}
 
+				if (m_map[i][j] == 7)
+				{
+					;
+				}
 
 
 
@@ -380,6 +395,102 @@ void CObjBlock::BlockHit(
 							//下
 							*up = true;
 							*y = by + 64.0f;
+							if (*vy < 0)
+							{
+								*vy = 0.0f;
+							}
+						}
+					}
+
+
+
+
+
+
+				}
+
+			}
+		}
+	}
+}
+void CObjBlock::BlockEnemyHit(
+	float *x, float *y, bool scroll_on,
+	bool *up, bool *down, bool *left, bool *right,
+	float *vx, float *vy
+)
+{
+	//衝突確認用フラグの初期化
+	*up = false;
+	*down = false;
+	*left = false;
+	*right = false;
+
+
+	//m_mapの全要素にアクセス
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			{
+				//要素番号を座標に変更
+				float bx = j * 132.0f;
+				float by = i * 132.0f;
+
+				//スクロールの影響
+				float scroll = scroll_on ? m_scroll : 0;
+
+				//オブジェクトとブロックの当たり判定
+				if ((*x + (-scroll) + 132.0f > bx) && (*x + (-scroll) < bx + 132.0f) && (*y + 132.0f > by) && (*y < by + 132.0f))
+				{
+					//上下左右判定
+
+					//vectorの作成
+					float rvx = (*x + (-scroll)) - bx;
+					float rvy = *y - by;
+					//長さを求める
+					float len = sqrt(rvx*rvx + rvy * rvy);
+					//角度を求める
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r <= 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//lenがある一定の長さのより短い場合判定に入る
+					if (len < 88.0f)
+					{
+						//角度で上下左右を判定
+						if (r < 45 && r>0 || r > 135)
+						{
+							//右
+							*right = true;
+							*x = bx + 132.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+						}
+						if (r > 45 && r < 135)
+						{
+							//上
+							*down = true;
+							*y = by - 132.0f;
+							//種類を渡すのスタートとゴールのみ変更する
+							
+							*vy = 0.0f;
+						}
+						if (r > 135 && r < 225)
+						{
+							//左
+							*left = true;
+							*x = bx - 132.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+						}
+						if (r > 225 && r < 315)
+						{
+							//下
+							*up = true;
+							*y = by + 132.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;

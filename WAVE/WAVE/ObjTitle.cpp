@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
+#include "GameL\UserData.h"
 
 #include "ObjTitle.h"
 #include "GameHead.h"
@@ -17,6 +18,8 @@ void CObjTitle::Init()
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
+
+	((UserData*)Save::GetData())->SceneNum=1; //マップ移動用
 }
 
 void CObjTitle::Action()

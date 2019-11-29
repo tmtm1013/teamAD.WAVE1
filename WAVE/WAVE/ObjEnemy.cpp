@@ -7,7 +7,7 @@
 #include "ObjEnemy.h"
 #include "GameL\HitBoxManager.h"
 
-#define GRAUND (546.0f)
+#define GRAUND (576.0f)
 
 //使用するネームスペース
 using namespace GameL;
@@ -36,6 +36,13 @@ void CObjEnemy::Init()
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
+
+
 	m_hp = 100;//ENEMYのHP
 
 	flag = true;
@@ -44,7 +51,7 @@ void CObjEnemy::Init()
 	m_move = false;//true=右
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 131, 132, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
 
 
@@ -68,7 +75,7 @@ void CObjEnemy::Action()
 
 
 	//ここに敵が主人公の向きに移動する条件を書く。
-	if (x <= m_px)//右
+	if (x <= m_px)//左
 	{
 
 		m_move = true;
@@ -76,7 +83,7 @@ void CObjEnemy::Action()
 
 
 	}
-	if (x >= m_px)//左
+	if (x >= m_px)//右
 	{
 
 
@@ -120,25 +127,12 @@ void CObjEnemy::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
+	/*if (m_vy > 26 && m_py+64 <= GRAUND)
 	{
 		m_vy = 0;
-	}
+	}*/
 
 	//試しに
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -166,9 +160,12 @@ void CObjEnemy::Action()
 		m_px = 0.0f;
 	}
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
 
@@ -205,6 +202,12 @@ void CObjEnemy::Action()
 
 
 	}
+	int d = 0;
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
+		,&d
+	);
 
 	//HPが0になったら破棄
 	if (m_hp <= 0)
@@ -233,7 +236,7 @@ void CObjEnemy::Action()
 
 
 		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
+		//Scene::SetScene(new CSceneClear());
 
 	}
 
@@ -260,12 +263,12 @@ void CObjEnemy::Draw()
 	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 131;
 	src.m_right = 131.0f + AniData[m_ani_move][m_ani_frame] * 132;
 	src.m_bottom = 132.0f;
-
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (131.0f * m_posture) + m_px;
-	dst.m_right = (131 - 131.0f * m_posture) + m_px;
-	dst.m_bottom = 132.0f + m_py;
+	dst.m_left = (64.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_right = (64 - 64.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_bottom = 64.0f + m_py;
 
 	//描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);

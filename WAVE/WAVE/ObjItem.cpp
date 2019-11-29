@@ -129,7 +129,7 @@ void CObjItem::Draw()
 
 
 	//•`‰æ
-	Draw::Draw(9, &src, &dst, c, 0.0f);
+	Draw::Draw(7, &src, &dst, c, 0.0f);
 
 
 	

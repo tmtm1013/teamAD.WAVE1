@@ -65,6 +65,7 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
+	int SceneNum;   //ステージ切り替え
 
 };
 //------------------------------------------------
@@ -130,5 +131,5 @@ extern float idou;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameOver
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------

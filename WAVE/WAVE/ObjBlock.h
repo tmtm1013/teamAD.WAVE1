@@ -33,6 +33,12 @@ public:
 		float *out_px, float *out_py, float*out_len
 	);
 
+	void BlockEnemyHit(
+		float *x, float *y, bool scroll_on,
+		bool*up, bool*down, bool*left, bool*right,
+		float*vx, float*vy
+	);
+
 	//ålŒö‚Æ•Ç‚ÌŒğ·”»’è
 	bool HeroBlockCrossPoint(
 		float x, float y, float vx, float vy,

@@ -33,6 +33,12 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
 	//アイテムフラグ
 	bool flag;
 

@@ -77,9 +77,6 @@ class CObjHero :public CObj
 
 		int second; //秒間用変数
 
-
-		int m_hp;//主人公のHP
-
 		//blockとの衝突状態確認用
 		bool m_hit_up ;
 		bool m_hit_down;

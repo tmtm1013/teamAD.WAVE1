@@ -11,6 +11,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+float m_hp = 100;
+
 //コンストラクタ
 CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
 {
@@ -47,9 +49,6 @@ void CObjEnemyLongdistance::Init()
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
-
-
-
 }
 
 
@@ -65,7 +64,8 @@ void CObjEnemyLongdistance::Action()
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
-
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -86,7 +86,7 @@ void CObjEnemyLongdistance::Action()
 				m_time = 0;
 
 				//弾丸オブジェクト
-				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
+				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
 				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
 			}
@@ -161,7 +161,7 @@ void CObjEnemyLongdistance::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
+	pb->BlockHit(&m_px, &m_py, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
@@ -170,28 +170,13 @@ void CObjEnemyLongdistance::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
 	
-	if (m_py + 32.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 32.0f;
-
-	}
-
 	if (m_px < 0.0f)
 	{
 		m_px = 0.0f;
 	}
-	*/
-	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	
+	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -242,9 +227,9 @@ void CObjEnemyLongdistance::Action()
 void CObjEnemyLongdistance::Draw()
 {
 	//歩くアニメーション情報を登録
-	int AniData[4] =
+	int AniData[6] =
 	{
-		1 , 0 , 2 , 0,
+		0,1,2,3,4,5,
 	};
 
 
@@ -255,10 +240,10 @@ void CObjEnemyLongdistance::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 64.0f;
-	src.m_left = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
+	src.m_top =0.0f;
+	src.m_left = 0.0f + AniData[m_ani_frame] * 131;
+	src.m_right = 131.0f + AniData[m_ani_frame] * 132;
+	src.m_bottom = 132.0f;
 
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -271,6 +256,6 @@ void CObjEnemyLongdistance::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(13, &src, &dst, c, 0.0f);
 
 }

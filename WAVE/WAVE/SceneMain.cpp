@@ -8,7 +8,7 @@
 #include "GameL\Audio.h"
 #include "GameL/DrawFont.h"
 #include "GameL/UserData.h"
-//#include "GameL/WinInputs.h"
+#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -18,6 +18,7 @@ using namespace GameL;
 #include "ObjBlock.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
+#include "OBJBoss.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
@@ -91,6 +92,7 @@ void CSceneMain::InitScene()
 	//主人公(ジャンプ)グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
+	
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
@@ -113,7 +115,13 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+
+	//bossのグラフィック読み込み
+	Draw::LoadImageW(L"motion1.png", 12, TEX_SIZE_512);
+
+	//Longdistanceの読み込み
+	Draw::LoadImageW(L"motion3.png", 13, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -124,18 +132,16 @@ void CSceneMain::InitScene()
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
-	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
-
-	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
-
-
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	/*
+	//BOSSオブジェクト作成
+	CObjBoss* objboss = new CObjBoss(600,300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
+	*/
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
@@ -160,7 +166,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 1);
 	
 
-
+	/*
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
@@ -181,7 +187,7 @@ void CSceneMain::InitScene()
 
 		}
 	}
-
+	*/
 
 
 
