@@ -187,17 +187,6 @@ void CObjEnemy::Action()
 	m_py += m_vy;
 
 
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
-
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
-
-	
 	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -277,7 +266,7 @@ void CObjEnemy::Action()
 		//敵消滅でシーンをゲームクリアに移行する
 		//daScene::SetScene(new CSceneClear());
 
-
+	}
 }
 
 //ドロー
