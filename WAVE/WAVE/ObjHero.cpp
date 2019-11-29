@@ -272,7 +272,7 @@ void CObjHero::Action()
 			//Audio::Start(2);
 
 			//弾丸オブジェクト作成
-			CObjGren* obj_g = new CObjGren(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			CObjGren* obj_g = new CObjGren(m_px, m_py );//弾丸オブジェクト作成
 			Objs::InsertObj(obj_g, OBJ_GREN, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			m_f = false;
