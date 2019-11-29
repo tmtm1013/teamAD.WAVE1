@@ -221,7 +221,7 @@ void CObjEnemyJump::Draw()
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
-		1 , 0 , 2 , 0,
+		0, 1, 2, 3,
 	};
 
 
@@ -232,10 +232,10 @@ void CObjEnemyJump::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 64.0f;
-	src.m_left = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f + AniData[m_ani_frame] + 48;
+	src.m_right = 48.0f + AniData[m_ani_frame] + 48;
+	src.m_bottom = 48.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
@@ -244,8 +244,10 @@ void CObjEnemyJump::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(12, &src, &dst, c, 0.0f);
+
+
+
 
 }
-
 int CObjEnemyJump::EnemyCount = 0;

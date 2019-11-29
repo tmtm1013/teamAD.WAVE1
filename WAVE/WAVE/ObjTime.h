@@ -18,5 +18,6 @@ public :
 private :
 	int m_time;
 	bool m_flag_time;
+	float m_count;
 	
 };
