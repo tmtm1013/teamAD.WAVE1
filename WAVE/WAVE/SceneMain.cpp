@@ -101,6 +101,8 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+
 	//体力グラフィック読み込み
 	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
@@ -116,8 +118,7 @@ void CSceneMain::InitScene()
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 3, TEX_SIZE_512);
+	
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -127,13 +128,6 @@ void CSceneMain::InitScene()
 
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
-
-	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
-
-	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
-
 
 
 	//主人公オブジェクト作成
@@ -160,8 +154,9 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	//スコア表示
 	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 1);
+	Objs::InsertObj(s, OBJ_MAIN, 12);
 	
 
 
@@ -252,7 +247,7 @@ void CSceneMain::Scene()
 
 
 		//ジャンプする敵出現用プログラム（左画面出現）
-		if (m_time3>100) {//敵の出現間隔
+		/*if (m_time3>100) {//敵の出現間隔
 
 			if (EnemyJump <= 2) {//敵の出現数
 
@@ -266,7 +261,7 @@ void CSceneMain::Scene()
 
 			m_time3 = 0;
 
-		}
+		}*/
 
 
 
@@ -305,26 +300,26 @@ void CSceneMain::Scene()
 
 
 		
-	  /* //遠距離攻撃敵出現プログラム（右画面出現）
-		if (m_time9 > 100) {//敵の出現間隔
+	  ///遠距離攻撃敵出現プログラム（右画面出現）
+	/*if (m_time9 > 100) {//敵の出現間隔
 
-			if (EnemyLongdistance <= 1) {//敵の出現数
+		if (EnemyLongdistance <= 1) {//敵の出現数
 
-				CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(600,100);
-				Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
-			}
+			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(600, 100);
+			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
+		}
 
-			EnemyLongdistance++;
+		EnemyLongdistance++;
 
-			m_time9 = 0;
+		m_time9 = 0;
 
-		}*/
+	}*/
 		
 
 
 		
 		//BOSSプログラム（右画面出現）
-		if (m_time10 > 100) {//敵の出現間隔
+		/*if (m_time10 > 100) {//敵の出現間隔
 
 			if (Boss <= 1) {//敵の出現数
 
@@ -335,8 +330,9 @@ void CSceneMain::Scene()
 			Boss++;
 
 			m_time11 = 0;
+			}
 
-		}
+		}*/
 
 		//通常敵表示用プログラム（左画面出現）
 	/*if (m_time > 100)//敵の出現間隔

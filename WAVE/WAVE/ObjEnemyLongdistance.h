@@ -7,6 +7,7 @@
 using namespace GameL;
 
 
+
 //オブジェクト：敵
 class CObjEnemyLongdistance :public CObj
 {
@@ -28,6 +29,7 @@ private:
 
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
+	int m_ani_move; //モーション種類制御
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;

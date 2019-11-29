@@ -19,4 +19,5 @@ private:
 	float m_mou_x;
 	float m_mou_y;
 	float m_mou_r;
+	float m_mou_l;
 };

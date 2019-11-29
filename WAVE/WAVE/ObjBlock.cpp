@@ -159,8 +159,8 @@ void CObjBlock::Action()
 			{
 
 				//4があれば、敵を出現
-				CObjEnemyLongdistanceleft*obje = new CObjEnemyLongdistanceleft(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCELEFT, 10);
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
 
 				//敵出現場所の値を0にする
 				m_map[i][ex] = 0;
@@ -170,8 +170,8 @@ void CObjBlock::Action()
 			//列の中から6を探す
 			if (m_map[i][rx] == 6)
 			{
-				CObjEnemyLongdistanceleft*obje = new CObjEnemyLongdistanceleft(rx*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCELEFT, 11);
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 11);
 
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;
