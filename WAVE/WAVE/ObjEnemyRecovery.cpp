@@ -11,11 +11,17 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjEnemyRecovery::CObjEnemyRecovery(float x,float y)
+{
+	m_px = x;    //位置
+	m_py = y;
+
+}
+
 //イニシャライズ
 void CObjEnemyRecovery::Init()
 {
-	m_px = 0.0f;    //位置
-	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f

@@ -23,6 +23,19 @@ private:
 	float bx;      //弾丸の X ベクトル値収納用変数 
 	float by;      //弾丸の Y ベクトル値収納用変数
 
+	float m_sx;   //サイズ用
+	float m_sy;
+
+
+
+	 bool m_hit_up;
+	 bool m_hit_down;
+	 bool m_hit_left;
+	 bool m_hit_right;
+
+	 //当たっているblockの種類を確認用
+	 int m_block_type;
+
 	bool flag;     //発射角度制御フラグ
 
 	float m_mou_bx;//マウスの X 方向の位置用変数

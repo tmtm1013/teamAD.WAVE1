@@ -8,6 +8,7 @@
 #include "ObjTitle.h"
 #include "GameHead.h"
 #include "ObjGameOver.h"
+#include "GameL\DrawFont.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -30,7 +31,7 @@ void CObjGameOver::Action()
 	m_mou_r = Input::GetMouButtonL();
 
 	//マウスの位置とクリックする場所で当たり判定
-	if (m_mou_x > 300 && m_mou_x < 460 && m_mou_y>260 && m_mou_y < 310)
+	if (m_mou_x > 205 && m_mou_x < 325 && m_mou_y>490 && m_mou_y < 525)
 	{
 		//マウスのボタンが押されたらリスタート
 		if (m_mou_r == true)
@@ -41,7 +42,7 @@ void CObjGameOver::Action()
 	}
 
 	//マウスの位置とクリックする場所で当たり判定
-	if (m_mou_x > 230 && m_mou_x < 450 && m_mou_y>330 && m_mou_y < 350)
+	if (m_mou_x > 505 && m_mou_x < 590 && m_mou_y>490 && m_mou_y < 525)
 	{
 
 		//マウスのボタンが押されたらタイトル画面
@@ -87,7 +88,21 @@ void CObjGameOver::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(11, &src, &dst, c, 0.0f);
+
+	//仮マウス位置表示
+	wchar_t str[256];
+	swprintf_s(str, L"x = %f, y = %f", m_mou_x, m_mou_y);
+	Font::StrDraw(str, 20, 20, 12, c);
+	//仮マウスのボタンの状態
+	if (m_mou_r == true)
+		Font::StrDraw(L"R=押している", 20, 30, 12, c);
+	else
+		Font::StrDraw(L"R=押していない", 20, 30, 12, c);
+	if (m_mou_l == true)
+		Font::StrDraw(L"L=押している", 20, 40, 12, c);
+	else
+		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
 
 
 }

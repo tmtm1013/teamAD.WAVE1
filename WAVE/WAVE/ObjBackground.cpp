@@ -11,7 +11,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
-	
+
 
 }
 
@@ -43,5 +43,5 @@ void CObjBackground::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(9, &src, &dst, c, 0.0f);
 }

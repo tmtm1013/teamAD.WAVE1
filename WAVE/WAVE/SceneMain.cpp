@@ -39,7 +39,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book11.csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
@@ -57,7 +57,6 @@ void CSceneMain::InitScene()
 	}
 
 
-
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
@@ -70,7 +69,7 @@ void CSceneMain::InitScene()
 	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	*/
 	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/gun2.wav",SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
+	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
 	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//-----武器切り替え音読み込み----
@@ -83,51 +82,52 @@ void CSceneMain::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//グラフィック読み込み
-	Draw::LoadImageW(L"Animation/motion2.png",1,TEX_SIZE_2048); //敵のグラフィック読み込み
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
 
-	//ボリュームを1.0に戻す
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
-	
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png",7,TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
 
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
-
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
-
-
-
-	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
-
-
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GameOver1.png", 3, TEX_SIZE_512);
-
-
-	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
-
-	//blockオブジェクト作成
-	
-	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+	//主人公(ジャンプ)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+	//Enemyグラフィック読み込み
+	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
+
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
 	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+
+	//手榴弾グラフィック読み込み
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+
+	//背景のグラフィック読み込み
+	Draw::LoadImageW(L"ObjBlock.png", 9, TEX_SIZE_512);
+
+	//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+
+	
+
+	//ボリュームを1.0に戻す
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster(1.0 - v);
+
+	//blockオブジェクト作成
+
+	CObjBlock*objb = new CObjBlock(map);
+	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
 	//主人公オブジェクト作成
@@ -147,19 +147,43 @@ void CSceneMain::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
-	
+
 
 	/*//テスト用:弾丸オブジェクト作成
 	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	//スコア表示
+	CObjMain* s = new CObjMain();
+	Objs::InsertObj(s, OBJ_MAIN, 12);
 	
 
-	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 1);
-	
-	
+
+	//外部データの読み取り（ステージ情報）
+	unique_ptr<wchar_t>p2;//ステージ情報ポインター
+	int size2;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
+
+	int map2[10][100];
+	int count2 = 1;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			int w = 0;
+			swscanf_s(&p.get()[count2], L"%d", &w);
+
+			map[i][j] = w;
+			count += 2;
+
+
+		}
+	}
+
+
+
+
 	
 	m_time  = 0;
 	m_time2 = 0;
@@ -169,15 +193,17 @@ void CSceneMain::InitScene()
 	
 
 	Enemy = 1;
+
 	EnemyJump = 1;
+
 	EnemyAmmunition = 1;
 	EnemyLongdistance = 1;
 	Boss = 1;
-	
+
 }
 
 //実行中メソッド
- void CSceneMain::Scene()
+void CSceneMain::Scene()
 {
 	 m_time++;
 	 m_time2++;
@@ -191,14 +217,14 @@ void CSceneMain::InitScene()
 		 if (m_time > 100)//敵の出現間隔
 		 {
 
-			 if (Enemy <=2) {//敵の出現数
+			if (Enemy <=2) {//敵の出現数
 
-				 //敵オブジェクト作成
-				 CObjEnemy* obj_enemy = new CObjEnemy();
-				 Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
-			 }
+				//敵オブジェクト作成
+				CObjEnemy* obj_enemy = new CObjEnemy(600,100);
+				Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
+			}
 
-			 Enemy++;
+			Enemy++;
 
 			 m_time = 0;
 		 }
@@ -208,15 +234,15 @@ void CSceneMain::InitScene()
 		 //ジャンプする敵出現用プログラム（左画面出現）
 		 if (m_time2>100) {//敵の出現間隔
 
-			 if (EnemyJump <= 2) {//敵の出現数
+			if (EnemyJump <= 2) {//敵の出現数
 
-				 CObjEnemyJump* obj_enemyjump = new CObjEnemyJump();
-				 Objs::InsertObj(obj_enemyjump, OBJ_ENEMY, 10);
+				CObjEnemyJump* obj_enemyjump = new CObjEnemyJump(600,100);
+				Objs::InsertObj(obj_enemyjump, OBJ_ENEMY, 10);
 
 
-			 }
+			}
 
-			 EnemyJump++;
+			EnemyJump++;
 
 			 m_time2 = 0;
 
@@ -235,7 +261,7 @@ void CSceneMain::InitScene()
 				 
 			 }
 
-			 EnemyAmmunition++;
+				EnemyAmmunition++;
 
 			 m_time3 = 0;
 
@@ -245,13 +271,13 @@ void CSceneMain::InitScene()
 		//遠距離攻撃敵出現プログラム（右画面出現）
 		 if (m_time4 > 100) {//敵の出現間隔
 
-			 if (EnemyLongdistance <= 1) {//敵の出現数
+		if (EnemyLongdistance <= 1) {//敵の出現数
 
-				 CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance();
-				 Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
-			 }
+			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(600, 100);
+			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
+		}
 
-			 EnemyLongdistance++;
+		EnemyLongdistance++;
 
 			 m_time4 = 0;
 
@@ -263,13 +289,13 @@ void CSceneMain::InitScene()
 		 //BOSSプログラム（右画面出現）
 		 if (m_time5 > 100) {//敵の出現間隔
 
-			 if (Boss <= 1) {//敵の出現数
+			if (Boss <= 1) {//敵の出現数
 
-				 CObjBoss* obj_boss = new CObjBoss();
-				 Objs::InsertObj(obj_boss, OBJ_ENEMY, 10);
-			 }
+				CObjBoss* obj_boss = new CObjBoss(320.0,400.0);
+				Objs::InsertObj(obj_boss, OBJ_ENEMY, 10);
+			}
 
-			 Boss++;
+			Boss++;
 
 			 m_time5 = 0;
 

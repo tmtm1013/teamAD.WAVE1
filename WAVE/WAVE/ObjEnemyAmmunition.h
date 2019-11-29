@@ -11,7 +11,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyAmmunition :public CObj
 {
-public:CObjEnemyAmmunition(float x,float y);
+public:CObjEnemyAmmunition(float x,float y) ;
 	   ~CObjEnemyAmmunition() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
@@ -22,6 +22,9 @@ private:
 	float m_py;
 	float m_vx;    //移動ベクトル
 	float m_vy;
+
+	float m_sx ;  //画像サイズ用
+	float m_sy ;
 	
 
 	float m_posture;  //姿勢

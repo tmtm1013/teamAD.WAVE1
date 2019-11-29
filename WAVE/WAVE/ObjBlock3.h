@@ -7,12 +7,12 @@ using namespace GameL;
 #include "GameL/DrawTexture.h"
 
 //オブジェクト:ブロック&背景
-class CObjBlock :public CObj
+class CObjBlock3 :public CObj
 {
 
 public:
-	CObjBlock(int map[10][100]);
-	~CObjBlock() {};
+	CObjBlock3(int map[10][100]);
+	~CObjBlock3() {};
 	void Init();
 	void Action();
 	void Draw();
@@ -22,15 +22,9 @@ public:
 
 	//ブロックとの当たり判定
 	void BlockHit(
-		float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
+		float *x, float *y, bool scroll_on,
 		bool*up, bool*down, bool*left, bool*right,
 		float*vx, float*vy, int*bt
-	);
-
-	//ブロックとの当たり判定
-	void BlockHit(
-		float x, float y, float vx, float vy,
-		float *out_px, float *out_py, float*out_len
 	);
 
 	//主人公と壁の交差判定
@@ -42,7 +36,7 @@ public:
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[]);
 
-	int m_map[10][100];
+	int m_map2[10][100];
 
 	float m_scroll;
 

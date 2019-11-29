@@ -16,16 +16,18 @@ void CObjTime::Init()
 	m_time = 600;
 	m_time_count = 0;
 	m_flag_time = false;
+	m_count = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
 void CObjTime::Action()
 {
-	m_time_count++;
-	if (m_time_count >= 60)
+	
+	m_count++;
+	if (m_count == 60)
 	{
 		m_time--;
-		m_time_count = 0;
+		m_count = 0;
 	}
 }
 

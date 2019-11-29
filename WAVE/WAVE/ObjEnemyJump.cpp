@@ -19,11 +19,17 @@ extern float idou;//主人公が動いているか確認用グローバル変数
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjEnemyJump::CObjEnemyJump(float x,float y)
+{
+	m_px = x;    //位置
+	m_py = y;
+
+}
+
 //イニシャライズ
 void CObjEnemyJump::Init()
 {
-	m_px = 0.0f;    //位置
-	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -283,7 +289,7 @@ void CObjEnemyJump::Draw()
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
-		1 , 0 , 2 , 0,
+		0, 1, 2, 3,
 	};
 
 
@@ -294,10 +300,10 @@ void CObjEnemyJump::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 64.0f;
-	src.m_left = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f + AniData[m_ani_frame] + 48;
+	src.m_right = 48.0f + AniData[m_ani_frame] + 48;
+	src.m_bottom = 48.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
@@ -306,8 +312,10 @@ void CObjEnemyJump::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(12, &src, &dst, c, 0.0f);
+
+
+
 
 }
-
 int CObjEnemyJump::EnemyCount = 0;

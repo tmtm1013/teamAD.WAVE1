@@ -1,46 +1,40 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\UserData.h"
 
 #include "GameHead.h"
-#include "ObjEnemyLongdistanceleft.h"
+#include "ObjObstacle.h"
 #include "GameL\HitBoxManager.h"
 
 #define GRAUND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
-//コンストラクタ
-CObjEnemyLongdistanceleft::CObjEnemyLongdistanceleft(float x,float y)
-{
-	m_px = x;    //位置
-	m_py = y;
-
-}
-
 
 //イニシャライズ
-void CObjEnemyLongdistanceleft::Init()
+void ObjObstacle::Init()
 {
+	m_px = 0.0f;    //位置
+	m_py = 0.0f;
+	/*
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
-
+	*/
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.0f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
-	m_hp = 100;//ENEMYのHP
+	m_hp = 50;//障害物のHP
 
 
-	m_move = false;//true=右
-
-	m_time = 0;
+	//m_move = false;//true=右
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_OBSTACLE, OBJ_OBSTACLE, 1);
 
 
 
@@ -51,12 +45,12 @@ void CObjEnemyLongdistanceleft::Init()
 
 
 //アクション
-void CObjEnemyLongdistanceleft::Action()
+void ObjObstacle::Action()
 {
 
 
 	//通常速度
-	m_speed_power = 0.1f;
+	m_speed_power = 0.0f;
 	m_ani_max_time = 2;
 
 
@@ -66,28 +60,7 @@ void CObjEnemyLongdistanceleft::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-
-	m_time++;//弾丸発射用タイムインクリメント
-
-	//弾丸用プログラム
-	if (m_time > 300)
-	{
-		if (!(x + 200.0f > m_px&&x - 200.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
-			m_time = 0;
-
-			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
-		}
-	}
-
-
-
-
-
-
-
+	/*
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -133,7 +106,7 @@ void CObjEnemyLongdistanceleft::Action()
 		m_ani_frame = 0;
 	}
 
-
+	*/
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -151,7 +124,7 @@ void CObjEnemyLongdistanceleft::Action()
 	m_py += m_vy;
 
 
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	//主人公の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
@@ -208,14 +181,18 @@ void CObjEnemyLongdistanceleft::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
 
+
+		
 	}
 
 
 }
 
 //ドロー
-void CObjEnemyLongdistanceleft::Draw()
+void ObjObstacle::Draw()
 {
 	//歩くアニメーション情報を登録
 	int AniData[4] =
@@ -225,7 +202,7 @@ void CObjEnemyLongdistanceleft::Draw()
 
 
 	//描画カラー情報
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,3.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -243,6 +220,6 @@ void CObjEnemyLongdistanceleft::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(4, &src, &dst, c, 0.0f);
 
 }
