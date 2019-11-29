@@ -10,6 +10,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjAngleBullet::CObjAngleBullet(float x, float y,float r,float speed)
 {
 	m_x = x;
@@ -24,6 +25,16 @@ void CObjAngleBullet::Init()
 	m_vx = cos(3.14f / 180.0f*m_r);
 	m_vy = sin(3.14f / 180.0f*m_r);
 
+	m_sx = 16.0f;
+	m_sy = 16.0f;
+
+	//blockとの衝突状態確認用
+	m_hit_up    = false;
+	m_hit_down  = false;
+	m_hit_left  = false;
+	m_hit_right = false;
+
+
 		//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_ANGLE_BULLET, OBJ_HOMING_BULLET, 1);
 }
@@ -35,6 +46,13 @@ void CObjAngleBullet::Action()
 	m_x += m_vx * m_speed;
 	m_y -= m_vy * m_speed;
 
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_x, &m_y, true, &m_sx, &m_sy,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 
 
 	//HitBoxの位置の変更
@@ -44,6 +62,17 @@ void CObjAngleBullet::Action()
 	if (m_x < 0)
 	{
 		this->SetStatus(false);
+	}
+
+
+	if (  m_hit_up == true
+		||m_hit_down == true
+		||m_hit_left == true
+		||m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
 	}
 
 	

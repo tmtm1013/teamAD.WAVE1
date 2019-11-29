@@ -288,8 +288,6 @@ void CObjBlock::Draw()
 			}
 		}
 	}
-
-
 }
 
 //	BrockDrawMethodä÷êî
@@ -301,7 +299,6 @@ void CObjBlock::Draw()
 //ê›íËÇ≈Ç≈Ç´ÇÈ
 void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 {
-
 	RECT_F src;
 	src.m_top = y;
 	src.m_left = x;
@@ -315,7 +312,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 
 //BlockHitä÷êî
 void CObjBlock::BlockHit(
-	float *x, float *y, bool scroll_on,
+	float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -394,7 +391,7 @@ void CObjBlock::BlockHit(
 						{
 							//â∫
 							*up = true;
-							*y = by + 64.0f;
+							*y = by + *m_sy;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;

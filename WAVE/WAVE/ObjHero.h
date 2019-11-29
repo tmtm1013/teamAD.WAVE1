@@ -52,6 +52,9 @@ class CObjHero :public CObj
 	private:
 		float m_px;    //位置
 		float m_py;
+		float m_sx;   //サイズ用
+		float m_sy;
+
 
 		bool m_mou_pr; //マウスの右ボタン
 		bool m_mou_pl; //マウス左ボタン
@@ -101,6 +104,5 @@ class CObjHero :public CObj
 
 		//踏んでいるblockの種類を確認用
 		int m_block_type;
-
 
 };

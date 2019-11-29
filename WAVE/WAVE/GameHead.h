@@ -27,7 +27,8 @@ enum OBJ_NAME
 	OBJ_ENEMYAMMUNITION,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
-
+	OBJ_BOSS1,
+	OBJ_BOSS2,
 
 
 
@@ -36,6 +37,7 @@ enum OBJ_NAME
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 	OBJ_GRENADE,
+	OBJ_GREN,
 
 };
 //------------------------------------------------
@@ -67,6 +69,7 @@ struct UserData
 	int m_point;    //GameMain出たポイント
 	int SceneNum;   //ステージ切り替え
 
+	
 };
 //------------------------------------------------
 
@@ -91,9 +94,6 @@ extern float idou;
 #include "ObjEnemy.h"
 
 #include "ObjEnemyJump.h"
-
-#include "ObjEnemyRecovery.h"
-
 #include "ObjEnemyAmmunition.h"
 
 #include "ObjEnemyLongdistance.h"
@@ -116,6 +116,7 @@ extern float idou;
 #include "ObjItem.h"
 #include "ObjGrenade.h"
 #include "ObjTime.h"
+#include "ObjGren.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

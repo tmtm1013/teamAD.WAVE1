@@ -29,6 +29,16 @@ void CObjEnemy::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	m_sx = 132;
+	m_sy = 132;
+
+
+	m_hit_up=false;
+	m_hit_down=false;
+	m_hit_left=false;
+	m_hit_right=false;
+
+
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
@@ -56,11 +66,11 @@ void CObjEnemy::Init()
 
 
 }
-
 //アクション
 void CObjEnemy::Action()
 {
-
+	
+	
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -93,21 +103,66 @@ void CObjEnemy::Action()
 
 	}
 
-	if (m_move == false)
-	{
-		m_vx += m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-	}
-
-	else if (m_move == true)
-	{
-		m_vx -= m_speed_power;
-		m_posture = 0.0f;
-		m_ani_time += 1;
-	}
+		if (m_move == false)
+		{
+			if (x == 80 || x == 300) {
+				//主人公が停止しているときスクロール分の値を省いた行動をする
+				if (idou == 1) {
 
 
+					m_vx += m_speed_power - 0.3f;
+					m_posture = 1.0f;
+					m_ani_time += 1;
+
+
+
+
+				}
+			}
+
+			//主人公が移動していない時のプログラム
+			m_vx += m_speed_power;
+			m_posture = 1.0f;
+			m_ani_time += 1;
+
+
+		}
+
+		else if (m_move == true)
+		{
+			if (x == 80 || x == 300) {
+
+				//主人公が停止しているときスクロール分の値を省いた行動をする
+				if (idou == 1) {
+
+
+
+					m_vx -= m_speed_power + 0.05f;
+					m_posture = 0.0f;
+					m_ani_time += 1;
+
+
+				}
+
+
+				//主人公が停止しているときスクロール分の値を省いた行動をする
+				if (idou == 2) {
+
+
+
+					m_vx -= m_speed_power - 0.3f;
+					m_posture = 0.0f;
+					m_ani_time += 1;
+
+
+				}
+			}
+			m_vx -= m_speed_power;
+			m_posture = 0.0f;
+			m_ani_time += 1;
+
+		}
+	
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
@@ -118,46 +173,34 @@ void CObjEnemy::Action()
 	{
 		m_ani_frame = 0;
 	}
-
-
-
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-	m_vy += 9.8 / (16.0f);
-
-	/*if (m_vy > 26 && m_py+64 <= GRAUND)
+	
+	if (m_hit_down == false)
 	{
-		m_vy = 0;
-	}*/
-
-	//試しに
-
-
+		m_vy += 9.8 / (16.0f);
+	}
 
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
 
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
+	
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px+32, m_py);
+
+
+
+
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
 	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
-
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
 	}
 
 	//ブロック情報を持ってくる
@@ -186,6 +229,7 @@ void CObjEnemy::Action()
 
 
 	}
+
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
@@ -234,21 +278,20 @@ void CObjEnemy::Action()
 
 
 
-
 		//敵消滅でシーンをゲームクリアに移行する
 		//Scene::SetScene(new CSceneClear());
 
 	}
-
 }
 
 //ドロー
 void CObjEnemy::Draw()
 {
 	//歩くアニメーション情報を登録
-	int AniData[1][6] =
+	int AniData[2][6] =
 	{
-		0, 1, 2, 3, 4, 5,
+		0, 1, 2, 3, 4, 5, //敵が歩くモーション
+		0, 1, 2, 3, //攻撃モーション
 	};
 
 
@@ -260,8 +303,8 @@ void CObjEnemy::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 131;
-	src.m_right = 131.0f + AniData[m_ani_move][m_ani_frame] * 132;
+	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 132;
+	src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
 	src.m_bottom = 132.0f;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//表示位置の設定

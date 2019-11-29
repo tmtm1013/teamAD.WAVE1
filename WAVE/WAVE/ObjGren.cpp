@@ -7,105 +7,68 @@
 #include "UtilityModule.h"
 
 #include "GameHead.h"
-#include "ObjGrenade.h"
+#include "ObjGren.h"
 #include "CObjBullet.h"
-
-#define GRAND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
 
 //コンストラクタ
-CObjGrenade::CObjGrenade(float x, float y)
+CObjGren::CObjGren(float x, float y)
 {
 
 	m_bx = x;
 	m_by = y;
 
-	m_x = x;
-	m_y = 2.0f;
-	
 	//当たり判定HitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 60, 60, ELEMENT_PLAYER, OBJ_GRENADE, 1);
+	Hits::SetHitBox(this, m_x, m_y, 36, 36, ELEMENT_PLAYER, OBJ_GRENADE, 1);
 
 
-	
+
 }
 
 
 //イニシャライズ
-void CObjGrenade::Init()
+void CObjGren::Init()
 {
-	m_vx = 0.1f;
-	m_vy = -0.1f;
-
-	m_mou_bx = 0.0f;
-	m_mou_by = 0.0f;
-
-	//bx = 0.0f;
-	//by = 0.0f;
+	m_vx = 0;
+	m_vy = -17;
 
 	flag = true;
-	i = 0;
+
+	
+	
+
 }
 
 
 //アクション
-void CObjGrenade::Action()
+void CObjGren::Action()
 {
-	
+	m_mou_bx = (float)Input::GetPosX();
 
-	//マウスの位置を取得
-	if (flag == true)
+	if (m_mou_bx < m_bx)
 	{
-
-		m_mou_bx = (float)Input::GetPosX();
-		m_mou_by = (float)Input::GetPosY();
-
-		bx = (m_mou_bx - m_bx)*m_vx;
-		by = (m_by - m_mou_by)*m_vy;
-
-		flag = false;
-
-	}
-
-	float r = 0.0f;
-	r = bx * bx + by * by;
-	r = sqrt(r);//r をルートを求める
-
-	//長さが0かどうか調べる
-	if (r == 0.0f)
-	{
-		;//0なら何もしない
+		m_vx -= 0.6f;
 	}
 	else
 	{
-		//正規化を行う
-		m_vx = 1.0f / r * bx;
-		m_vy = 1.0f / r * by;
+		m_vx += 0.6f;
 	}
-	
-	
+
 	//弾丸に速度つける
-	m_vx *= 7.0f;
-	m_vy *= 7.0f;
+	m_vy += 1.0f;
 
-
-	
-	
 	//移動ベクトルを座標に加算する
 
 	m_bx += m_vx;
 	m_by += m_vy;
 
-	//自由落下運動
-	m_y += 9.8 / (16.0f);
 
-	/*
-	i++;
+	
 	//自由落下運動
-	m_vy += 9.8 *i;
-	*/
+	//m_by += 9.8 / (16.0f);
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
@@ -147,31 +110,10 @@ void CObjGrenade::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
 
-	//弾丸実行処理　-----
-	/*m_vx += -1.0f;
+	//m_vx -= 0.1f;
 
-	m_x += m_vx;
+	//m_x += m_vx;
 
-	*/
-	
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_x, &m_y, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
-	);
-	
-
-
-
-	//当たり判定を行うオブジェクト情報部
-	/*int data_base[2] =
-	{
-		OBJ_BLOCK,
-		OBJ_ENEMY,
-	};
-	*/
-	
 
 
 
@@ -179,7 +121,7 @@ void CObjGrenade::Action()
 
 
 //ドロー
-void CObjGrenade::Draw()
+void CObjGren::Draw()
 {
 
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -198,8 +140,8 @@ void CObjGrenade::Draw()
 
 	dst.m_top = 0.0f + m_by;
 	dst.m_left = 0.0f + m_bx;
-	dst.m_right = 60.0f + m_bx;
-	dst.m_bottom = 60.0f + m_by;
+	dst.m_right = 36.0f + m_bx;
+	dst.m_bottom = 36.0f + m_by;
 
 
 	//描画
