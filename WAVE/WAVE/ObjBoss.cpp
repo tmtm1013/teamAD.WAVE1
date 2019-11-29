@@ -43,7 +43,7 @@ void CObjBoss::Init()
 	
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
+	Hits::SetHitBox(this, m_px, m_py, 230, 150, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
 
 
 
@@ -234,9 +234,9 @@ void CObjBoss::Action()
 void CObjBoss::Draw()
 {
 	//歩くアニメーション情報を登録
-	int AniData[4] =
+	int AniData[6] =
 	{
-		1 , 0 , 2 , 0,
+		0, 1, 2, 3, 4, 5, 
 	};
 
 
@@ -247,18 +247,18 @@ void CObjBoss::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 64.0f;
-	src.m_left = 256.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 320.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 128.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f + AniData[m_ani_frame] * 230;
+	src.m_right = 230.0f + AniData[m_ani_frame] * 230;
+	src.m_bottom = 150.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_left = (230.0f * m_posture) + m_px;
+	dst.m_right = (230 - 230.0f * m_posture) + m_px;
+	dst.m_bottom = 150.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(13, &src, &dst, c, 0.0f);
 
 }

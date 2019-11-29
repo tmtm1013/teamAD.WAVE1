@@ -31,8 +31,8 @@ CSceneGameOver::~CSceneGameOver()
 void CSceneGameOver::InitScene()
 {
 	
-	Draw::LoadImage(L"GameOver1.png", 11, TEX_SIZE_512);
-
+	//ゲームオーバーのグラフィック読み込み
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 	//ゲームオーバーオブジェクト作成
 	CObjGameOver*objf = new CObjGameOver();

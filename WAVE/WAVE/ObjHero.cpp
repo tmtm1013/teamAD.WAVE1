@@ -31,9 +31,7 @@ void  CObjHero::SetXX(float x)
 void  CObjHero::SetYY(float y)
 {
 
-
 	m_py = y;
-
 
 }
 //位置情報X取得用
@@ -71,7 +69,6 @@ void CObjHero::Init()
 	m_f = true;   //弾丸制御
 	m_time = 0.0f; //弾丸発射頻度制限
 	bullet_type = 1;//弾丸の種類(初期ハンドガン)
-
 
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -111,7 +108,19 @@ void CObjHero::Init()
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
+	/*
+	for (int i = 0; i < 28; i++)
+	{
 
+
+
+		srcAnim[i].top = top+;
+		srcAnim[i].left = left+;
+		srcAnim[i].right = right+;
+		srcAnim[i].bottom = bottom+;
+
+	}
+	*/
 }
 
 //アクション
@@ -234,7 +243,7 @@ void CObjHero::Action()
 
 	}
 	//手榴弾発射
-	if (Input::GetVKey('Q') == true && m_time >= 1.0f)
+	/*if (Input::GetVKey('Q') == true && m_time >= 10.0f)
 	{
 		if (m_f == true)
 		{
@@ -253,6 +262,28 @@ void CObjHero::Action()
 	{
 		m_f = true;
 	}
+	*/
+
+	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			//Audio::Start(2);
+
+			//弾丸オブジェクト作成
+			CObjGren* obj_g = new CObjGren(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			Objs::InsertObj(obj_g, OBJ_GREN, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+			m_f = false;
+			m_time = 0.0f;
+		}
+	}
+	else
+	{
+		m_f = true;
+	}
+	
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -271,6 +302,7 @@ void CObjHero::Action()
 			m_vy = -16;
 		}
 	}
+
 	//Zキー入力で速度アップ
 	if (Input::GetVKey('Z') == true)
 	{
@@ -278,6 +310,7 @@ void CObjHero::Action()
 		m_speed_power = 1.1f;
 		m_ani_max_time = 1;
 	}
+
 	else
 	{
 		//通常速度
@@ -316,6 +349,7 @@ void CObjHero::Action()
 			second++;
 		}
 	}
+	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
 		//左に移動時の処理
@@ -395,6 +429,7 @@ void CObjHero::Action()
 	{
 		hp += 10;
 
+		hp += 50;
 
 	}
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
@@ -430,6 +465,9 @@ void CObjHero::Action()
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
+
+		
+
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 1;
@@ -440,32 +478,35 @@ void CObjHero::Action()
 		{
 			flag = true;
 		}
-		//OBJ_ENEMYと当たると主人公がノックバックする
+
+		//OBJ_BULLETと当たると主人公がノックバックする
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-
+		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
 		}
+
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
 		}
 	}
-		/*
-		//主人公のHPがゼロになった時主人公が消える
-		if (hp<=0) {
+	
+	//主人公のHPがゼロになった時主人公が消える
+	if (hp<=0) {
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 
-			//主人公のHPがゼロになった時ゲームオーバー画面に移行する
-			Scene::SetScene(new CSceneGameOver());
-		}
-		*/
-		//位置の更新
+		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
+		Scene::SetScene(new CSceneGameOver());
+	}
+	
+
+	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
