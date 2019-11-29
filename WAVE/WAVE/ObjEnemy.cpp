@@ -208,7 +208,7 @@ void CObjEnemy::Action()
 		//敵消滅でシーンをゲームクリアに移行する
 		//daScene::SetScene(new CSceneClear());
 
-
+	}
 }
 
 //ドロー

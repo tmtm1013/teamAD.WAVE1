@@ -319,14 +319,14 @@ void CObjBlock::BlockHit(
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{
 				//要素番号を座標に変更
-				float bx = j * (*m_sx);
-				float by = i * (*m_sy);
+				float bx = j * (64.0f);
+				float by = i * (64.0f);
 
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + *m_sx > bx) && (*x + (-scroll) < bx + *m_sx) && (*y + *m_sy > by) && (*y < by + *m_sy))
+				if ((*x + (-scroll) + *m_sx > bx) && (*x + (-scroll) < bx + *m_sx) && (*y + *m_sy > by) && (*y < by + *m_sy))//if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
 				{
 					//上下左右判定
 

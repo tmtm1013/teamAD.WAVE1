@@ -190,13 +190,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h" />
-    <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjBlock2.h" />
     <ClInclude Include="ObjBlock3.h" />
     <ClInclude Include="OBJBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjGren.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -224,8 +222,7 @@
     <ClInclude Include="ObjBackground.h" />
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjClear.h" />
-    <ClInclude Include="ObjEnemy.h" />
-    <ClInclude Include="ObjGrenade.h">
+    <ClInclude Include="ObjEnemy.h" >
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjEnemyRecovery.h" />

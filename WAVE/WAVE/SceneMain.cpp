@@ -97,6 +97,7 @@ void CSceneMain::InitScene()
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
+	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
