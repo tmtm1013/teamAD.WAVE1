@@ -10,6 +10,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+extern float m_hp;
+
 CObjBlock::CObjBlock(int map[10][100])
 {
 	//マップデータをコピー
@@ -31,17 +33,19 @@ void CObjBlock::Action()
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
+
+
 	//後方スクロールライン
-	if (hx < 80)
+	if (hx < 400)
 	{
-		hero->SetX(80);
+		hero->SetX(280);
 		m_scroll -= hero->GetVX();
 	}
 
 	//前方スクロールライン
-	if (hx > 300)
+	if (hx > 400)
 	{
-		hero->SetX(300);
+		hero->SetX(360);
 		m_scroll -= hero->GetVX();
 	}
 
@@ -137,146 +141,74 @@ void CObjBlock::Action()
 			}
 		}
 	}*/
-
-	/*//敵出現ライン
+	
+	//敵出現ライン
 	//主人公の位置+500を敵出現ラインにする
 	float line = hx + (-m_scroll) + 500;
 
 	//敵出現ラインを要素番号化
 	int ex = ((int)line) / 64;
+	int rx = ((int)line) / 64;
+	int dx = ((int)line) / 64;
+
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
 	{
+		
 		//列の中から４を探す
-		if (m_map[i][ex] == 4)
-		{
-			//4があれば、敵を出現
-			CObjEnemy*obje = new CObjEnemy(ex*64.0f, i*64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMY, 10);
+			if (m_map[i][ex] == 4)
+			{
 
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-	}*/
+				//4があれば、敵を出現
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
+
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			
+		    }
+
+			//列の中から6を探す
+			if (m_map[i][rx] == 6)
+			{
+				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_BOSS, 11);
+
+				//敵出現場所の値を0にする
+				m_map[i][rx] = 0;
 
 
+				//HPが0になったら破棄
+				if (m_hp <= 0)
+				{
 
+					this->SetStatus(false);
+					//Hits::DeleteHitBox(this);
+
+					
+
+					//敵消滅でシーンをステージ２に移行する
+					//Scene::SetScene(new SceneMain());
+
+				}
+
+			}
+
+			/*//列の中から７を探す
+			if (m_map[i][dx] == 7)
+			{
+
+				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY, 13);
+
+
+			}*/
+			
+	}
+	
 }
 
-////Blockhit関数
-//void  CObjBlock::BlockHit(
-//	float *x, float *y, bool scroll_on,
-//	bool*up, bool*down, bool*left, bool*right,
-//	float*vx, float*vy, int*bt
-//)
-
-//{
-//	{
-//		//主人公の衝突確認用フラグの初期化
-//		*up = false;
-//		*down = false;
-//		*left = false;
-//		*right = false;
-//
-//		//踏んでいるblockの種類の初期化
-//		*bt = 0;
-//
-//		//m_mapの全要素にアクセス
-//		for (int i = 0; i < 10; i++)
-//		{
-//			for (int j = 0; j < 100; j++)
-//			{
-//				if (m_map[i][j] > 0 && m_map[i][j] != 4)
-//				{
-//					//要素番号を座標に変更
-//					float bx = j * 64.0f;
-//					float by = i * 64.0f;
-//
-//					//スクロールの影響
-//					float scroll = scroll_on ? m_scroll : 0;
-//
-//					//オブジェクトとブロックの当たり判定
-//					if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
-//					{
-//						//上下左右判定
-//
-//						//vectorの作成
-//						float rvx = (*x + (-scroll)) - bx;
-//						float rvy = *y - by;
-//						//長さを求める
-//						float len = sqrt(rvx*rvx + rvy * rvy);
-//						//角度を求める
-//						float r = atan2(rvy, rvx);
-//						r = r * 180.0f / 3.14f;
-//
-//						if (r <= 0.0f)
-//							r = abs(r);
-//						else
-//							r = 360.0f - abs(r);
-//
-//						//lenがある一定の長さのより短い場合判定に入る
-//						if (len < 88.0f)
-//						{
-//							//角度で上下左右を判定
-//							if (r < 45 && r>0 || r > 135)
-//							{
-//								//右
-//								*right = true;
-//								*x = bx + 64.0f + (scroll);
-//								*vx = -(*vx)*0.1f;
-//							}
-//							if (r > 45 && r < 135)
-//							{
-//								//上
-//								*down = true;
-//								*y = by - 64.0f;
-//								//種類を渡すのスタートとゴールのみ変更する
-//								if (m_map[i][j] == 2)
-//									*bt = m_map[i][j];
-//								*vy = 0.0f;
-//							}
-//							if (r > 135 && r < 225)
-//							{
-//								//左
-//								*left = true;
-//								*x = bx - 64.0f + (scroll);
-//								*vx = -(*vx)*0.1f;
-//							}
-//							if (r > 225 && r < 315)
-//							{
-//								//下
-//								*up = true;
-//								*y = by + 64.0f;
-//								if (*vy < 0)
-//								{
-//									*vy = 0.0f;
-//								}
-//							}
-//						}
-//
-//
-//
-//
-//
-//
-//					}
-//
-//				}
-//			}
-//		}
-//
-//
-//	}
-//	/*//テスト　交点取得
-//	float a,b;
-//	LineCrossPoint(0,0,10,10,0,5,10,5,&a,&b);
-//	int aa=0;
-//	aa++;
-//
-//	*/
-//	
-//}
 //ドロー
 void CObjBlock::Draw()
 {
@@ -295,7 +227,7 @@ void CObjBlock::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(9, &src, &dst, c, 0.0f);
 
 	//マップチップによるbloc設置
 
@@ -307,6 +239,7 @@ void CObjBlock::Draw()
 
 	/*m_scroll -= 3.0f;//scroll実験用*/
 
+	//マップチップによるblock設置
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 100; j++)
@@ -318,6 +251,7 @@ void CObjBlock::Draw()
 				dst.m_left = j * 64.0f + m_scroll;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
+				/*
 				if (m_map[i][j] == 2)
 				{
 					//スタートブロック
@@ -329,10 +263,24 @@ void CObjBlock::Draw()
 					//ゴールブロック
 					BlockDraw(320.0f + 64.0f, 64.0f, &dst, c);
 				}
-				else if (m_map[i][j] == 4)
+				*/
+			    if (m_map[i][j] == 4)
 				{
 					;//敵配置用の番号のため何もしない
 				}
+
+				if (m_map[i][j] == 6)
+				{
+					;
+				}
+
+				if (m_map[i][j] == 7)
+				{
+					;
+				}
+
+
+
 				else
 				{
 					BlockDraw(320.0f, 0.0f, &dst, c);
@@ -340,9 +288,8 @@ void CObjBlock::Draw()
 			}
 		}
 	}
-
-
 }
+
 //	BrockDrawMethod関数
 //引数1 float x:リソース切り取り位置 x
 //引数2 float y:リソース切り取り位置 y
@@ -352,7 +299,6 @@ void CObjBlock::Draw()
 //設定でできる
 void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 {
-
 	RECT_F src;
 	src.m_top = y;
 	src.m_left = x;
@@ -360,13 +306,13 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 	src.m_bottom = src.m_top + 64.0f;
 
 	//描画
-	Draw::Draw(2, &src, dst, c, 0.0f);
+	Draw::Draw(9, &src, dst, c, 0.0f);
 
 }
 
 //BlockHit関数
 void CObjBlock::BlockHit(
-	float *x, float *y, bool scroll_on,
+	float *x, float *y, bool scroll_on, 
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -446,6 +392,102 @@ void CObjBlock::BlockHit(
 							//下
 							*up = true;
 							*y = by + 64.0f;
+							if (*vy < 0)
+							{
+								*vy = 0.0f;
+							}
+						}
+					}
+
+
+
+
+
+
+				}
+
+			}
+		}
+	}
+}
+void CObjBlock::BlockEnemyHit(
+	float *x, float *y, bool scroll_on,
+	bool *up, bool *down, bool *left, bool *right,
+	float *vx, float *vy
+)
+{
+	//衝突確認用フラグの初期化
+	*up = false;
+	*down = false;
+	*left = false;
+	*right = false;
+
+
+	//m_mapの全要素にアクセス
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			{
+				//要素番号を座標に変更
+				float bx = j * 132.0f;
+				float by = i * 132.0f;
+
+				//スクロールの影響
+				float scroll = scroll_on ? m_scroll : 0;
+
+				//オブジェクトとブロックの当たり判定
+				if ((*x + (-scroll) + 132.0f > bx) && (*x + (-scroll) < bx + 132.0f) && (*y + 132.0f > by) && (*y < by + 132.0f))
+				{
+					//上下左右判定
+
+					//vectorの作成
+					float rvx = (*x + (-scroll)) - bx;
+					float rvy = *y - by;
+					//長さを求める
+					float len = sqrt(rvx*rvx + rvy * rvy);
+					//角度を求める
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r <= 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//lenがある一定の長さのより短い場合判定に入る
+					if (len < 88.0f)
+					{
+						//角度で上下左右を判定
+						if (r < 45 && r>0 || r > 135)
+						{
+							//右
+							*right = true;
+							*x = bx + 132.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+						}
+						if (r > 45 && r < 135)
+						{
+							//上
+							*down = true;
+							*y = by - 132.0f;
+							//種類を渡すのスタートとゴールのみ変更する
+							
+							*vy = 0.0f;
+						}
+						if (r > 135 && r < 225)
+						{
+							//左
+							*left = true;
+							*x = bx - 132.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+						}
+						if (r > 225 && r < 315)
+						{
+							//下
+							*up = true;
+							*y = by + 132.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
@@ -562,7 +604,7 @@ bool CObjBlock::HeroBlockCrossPoint(
 	{64,64,0,64},//←
 	{0,64,0,0},//↑
 	};
-
+	
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{

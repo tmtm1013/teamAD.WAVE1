@@ -7,6 +7,7 @@
 using namespace GameL;
 
 
+
 //オブジェクト：敵
 class CObjEnemyLongdistance :public CObj
 {
@@ -23,11 +24,23 @@ private:
 	float m_vy;
 	float m_posture;  //姿勢
 
+	float m_sx;  //画像サイズをBlockHitに渡す用
+	float m_sy;
+
+
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
 
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
+	int m_ani_move; //モーション種類制御
+
+
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
 
 	//移動の向き制御用
 	bool m_move;
@@ -37,7 +50,6 @@ private:
 
 	//弾丸用時間制限タイム変数
 	int m_time;
-
 
 
 };

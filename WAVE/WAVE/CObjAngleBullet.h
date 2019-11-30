@@ -15,12 +15,23 @@ public:
 	void Draw();    //ドロー
 private:
 
+	//blockとの衝突状態確認用
+	bool m_hit_up ;
+	bool m_hit_down ;
+	bool m_hit_left ;
+	bool m_hit_right ;
+
+	//当たっているblockの種類を確認用
+	int m_block_type;
 
 
 	float m_x;	//オブジェクトの位置X
 	float m_y;  //オブジェクトの位置Y
 	float m_vx;	//オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
+	float m_sx; //サイズ用
+	float m_sy;
+
 	float m_r;  //移動する角度
 	float m_speed;  //速度
 	

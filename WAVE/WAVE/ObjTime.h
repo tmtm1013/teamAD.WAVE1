@@ -17,6 +17,8 @@ public :
 	void SetTimeFlag(bool b) { m_flag_time = b; }
 private :
 	int m_time;
+	int m_time_count;
 	bool m_flag_time;
+	float m_count;
 	
 };

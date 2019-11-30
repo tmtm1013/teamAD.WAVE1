@@ -9,7 +9,8 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjBoss :public CObj
 {
-public:CObjBoss(float x,float y) ;
+public:
+	CObjBoss(float x, float y);
 	   ~CObjBoss() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
@@ -38,6 +39,13 @@ private:
 	int m_time;
 	int m_time2;
 	
+	//マップ移動用数値
+	int kazu;
 
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
 
 };

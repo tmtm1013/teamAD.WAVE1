@@ -52,6 +52,9 @@ class CObjHero :public CObj
 	private:
 		float m_px;    //位置
 		float m_py;
+		float m_sx;   //サイズ用
+		float m_sy;
+
 
 		bool m_mou_pr; //マウスの右ボタン
 		bool m_mou_pl; //マウス左ボタン
@@ -77,9 +80,6 @@ class CObjHero :public CObj
 
 		int second; //秒間用変数
 
-
-		int m_hp;//主人公のHP
-
 		//blockとの衝突状態確認用
 		bool m_hit_up ;
 		bool m_hit_down;
@@ -99,9 +99,10 @@ class CObjHero :public CObj
 
 		int i = 0;
 		
+		float  m_x;       //弾丸のX方向の位置用変数
+		float  m_y;       //弾丸のY方向の位置用変数
 
 		//踏んでいるblockの種類を確認用
 		int m_block_type;
-
 
 };

@@ -8,6 +8,8 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_HERO,
 	OBJ_BLOCK,
+	OBJ_BLOCL2,
+	OBJ_BLOCK3,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
@@ -20,24 +22,22 @@ enum OBJ_NAME
 	OBJ_ANGLE_BULLET,
 
 	OBJ_BACKGROUND,
-	OBJ_ENEMYLEFT,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYJUMPLEFT,
 	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYRECOVERYLEFT,
 	OBJ_ENEMYAMMUNITION,
-	OBJ_ENEMYAMMUNITIONLIFT,
 	OBJ_ENEMYLONGDISTANCE,
-	OBJ_ENEMYLONGDISTANCELEFT,
 	OBJ_BOSS,
-	
+	OBJ_BOSS1,
+	OBJ_BOSS2,
 
 
 
-	
+
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
+	OBJ_GRENADE,
+	OBJ_GREN,
 
 };
 //------------------------------------------------
@@ -67,13 +67,17 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
+	int SceneNum;   //ステージ切り替え
+
 	
 };
 //------------------------------------------------
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern float m_hp;
+extern float kazu;
+extern float idou;
 
 
 //------------------------------------------------
@@ -85,12 +89,11 @@ struct UserData
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
 #include "ObjBlock.h"
+#include "ObjBlock2.h"
+#include "ObjBlock3.h"
 #include "ObjEnemy.h"
 
 #include "ObjEnemyJump.h"
-
-#include "ObjEnemyRecovery.h"
-
 #include "ObjEnemyAmmunition.h"
 
 #include "ObjEnemyLongdistance.h"
@@ -111,11 +114,15 @@ struct UserData
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
+#include "ObjGrenade.h"
 #include "ObjTime.h"
+#include "ObjGren.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneMain.h"
+#include "SceneBlock2.h"
+#include "SceneBlock3.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
@@ -125,5 +132,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------
