@@ -98,8 +98,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO,  1);
 	
-	hp = 5;//主人公のヒットポイント用
-	hp_max = 5;
+	hp = 50;//主人公のヒットポイント用
+	hp_max = 50;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 
@@ -124,7 +124,7 @@ void CObjHero::Action()
 	//SE制御time
 	second++;
 
-	m_SEtime++;
+	
 	
 	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
 
@@ -296,7 +296,8 @@ void CObjHero::Action()
 		m_ani_move = 0;//静止アニメーションデータを指定
 	}
 
-
+	
+	
 	//テストSE
 	if (m_hit_down == true && SE_flag == true&&m_SEtime>10)
 	{
@@ -306,7 +307,6 @@ void CObjHero::Action()
 	
 		m_SEtime = 0;
 	}
-
 	
 
 	if (m_hit_down==false)//ジャンプアニメーション

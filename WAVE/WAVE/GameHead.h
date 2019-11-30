@@ -86,15 +86,15 @@ struct UserData
 #include "ObjHero.h"
 #include "ObjBlock.h"
 #include "ObjEnemy.h"
-#include "ObjEnemyleft.h"
+
 #include "ObjEnemyJump.h"
-#include "ObjEnemyJumpleft.h"
+
 #include "ObjEnemyRecovery.h"
-#include "ObjEnemyRecoveryleft.h"
+
 #include "ObjEnemyAmmunition.h"
-#include "ObjEnemyAmmunitionleft.h"
+
 #include "ObjEnemyLongdistance.h"
-#include "ObjEnemyLongdistanceleft.h"
+
 #include "ObjBoss.h"
 
 #include "CObjBullet.h"
