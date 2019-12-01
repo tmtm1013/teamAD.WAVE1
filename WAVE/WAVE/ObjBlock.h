@@ -33,10 +33,10 @@ public:
 		float *out_px, float *out_py, float*out_len
 	);
 
-	void BlockEnemyHit(
-		float *x, float *y, bool scroll_on,
+	void BlockBulletHit(
+		float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
 		bool*up, bool*down, bool*left, bool*right,
-		float*vx, float*vy
+		float*vx, float*vy, int*bt
 	);
 
 	//ålŒö‚Æ•Ç‚ÌŒğ·”»’è

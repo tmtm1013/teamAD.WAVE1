@@ -69,16 +69,6 @@ void CSceneMain::InitScene()
 	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
 	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	*/
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//-----武器切り替え音読み込み----
-	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//----カートリッジ落下音----
-	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//----サブマシンガンのカートリッジ落下音----
-	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
-	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -114,9 +104,6 @@ void CSceneMain::InitScene()
 
 	//手榴弾グラフィック読み込み
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
-
-	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"ObjBlock.png", 9, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
@@ -227,9 +214,9 @@ void CSceneMain::Scene()
 	 m_time5++;
 	 
 	 
-	 /*
+	 
 	 //通常敵表示用プログラム（左画面出現）
-		 if (m_time > 100)//敵の出現間隔
+		/* if (m_time > 100)//敵の出現間隔
 		 {
 
 			if (Enemy <=2) {//敵の出現数
@@ -242,9 +229,9 @@ void CSceneMain::Scene()
 			Enemy++;
 
 			 m_time = 0;
-		 }
+		 }*/
 		 
-	 */
+	 
 	 /*
 		 //ジャンプする敵出現用プログラム（左画面出現）
 		 if (m_time2>100) {//敵の出現間隔
@@ -284,7 +271,7 @@ void CSceneMain::Scene()
 		 */
 		
 		//遠距離攻撃敵出現プログラム（右画面出現）
-		 if (m_time4 > 100) {//敵の出現間隔
+		 /*if (m_time4 > 100) {//敵の出現間隔
 
 		if (EnemyLongdistance <= 1) {//敵の出現数
 
@@ -297,7 +284,7 @@ void CSceneMain::Scene()
 			 m_time4 = 0;
 
 		 }
-		 
+		 */
 		 
 		 
 		/*

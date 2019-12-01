@@ -56,10 +56,10 @@ void CObjBullet::Init()
 void CObjBullet::Action()
 {
 
-
+	
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_bx, &m_by, true,
+	pb->BlockBulletHit(&m_bx, &m_by, true,&m_sx,&m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
@@ -108,6 +108,7 @@ void CObjBullet::Action()
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
+	
 	
 	//敵機オブジェクトと接触したら弾丸消去
 	if (m_hit_up == true)

@@ -14,6 +14,8 @@ using namespace GameL;
 
 void CObjTitle::Init()
 {
+
+	Draw::LoadImageW(L"Title.png", 1, TEX_SIZE_1024);
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;

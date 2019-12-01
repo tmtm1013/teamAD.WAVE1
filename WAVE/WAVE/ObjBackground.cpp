@@ -11,7 +11,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
-
+	//背景のグラフィック読み込み
+	Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
 
 }
 
@@ -33,8 +34,8 @@ void CObjBackground::Draw()
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
+	src.m_right = 739.0f;
+	src.m_bottom = 415.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f;

@@ -204,12 +204,6 @@ void CObjEnemyLongdistance::Action()
 		m_vy = 0;
 	}
 
-	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
-
-
-
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
@@ -225,7 +219,7 @@ void CObjEnemyLongdistance::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	
+	/*
 	if (m_px < 0.0f)
 	{
 		m_px = 0.0f;
@@ -237,7 +231,7 @@ void CObjEnemyLongdistance::Action()
 	{
 		m_px = 0.0f;
 	}
-	
+	*/
 
 
 	//HitBoxの位置の変更
@@ -288,6 +282,11 @@ void CObjEnemyLongdistance::Action()
 //ドロー
 void CObjEnemyLongdistance::Draw()
 {
+
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+    //ブロック情報を持ってくる
+    CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//歩くアニメーション情報を登録
 	int AniData[2][6] =
 	{
@@ -310,15 +309,11 @@ void CObjEnemyLongdistance::Draw()
 		src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
 		src.m_bottom = 132.0f;
 
-		//ブロック情報を持ってくる
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-
 		//表示位置の設定
-		dst.m_top = 0.0f + m_py;
-		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_top = 132.0f + m_py;
+		dst.m_left = (-132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_bottom = 132.0f + m_py;
+		dst.m_bottom = 0.0f + m_py;
 
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
@@ -339,16 +334,12 @@ void CObjEnemyLongdistance::Draw()
 		src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
 		src.m_bottom = 132.0f;
 
-		//ブロック情報を持ってくる
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-
 		//表示位置の設定
-		dst.m_top = 0.0f + m_py;
-		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_bottom = 132.0f + m_py;
-
+		dst.m_top = -64.0f + m_py;
+		dst.m_left = pb->GetScroll()+( m_px-54.0f);
+		dst.m_right = m_px +(132+pb->GetScroll());
+		dst.m_bottom = 68.0f + m_py;
+		
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}

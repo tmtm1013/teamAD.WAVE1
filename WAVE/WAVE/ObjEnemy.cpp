@@ -103,21 +103,22 @@ void CObjEnemy::Action()
 
 	}
 
-		if (m_move == false)
+	if (m_move == false)
+	{
+		if (x == 80 || x == 300)
 		{
-			if (x == 80 || x == 300) {
-				//ŽålŒö‚ª’âŽ~‚µ‚Ä‚¢‚é‚Æ‚«ƒXƒNƒ[ƒ‹•ª‚Ì’l‚ðÈ‚¢‚½s“®‚ð‚·‚é
-				if (idou == 1) {
+			//ŽålŒö‚ª’âŽ~‚µ‚Ä‚¢‚é‚Æ‚«ƒXƒNƒ[ƒ‹•ª‚Ì’l‚ðÈ‚¢‚½s“®‚ð‚·‚é
+			if (idou == 1)
+			{
+
+				m_vx += m_speed_power - 0.3f;
+				m_posture = 1.0f;
+				m_ani_time += 1;
 
 
-					m_vx += m_speed_power - 0.3f;
-					m_posture = 1.0f;
-					m_ani_time += 1;
 
 
 
-
-				}
 			}
 
 			//ŽålŒö‚ªˆÚ“®‚µ‚Ä‚¢‚È‚¢Žž‚ÌƒvƒƒOƒ‰ƒ€
@@ -127,13 +128,14 @@ void CObjEnemy::Action()
 
 
 		}
-
-		else if (m_move == true)
+	}
+	else if (m_move == true)
+	{
+		if (x == 80 || x == 300) 
 		{
-			if (x == 80 || x == 300) {
 
-				//ŽålŒö‚ª’âŽ~‚µ‚Ä‚¢‚é‚Æ‚«ƒXƒNƒ[ƒ‹•ª‚Ì’l‚ðÈ‚¢‚½s“®‚ð‚·‚é
-				if (idou == 1) {
+			//ŽålŒö‚ª’âŽ~‚µ‚Ä‚¢‚é‚Æ‚«ƒXƒNƒ[ƒ‹•ª‚Ì’l‚ðÈ‚¢‚½s“®‚ð‚·‚é
+			if (idou == 1) {
 
 
 
@@ -142,11 +144,9 @@ void CObjEnemy::Action()
 					m_ani_time += 1;
 
 
-				}
-
-
+			}
 				//ŽålŒö‚ª’âŽ~‚µ‚Ä‚¢‚é‚Æ‚«ƒXƒNƒ[ƒ‹•ª‚Ì’l‚ðÈ‚¢‚½s“®‚ð‚·‚é
-				if (idou == 2) {
+			if (idou == 2) {
 
 
 
@@ -155,133 +155,134 @@ void CObjEnemy::Action()
 					m_ani_time += 1;
 
 
-				}
 			}
+		}
 			m_vx -= m_speed_power;
 			m_posture = 0.0f;
 			m_ani_time += 1;
 
-		}
-	
+	}
+
 	if (m_ani_time > m_ani_max_time)
 	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
+			m_ani_frame += 1;
+			m_ani_time = 0;
 	}
 
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-	}
-	//–€ŽC‚ÌŒvŽZ   -(‰^“®energy X –€ŽCŒW”)
-	m_vx += -(m_vx*0.098);
-
-	//Ž©—R—Ž‰º‰^“®
-	
-	if (m_hit_down == false)
-	{
-		m_vy += 9.8 / (16.0f);
-	}
-
-	//ˆÊ’u‚ÌXV
-	m_px += m_vx;
-	m_py += m_vy;
-
-
-	/*
-	//HitBox‚ÌˆÊ’u‚Ì•ÏX
-	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+32, m_py);
-	*/
-
-
-
-	//—Ž‰º‚µ‚½“G‚ðÁ‹Ž‚·‚éB
-	if (m_py > 600.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//“G‚ª—Ž‰º‚µ‚½ê‡“G‚ðÁ‹Ž‚·‚éB
-	}
-
-	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-	//HitBox‚ÌˆÊ’u‚Ì•ÏX
-	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+block->GetScroll(), m_py);
-
-
-
-	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
-	{
-
-		m_hp -= 50;
-
-
-	}
-
-	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-	{
-
-		m_hp -= 15;
-
-
-	}
-
-	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
-	{
-
-		m_hp -= 10;
-
-
-	}
-	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
-	{
-
-		m_hp -= 40;
-
-
-	}
-	int d = 0;
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
-		,&d
-	);
-
-	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
-	if (m_hp <= 0)
-	{
-
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-
-
-		if (flag == true)
+		if (m_ani_frame == 4)
 		{
-			//ƒAƒCƒeƒ€ƒIƒuƒWƒFƒNƒgì¬	
-			CObjItem*obju = new CObjItem(m_px, m_py);
-			Objs::InsertObj(obju, OBJ_ITEM, 7);
-			flag = false;
+			m_ani_frame = 0;
+		}
+		//–€ŽC‚ÌŒvŽZ   -(‰^“®energy X –€ŽCŒW”)
+		m_vx += -(m_vx*0.098);
+
+		//Ž©—R—Ž‰º‰^“®
+
+		if (m_hit_down == false)
+		{
+			m_vy += 9.8 / (16.0f);
 		}
 
+		//ˆÊ’u‚ÌXV
+		m_px += m_vx;
+		m_py += m_vy;
 
 
-		//“G‚ªÁ–Å‚µ‚½‚ç+100“_
-		((UserData*)Save::GetData())->m_point += 100;
+		/*
+		//HitBox‚ÌˆÊ’u‚Ì•ÏX
+		CHitBox*hit = Hits::GetHitBox(this);
+		hit->SetPos(m_px+32, m_py);
+		*/
 
 
 
-		//“GÁ–Å‚ÅƒV[ƒ“‚ðƒQ[ƒ€ƒNƒŠƒA‚ÉˆÚs‚·‚é
-		//Scene::SetScene(new CSceneClear());
+		//—Ž‰º‚µ‚½“G‚ðÁ‹Ž‚·‚éB
+		if (m_py > 600.0f)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);//“G‚ª—Ž‰º‚µ‚½ê‡“G‚ðÁ‹Ž‚·‚éB
+		}
 
-	}
+		//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+		//HitBox‚ÌˆÊ’u‚Ì•ÏX
+		CHitBox*hit = Hits::GetHitBox(this);
+		hit->SetPos(m_px + block->GetScroll(), m_py);
+
+
+
+		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+		if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
+		{
+
+			m_hp -= 50;
+
+
+		}
+
+		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+		{
+
+			m_hp -= 15;
+
+
+		}
+
+		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+		if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+		{
+
+			m_hp -= 10;
+
+
+		}
+		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+		if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+		{
+
+			m_hp -= 40;
+
+
+		}
+		int d = 0;
+		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		pb->BlockHit(&m_px, &m_py, false,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
+			, &d
+		);
+
+		//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
+		if (m_hp <= 0)
+		{
+
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+
+
+			if (flag == true)
+			{
+				//ƒAƒCƒeƒ€ƒIƒuƒWƒFƒNƒgì¬	
+				CObjItem*obju = new CObjItem(m_px, m_py);
+				Objs::InsertObj(obju, OBJ_ITEM, 7);
+				flag = false;
+			}
+
+
+
+			//“G‚ªÁ–Å‚µ‚½‚ç+100“_
+			((UserData*)Save::GetData())->m_point += 100;
+
+
+
+			//“GÁ–Å‚ÅƒV[ƒ“‚ðƒQ[ƒ€ƒNƒŠƒA‚ÉˆÚs‚·‚é
+			//Scene::SetScene(new CSceneClear());
+
+		}
+	
 }
 
 //ƒhƒ[
@@ -308,10 +309,10 @@ void CObjEnemy::Draw()
 	src.m_bottom = 132.0f;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px+pb->GetScroll();
-	dst.m_right = (64 - 64.0f * m_posture) + m_px+pb->GetScroll();
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_top = -100.0f + m_py;
+	dst.m_left = (132.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_right = (132 - 132.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_bottom = 50.0f + m_py;
 
 	//•`‰æ
 	Draw::Draw(5, &src, &dst, c, 0.0f);
