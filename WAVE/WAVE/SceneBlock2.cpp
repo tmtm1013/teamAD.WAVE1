@@ -13,13 +13,15 @@
 using namespace GameL;
 
 //使用ヘッダー
-#include "SceneMain.h"
+#include "SceneBlock2.h"
 #include "GameHead.h"
 #include "ObjBlock2.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
+
+
 
 //コンストラクタ
 CSceneBlock2::CSceneBlock2()
@@ -39,7 +41,7 @@ void CSceneBlock2::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage002.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage0002.csv", &size);//外部データ読み込み
 
 	int map2[10][100];
 	int count = 1;
@@ -86,31 +88,34 @@ void CSceneBlock2::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png", 7, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait2.png", 1, TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 2, TEX_SIZE_1024);
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
+	//BIOSオブジェクト作成
+	CObjBoss* objboss = new CObjBoss(600, 300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
 
 
 	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"ObjBlock.png", 9, TEX_SIZE_512);
 
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//blockオブジェクト作成
 
 	CObjBlock2*objb = new CObjBlock2(map2);
-	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+	Objs::InsertObj(objb, OBJ_BLOCK, 10);
 
 	//block(障害物)オブジェクト作成
 	/*
@@ -125,13 +130,13 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
 	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
-	Objs::InsertObj(obj, OBJ_HERO, 10);
+	Objs::InsertObj(obj, OBJ_HERO, 11);
 
 
 	//背景のオブジェクト作成
@@ -140,7 +145,7 @@ void CSceneBlock2::InitScene()
 
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
-	Objs::InsertObj(objt, OBJ_TIME, 11);
+	Objs::InsertObj(objt, OBJ_TIME, 12);
 
 
 

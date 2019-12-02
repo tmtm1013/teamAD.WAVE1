@@ -22,7 +22,7 @@ public:
 
 	//ブロックとの当たり判定
 	void BlockHit(
-		float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
+		float *x, float *y, bool scroll_on,
 		bool*up, bool*down, bool*left, bool*right,
 		float*vx, float*vy, int*bt
 	);
@@ -31,6 +31,12 @@ public:
 	void BlockHit(
 		float x, float y, float vx, float vy,
 		float *out_px, float *out_py, float*out_len
+	);
+
+	void BlockBulletHit(
+		float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
+		bool*up, bool*down, bool*left, bool*right,
+		float*vx, float*vy, int*bt
 	);
 
 	//主人公と壁の交差判定
