@@ -46,6 +46,8 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
+	
+
 	//アイテムフラグ
 	bool flag;
 

@@ -31,7 +31,7 @@ CObjGren::CObjGren(float x, float y)
 //イニシャライズ
 void CObjGren::Init()
 {
-	m_vx = 2;
+	m_vx = 0;
 	m_vy = -17;
 
 	flag = true;
@@ -45,11 +45,19 @@ void CObjGren::Init()
 //アクション
 void CObjGren::Action()
 {
+	m_mou_bx = (float)Input::GetPosX();
 
+	if (m_mou_bx < m_bx)
+	{
+		m_vx -= 0.6f;
+	}
+	else
+	{
+		m_vx += 0.6f;
+	}
 
 	//弾丸に速度つける
-	m_vx += 1.0f;
-	m_vy += 0.8f;
+	m_vy += 1.0f;
 
 	//移動ベクトルを座標に加算する
 
@@ -102,7 +110,9 @@ void CObjGren::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
 
-	
+	//m_vx -= 0.1f;
+
+	//m_x += m_vx;
 
 
 

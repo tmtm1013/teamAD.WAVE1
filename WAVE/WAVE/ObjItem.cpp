@@ -63,7 +63,7 @@ void CObjItem::Action()
 
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_ix, &m_iy, true, &m_sx,&m_sy,
+	pb->BlockHit(&m_ix, &m_iy, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);

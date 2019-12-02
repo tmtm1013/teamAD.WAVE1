@@ -191,7 +191,7 @@ void CObjEnemyAmmunition::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true, &m_sx, &m_sy,
+	pb->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
@@ -254,6 +254,8 @@ void CObjEnemyAmmunition::Action()
 //ドロー
 void CObjEnemyAmmunition::Draw()
 {
+
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
@@ -275,8 +277,8 @@ void CObjEnemyAmmunition::Draw()
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
+	dst.m_left = (64.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_right = (64 - 64.0f * m_posture) + m_px+pb->GetScroll();
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
