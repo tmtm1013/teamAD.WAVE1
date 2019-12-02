@@ -348,7 +348,7 @@ void CObjBlock::BlockHit(
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-						if (r < 45 && r>0 || r > 135)
+						if ((r < 45 && r>0) || r > 315)
 						{
 							//右
 							*right = true;
@@ -361,7 +361,7 @@ void CObjBlock::BlockHit(
 							*down = true;
 							*y = by - *m_sy;
 							//種類を渡すのスタートとゴールのみ変更する
-							if (m_map[i][j] == 2)
+							if (m_map[i][j] >= 2)
 								*bt = m_map[i][j];
 							*vy = 0.0f;
 						}
