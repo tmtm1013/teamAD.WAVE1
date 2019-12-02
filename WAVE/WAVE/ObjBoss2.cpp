@@ -3,7 +3,7 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemyAmmunition.h"
+#include "ObjBoss.h"
 #include "GameL\HitBoxManager.h"
 
 #define GRAUND (546.0f)
@@ -11,25 +11,14 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float idou;//主人公が動いているか確認用グローバル変数
-
-//コンストラクタ
-CObjEnemyAmmunition::CObjEnemyAmmunition(float x,float y)
-{
-	m_px = x;    //位置
-	m_py = y;
-
-}
-
 //イニシャライズ
-void CObjEnemyAmmunition::Init()
+void CObjBoss::Init()
 {
+	m_px = 750.0f;    //位置
+	m_py = 0.0f;
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
-
-	m_sx=64.0f; 
-	m_sy=64.0f;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
@@ -42,12 +31,15 @@ void CObjEnemyAmmunition::Init()
 
 	m_move = false;//true=右
 
+	m_time = 0;//拡散弾用変数
+	m_time2 = 0;//普通遠距離攻撃用変数
+
 
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
 
-	
+
 
 }
 
@@ -56,12 +48,12 @@ void CObjEnemyAmmunition::Init()
 
 
 //アクション
-void CObjEnemyAmmunition::Action()
+void CObjBoss::Action()
 {
 
 
 	//通常速度
-	m_speed_power = 0.1f;
+	m_speed_power = 0.01f;
 	m_ani_max_time = 2;
 
 
@@ -70,9 +62,6 @@ void CObjEnemyAmmunition::Action()
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
-
-	
-
 
 
 	//ここに敵が主人公の向きに移動する条件を書く。
@@ -94,67 +83,18 @@ void CObjEnemyAmmunition::Action()
 
 	}
 
-	if (m_move == false)
-	{
-		if (x==80||x==300) {
-			//主人公が停止しているときスクロール分の値を省いた行動をする
-			if (idou == 1) {
-
-
-				m_vx += m_speed_power - 0.3f;
-				m_posture = 1.0f;
-				m_ani_time += 1;
-
-
-
-
-			}
-		}
-		
-		//主人公が移動していない時のプログラム
+	/*
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
+	*/
 
-
-	}
-
-	else if (m_move == true)
-	{
-		if (x == 80 || x == 300) {
-			 
-			//主人公が停止しているときスクロール分の値を省いた行動をする
-			if (idou == 1) {
+	m_vx -= m_speed_power;//右から左にゆっくり進んでいく
+	m_posture = 0.0f;
+	m_ani_time += 1;
 
 
 
-				m_vx -= m_speed_power + 0.05f;
-				m_posture = 0.0f;
-				m_ani_time += 1;
-
-
-			}
-
-
-			//主人公が停止しているときスクロール分の値を省いた行動をする
-			if (idou == 2) {
-
-
-
-				m_vx -= m_speed_power - 0.3f;
-				m_posture = 0.0f;
-				m_ani_time += 1;
-
-
-			}
-		}
-			m_vx -= m_speed_power;
-			m_posture = 0.0f;
-			m_ani_time += 1;
-		
-	}
-
-	
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
@@ -165,9 +105,6 @@ void CObjEnemyAmmunition::Action()
 	{
 		m_ani_frame = 0;
 	}
-
-
-
 
 
 
@@ -186,17 +123,25 @@ void CObjEnemyAmmunition::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
 
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
+	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
+	if (m_px + 64.0f > 800.0f)
+	{
+		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
+	}
 
+	if (m_py + 64.0f > GRAUND)
+	{
+		//m_py = 0;
+		m_py = GRAUND - 64.0f;
+
+	}
+
+	if (m_px < 0.0f)
+	{
+		m_px = 0.0f;
+	}
 
 
 	//HitBoxの位置の変更
@@ -205,14 +150,40 @@ void CObjEnemyAmmunition::Action()
 
 
 
-
-	//落下した敵を消去する。
-	if (m_py > 600.0f)
+	//BOSSの周り20°間隔で発射
+	m_time++;//弾丸発射間隔をあけるインクリメント
+	if (m_time > 300)//50の間隔で拡散弾攻撃をする
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
+			//19発同時発射
+			CObjAngleBullet*obj_b;
+			for (int i = 01; i < 360; i += 20)
+			{
+				m_time = 0;
+				//弾丸オブジェクト
+				CObjAngleBullet* obj_b = new CObjAngleBullet(m_px, m_py, i, 5.0f);//オブジェ作成
+				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+
+
+			}
+		}
 	}
 
+	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
+	if (m_time2 > 100) {
+
+
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
+			m_time2 = 0;
+			//弾丸オブジェクト
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+		}
+
+	}
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
@@ -245,17 +216,17 @@ void CObjEnemyAmmunition::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-	
+		//敵消滅でシーンをゲームクリアに移行する
+		Scene::SetScene(new CSceneClear());
+
 	}
 
-	
+
 }
 
 //ドロー
-void CObjEnemyAmmunition::Draw()
+void CObjBoss::Draw()
 {
-
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
@@ -277,8 +248,8 @@ void CObjEnemyAmmunition::Draw()
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px+pb->GetScroll();
-	dst.m_right = (64 - 64.0f * m_posture) + m_px+pb->GetScroll();
+	dst.m_left = (64.0f * m_posture) + m_px;
+	dst.m_right = (64 - 64.0f * m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画

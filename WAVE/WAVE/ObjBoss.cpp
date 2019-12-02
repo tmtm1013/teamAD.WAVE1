@@ -1,18 +1,19 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
-
-#include "GameHead.h"
-#include "ObjBoss.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
+#include "GameHead.h"
+#include "GameL\UserData.h"
 
+#include "ObjBoss.h"
 #define GRAUND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
 
 //コンストラクタ
-CObjBoss::CObjBoss(float x,float y)
+CObjBoss::CObjBoss(float x, float y)
 {
 	m_px = x;    //位置
 	m_py = y;
@@ -34,16 +35,20 @@ void CObjBoss::Init()
 
 	m_hp = 100;//ENEMYのHP
 
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 
 	m_move = false;//true=右
 
 	m_time = 0;//拡散弾用変数
 	m_time2 = 0;//普通遠距離攻撃用変数
 
-	
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 230, 150, ELEMENT_ENEMY, OBJ_ENEMY, 1);//当たり判定
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
 
 
 
@@ -62,13 +67,13 @@ void CObjBoss::Action()
 	m_speed_power = 0.01f;
 	m_ani_max_time = 2;
 
-
+	
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
-
+	
 	
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
@@ -129,14 +134,14 @@ void CObjBoss::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-
+	/*
 	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
 	}
-
+	*/
 	if (m_py + 64.0f > GRAUND)
 	{
 		//m_py = 0;
@@ -149,10 +154,12 @@ void CObjBoss::Action()
 		m_px = 0.0f;
 	}
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
 
@@ -169,7 +176,7 @@ void CObjBoss::Action()
 			{
 				m_time = 0;
 				//弾丸オブジェクト
-				CObjAngleBullet* obj_b = new CObjAngleBullet(m_px, m_py, i, 5.0f);//オブジェ作成
+				CObjAngleBullet* obj_b = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
 				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
 
@@ -185,7 +192,7 @@ void CObjBoss::Action()
 
 			m_time2 = 0;
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px, m_py);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 		}
 
@@ -219,11 +226,29 @@ void CObjBoss::Action()
 	if (m_hp <= 0)
 	{
 
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
+		{
+			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
+			//敵消滅でシーンをゲームクリアに移行する
+			Scene::SetScene(new CSceneBlock2());
+		}
+		else if (((UserData*)Save::GetData())->SceneNum == 2) 
+		{
+			((UserData*)Save::GetData())->SceneNum++;
+			//敵消滅でシーンをゲームクリアに移行する
+	    	Scene::SetScene(new CSceneBlock3());
+
+
+
+		}
+		/*else if (kazu == 3) {
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			//敵消滅でシーンをゲームクリアに移行する
+			Scene::SetScene(new CSceneClear());
+		}*/
 		
-		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneClear());
 
 	}
 
@@ -252,11 +277,15 @@ void CObjBoss::Draw()
 	src.m_right = 230.0f + AniData[m_ani_frame] * 230;
 	src.m_bottom = 150.0f;
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (230.0f * m_posture) + m_px;
-	dst.m_right = (230 - 230.0f * m_posture) + m_px;
-	dst.m_bottom = 150.0f + m_py;
+	dst.m_left = (64.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (64 - 64.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_bottom = 64.0f + m_py;
 
 	//描画
 	Draw::Draw(13, &src, &dst, c, 0.0f);

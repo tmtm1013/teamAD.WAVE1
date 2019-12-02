@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBlock2.h"
@@ -149,6 +150,8 @@ void CObjBlock2::Action()
 	//“GoŒ»ƒ‰ƒCƒ“‚ğ—v‘f”Ô†‰»
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
+	int dx = ((int)line) / 64;
+
 
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ğ’Tõ
 	for (int i = 0; i < 10; i++)
@@ -159,8 +162,8 @@ void CObjBlock2::Action()
 		{
 
 			//4‚ª‚ ‚ê‚ÎA“G‚ğoŒ»
-			CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
+			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
 
 			//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 			m_map2[i][ex] = 0;
@@ -170,25 +173,35 @@ void CObjBlock2::Action()
 		//—ñ‚Ì’†‚©‚ç6‚ğ’T‚·
 		if (m_map2[i][rx] == 6)
 		{
-			CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(rx*64.0f, i*64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 11);
 
+			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(rx*64.0f, i*64.0f);
+			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
 			//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 			m_map2[i][rx] = 0;
 
-			/*
+			
 			//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 			if (m_hp <= 0)
 			{
 
-				this->SetStatus(false);
+				//this->SetStatus(false);
 				//Hits::DeleteHitBox(this);
 
 				//“GÁ–Å‚ÅƒV[ƒ“‚ğƒQ[ƒ€ƒNƒŠƒA‚ÉˆÚs‚·‚é
-				Scene::SetScene(new CSceneGameOver());
+				//Scene::SetScene(new CSceneBlock3());
 
 			}
-			*/
+			
+		}
+
+		//—ñ‚Ì’†‚©‚ç‚V‚ğ’T‚·
+		if (m_map2[i][dx] == 7)
+		{
+
+			CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY, 13);
+
+
 		}
 
 
@@ -261,6 +274,7 @@ void CObjBlock2::Draw()
 
 				}
 
+				
 
 
 
@@ -292,7 +306,7 @@ void CObjBlock2::BlockDraw(float x, float y, RECT_F*dst, float c[])
 	src.m_bottom = src.m_top + 64.0f;
 
 	//•`‰æ
-	Draw::Draw(2, &src, dst, c, 0.0f);
+	Draw::Draw(9, &src, dst, c, 0.0f);
 
 }
 

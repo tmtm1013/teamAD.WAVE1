@@ -14,6 +14,7 @@ using namespace GameL;
 void CObjTime::Init()
 {
 	m_time = 600;
+	m_time_count = 0;
 	m_flag_time = false;
 	m_count = 0;
 }

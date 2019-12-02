@@ -29,6 +29,9 @@ void CObjItem::Init()
    //ˆÚ“®ƒxƒNƒgƒ‹
 	m_vy = 0.0f;
 
+	m_sx = 36.0f;
+	m_sy = 30.0f;
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
@@ -129,7 +132,7 @@ void CObjItem::Draw()
 
 
 	//•`‰æ
-	Draw::Draw(9, &src, &dst, c, 0.0f);
+	Draw::Draw(7, &src, &dst, c, 0.0f);
 
 
 	

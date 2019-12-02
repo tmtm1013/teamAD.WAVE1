@@ -21,6 +21,10 @@ private:
 	float m_py;
 	float m_vx;    //移動ベクトル
 	float m_vy;
+
+	float m_sx;   //画像サイズ用
+	float m_sy;
+
 	float m_posture;  //姿勢
 
 	int m_ani_time;  //アニメーションフレーム動作間隔
@@ -30,8 +34,19 @@ private:
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
 
+
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	int m_block_type;
+
 	//移動の向き制御用
 	bool m_move;
+
+	
 
 	//アイテムフラグ
 	bool flag;

@@ -8,7 +8,7 @@
 #include "GameL\Audio.h"
 #include "GameL/DrawFont.h"
 #include "GameL/UserData.h"
-//#include "GameL/WinInputs.h"
+#include "GameL/WinInputs.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -18,6 +18,7 @@ using namespace GameL;
 #include "ObjBlock.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
+#include "OBJBoss.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
@@ -68,16 +69,6 @@ void CSceneMain::InitScene()
 	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
 	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	*/
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//-----武器切り替え音読み込み----
-	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//----カートリッジ落下音----
-	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//----サブマシンガンのカートリッジ落下音----
-	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
-	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -91,12 +82,14 @@ void CSceneMain::InitScene()
 	//主人公(ジャンプ)グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
+	
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
+	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
@@ -112,13 +105,17 @@ void CSceneMain::InitScene()
 	//手榴弾グラフィック読み込み
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
-	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"ObjBlock.png", 9, TEX_SIZE_512);
-
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
-	
+	//ゲームオーバーのグラフィック読み込み
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+
+	//bossのグラフィック読み込み
+	Draw::LoadImageW(L"motion1.png", 12, TEX_SIZE_512);
+
+	//Longdistanceの読み込み
+	Draw::LoadImageW(L"motion3.png", 13, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -134,6 +131,11 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	/*
+	//BOSSオブジェクト作成
+	CObjBoss* objboss = new CObjBoss(600,300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
+	*/
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
@@ -159,7 +161,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 12);
 	
 
-
+	/*
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
@@ -180,7 +182,7 @@ void CSceneMain::InitScene()
 
 		}
 	}
-
+	*/
 
 
 
@@ -190,23 +192,14 @@ void CSceneMain::InitScene()
 	m_time3 = 0;
 	m_time4 = 0;
 	m_time5 = 0;
-	m_time6 = 0;
-	m_time7 = 0;
-	m_time8 = 0;
-	m_time9 = 0;
-	m_time10 = 0;
-	m_time11 = 0;
+	
 
 	Enemy = 1;
 
 	EnemyJump = 1;
 
-	EnemyRecovery = 1;
-
 	EnemyAmmunition = 1;
-
 	EnemyLongdistance = 1;
-
 	Boss = 1;
 
 }
@@ -214,23 +207,17 @@ void CSceneMain::InitScene()
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	m_time++;
-	m_time2++;
-	m_time3++;
-	m_time4++;
-	m_time5++;
-	m_time6++;
-	m_time7++;
-	m_time8++;
-	m_time9++;
-	m_time10++;
-	m_time11++;
-
-	
-
-	//通常敵表示用プログラム（左画面出現）
-		if (m_time > 100)//敵の出現間隔
-		{
+	 m_time++;
+	 m_time2++;
+	 m_time3++;
+	 m_time4++;
+	 m_time5++;
+	 
+	 
+	 
+	 //通常敵表示用プログラム（左画面出現）
+		/* if (m_time > 100)//敵の出現間隔
+		 {
 
 			if (Enemy <=2) {//敵の出現数
 
@@ -241,13 +228,13 @@ void CSceneMain::Scene()
 
 			Enemy++;
 
-			m_time = 0;
-		}
-
-
-
-		//ジャンプする敵出現用プログラム（左画面出現）
-		/*if (m_time3>100) {//敵の出現間隔
+			 m_time = 0;
+		 }*/
+		 
+	 
+	 /*
+		 //ジャンプする敵出現用プログラム（左画面出現）
+		 if (m_time2>100) {//敵の出現間隔
 
 			if (EnemyJump <= 2) {//敵の出現数
 
@@ -259,49 +246,32 @@ void CSceneMain::Scene()
 
 			EnemyJump++;
 
-			m_time3 = 0;
+			 m_time2 = 0;
 
-		}*/
+		 }
+		*/
+		 /*
+		 //弾薬アイテム所持敵出現用プログラム（左画面出現）
+		 if (m_time3 > 100) {//敵の出現間隔
 
+			 if (EnemyAmmunition <= 1) {//敵の出現数
+				
+				 
 
-
-
-		/*//回復アイテム所持敵出現用プログラム（左画面出現）
-		if (m_time5 > 100) {//敵の出現間隔
-
-			if (EnemyRecovery <= 2) {//敵の出現数
-
-				CObjEnemyRecovery* obj_enemyrecovery = new CObjEnemyRecovery(600,100);
-				Objs::InsertObj(obj_enemyrecovery, OBJ_ENEMY, 10);
-			}
-
-			EnemyRecovery++;
-
-			m_time5 = 0;
-
-		}*/
-
-		
-
-			/*//弾薬アイテム所持敵出現用プログラム（左画面出現）
-		if (m_time7 > 100) {//敵の出現間隔
-
-			if (EnemyAmmunition <= 1) {//敵の出現数
-
-				CObjEnemyAmmunition* obj_enemyammunition = new CObjEnemyAmmunition(100, 100);
-				Objs::InsertObj(obj_enemyammunition, OBJ_ENEMY, 10);
+				 CObjEnemyAmmunition* obj_enemyammunition1 = new CObjEnemyAmmunition(600, 100);
+				 Objs::InsertObj(obj_enemyammunition1, OBJ_ENEMY, 10);
+				 
+			 }
 
 				EnemyAmmunition++;
 
-				m_time7 = 0;
+			 m_time3 = 0;
 
-			}
-		}*/
-
-
+		 }
+		 */
 		
-	  ///遠距離攻撃敵出現プログラム（右画面出現）
-	/*if (m_time9 > 100) {//敵の出現間隔
+		//遠距離攻撃敵出現プログラム（右画面出現）
+		 /*if (m_time4 > 100) {//敵の出現間隔
 
 		if (EnemyLongdistance <= 1) {//敵の出現数
 
@@ -311,15 +281,15 @@ void CSceneMain::Scene()
 
 		EnemyLongdistance++;
 
-		m_time9 = 0;
+			 m_time4 = 0;
 
-	}*/
-		
-
-
-		
-		//BOSSプログラム（右画面出現）
-		/*if (m_time10 > 100) {//敵の出現間隔
+		 }
+		 */
+		 
+		 
+		/*
+		 //BOSSプログラム（右画面出現）
+		 if (m_time5 > 100) {//敵の出現間隔
 
 			if (Boss <= 1) {//敵の出現数
 
@@ -329,28 +299,11 @@ void CSceneMain::Scene()
 
 			Boss++;
 
-			m_time11 = 0;
-			}
+			 m_time5 = 0;
 
-		}*/
-
-		//通常敵表示用プログラム（左画面出現）
-	/*if (m_time > 100)//敵の出現間隔
-	{
-
-		if (Enemy <= 2) {//敵の出現数
-
-		//敵オブジェクト作成
-			CObjEnemy* obj_enemy = new CObjEnemy(600, 100);
-			Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
-		}
-
-		Enemy++;
-
-		m_time = 0;
-	}*/
-
-
-
+		 }
+		 */
+		 
+		 
 
 }
