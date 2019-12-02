@@ -219,7 +219,7 @@ void CSceneMain::Scene()
 	 
 	 
 	 //通常敵表示用プログラム（左画面出現）
-		 if (m_time > 100)//敵の出現間隔
+		 /*if (m_time > 100)//敵の出現間隔
 		 {
 
 			if (Enemy <=2) {//敵の出現数
@@ -235,7 +235,7 @@ void CSceneMain::Scene()
 		 }
 		 
 	 
-	 /*
+	 
 		 //ジャンプする敵出現用プログラム（左画面出現）
 		 if (m_time2>100) {//敵の出現間隔
 
@@ -252,7 +252,7 @@ void CSceneMain::Scene()
 			 m_time2 = 0;
 
 		 }
-		*/
+		
 		 /*
 		 //弾薬アイテム所持敵出現用プログラム（左画面出現）
 		 if (m_time3 > 100) {//敵の出現間隔
@@ -290,13 +290,13 @@ void CSceneMain::Scene()
 		 */
 		 
 		 
-		/*
+		
 		 //BOSSプログラム（右画面出現）
 		 if (m_time5 > 100) {//敵の出現間隔
 
 			if (Boss <= 1) {//敵の出現数
 
-				CObjBoss* obj_boss = new CObjBoss(320.0,400.0);
+				CObjBoss* obj_boss = new CObjBoss(200,200);
 				Objs::InsertObj(obj_boss, OBJ_ENEMY, 10);
 			}
 
@@ -305,7 +305,7 @@ void CSceneMain::Scene()
 			 m_time5 = 0;
 
 		 }
-		 */
+		 
 		 
 		 
 

@@ -377,7 +377,7 @@ void CObjBlock::BlockHit(
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-						if (r < 45 && r>0 || r > 135)
+						if ((r < 45 && r>0) || r > 315)
 						{
 							//右
 							*right = true;
@@ -390,7 +390,7 @@ void CObjBlock::BlockHit(
 							*down = true;
 							*y = by - 64.0f;
 							//種類を渡すのスタートとゴールのみ変更する
-							if (m_map[i][j] == 2)
+							if (m_map[i][j] >= 2)
 								*bt = m_map[i][j];
 							*vy = 0.0f;
 						}
@@ -405,7 +405,7 @@ void CObjBlock::BlockHit(
 						{
 							//下
 							*up = true;
-							*y = by + 64.0f;
+							*y + 64.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
@@ -445,7 +445,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + *m_sx > bx) && (*x + (-scroll) < bx + *m_sx) && (*y + *m_sy > by) && (*y < by + *m_sy))
+				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 32))
 				{
 					//上下左右判定
 
@@ -467,34 +467,33 @@ void CObjBlock::BlockBulletHit(
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-						if (r < 45 && r>0 || r > 135)
+						if ((r < 45 && r>0) || r > 315)
 						{
 							//右
 							*right = true;
-							*x = bx + *m_sx + (scroll);
+							*x = bx + 64 + (scroll);
 							*vx = -(*vx)*0.1f;
 						}
 						if (r > 45 && r < 135)
 						{
 							//上
 							*down = true;
-							*y = by - *m_sy;
+							*y = by - 64;
 							//種類を渡すのスタートとゴールのみ変更する
-							
 							*vy = 0.0f;
 						}
 						if (r > 135 && r < 225)
 						{
 							//左
 							*left = true;
-							*x = bx - *m_sx + (scroll);
+							*x = bx - 64 + (scroll);
 							*vx = -(*vx)*0.1f;
 						}
 						if (r > 225 && r < 315)
 						{
 							//下
 							*up = true;
-							*y = by + *m_sy;
+							*y +64;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;

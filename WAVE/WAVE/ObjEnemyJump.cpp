@@ -34,6 +34,10 @@ void CObjEnemyJump::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	m_sx = 64.0f;
+	m_sy = 64.0f;
+
+
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
@@ -234,7 +238,7 @@ void CObjEnemyJump::Action()
 	/*
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true,
+	pb->BlockBulletHit(&m_px, &m_py, true, &m_sx, &m_sy, 
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
@@ -293,6 +297,9 @@ void CObjEnemyJump::Action()
 //ドロー
 void CObjEnemyJump::Draw()
 {
+
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
@@ -313,11 +320,10 @@ void CObjEnemyJump::Draw()
 	src.m_bottom = 48.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
-	dst.m_bottom = 64.0f + m_py;
-
+	dst.m_top = -64.0f + m_py;
+	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
+	dst.m_right = m_px + (132 + pb->GetScroll());
+	dst.m_bottom = 68.0f + m_py;
 	//描画
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 

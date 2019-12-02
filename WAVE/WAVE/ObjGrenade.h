@@ -40,6 +40,9 @@ private:
 	float m_px;
 	float m_py;
 
+	float m_sx;  //画像サイズ保管用変数
+	float m_sy;
+
 	float x, y;
 	float vx, vy;
 

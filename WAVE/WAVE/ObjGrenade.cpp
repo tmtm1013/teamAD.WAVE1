@@ -39,6 +39,9 @@ void CObjGrenade::Init()
 	m_vx = 0.1f;
 	m_vy = -0.1f;
 
+	m_sx = 60;
+	m_sy = 60;
+
 	m_mou_bx = 0.0f;
 	m_mou_by = 0.0f;
 
@@ -156,7 +159,7 @@ void CObjGrenade::Action()
 	
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_x, &m_y, true,
+	pb->BlockHit(&m_x, &m_y, true, &m_sx, &m_sy, 
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
