@@ -32,12 +32,6 @@ class CObjHero :public CObj
 		   void SetLeft(bool b) { m_hit_left = b; }
 		   void SetRight(bool b) { m_hit_right = b; }
 
-		  
-		   
-
-		  
-
-
 		   float m_mou_px; //マウスの位置X
 		   float m_mou_py; //マウスの位置Y
 
@@ -46,15 +40,11 @@ class CObjHero :public CObj
 		   void SetYY(float y);//位置情報Y変更用
 		   float GetXX();//位置情報ｘ取得用
 		   float GetYY();//位置情報Y取得用
-
-
-
 	private:
 		float m_px;    //位置
 		float m_py;
 		float m_sx;   //サイズ用
 		float m_sy;
-
 
 		bool m_mou_pr; //マウスの右ボタン
 		bool m_mou_pl; //マウス左ボタン
@@ -78,10 +68,8 @@ class CObjHero :public CObj
 		int m_SEtime;//SEの再生頻度制御用変数1
 		bool SE_flag;
 
-		int second; //秒間用変数
-
-
-		int m_hp;//主人公のHP
+		int movesecond; //秒間用変数	
+		int jumpsecond; //秒間用変数
 
 		//blockとの衝突状態確認用
 		bool m_hit_up ;
@@ -95,7 +83,7 @@ class CObjHero :public CObj
 		int hp_now;
 		float hp_time;
 
-		float top;
+		float top;//切り取り位置格納用変数
 		float left;
 		float right;
 		float bottom;

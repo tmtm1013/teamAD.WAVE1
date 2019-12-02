@@ -67,6 +67,7 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
+	int SceneNum;   //ステージ切り替え
 
 	
 };

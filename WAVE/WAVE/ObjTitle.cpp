@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
+#include "GameL\UserData.h"
 
 #include "ObjTitle.h"
 #include "GameHead.h"
@@ -13,10 +14,14 @@ using namespace GameL;
 
 void CObjTitle::Init()
 {
+
+	Draw::LoadImageW(L"Title.png", 1, TEX_SIZE_1024);
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
+
+	((UserData*)Save::GetData())->SceneNum=1; //マップ移動用
 }
 
 void CObjTitle::Action()

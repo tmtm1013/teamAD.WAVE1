@@ -39,9 +39,9 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage0003.csv", &size);//外部データ読み込み
 
-	int map[10][100];
+	int map3[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
@@ -50,7 +50,7 @@ void CSceneBlock3::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map[i][j] = w;
+			map3[i][j] = w;
 			count += 2;
 
 		}
@@ -94,6 +94,9 @@ void CSceneBlock3::InitScene()
 	//主人公(前進)グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
 
+	//BIOSオブジェクト作成
+	CObjBoss* objboss = new CObjBoss(600, 300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
 
 
 	//背景のグラフィック読み込み
@@ -109,7 +112,7 @@ void CSceneBlock3::InitScene()
 
 	//blockオブジェクト作成
 
-	CObjBlock*objb = new CObjBlock(map);
+	CObjBlock*objb = new CObjBlock(map3);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//block(障害物)オブジェクト作成

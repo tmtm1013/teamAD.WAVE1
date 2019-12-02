@@ -54,6 +54,16 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 
+	//SE読み込み
+	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
+	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
+	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//-----武器切り替え音読み込み----
+	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//----カートリッジ落下音----
+	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//----サブマシンガンのカートリッジ落下音----
+	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
+	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+
 	m_px = 300.0f;    //位置
 	m_py = 500.0f;
 
@@ -86,7 +96,9 @@ void CObjHero::Init()
 	bottom = 96.0;
 
 	m_SEtime = 0;
-	second = 0;
+	movesecond = 0;  //左右移動時のアニメーション/SE制御
+	jumpsecond = 0;  //ジャンプ時のアニメーション/SE制御
+
 	SE_flag = true;//SE制御用フラグ
 
 	m_speed_power = 0.5f;  //通常速度
@@ -103,54 +115,38 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 10;//主人公のヒットポイント用
-	hp_max = 10;
+	hp = 100;//主人公のヒットポイント用
+	hp_max = 100;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
-
-	/*
-	for (int i = 0; i < 28; i++)
-	{
-
-
-
-		srcAnim[i].top = top+;
-		srcAnim[i].left = left+;
-		srcAnim[i].right = right+;
-		srcAnim[i].bottom = bottom+;
-
-	}
-	*/
 }
 
 //アクション
 void CObjHero::Action()
 {
-	//SE制御time
-
-
-	if (second >= 600)
-	{
-		m_SEtime++;
-		second = 0;
-	}
-
-	//m_SEtime = (second / 60) % 60; // 600 / 10 = 10秒
+	//SE・アニメーション制御time
+	movesecond++;
+	jumpsecond++;
+	
 
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//ハンドガン
 	{
-		if (m_SEtime >= 12)
+		
+		
 			Audio::Start(5);//SE再生(装備音)
+			
+		
+		
 		bullet_type = 1;//弾丸の種類を指定
-		m_SEtime = 0;
+		
 	}
 	if (Input::GetVKey('2') == true)//サブマシンガン
 	{
 		if (m_SEtime >= 12)
 			Audio::Start(5);//SE再生(装備音)
 		bullet_type = 2;//弾丸の種類を指定
-		m_SEtime = 0;
+		
 
 	}
 	if (Input::GetVKey('3') == true)//ショットガン
@@ -196,7 +192,7 @@ void CObjHero::Action()
 		if (m_f == true)
 		{
 			//発射音を鳴らす
-			//Audio::Start(2);
+			Audio::Start(2);
 
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 			CObjBullet* obj_b = new CObjBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
@@ -217,8 +213,8 @@ void CObjHero::Action()
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
 	{
 		//発射音を鳴らす
-		/*Audio::Start(2);//サブマシンガン発射音再生
-		m_SEtime++;*/
+		Audio::Start(2);//サブマシンガン発射音再生
+		//m_SEtime++;
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
@@ -232,7 +228,7 @@ void CObjHero::Action()
 	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)
 	{
 		//発射音を鳴らす
-		//Audio::Start(4);//ショットガン発射音再生
+		Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -242,27 +238,6 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
-	//手榴弾発射
-	/*if (Input::GetVKey('Q') == true && m_time >= 10.0f)
-	{
-		if (m_f == true)
-		{
-			//発射音を鳴らす
-			//Audio::Start(2);
-
-			//弾丸オブジェクト作成
-			CObjGrenade* obj_g = new CObjGrenade(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
-			Objs::InsertObj(obj_g, OBJ_GRENADE, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-			m_f = false;
-			m_time = 0.0f;
-		}
-	}
-	else
-	{
-		m_f = true;
-	}
-	*/
 
 	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
 	{
@@ -272,7 +247,7 @@ void CObjHero::Action()
 			//Audio::Start(2);
 
 			//弾丸オブジェクト作成
-			CObjGren* obj_g = new CObjGren(m_px + 30.0f, m_py + 30.0f);//弾丸オブジェクト作成
+			CObjGren* obj_g = new CObjGren(m_px, m_py );//弾丸オブジェクト作成
 			Objs::InsertObj(obj_g, OBJ_GREN, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			m_f = false;
@@ -284,10 +259,9 @@ void CObjHero::Action()
 		m_f = true;
 	}
 	
-
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, true, &m_sx, &m_sy,
+	pb->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
@@ -335,19 +309,19 @@ void CObjHero::Action()
 		m_posture = 1.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
 	
-		if (second >= 2 && m_hit_down == true)
+		if (movesecond >= 4 && m_hit_down == true)
 		{
 			m_ani_time += 1;
 		}
-		if (second>=21&&m_hit_down==true)
+		if (movesecond>=21&&m_hit_down==true)
 		{
 			Audio::Start(8);
-			second = 0;
+			movesecond = 0;
 		}
-		else 
+		/*else 
 		{
 			second++;
-		}
+		}*/
 	}
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -359,19 +333,19 @@ void CObjHero::Action()
 		m_posture = 0.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
 		
-		if (second >= 2 && m_hit_down == true)
+		if (movesecond >= 4 && m_hit_down == true)
 		{
 			m_ani_time += 1;
 		}
-		if (second >= 21 && m_hit_down == true)
+		if (movesecond >= 21 && m_hit_down == true)
 		{
 			Audio::Start(8);
-			second = 0;
+			movesecond = 0;
 		}
-		else
+		/*else
 		{
 			second++;
-		}
+		}*/
 
 	}
 	else//キー入力がない場合は静止フレームにする
@@ -382,17 +356,24 @@ void CObjHero::Action()
 		m_ani_move = 0;//静止アニメーションデータを指定
 
 	
-		second = 100;
+		movesecond = 100;
 	
 
 	}
 	if (m_hit_down == false)//ジャンプアニメーション
 	{
+		m_ani_move = 2;//ジャンプアニメーションデータを指定
+		if (jumpsecond >= 10)
+		{
 
 			m_ani_time += 1;//アニメーションタイムを+1加算
-			m_ani_move = 2;//ジャンプアニメーションデータを指定
-			SE_flag = true;
 
+			SE_flag = true;
+			jumpsecond = 0;
+		}
+		else
+			jumpsecond = 100;
+			
 	}
 	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
 	{
@@ -427,13 +408,14 @@ void CObjHero::Action()
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
-		hp += 10;
+
+		m_hp += 10;
 
 		hp += 50;
 
 	}
-	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr|| hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
@@ -450,8 +432,7 @@ void CObjHero::Action()
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
 
-
-		float r = hit_data[0]->r;
+		/*float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
@@ -459,44 +440,11 @@ void CObjHero::Action()
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
-		}
+		}*/
 	}
-
-	//遠距離敵の攻撃接触でHeroのHPが減る
-	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
-	{
-
-		
-
-		if (flag == true && hp_time <= 0.0f)
-		{
-			hp -= 1;
-			flag = false;
-			hp_time = 1.6f;
-		}
-		if (hp_time >= 0.0f)
-		{
-			flag = true;
-		}
-
-		//OBJ_BULLETと当たると主人公がノックバックする
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		
-		float r = hit_data[0]->r;
-		if ((r < 45 && r >= 0) || r > 315)
-		{
-			m_vx = -5.0f; //左に移動させる。
-		}
-
-		if (r > 135 && r < 225)
-		{
-			m_vx = +5.0f; //右に移動させる。
-		}
-	}
-	
 	//主人公のHPがゼロになった時主人公が消える
-	if (hp<=0) {
+	if (hp<=0) 
+	{
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
@@ -504,13 +452,9 @@ void CObjHero::Action()
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
 	}
-	
-
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
-
-	
 }
 
 
@@ -543,13 +487,11 @@ void CObjHero::Draw()
 		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 78;
 		src.m_right = 78.0f + AniData[m_ani_move][m_ani_frame] * 78;
 		src.m_bottom = 96.0 + (96.0f - 96.0f *m_ani_move + 1);
-
-		//表示位置の設定
+		//表示位置の設定s
 		dst.m_top = 0.0f + m_py;
-		dst.m_left = (64.0f      * m_posture) + m_px;
+		dst.m_left = (64.0f        * m_posture) + m_px;
 		dst.m_right = (64 - 64.0f * m_posture) + m_px;
 		dst.m_bottom = 64.0f + m_py;
-
 		m_posture = 0.0;
 
 		//描画
@@ -562,10 +504,9 @@ void CObjHero::Draw()
 		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 80;
 		src.m_right = 80.0f + AniData[m_ani_move][m_ani_frame] * 80;
 		src.m_bottom = 96.0f;
-
-		//表示位置の設定
+		//表示位置の設定s
 		dst.m_top = 0.0f + m_py;
-		dst.m_left = (64.0f      * m_posture) + m_px;
+		dst.m_left = (64.0f        * m_posture) + m_px;
 		dst.m_right = (64 - 64.0f * m_posture) + m_px;
 		dst.m_bottom = 64.0f + m_py;
 
@@ -588,6 +529,9 @@ void CObjHero::Draw()
 		//描画
 		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
+	
+
+
 	/*if (m_ani_move == 3)//
 	{
 		//切り取り位置の設定
