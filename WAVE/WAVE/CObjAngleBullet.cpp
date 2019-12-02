@@ -48,11 +48,10 @@ void CObjAngleBullet::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_x, &m_y, true,
+	pb->BlockBulletHit(&m_x, &m_y, true, &m_sx, &m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
-
 
 
 	//HitBoxの位置の変更
@@ -105,6 +104,12 @@ void CObjAngleBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	//ブロックと当たると弾丸削除
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
 
 }
 
@@ -117,9 +122,9 @@ void CObjAngleBullet::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 126.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 32.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_y;

@@ -79,6 +79,8 @@ void CObjEnemyJump::Action()
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
 	//主人公の位置情報をここで取得
@@ -228,25 +230,27 @@ void CObjEnemyJump::Action()
 		m_vy = 0;
 	}
 
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
+	
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+	
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 	
 
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
-	/*
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockBulletHit(&m_px, &m_py, true, &m_sx, &m_sy, 
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
-	*/
+	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
 	//落下した敵を消去する。
@@ -320,9 +324,9 @@ void CObjEnemyJump::Draw()
 	src.m_bottom = 48.0f;
 
 	//表示位置の設定
-	dst.m_top = -64.0f + m_py;
-	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
-	dst.m_right = m_px + (132 + pb->GetScroll());
+	dst.m_top = 0.0f + m_py;
+	dst.m_left = pb->GetScroll() + (m_px - 0.0f);
+	dst.m_right = m_px + (64 + pb->GetScroll());
 	dst.m_bottom = 68.0f + m_py;
 	//描画
 	Draw::Draw(12, &src, &dst, c, 0.0f);
