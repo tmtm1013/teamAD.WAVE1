@@ -235,14 +235,14 @@ void CObjEnemyJump::Action()
 
 	//ƒuƒƒbƒNƒ^ƒCƒvŒŸ’m—p‚Ì•Ï”‚ª‚È‚¢‚½‚ß‚Ìƒ_ƒ~[
 	int d;
-
+	/*
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockBulletHit(&m_px, &m_py, true, &m_sx, &m_sy, 
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
-	
+	*/
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -256,7 +256,14 @@ void CObjEnemyJump::Action()
 		Hits::DeleteHitBox(this);//“G‚ª—Ž‰º‚µ‚½ê‡“G‚ðÁ‹Ž‚·‚éB
 	}
 
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
 
+		m_hp -= 50;
+
+
+	}
 
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)

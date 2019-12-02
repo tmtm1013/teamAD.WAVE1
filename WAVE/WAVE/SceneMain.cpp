@@ -158,7 +158,7 @@ void CSceneMain::InitScene()
 
 	//スコア表示
 	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 12);
+	Objs::InsertObj(s, OBJ_MAIN, 17);
 	
 
 	/*
