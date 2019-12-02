@@ -238,7 +238,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
-
+	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
 	{
 		if (m_f == true)

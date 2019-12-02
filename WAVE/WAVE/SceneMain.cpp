@@ -65,11 +65,15 @@ void CSceneMain::InitScene()
 	//グラフィック読み込み
 	//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 	
+
 	//音楽読み込み
 	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);
 	Audio::Start(21);//音楽スタート
+
+
+
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
 
@@ -283,7 +287,7 @@ void CSceneMain::Scene()
 		 */
 		 
 		 
-		
+		/*
 		 //BOSSプログラム（右画面出現）
 		 if (m_time5 > 100) {//敵の出現間隔
 
@@ -298,7 +302,7 @@ void CSceneMain::Scene()
 			 m_time5 = 0;
 
 		 }
-		 
+		 */
 		 
 		 
 
