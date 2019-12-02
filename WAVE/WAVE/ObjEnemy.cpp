@@ -211,9 +211,9 @@ void CObjEnemy::Action()
 
 
 
-		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-		if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
-		{
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
 
 			m_hp -= 50;
 
