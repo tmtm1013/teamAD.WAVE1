@@ -34,6 +34,10 @@ void CObjEnemyJump::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	m_sx = 64.0f;
+	m_sy = 64.0f;
+
+
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
@@ -75,6 +79,8 @@ void CObjEnemyJump::Action()
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
 	//主人公の位置情報をここで取得
@@ -224,14 +230,9 @@ void CObjEnemyJump::Action()
 		m_vy = 0;
 	}
 
-	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
-	
-
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
-
+	
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,
@@ -240,9 +241,16 @@ void CObjEnemyJump::Action()
 	);
 	
 
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
+	
+
+	
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
 	//落下した敵を消去する。
@@ -252,7 +260,14 @@ void CObjEnemyJump::Action()
 		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
 	}
 
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
 
+		m_hp -= 50;
+
+
+	}
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
@@ -286,6 +301,9 @@ void CObjEnemyJump::Action()
 //ドロー
 void CObjEnemyJump::Draw()
 {
+
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//歩くアニメーション情報を登録
 	int AniData[4] =
 	{
@@ -307,10 +325,9 @@ void CObjEnemyJump::Draw()
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px;
-	dst.m_right = (64 - 64.0f * m_posture) + m_px;
-	dst.m_bottom = 64.0f + m_py;
-
+	dst.m_left = pb->GetScroll() + (m_px - 0.0f);
+	dst.m_right = m_px + (64 + pb->GetScroll());
+	dst.m_bottom = 68.0f + m_py;
 	//描画
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 

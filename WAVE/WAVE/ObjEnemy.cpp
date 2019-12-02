@@ -212,9 +212,9 @@ void CObjEnemy::Action()
 
 
 
-		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-		if (hit->CheckObjNameHit(OBJ_GRENADE) != nullptr)
-		{
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
 
 			m_hp -= 50;
 
@@ -309,10 +309,16 @@ void CObjEnemy::Draw()
 	src.m_bottom = 132.0f;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
+	/*
 	dst.m_top = -100.0f + m_py;
 	dst.m_left = (132.0f * m_posture) + m_px+pb->GetScroll();
 	dst.m_right = (132 - 132.0f * m_posture) + m_px+pb->GetScroll();
 	dst.m_bottom = 50.0f + m_py;
+	*/
+	dst.m_top = -64.0f + m_py;
+	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
+	dst.m_right = m_px + (132 + pb->GetScroll());
+	dst.m_bottom = 68.0f + m_py;
 
 	//•`‰æ
 	Draw::Draw(5, &src, &dst, c, 0.0f);

@@ -108,30 +108,41 @@ void CObjBullet::Action()
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
-	
-	
+
 	//敵機オブジェクトと接触したら弾丸消去
-	if (m_hit_up == true)
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
+	}
+	//領域外に出たら弾丸を破棄する
+	if (m_bx > 800.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
+	if (m_bx < 0.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
+	if (m_by < 0.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
+	if (m_by > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
+	if (m_hit_up == true||m_hit_down == true|| m_hit_left == true||m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
-	//領域外に出たら弾丸を破棄する
-	if (m_hit_down == true)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-	if (m_hit_left == true)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-	if (m_hit_right == true)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
+	
 }
 
 //ドロー

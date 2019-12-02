@@ -70,6 +70,9 @@ void CObjGameOver::Action()
 //ƒhƒ[
 void CObjGameOver::Draw()
 {
+
+	Draw::LoadImage(L"GAMEOVER01.png", 15, TEX_SIZE_512);
+
 	float c[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 	RECT_F src;//•`‰æŒ³Ø‚èæ‚èˆÊ’u
