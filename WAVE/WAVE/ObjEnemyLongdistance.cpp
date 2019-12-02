@@ -83,7 +83,7 @@ void CObjEnemyLongdistance::Action()
 	m_time++;//弾丸発射用タイムインクリメント
 
 		//弾丸用プログラム
-		if (m_time >10)
+		if (m_time >100)
 		{
 			if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
@@ -122,7 +122,7 @@ void CObjEnemyLongdistance::Action()
 	//方向
 	if (m_move == false)
 	{
-		if (x == 80 || x == 300) {
+       		if (x == 80 || x == 300) {
 			//主人公が動いてるときスクロール分の値を適用させた行動をする
 			if (idou == 1) {
 
@@ -144,7 +144,7 @@ void CObjEnemyLongdistance::Action()
 		m_ani_move = 1;
 	}
 
-	else if (m_move == true)
+ 	else if (m_move == true)
 	{
 		if (x == 80 || x == 300) {
 
@@ -300,7 +300,7 @@ void CObjEnemyLongdistance::Draw()
 
 
 		//表示位置の設定
-		dst.m_top = 0.0f + m_py;
+		dst.m_top = 64.0f + m_py;
 		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_bottom = 132.0f + m_py;
@@ -329,10 +329,10 @@ void CObjEnemyLongdistance::Draw()
 
 
 		//表示位置の設定
-		dst.m_top = 0.0f + m_py;
-		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_bottom = 132.0f + m_py;
+		dst.m_top = -54.0f + m_py;
+		dst.m_left = (44.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_right = (74.0f - 74.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_bottom = 132.0f-54.0f + m_py;
 
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
