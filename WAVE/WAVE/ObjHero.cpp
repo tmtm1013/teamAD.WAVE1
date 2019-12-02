@@ -414,12 +414,15 @@ void CObjHero::Action()
 		hp += 50;
 
 	}
+
+	
+
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr|| hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(ELEMENT_ENEMY) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 1;
+			hp -= 10;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -429,11 +432,11 @@ void CObjHero::Action()
 			flag = true;
 		}
 
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(ELEMENT_ENEMY);
 
+ 		float r = hit_data[1]->r;
 
-		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
@@ -449,11 +452,9 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 
-		
-
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 1;
+			hp -= 30;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -467,7 +468,7 @@ void CObjHero::Action()
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
 		
-		float r = hit_data[0]->n;
+		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
@@ -475,7 +476,7 @@ void CObjHero::Action()
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
-		}*/
+		}
 	}
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 

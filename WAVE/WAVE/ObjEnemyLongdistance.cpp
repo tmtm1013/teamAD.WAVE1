@@ -58,7 +58,7 @@ void CObjEnemyLongdistance::Init()
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMYLONGDISTANCE, 1);
 }
 
 //アクション
@@ -82,7 +82,7 @@ void CObjEnemyLongdistance::Action()
 	m_time++;//弾丸発射用タイムインクリメント
 
 		//弾丸用プログラム
-		if (m_time >10)
+		if (m_time >100)
 		{
 			if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
