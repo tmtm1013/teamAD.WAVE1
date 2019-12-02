@@ -219,19 +219,6 @@ void CObjEnemyLongdistance::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	/*
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-	
-	
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-	*/
 
 
 	//HitBox�̈ʒu�̕ύX
