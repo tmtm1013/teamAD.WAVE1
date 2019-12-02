@@ -31,7 +31,6 @@ CSceneGameOver::~CSceneGameOver()
 void CSceneGameOver::InitScene()
 {
 	
-	Draw::LoadImage(L"GAMEOVER01.png", 12, TEX_SIZE_512);
 
 
 

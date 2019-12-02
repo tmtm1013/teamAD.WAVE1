@@ -134,26 +134,6 @@ void CObjBoss::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	/*
-	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
-	if (m_px + 64.0f > 800.0f)
-	{
-		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
-
-	}
-	*/
-	if (m_py + 64.0f > GRAUND)
-	{
-		//m_py = 0;
-		m_py = GRAUND - 64.0f;
-
-	}
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -258,6 +238,8 @@ void CObjBoss::Action()
 //ドロー
 void CObjBoss::Draw()
 {
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//歩くアニメーション情報を登録
 	int AniData[6] =
 	{
@@ -280,11 +262,11 @@ void CObjBoss::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
+	
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_right = (64 - 64.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_left = (64.0f * m_posture) + m_px + pb->GetScroll();
+	dst.m_right = (64 - 64.0f * m_posture) + m_px + pb->GetScroll();
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
