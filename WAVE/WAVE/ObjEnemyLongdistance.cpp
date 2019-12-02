@@ -217,14 +217,14 @@ void CObjEnemyLongdistance::Action()
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
-
+	
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,&m_sx,&m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
-	*/
+	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -250,7 +250,7 @@ void CObjEnemyLongdistance::Action()
 	}
 	
 	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -280,6 +280,14 @@ void CObjEnemyLongdistance::Action()
 	{
 
 		m_hp -= 40;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
+
+		m_hp -= 50;
 
 
 	}

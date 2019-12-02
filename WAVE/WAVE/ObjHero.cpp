@@ -427,7 +427,6 @@ void CObjHero::Action()
 	//‰ñ•œ–ò‚É“–‚½‚é‚Æhp‚ð+‚·‚é
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
-		hp += 10;
 
 		hp += 50;
 

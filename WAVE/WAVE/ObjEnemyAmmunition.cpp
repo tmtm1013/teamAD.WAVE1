@@ -238,6 +238,14 @@ void CObjEnemyAmmunition::Action()
 
 
 	}
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
+
+		m_hp -= 50;
+
+
+	}
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 	if (m_hp <= 0)
 	{
