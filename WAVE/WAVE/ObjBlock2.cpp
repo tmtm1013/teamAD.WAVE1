@@ -162,8 +162,8 @@ void CObjBlock2::Action()
 		{
 
 			//4があれば、敵を出現
-			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
-			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
+			CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
 
 			//敵出現場所の値を0にする
 			m_map2[i][ex] = 0;
@@ -173,25 +173,27 @@ void CObjBlock2::Action()
 		//列の中から6を探す
 		if (m_map2[i][rx] == 6)
 		{
+			CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_BOSS, 11);
 
-			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(rx*64.0f, i*64.0f);
-			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
 			//敵出現場所の値を0にする
 			m_map2[i][rx] = 0;
 
-			
+
 			//HPが0になったら破棄
 			if (m_hp <= 0)
 			{
 
-				//this->SetStatus(false);
+				this->SetStatus(false);
 				//Hits::DeleteHitBox(this);
 
-				//敵消滅でシーンをゲームクリアに移行する
-				//Scene::SetScene(new CSceneBlock3());
+
+
+				//敵消滅でシーンをステージ２に移行する
+				//Scene::SetScene(new SceneMain());
 
 			}
-			
+
 		}
 
 		//列の中から７を探す
@@ -201,9 +203,9 @@ void CObjBlock2::Action()
 			CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY, 13);
 
-
+			//敵出現場所の値を0にする
+			m_map2[i][dx] = 0;
 		}
-
 
 	}
 

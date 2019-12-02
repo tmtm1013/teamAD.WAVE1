@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage0003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage00003.csv", &size);//外部データ読み込み
 
 	int map3[10][100];
 	int count = 1;
@@ -58,88 +58,85 @@ void CSceneBlock3::InitScene()
 
 
 	//Font作成
-	//Font::SetStrTex(L"0123456789分秒");
+		//Font::SetStrTex(L"0123456789分秒");
 
 
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	/*
-	//音楽読み込み
-	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
-	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	*/
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//ハンドガン発射音読み込み
-	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//ショットガン発射音読み込み
-	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
-	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
-	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
-	//Font作成
+		//グラフィック読み込み
+		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
+		/*
+		//音楽読み込み
+		Audio::Loadaudio(0, L"wav".BACK_MUSIC);
+		Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+		*/
+
+		//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
+	//主人公(前進)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
+
+	//主人公(待機)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
+
+	//主人公(ジャンプ)グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
+
+	//弾丸グラフィック読み込み
+	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+
+	//Enemyグラフィック読み込み
+	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+
+	//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
+
+	//回復薬グラフィック読み込み
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+
+	//手榴弾グラフィック読み込み
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+
+	//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+
+	//ゲームオーバーのグラフィック読み込み
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+
+	//JumpEnemyグラフィック読み込み
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+
+	Draw::LoadImageW(L"Animation/motion1.png", 15, TEX_SIZE_2048); //ボス
+
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
-
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait2.png", 7, TEX_SIZE_1024);
-
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 6, TEX_SIZE_1024);
-
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 8, TEX_SIZE_1024);
-
-	//BIOSオブジェクト作成
-	CObjBoss* objboss = new CObjBoss(600, 300);
-	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-
-
-	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"ObjBlock.png", 2, TEX_SIZE_512);
-
-
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 3, TEX_SIZE_512);
-
-
-	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
 
 	//blockオブジェクト作成
 
 	CObjBlock*objb = new CObjBlock(map3);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
-	//block(障害物)オブジェクト作成
-	/*
-	ObjObstacle*objd = new ObjObstacle(map);
-	Objs::InsertObj(objd, OBJ_BLOCK,4);
-	*/
-
-
-
-
-	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
-
-	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 5, TEX_SIZE_256);
-
-
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	/*
+	//BOSSオブジェクト作成
+	CObjBoss* objboss = new CObjBoss(600,300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
+	*/
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
+	/*
+	//Test用　　　敵オブジェクト作成
+	CObjEnemy* obje = new CObjEnemy();
+	Objs::InsertObj(obje, OBJ_ENEMY, 10);
+	*/
 
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
@@ -152,10 +149,11 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	/*
+	//スコア表示
 	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 1);
-
-
+	Objs::InsertObj(s, OBJ_MAIN, 17);
+	*/
 
 	m_time = 0;
 	m_time2 = 0;

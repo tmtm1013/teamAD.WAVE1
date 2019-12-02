@@ -292,6 +292,17 @@ void CObjHero::Action()
 		m_ani_max_time = 2;
 	}
 
+	
+	//領域外に出たらゲームオーバー画面に移行
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+
+		Scene::SetScene(new CSceneGameOver());
+	}
+	
+	
+
 	//主人公の向きを制御
 	//マウスの位置を取得
 	m_mou_px = (float)Input::GetPosX();
