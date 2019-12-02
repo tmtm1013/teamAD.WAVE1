@@ -448,7 +448,7 @@ void CObjHero::Action()
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
 		
-		float r = hit_data[0]->r;
+		float r = hit_data[0]->n;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //¶‚ÉˆÚ“®‚³‚¹‚éB
@@ -461,7 +461,7 @@ void CObjHero::Action()
 	}
 	
 	//ålŒö‚ÌHP‚ªƒ[ƒ‚É‚È‚Á‚½ålŒö‚ªÁ‚¦‚é
-	if (hp<=0) {
+	if(hp<=0) {
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);

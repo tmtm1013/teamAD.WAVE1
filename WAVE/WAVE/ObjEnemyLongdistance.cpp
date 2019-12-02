@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\UserData.h"
 
 #include "GameHead.h"
 #include "ObjEnemyLongdistance.h"
@@ -179,14 +180,14 @@ void CObjEnemyLongdistance::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-
+	/*
 	//敵の位置X(x_px)+主人公の幅分が+X軸方向に領域外を認識
 	if (m_px + 64.0f > 800.0f)
 	{
 		m_px = 800.0f - 64.0f;//はみ出ない位置に移動させる
 
 	}
-	
+	*/
 	if (m_py + 32.0f > GRAUND)
 	{
 		//m_py = 0;
@@ -240,7 +241,8 @@ void CObjEnemyLongdistance::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-	
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
 
 	}
 
@@ -278,8 +280,8 @@ void CObjEnemyLongdistance::Draw()
 
 		//表示位置の設定
 		dst.m_top = 0.0f + m_py;
-		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_left = (132.0f * m_posture + 64) + m_px + block->GetScroll();
+		dst.m_right = (132 - 132.0f * m_posture + 64) + m_px + block->GetScroll();
 		dst.m_bottom = 132.0f + m_py;
 
 		//描画
