@@ -219,7 +219,7 @@ void CObjEnemy::Action()
 			m_hp -= 50;
 
 
-		}
+	}
 
 		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
