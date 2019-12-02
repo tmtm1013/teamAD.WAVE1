@@ -64,11 +64,14 @@ void CSceneMain::InitScene()
 
 	//グラフィック読み込み
 	//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
-	/*
+	
 	//音楽読み込み
-	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
-	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	*/
+	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.8f);
+	Audio::Start(21);//音楽スタート
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -216,7 +219,7 @@ void CSceneMain::Scene()
 	 
 	 
 	 //通常敵表示用プログラム（左画面出現）
-		/* if (m_time > 100)//敵の出現間隔
+		 if (m_time > 100)//敵の出現間隔
 		 {
 
 			if (Enemy <=2) {//敵の出現数
@@ -229,7 +232,7 @@ void CSceneMain::Scene()
 			Enemy++;
 
 			 m_time = 0;
-		 }*/
+		 }
 		 
 	 
 	 /*

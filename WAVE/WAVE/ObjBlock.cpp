@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBlock.h"
@@ -21,6 +22,8 @@ CObjBlock::CObjBlock(int map[10][100])
 //イニシャライズ
 void CObjBlock::Init()
 {
+	
+
 	m_scroll = 0.0f;
 
 }
