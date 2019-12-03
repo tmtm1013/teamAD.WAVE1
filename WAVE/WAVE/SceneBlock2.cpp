@@ -68,9 +68,7 @@ void CSceneBlock2::InitScene()
 	
 	//音楽読み込み
 	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
-	//音楽情報の読み込み
-	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
-	Audio::Start(0);//音楽スタート
+	Audio::Start(22);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
 	//SE読み込み

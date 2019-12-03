@@ -225,6 +225,7 @@ void CObjBoss::Action()
 		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
 		{
 			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
+			Audio::Stop(21); //BGMストップ
 			//敵消滅でシーンをゲームクリアに移行する
 			Scene::SetScene(new CSceneBlock2());
 		}

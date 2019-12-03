@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBoss.h"
@@ -215,6 +216,8 @@ void CObjBoss::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+		Audio::Stop(23); //BGMストップ
 
 		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneClear());
