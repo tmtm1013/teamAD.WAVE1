@@ -14,7 +14,8 @@
 //使用するネームスペース
 using namespace GameL;
 
-float idou;//ヒーローが動いているか確認するグローバル変数
+//主人公と接触しているかどうかを確認する。
+extern float Overlap;
 
 
 
@@ -305,7 +306,7 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true)
 	{
-		idou = 1;//主人公の動いているかどうかの確認
+	
 
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;//アニメーションタイムを+1加算
@@ -328,8 +329,7 @@ void CObjHero::Action()
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
-		//左に移動時の処理
-		idou = 2;//主人公の動いているかどうかの確認
+		
 
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;//アニメーションタイムを+1加算
@@ -352,7 +352,7 @@ void CObjHero::Action()
 	}
 	else//キー入力がない場合は静止フレームにする
 	{
-		idou = 3;//主人公の動いているかどうかの確認
+		
 
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
@@ -420,6 +420,11 @@ void CObjHero::Action()
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
+
+		Overlap = 1;//主人公と敵が接触しているか確かめるグローバル変数
+
+
+
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 10;

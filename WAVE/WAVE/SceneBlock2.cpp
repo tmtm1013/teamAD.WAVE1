@@ -15,7 +15,7 @@ using namespace GameL;
 //使用ヘッダー
 #include "SceneBlock2.h"
 #include "GameHead.h"
-#include "ObjBlock2.h"
+#include "ObjBlock.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
 //#include "ObjMain.h"
@@ -43,7 +43,7 @@ void CSceneBlock2::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"stage0002.csv", &size);//外部データ読み込み
 
-	int map2[10][100];
+	int map[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
@@ -52,7 +52,7 @@ void CSceneBlock2::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map2[i][j] = w;
+			map[i][j] = w;
 			count += 2;
 
 		}
@@ -115,7 +115,7 @@ void CSceneBlock2::InitScene()
 
 	//blockオブジェクト作成
 
-	CObjBlock2*objb = new CObjBlock2(map2);
+	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 10);
 
 	//block(障害物)オブジェクト作成

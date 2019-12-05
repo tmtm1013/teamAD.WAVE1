@@ -10,7 +10,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float m_hp;
+//extern float m_hp;
 
 CObjBlock3::CObjBlock3(int map3[10][100])
 {

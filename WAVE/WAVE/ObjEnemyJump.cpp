@@ -13,8 +13,6 @@
 
 #define GRAUND (546.0f)
 
-extern float idou;//主人公が動いているか確認用グローバル変数
-
 
 //使用するネームスペース
 using namespace GameL;
