@@ -22,14 +22,11 @@ enum OBJ_NAME
 	OBJ_ANGLE_BULLET,
 
 	OBJ_BACKGROUND,
+
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYAMMUNITION,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
-	OBJ_BOSS1,
-	OBJ_BOSS2,
-
+	
 
 
 
@@ -90,14 +87,13 @@ extern float idou;
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
+
+
 #include "ObjEnemy.h"
-
 #include "ObjEnemyJump.h"
-#include "ObjEnemyAmmunition.h"
-
 #include "ObjEnemyLongdistance.h"
-
 #include "ObjBoss.h"
+
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
