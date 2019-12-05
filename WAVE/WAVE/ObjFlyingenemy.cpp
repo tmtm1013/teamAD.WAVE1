@@ -4,9 +4,8 @@
 #include "GameL\UserData.h"
 
 #include "GameHead.h"
-#include "ObjEnemyLongdistance.h"
+#include "ObjFlyingenemy.h"
 #include "GameL\HitBoxManager.h"
-
 
 
 
@@ -14,8 +13,9 @@
 using namespace GameL;
 
 
+
 //コンストラクタ
-CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
+CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 {
 	m_px = x;    //位置
 	m_py = y;
@@ -23,15 +23,15 @@ CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
 }
 
 //イニシャライズ
-void CObjEnemyLongdistance::Init()
+void CObjFlyingenemy::Init()
 {
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
-	
-	m_sx=64;  //画像サイズをBlockHitに渡す用
-	m_sy=64;
+
+	m_sx = 64;  //画像サイズをBlockHitに渡す用
+	m_sy = 64;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
@@ -56,9 +56,9 @@ void CObjEnemyLongdistance::Init()
 }
 
 //アクション
-void CObjEnemyLongdistance::Action()
+void CObjFlyingenemy::Action()
 {
-	
+
 	//通常速度
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
@@ -74,15 +74,15 @@ void CObjEnemyLongdistance::Action()
 	float y = obj->GetYY();
 
 
-	
+
 	m_time++;//弾丸発射用タイムインクリメント
 
 
 
 	//弾丸用プログラム
-	if (m_time >100)
+	if (m_time > 100)
 	{
-		if (!(x + 150.0f > m_px +( block->GetScroll()) &&x - 200.0f < m_px +( block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			m_time = 0;
 
@@ -96,7 +96,7 @@ void CObjEnemyLongdistance::Action()
 
 	}
 
-	
+
 
 	//ここが主人公の向きに移動する条件を書く。
 	if ((m_px + block->GetScroll()) < x)//右
@@ -108,7 +108,7 @@ void CObjEnemyLongdistance::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		if (m_hit_left == true )//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if (m_hit_left == true)//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 		{
 
 
@@ -119,7 +119,7 @@ void CObjEnemyLongdistance::Action()
 
 	}
 	else//左
-    {
+	{
 
 		//主人公が移動していない時のプログラム
 		m_vx -= m_speed_power;
@@ -128,17 +128,17 @@ void CObjEnemyLongdistance::Action()
 		m_ani_move = 1;
 
 		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-		if ( m_hit_right == true)
+		if (m_hit_right == true)
 		{
 
-			
+
 			m_vy = -13;
 
 
 		}
 
 
-    }
+	}
 	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -165,7 +165,7 @@ void CObjEnemyLongdistance::Action()
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
-	
+
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, false,
@@ -173,7 +173,7 @@ void CObjEnemyLongdistance::Action()
 		&d
 	);
 
-	
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -184,11 +184,11 @@ void CObjEnemyLongdistance::Action()
 	{
 		m_px = 0.0f;
 	}
-	
 
-    //HitBoxの位置の変更
-    CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+32+ block->GetScroll(), m_py);
+
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
 
 
 
@@ -248,12 +248,12 @@ void CObjEnemyLongdistance::Action()
 }
 
 //ドロー
-void CObjEnemyLongdistance::Draw()
+void CObjFlyingenemy::Draw()
 {
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-    //ブロック情報を持ってくる
-    CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//歩くアニメーション情報を登録
 	int AniData[2][6] =
@@ -308,7 +308,7 @@ void CObjEnemyLongdistance::Draw()
 		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_bottom = 66.0f + m_py;
 
-		
+
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}

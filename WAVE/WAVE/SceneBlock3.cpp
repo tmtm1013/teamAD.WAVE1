@@ -41,7 +41,7 @@ void CSceneBlock3::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"stage0003.csv", &size);//外部データ読み込み
 
-	int map3[10][100];
+	int map[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
@@ -50,7 +50,7 @@ void CSceneBlock3::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map3[i][j] = w;
+			map[i][j] = w;
 			count += 2;
 
 		}
@@ -113,7 +113,7 @@ void CSceneBlock3::InitScene()
 
 	//blockオブジェクト作成
 
-	CObjBlock*objb = new CObjBlock(map3);
+	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//block(障害物)オブジェクト作成

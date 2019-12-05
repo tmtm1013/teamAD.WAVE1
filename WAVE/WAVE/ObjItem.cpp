@@ -12,7 +12,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float idou;
 
 //コンストラクタ
 CObjItem::CObjItem(float x,float y)
@@ -26,6 +25,11 @@ CObjItem::CObjItem(float x,float y)
 //イニシャライズ
 void CObjItem::Init()
 {
+
+	//位置情報初期化
+	bx = 0;
+	by = 0;
+
    //移動ベクトル
 	m_vy = 0.0f;
 
@@ -61,6 +65,12 @@ void CObjItem::Action()
 	hit->SetPos(m_ix + 16.0, m_iy + 20.0);
 
 
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+
+
+
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_ix, &m_iy, true,
@@ -77,10 +87,7 @@ void CObjItem::Action()
 	//自由落下運動
 	m_iy += 9.8 / (16.0f);
 
-	/*if (m_vy > 26 && m_py <= GRAUND)
-	{
-		m_vy = 0;
-	}*/
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 
@@ -89,20 +96,9 @@ void CObjItem::Action()
 
 	}
 
-
-	if (h_x==300||h_x==80) {
-		if (idou == 1)
-		{
-			m_ix -= 4.5f;
-
-		}
-		else if (idou == 2)
-		{
-
-			m_ix += 4.5f;
-
-		}
-	}
+	bx + block->GetScroll();
+	
+	
 }
 
 

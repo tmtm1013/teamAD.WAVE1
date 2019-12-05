@@ -18,8 +18,6 @@ CObjEnemy::CObjEnemy(float x, float y)
 	m_py = y;
 }
 
-extern float idou;
-
 //イニシャライズ
 void CObjEnemy::Init()
 {
