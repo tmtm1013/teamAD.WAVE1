@@ -187,11 +187,11 @@ void CObjEnemyLongdistance::Action()
 	{
 		m_px = 0.0f;
 	}
-	*/
+	
 
-//HitBox‚ÌˆÊ’u‚Ì•ÏX
-		CHitBox*hit = Hits::GetHitBox(this);
-		hit->SetPos(m_px+32+ block->GetScroll(), m_py);
+    //HitBox‚ÌˆÊ’u‚Ì•ÏX
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px+32+ block->GetScroll(), m_py);
 
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)

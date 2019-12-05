@@ -215,7 +215,7 @@ void CObjBlock3::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(10, &src, &dst, c, 0.0f);
 
 	//マップチップによるbloc設置
 
