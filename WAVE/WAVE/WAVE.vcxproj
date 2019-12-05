@@ -171,6 +171,7 @@
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjRevolutionBullet.cpp" />
     <ClCompile Include="ObjTime.cpp" />
     <ClCompile Include="SceneBlock2.cpp" />
     <ClCompile Include="SceneBlock3.cpp" />
@@ -230,6 +231,7 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjRevolutionBullet.h" />
     <ClInclude Include="ObjTime.h" />
     <ClInclude Include="SceneBlock2.h" />
     <ClInclude Include="SceneBlock3.h" />

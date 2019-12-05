@@ -20,6 +20,7 @@ enum OBJ_NAME
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
+	OBJ_REVOLUTION_BULLET,
 
 	OBJ_BACKGROUND,
 	OBJ_ENEMYJUMP,
@@ -88,6 +89,7 @@ extern float idou;
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
+
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
@@ -105,6 +107,7 @@ extern float idou;
 #include "CObjDiffusionBullet.h"
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
+#include "ObjRevolutionBullet.h"
 
 
 #include "ObjTitle.h"

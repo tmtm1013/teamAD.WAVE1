@@ -231,6 +231,9 @@
     <ClCompile Include="SceneBlock3.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -364,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="SceneBlock3.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -158,7 +158,7 @@ void CObjHero::Action()
 
 	}
 
-	//初期ハンドガンアニメーション
+	//弾丸アニメーション
 	if (bullet_type == 1)
 	{
 		if (Input::GetMouButtonL() == true)
@@ -168,13 +168,13 @@ void CObjHero::Action()
 		}
 
 	}
-	//初期サブマシンガンアニメーション
+	//連弾アニメーション
 	if (bullet_type == 2)
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 4;//アニメーションデータを指定
 	}
-	//初期ショットガンアニメーション
+	//螺旋弾アニメーション
 	if (bullet_type == 3)
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
@@ -186,7 +186,7 @@ void CObjHero::Action()
 	m_time += 0.1;
 
 
-	//主人公のハンドガン弾丸発射
+	//通常弾発射
 	if (Input::GetMouButtonL() == true && m_time >= 2.0f&&bullet_type == 1)
 	{
 		if (m_f == true)
@@ -209,11 +209,11 @@ void CObjHero::Action()
 		m_f = true;
 	}
 
-	//サブマシンガン弾丸発射
+	//連弾発射
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)
 	{
 		//発射音を鳴らす
-		Audio::Start(2);//サブマシンガン発射音再生
+		Audio::Start(2);//連弾発射音再生
 		//m_SEtime++;
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -224,7 +224,7 @@ void CObjHero::Action()
 		//Audio::Start(7);//薬莢落下音
 	}
 
-	//ショットガン弾丸発射
+	//螺旋弾丸発射
 	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)
 	{
 		//発射音を鳴らす
@@ -232,8 +232,8 @@ void CObjHero::Action()
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjDiffusionBullet* obj_db = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
-		Objs::InsertObj(obj_db, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
 
