@@ -465,7 +465,6 @@ void CObjHero::Action()
 		//OBJ_BULLETと当たると主人公がノックバックする
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
