@@ -186,124 +186,13 @@ void CSceneMain::InitScene()
 
 
 
-	
-	m_time  = 0;
-	m_time2 = 0;
-	m_time3 = 0;
-	m_time4 = 0;
-	m_time5 = 0;
-	
-
-	Enemy = 1;
-
-	EnemyJump = 1;
-
-	EnemyAmmunition = 1;
-	EnemyLongdistance = 1;
-	Boss = 1;
-
 }
 
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	 m_time++;
-	 m_time2++;
-	 m_time3++;
-	 m_time4++;
-	 m_time5++;
+	
 	 
-	 
-	 
-	 //通常敵表示用プログラム（左画面出現）
-		/* if (m_time > 100)//敵の出現間隔
-		 {
-
-			if (Enemy <=2) {//敵の出現数
-
-				//敵オブジェクト作成
-				CObjEnemy* obj_enemy = new CObjEnemy(600,100);
-				Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
-			}
-
-			Enemy++;
-
-			 m_time = 0;
-		 }*/
-		 
-	 
-	 /*
-		 //ジャンプする敵出現用プログラム（左画面出現）
-		 if (m_time2>100) {//敵の出現間隔
-
-			if (EnemyJump <= 2) {//敵の出現数
-
-				CObjEnemyJump* obj_enemyjump = new CObjEnemyJump(600,100);
-				Objs::InsertObj(obj_enemyjump, OBJ_ENEMY, 10);
-
-
-			}
-
-			EnemyJump++;
-
-			 m_time2 = 0;
-
-		 }
-		*/
-		 /*
-		 //弾薬アイテム所持敵出現用プログラム（左画面出現）
-		 if (m_time3 > 100) {//敵の出現間隔
-
-			 if (EnemyAmmunition <= 1) {//敵の出現数
-				
-				 
-
-				 CObjEnemyAmmunition* obj_enemyammunition1 = new CObjEnemyAmmunition(600, 100);
-				 Objs::InsertObj(obj_enemyammunition1, OBJ_ENEMY, 10);
-				 
-			 }
-
-				EnemyAmmunition++;
-
-			 m_time3 = 0;
-
-		 }
-		 */
-		
-		//遠距離攻撃敵出現プログラム（右画面出現）
-		 /*if (m_time4 > 100) {//敵の出現間隔
-
-		if (EnemyLongdistance <= 1) {//敵の出現数
-
-			CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance(600, 100);
-			Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
-		}
-
-		EnemyLongdistance++;
-
-			 m_time4 = 0;
-
-		 }
-		 */
-		 
-		 
-		/*
-		 //BOSSプログラム（右画面出現）
-		 if (m_time5 > 100) {//敵の出現間隔
-
-			if (Boss <= 1) {//敵の出現数
-
-				CObjBoss* obj_boss = new CObjBoss(320.0,400.0);
-				Objs::InsertObj(obj_boss, OBJ_ENEMY, 10);
-			}
-
-			Boss++;
-
-			 m_time5 = 0;
-
-		 }
-		 */
-		 
-		 
+	
 
 }

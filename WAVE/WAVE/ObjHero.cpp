@@ -110,6 +110,8 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_block_type = 0;
+
 	flag = true;
 
 	//当たり判定用のHitBoxを作成
@@ -453,6 +455,8 @@ void CObjHero::Action()
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
+
+		
 }
 
 

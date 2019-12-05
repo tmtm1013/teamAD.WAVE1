@@ -22,6 +22,9 @@ private:
 	float m_py;
 	float m_vx;    //移動ベクトル
 	float m_vy;
+	float ScrollEnemy;//敵の位置情報にスクロールの影響を与えるため作った変数。
+	float Scrollplayer;
+
 	float m_posture;  //姿勢
 
 	float m_sx;  //画像サイズをBlockHitに渡す用
