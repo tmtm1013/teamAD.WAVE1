@@ -30,7 +30,7 @@ void CObjRevolutionBullet::Init()
 	Cx=0;//‰~‚Ì’†S‚ÌÀ•W
 	Cy=0;
 	Angle = 0;  //‰~‚Ì“®‚«‚ÌŠp“x
-	R = 50;   //‰~‚Ì“®‚«‚Ì”¼Œa
+	R = 30;   //‰~‚Ì“®‚«‚Ì”¼Œa
 
 	flag = true;
 
@@ -40,11 +40,6 @@ void CObjRevolutionBullet::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjRevolutionBullet::Action()
 {
-	second++;
-	if (second>=20)
-	{
-		;
-	}
 	
 	if (m_x < 0)
 	{
@@ -52,7 +47,7 @@ void CObjRevolutionBullet::Action()
 	}
 
 	// ˆÊ’u‚ÌŒvŽZ
-	Angle += 50;
+	Angle += 20;
 	x = Cx + (cos(Angle)*R );
 	y = Cy + (sin(Angle)*R );
 

@@ -50,6 +50,7 @@ class CObjHero :public CObj
 		bool m_mou_pl; //マウス左ボタン
 
 		bool  m_f;     //弾丸発射制御用
+		bool  m_gf;     //グレネード発射用フラグ
 		float m_time;  //弾丸発射可能頻度制御
 		int bullet_type;//弾丸の種類
 
@@ -63,13 +64,13 @@ class CObjHero :public CObj
 
 		float m_speed_power;  //スピードパワー
 		float m_ani_max_time; //アニメーション動作間隔最大値
-		int m_ani_move;//アニメーション切り替え用
-		int m_ret;  //アニメーションターン用変数
-		int m_SEtime;//SEの再生頻度制御用変数1
+		int   m_ani_move;//アニメーション切り替え用
+		
 		bool SE_flag;
 
-		int movesecond; //秒間用変数	
-		int jumpsecond; //秒間用変数
+		short int movesecond; //秒間用変数	
+		short int jumpsecond; //秒間用変数
+		short int m_SEtime;//SEの再生頻度制御用変数
 
 		//blockとの衝突状態確認用
 		bool m_hit_up ;

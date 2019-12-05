@@ -7,6 +7,8 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_HERO,
+	OBJ_CURSOR,
+
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
@@ -88,6 +90,7 @@ extern float idou;
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
+#include "ObjCursor.h"
 
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
@@ -133,4 +136,4 @@ extern float idou;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock2
+#define SET_GAME_START CSceneTitle

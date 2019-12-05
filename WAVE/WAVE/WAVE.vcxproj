@@ -128,6 +128,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBoss.cpp" />
+    <ClCompile Include="ObjCursor.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
@@ -158,7 +159,7 @@
     <ClCompile Include="ObjEnemy.cpp" />
     <ClCompile Include="ObjEnemyAmmunition.cpp" />
     <ClCompile Include="ObjEnemyJump.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -194,6 +195,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="ObjCursor.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />

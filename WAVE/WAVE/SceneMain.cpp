@@ -80,16 +80,7 @@ void CSceneMain::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
 
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
-
-	
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
@@ -120,6 +111,7 @@ void CSceneMain::InitScene()
 	//弾丸を飛ばす敵
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); 
 
+	
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
@@ -151,6 +143,11 @@ void CSceneMain::InitScene()
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
+
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 
 
 

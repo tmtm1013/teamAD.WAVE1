@@ -189,9 +189,6 @@
     <ClCompile Include="ObjTime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjObstacle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBlock2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -202,9 +199,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjBlock3.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGrenade.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CObjAngleBullet.cpp">
@@ -227,6 +221,15 @@
     </ClCompile>
     <ClCompile Include="ObjRevolutionBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss1.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,9 +332,6 @@
     <ClInclude Include="ObjTime.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjObstacle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjBlock2.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -344,14 +344,35 @@
     <ClInclude Include="ObjBlock3.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGrenade.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjGren.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBoss1.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBoss2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyLongdistance.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyAmmunition.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCursor.h">
+      <Filter>ソース ファイル\Hero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

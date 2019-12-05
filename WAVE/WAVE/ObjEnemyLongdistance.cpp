@@ -187,7 +187,7 @@ void CObjEnemyLongdistance::Action()
 	{
 		m_px = 0.0f;
 	}
-	*/
+	
 
 //HitBox�̈ʒu�̕ύX
 		CHitBox*hit = Hits::GetHitBox(this);
