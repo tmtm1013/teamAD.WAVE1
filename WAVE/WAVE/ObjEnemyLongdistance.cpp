@@ -34,6 +34,7 @@ void CObjEnemyLongdistance::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
+	
 	m_sx=64;  //画像サイズをBlockHitに渡す用
 	m_sy=64;
 
@@ -64,6 +65,8 @@ void CObjEnemyLongdistance::Init()
 //アクション
 void CObjEnemyLongdistance::Action()
 {
+	
+
 
 
 	//通常速度
@@ -79,105 +82,63 @@ void CObjEnemyLongdistance::Action()
 	float y = obj->GetYY();
 
 
+	/*
+	//Enemyにスクロールの影響を与える
+	ScrollEnemy += m_px;
+	ScrollEnemy += block->GetScroll();
+	//主人公の位置情報にスクロールの影響を与える
+	Scrollplayer += block->GetScroll();
+	Scrollplayer += x;
+	*/
+
+
 	m_time++;//弾丸発射用タイムインクリメント
 
-		//弾丸用プログラム
-		if (m_time >100)
-		{
-			if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+	//弾丸用プログラム
+	if (m_time >100)
+	{
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
-				m_time = 0;
+			m_time = 0;
 
-				//弾丸オブジェクト
-				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
-				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+			//弾丸オブジェクト
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
-				m_ani_move = 1;
-
-			}
+			m_ani_move = 1;
 
 		}
 
+	}
 
-	//ここに敵が主人公の向きに移動する条件を書く。
-	if (x <= m_px)//右
+
+	//ここが主人公の向きに移動する条件を書く。
+	if ((m_px + block->GetScroll()) < x)//右
 	{
+
+		//主人公が移動していない時のプログラム
+		m_vx += m_speed_power;
+		m_posture = 1.0;
+		m_ani_time += 1;
+		m_ani_move = 1;
 
 		m_move = true;
 
-
-
 	}
-	if (x >= m_px)//左
-	{
+	else//左
+    {
 
+		//主人公が移動していない時のプログラム
+		m_vx -= m_speed_power;
+		m_posture = 0.0;
+		m_ani_time += 1;
+		m_ani_move = 1;
 
 		m_move = false;
 
 
 
-	}
-
-	//方向
-	if (m_move == false)
-	{
-		if (x == 80 || x == 300) {
-			//主人公が動いてるときスクロール分の値を適用させた行動をする
-			if (idou == 1) {
-
-
-				m_vx += m_speed_power - 0.3f;
-				m_posture = 1.0f;
-				m_ani_time += 1;
-
-
-
-
-			}
-		}
-
-		//主人公が移動していない時のプログラム
-		m_vx += m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-		m_ani_move = 1;
-	}
-
-	else if (m_move == true)
-	{
-		if (x == 80 || x == 300) {
-
-			//主人公が動いてるときスクロール分の値を適用させた行動をする
-			if (idou == 1) {
-
-
-
-				m_vx -= m_speed_power + 0.05f;
-				m_posture = 0.0f;
-				m_ani_time += 1;
-
-
-			}
-
-
-			//主人公が動いてるときスクロール分の値を適用させた行動をする
-			if (idou == 2) {
-
-
-
-				m_vx -= m_speed_power - 0.3f;
-				m_posture = 0.0f;
-				m_ani_time += 1;
-
-
-			}
-		}
-			//主人公が移動していない時のプログラム
-		m_vx -= m_speed_power;
-		m_posture = 0.0f;
-		m_ani_time += 1;
-		m_ani_move = 1;
-	}
+    }
 
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -222,12 +183,15 @@ void CObjEnemyLongdistance::Action()
 
 
 
-	//HitBoxの位置の変更
-	CHitBox*hit = Hits::GetHitBox(this);
-	//hit->SetPos(m_px, m_py);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	if (m_px < 0.0f)
+	{
+		m_px = 0.0f;
+	}
+	*/
 
-
+//HitBoxの位置の変更
+		CHitBox*hit = Hits::GetHitBox(this);
+		hit->SetPos(m_px+32+ block->GetScroll(), m_py);
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
@@ -332,12 +296,22 @@ void CObjEnemyLongdistance::Draw()
 		src.m_bottom = 132.0f;
 
 		//表示位置の設定
-		dst.m_top = -64.0f + m_py;
-		dst.m_left = pb->GetScroll()+( m_px-54.0f);
-		dst.m_right = m_px +(132+pb->GetScroll());
-		dst.m_bottom = 68.0f + m_py;
+		dst.m_top = -66.0f + m_py;
+		dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
+		dst.m_bottom = 66.0f + m_py;
+
 		
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 }
+
+
+/*
+		dst.m_top = -64.0f + m_py;
+		dst.m_left = (pb->GetScroll()+( m_px-54.0f *m_posture));
+		dst.m_right =( m_px +(132 * m_posture+pb->GetScroll()));
+		dst.m_bottom = 68.0f + m_py;
+
+*/

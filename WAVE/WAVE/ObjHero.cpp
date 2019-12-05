@@ -110,6 +110,8 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_block_type = 0;
+
 	flag = true;
 
 	//当たり判定用のHitBoxを作成
@@ -238,7 +240,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
-
+	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
 	{
 		if (m_f == true)
@@ -476,7 +478,6 @@ void CObjHero::Action()
 		//OBJ_BULLETと当たると主人公がノックバックする
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
@@ -500,6 +501,8 @@ void CObjHero::Action()
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
+
+		
 }
 
 

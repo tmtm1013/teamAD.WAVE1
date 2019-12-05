@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include"GameL\DrawTexture.h"
+#include"GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -33,6 +34,9 @@ void CSceneGameOver::InitScene()
 	
 	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
+	Audio::LoadAudio(24, L"GameOver4.wav", BACK_MUSIC);
+	//バックミュージックスタート
+	Audio::Start(24);//音楽スタート
 
 
 	//ゲームオーバーオブジェクト作成

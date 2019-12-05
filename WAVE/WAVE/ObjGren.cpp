@@ -21,7 +21,7 @@ CObjGren::CObjGren(float x, float y)
 	m_by = y;
 
 	//“–‚½‚è”»’èHitBox‚ğì¬
-	Hits::SetHitBox(this, m_x, m_y, 36, 36, ELEMENT_PLAYER, OBJ_GRENADE, 1);
+	Hits::SetHitBox(this, m_x, m_y, 36, 36, ELEMENT_PLAYER, OBJ_GREN, 1);
 
 
 

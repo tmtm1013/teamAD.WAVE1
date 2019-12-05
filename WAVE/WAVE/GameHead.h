@@ -37,7 +37,6 @@ enum OBJ_NAME
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
-	OBJ_GRENADE,
 	OBJ_GREN,
 
 };
@@ -116,7 +115,6 @@ extern float idou;
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
-#include "ObjGrenade.h"
 #include "ObjTime.h"
 #include "ObjGren.h"
 //------------------------------------------------
