@@ -110,6 +110,8 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_block_type = 0;
+
 	flag = true;
 
 	//当たり判定用のHitBoxを作成
@@ -238,7 +240,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
-
+	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
 	{
 		if (m_f == true)
@@ -412,12 +414,15 @@ void CObjHero::Action()
 		hp += 50;
 
 	}
+
+	
+
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr|| hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(ELEMENT_ENEMY) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 1;
+			hp -= 10;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -427,10 +432,11 @@ void CObjHero::Action()
 			flag = true;
 		}
 
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(ELEMENT_ENEMY);
 
-		/*float r = hit_data[0]->r;
+ 		float r = hit_data[1]->r;
+
 		if ((r < 45 && r >= 0) || r > 315)
 		{
 			m_vx = -5.0f; //左に移動させる。
@@ -438,7 +444,39 @@ void CObjHero::Action()
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
-		}*/
+		}
+
+	}
+
+	//遠距離敵の攻撃接触でHeroのHPが減る
+	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
+	{
+
+		if (flag == true && hp_time <= 0.0f)
+		{
+			hp -= 30;
+
+			flag = false;
+			hp_time = 1.6f;
+		}
+		if (hp_time >= 0.0f)
+		{
+			flag = true;
+		}
+
+		//OBJ_BULLETと当たると主人公がノックバックする
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
+		
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}
 	}
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 
@@ -453,6 +491,8 @@ void CObjHero::Action()
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
+
+		
 }
 
 

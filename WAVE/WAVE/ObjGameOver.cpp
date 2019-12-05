@@ -91,7 +91,7 @@ void CObjGameOver::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(15, &src, &dst, c, 0.0f);
+	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//仮マウス位置表示
 	wchar_t str[256];

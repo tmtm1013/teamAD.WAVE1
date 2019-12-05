@@ -65,11 +65,12 @@ void CSceneBlock2::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	/*
+	
 	//音楽読み込み
-	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
-	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	*/
+	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
+	Audio::Start(22);//音楽スタート
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//ハンドガン発射音読み込み
 	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み

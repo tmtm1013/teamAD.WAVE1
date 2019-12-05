@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBlock.h"
@@ -21,6 +22,8 @@ CObjBlock::CObjBlock(int map[10][100])
 //イニシャライズ
 void CObjBlock::Init()
 {
+	
+
 	m_scroll = 0.0f;
 
 }
@@ -38,14 +41,14 @@ void CObjBlock::Action()
 	//後方スクロールライン
 	if (hx < 350)
 	{
-		hero->SetX(300);
+		hero->SetX(350);
 		m_scroll -= hero->GetVX();
 	}
 
 	//前方スクロールライン
 	if (hx > 450)
 	{
-		hero->SetX(300);
+		hero->SetX(450);
 		m_scroll -= hero->GetVX();
 	}
 
