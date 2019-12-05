@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage00003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage000003.csv", &size);//外部データ読み込み
 
 	int map3[10][100];
 	int count = 1;
@@ -105,7 +105,7 @@ void CSceneBlock3::InitScene()
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
-	Draw::LoadImageW(L"Animation/motion1.png", 15, TEX_SIZE_2048); //ボス
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 

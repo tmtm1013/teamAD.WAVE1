@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\Bullet">
       <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\BossStage">
+      <UniqueIdentifier>{062f4ed5-33b4-4d73-b745-3875c29c546d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -198,9 +201,6 @@
     <ClCompile Include="ObjTime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjObstacle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBlock2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -220,6 +220,21 @@
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjGren.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss1.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGre.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBossStage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -314,9 +329,6 @@
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="OBJBoss.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjEnemyLongdistance.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -338,9 +350,6 @@
     <ClInclude Include="ObjTime.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjObstacle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjBlock2.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -360,6 +369,18 @@
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjGren.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBoss1.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBoss2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBossStage.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

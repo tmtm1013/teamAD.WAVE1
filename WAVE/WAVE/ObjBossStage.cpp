@@ -6,30 +6,30 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
-#include "ObjBlock.h"
+#include "ObjBossStage.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 extern float m_hp;
 
-CObjBlock::CObjBlock(int map[10][100])
+CObjBossStage::CObjBossStage(int map4[10][20])
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(10 * 100));
+	memcpy(m_map4, map4, sizeof(int)*(10 * 20));
 }
 
 //イニシャライズ
-void CObjBlock::Init()
+void CObjBossStage::Init()
 {
-	
+
 
 	m_scroll = 0.0f;
 
 }
 
 //アクション
-void CObjBlock::Action()
+void CObjBossStage::Action()
 {
 	//主人公の位置を取得
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -145,9 +145,9 @@ void CObjBlock::Action()
 		}
 	}*/
 
-	
 
-	
+
+
 	//敵出現ライン
 	//主人公の位置+500を敵出現ラインにする
 	float line = hx + (-m_scroll) + 500;
@@ -161,63 +161,63 @@ void CObjBlock::Action()
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
 	{
-		
+
 		//列の中から４を探す
-			if (m_map[i][ex] == 4)
+		if (m_map4[i][ex] == 4)
+		{
+
+			//4があれば、敵を出現
+			CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
+
+			//敵出現場所の値を0にする
+			m_map4[i][ex] = 0;
+
+		}
+
+		//列の中から6を探す
+		if (m_map4[i][rx] == 6)
+		{
+			CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_BOSS, 11);
+
+			//敵出現場所の値を0にする
+			m_map4[i][rx] = 0;
+
+
+			//HPが0になったら破棄
+			if (m_hp <= 0)
 			{
 
-				//4があれば、敵を出現
-				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
-
-				//敵出現場所の値を0にする
-				m_map[i][ex] = 0;
-			
-		    }
-
-			//列の中から6を探す
-			if (m_map[i][rx] == 6)
-			{
-				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_BOSS, 11);
-
-				//敵出現場所の値を0にする
-				m_map[i][rx] = 0;
+				this->SetStatus(false);
+				//Hits::DeleteHitBox(this);
 
 
-				//HPが0になったら破棄
-				if (m_hp <= 0)
-				{
 
-					this->SetStatus(false);
-					//Hits::DeleteHitBox(this);
-
-					
-
-					//敵消滅でシーンをステージ２に移行する
-					//Scene::SetScene(new SceneMain());
-
-				}
+				//敵消滅でシーンをステージ２に移行する
+				//Scene::SetScene(new SceneMain());
 
 			}
 
-			//列の中から７を探す
-			if (m_map[i][dx] == 7)
-			{
+		}
 
-				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMY, 13);
+		//列の中から７を探す
+		if (m_map4[i][dx] == 7)
+		{
 
-				//敵出現場所の値を0にする
-				m_map[i][dx] = 0;
-			}
-			
+			CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY, 13);
+
+			//敵出現場所の値を0にする
+			m_map4[i][dx] = 0;
+		}
+
 	}
-	
+
 }
 
 //ドロー
-void CObjBlock::Draw()
+void CObjBossStage::Draw()
 {
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -249,9 +249,9 @@ void CObjBlock::Draw()
 	//マップチップによるblock設置
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 20; j++)
 		{
-			if (m_map[i][j] > 0)
+			if (m_map4[i][j] > 0)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f;
@@ -271,17 +271,17 @@ void CObjBlock::Draw()
 					BlockDraw(320.0f + 64.0f, 64.0f, &dst, c);
 				}
 				*/
-			    if (m_map[i][j] == 4)
+				if (m_map4[i][j] == 4)
 				{
 					;//敵配置用の番号のため何もしない
 				}
 
-				if (m_map[i][j] == 6)
+				if (m_map4[i][j] == 6)
 				{
 					;
 				}
 
-				if (m_map[i][j] == 7)
+				if (m_map4[i][j] == 7)
 				{
 					;
 				}
@@ -304,7 +304,7 @@ void CObjBlock::Draw()
 //引数4 float c[]:カラー情報
 //ブロックを64*64限定描画用。リソース切り取りのみx・yで
 //設定でできる
-void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
+void CObjBossStage::BlockDraw(float x, float y, RECT_F*dst, float c[])
 {
 	RECT_F src;
 	src.m_top = y;
@@ -329,8 +329,8 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 //引数10 int*   bt         :下部分判定時、特殊なブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
-void CObjBlock::BlockHit(
-	float *x, float *y, bool scroll_on, 
+void CObjBossStage::BlockHit(
+	float *x, float *y, bool scroll_on,
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -347,9 +347,9 @@ void CObjBlock::BlockHit(
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 20; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			if (m_map4[i][j] > 0 && m_map4[i][j] != 4)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -394,8 +394,8 @@ void CObjBlock::BlockHit(
 							*down = true;
 							*y = by - 64.0f;
 							//種類を渡すのスタートとゴールのみ変更する
-							if (m_map[i][j] >= 2)
-								*bt = m_map[i][j];
+							if (m_map4[i][j] >= 2)
+								*bt = m_map4[i][j];
 							*vy = 0.0f;
 						}
 						if (r > 135 && r < 225)
@@ -421,10 +421,10 @@ void CObjBlock::BlockHit(
 		}
 	}
 }
-void CObjBlock::BlockBulletHit(
-	float *x, float *y, bool scroll_on,float *m_sx,float *m_sy,
+void CObjBossStage::BlockBulletHit(
+	float *x, float *y, bool scroll_on, float *m_sx, float *m_sy,
 	bool *up, bool *down, bool *left, bool *right,
-	float *vx, float *vy ,int*bt
+	float *vx, float *vy, int*bt
 )
 {
 	//衝突確認用フラグの初期化
@@ -439,7 +439,7 @@ void CObjBlock::BlockBulletHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			if (m_map4[i][j] > 0 && m_map4[i][j] != 4)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -449,7 +449,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 64))
+				if ((*x + (-scroll) + 16 > bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 64))
 				{
 					//上下左右判定
 
@@ -497,7 +497,7 @@ void CObjBlock::BlockBulletHit(
 						{
 							//下
 							*up = true;
-							*y +64;
+							*y + 64;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
@@ -510,7 +510,7 @@ void CObjBlock::BlockBulletHit(
 	}
 }
 //内積関数
-float CObjBlock::Dot(float ax, float ay, float bx, float by)
+float CObjBossStage::Dot(float ax, float ay, float bx, float by)
 {
 	float t = 0.0f;
 
@@ -519,7 +519,7 @@ float CObjBlock::Dot(float ax, float ay, float bx, float by)
 	return t;
 }
 //外積関数
-float CObjBlock::Cross(float ax, float ay, float bx, float by)
+float CObjBossStage::Cross(float ax, float ay, float bx, float by)
 {
 	float t = 0.0f;
 
@@ -532,7 +532,7 @@ float CObjBlock::Cross(float ax, float ay, float bx, float by)
 #define SGN(x) 1-(x<=0)-(x<0)
 
 //線と線と交差判定
-bool CObjBlock::LineCrossPoint(
+bool CObjBossStage::LineCrossPoint(
 	float a1x, float a1y, float a2x, float a2y,
 	float b1x, float b1y, float b2x, float b2y,
 	float*out_px, float*out_py
@@ -591,7 +591,7 @@ bool CObjBlock::LineCrossPoint(
 }
 
 //主人公と壁の交差判定
-bool CObjBlock::HeroBlockCrossPoint(
+bool CObjBossStage::HeroBlockCrossPoint(
 	float x, float y, float vx, float vy,
 	float *out_px, float *out_py, float*out_len
 )
@@ -607,13 +607,13 @@ bool CObjBlock::HeroBlockCrossPoint(
 	{64,64,0,64},//←
 	{0,64,0,0},//↑
 	};
-	
+
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 20; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			if (m_map4[i][j] > 0 && m_map4[i][j] != 4)
 			{
 				//ブロックの4辺からこうてんを探す
 				for (int k = 0; k < 4; k++)

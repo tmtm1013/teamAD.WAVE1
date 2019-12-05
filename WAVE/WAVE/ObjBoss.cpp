@@ -138,17 +138,6 @@ void CObjBoss::Action()
 		m_vy = 0;
 	}
 
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
-
-	//ブロックとの当たり判定実行
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy, &d);
-
-
-
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -238,6 +227,7 @@ void CObjBoss::Action()
 			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
 			//ボス消滅でシーンをステージ２に移行する
 			Scene::SetScene(new CSceneBlock2());
+			
 		}
 		else if (((UserData*)Save::GetData())->SceneNum == 2) 
 		{
@@ -309,6 +299,6 @@ void CObjBoss::Draw()
 
 
 	//描画
-	Draw::Draw(15, &src, &dst, c, 0.0f);
+	Draw::Draw(13, &src, &dst, c, 0.0f);
 
 }

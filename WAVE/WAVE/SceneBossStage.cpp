@@ -13,9 +13,9 @@
 using namespace GameL;
 
 //使用ヘッダー
-#include "SceneBlock2.h"
+#include "SceneBossStage.h"
 #include "GameHead.h"
-#include "ObjBlock.h"
+#include "ObjBossStage.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
 //#include "ObjMain.h"
@@ -24,35 +24,35 @@ using namespace GameL;
 
 
 //コンストラクタ
-CSceneBlock2::CSceneBlock2()
+SceneBossStage::SceneBossStage()
 {
 
 }
 
 //デストラクタ
-CSceneBlock2::~CSceneBlock2()
+SceneBossStage::~SceneBossStage()
 {
 
 }
 
 //初期化メソッド
-void CSceneBlock2::InitScene()
+void SceneBossStage::InitScene()
 {
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage00002.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"bossstage(2).csv", &size);//外部データ読み込み
 
-	int map[10][100];
+	int map4[10][20];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 20; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map[i][j] = w;
+			map4[i][j] = w;
 			count += 2;
 
 		}
@@ -65,14 +65,14 @@ void CSceneBlock2::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	
+
 	//音楽読み込み
-	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
+	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
 	//音楽情報の読み込み
 	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
 	Audio::Start(0);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	
+
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//ハンドガン発射音読み込み
 	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み
@@ -125,8 +125,7 @@ void CSceneBlock2::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//blockオブジェクト作成
-
-	CObjBlock*objb = new CObjBlock(map);
+    CObjBossStage*objb = new CObjBossStage(map4);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
@@ -220,7 +219,7 @@ void CSceneBlock2::InitScene()
 }
 
 //実行中メソッド
-void CSceneBlock2::Scene()
+void SceneBossStage::Scene()
 {
 	m_time++;
 	m_time2++;

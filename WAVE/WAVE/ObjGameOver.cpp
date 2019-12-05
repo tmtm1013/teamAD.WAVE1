@@ -71,7 +71,7 @@ void CObjGameOver::Action()
 void CObjGameOver::Draw()
 {
 
-	Draw::LoadImage(L"GAMEOVER01.png", 15, TEX_SIZE_512);
+	
 
 	float c[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -91,7 +91,7 @@ void CObjGameOver::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 
 	//仮マウス位置表示
 	wchar_t str[256];
