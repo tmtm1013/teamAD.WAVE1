@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL/Audio.h"
 
 #include "SceneMain.h"
 #include "ObjTitle.h"
@@ -37,7 +38,7 @@ void CObjGameOver::Action()
 		if (m_mou_r == true)
 		{
 			Scene::SetScene(new CSceneMain());
-
+			Audio::Stop(24); //BGMストップ
 		}
 	}
 
@@ -49,7 +50,7 @@ void CObjGameOver::Action()
 		if (m_mou_r == true)
 		{
 			Scene::SetScene(new CSceneTitle());
-
+			Audio::Stop(24); //BGMストップ
 		}
 	}
 
