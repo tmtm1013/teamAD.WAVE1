@@ -7,17 +7,12 @@
 #include "ObjEnemyLongdistance.h"
 #include "GameL\HitBoxManager.h"
 
-#define GRAUND (546.0f)
 
-
-
-extern float idou;//主人公が動いているか確認用グローバル変数
 
 
 //使用するネームスペース
 using namespace GameL;
 
-float m_hp = 100;
 
 //コンストラクタ
 CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
@@ -54,27 +49,24 @@ void CObjEnemyLongdistance::Init()
 	m_hp = 100;//ENEMYのHP
 
 
-	m_move = false;//true=右
-
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMYLONGDISTANCE, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 //アクション
 void CObjEnemyLongdistance::Action()
 {
 	
-
-
-
 	//通常速度
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
+
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -82,22 +74,15 @@ void CObjEnemyLongdistance::Action()
 	float y = obj->GetYY();
 
 
-	/*
-	//Enemyにスクロールの影響を与える
-	ScrollEnemy += m_px;
-	ScrollEnemy += block->GetScroll();
-	//主人公の位置情報にスクロールの影響を与える
-	Scrollplayer += block->GetScroll();
-	Scrollplayer += x;
-	*/
-
-
+	
 	m_time++;//弾丸発射用タイムインクリメント
+
+
 
 	//弾丸用プログラム
 	if (m_time >100)
 	{
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		if (!(x + 150.0f > m_px +( block->GetScroll()) &&x - 200.0f < m_px +( block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			m_time = 0;
 
@@ -111,6 +96,7 @@ void CObjEnemyLongdistance::Action()
 
 	}
 
+	
 
 	//ここが主人公の向きに移動する条件を書く。
 	if ((m_px + block->GetScroll()) < x)//右
@@ -122,7 +108,14 @@ void CObjEnemyLongdistance::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		m_move = true;
+		if (m_hit_left == true )//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		{
+
+
+			m_vy = -13;
+
+
+		}
 
 	}
 	else//左
@@ -134,19 +127,26 @@ void CObjEnemyLongdistance::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		m_move = false;
+		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if ( m_hit_right == true)
+		{
 
+			
+			m_vy = -13;
+
+
+		}
 
 
     }
-
+	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
 		m_ani_time = 0;
 		m_ani_move = 1;
 	}
-
+	//アニメーション
 	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
@@ -161,10 +161,6 @@ void CObjEnemyLongdistance::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
-	{
-		m_vy = 0;
-	}
 
 
 	//ブロックタイプ検知用の変数がないためのダミー
@@ -176,6 +172,7 @@ void CObjEnemyLongdistance::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
+
 	
 	//位置の更新
 	m_px += m_vx;
@@ -189,9 +186,11 @@ void CObjEnemyLongdistance::Action()
 	}
 	
 
-//HitBoxの位置の変更
-		CHitBox*hit = Hits::GetHitBox(this);
-		hit->SetPos(m_px+32+ block->GetScroll(), m_py);
+    //HitBoxの位置の変更
+    CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px+32+ block->GetScroll(), m_py);
+
+
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
@@ -225,6 +224,14 @@ void CObjEnemyLongdistance::Action()
 
 
 	}
+
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
+
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
@@ -307,11 +314,3 @@ void CObjEnemyLongdistance::Draw()
 	}
 }
 
-
-/*
-		dst.m_top = -64.0f + m_py;
-		dst.m_left = (pb->GetScroll()+( m_px-54.0f *m_posture));
-		dst.m_right =( m_px +(132 * m_posture+pb->GetScroll()));
-		dst.m_bottom = 68.0f + m_py;
-
-*/

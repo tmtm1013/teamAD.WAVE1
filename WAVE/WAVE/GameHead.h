@@ -25,14 +25,12 @@ enum OBJ_NAME
 	OBJ_REVOLUTION_BULLET,
 
 	OBJ_BACKGROUND,
+
+	OBJ_FLYINGENEMY,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYRECOVERY,
-	OBJ_ENEMYAMMUNITION,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
-	OBJ_BOSS1,
-	OBJ_BOSS2,
-
+	
 
 
 
@@ -79,7 +77,8 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 extern float m_hp;
 extern float kazu;
-extern float idou;
+extern float Overlap;
+
 
 
 //------------------------------------------------
@@ -95,14 +94,14 @@ extern float idou;
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
+
+
 #include "ObjEnemy.h"
-
 #include "ObjEnemyJump.h"
-#include "ObjEnemyAmmunition.h"
-
 #include "ObjEnemyLongdistance.h"
-
+#include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
+
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
