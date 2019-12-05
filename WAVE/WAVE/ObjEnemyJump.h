@@ -45,5 +45,9 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+
+	float m_sx ;  //画像サイズ保管用変数
+	float m_sy ;
+
 	
 };

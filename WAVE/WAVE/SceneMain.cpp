@@ -64,11 +64,18 @@ void CSceneMain::InitScene()
 
 	//グラフィック読み込み
 	//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
-	/*
+	
+
 	//音楽読み込み
-	Audio::Loadaudio(0, L"wav".BACK_MUSIC);
-	Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	*/
+	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.8f);
+	Audio::Start(21);//音楽スタート
+
+
+
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -89,13 +96,6 @@ void CSceneMain::InitScene()
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
-	//JumpEnemyグラフィック読み込み
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
-
-	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
-
-	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
-
 	//体力グラフィック読み込み
 	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
@@ -111,11 +111,14 @@ void CSceneMain::InitScene()
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
-	//bossのグラフィック読み込み
-	Draw::LoadImageW(L"motion1.png", 12, TEX_SIZE_512);
+	//ジャンプする敵
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024);
 
-	//Longdistanceの読み込み
-	Draw::LoadImageW(L"motion3.png", 13, TEX_SIZE_512);
+	//ボス
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 
+
+	//弾丸を飛ばす敵
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); 
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

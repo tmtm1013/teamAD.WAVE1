@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\UserData.h"
 
 #include "GameHead.h"
 #include "ObjEnemyLongdistance.h"
@@ -58,11 +59,7 @@ void CObjEnemyLongdistance::Init()
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
-
-	ScrollEnemy = 0;
-
-
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMYLONGDISTANCE, 1);
 }
 
 //アクション
@@ -184,13 +181,7 @@ void CObjEnemyLongdistance::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	/*
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-	
-	
+
 
 	if (m_px < 0.0f)
 	{
@@ -241,7 +232,8 @@ void CObjEnemyLongdistance::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-	
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
 
 	}
 
