@@ -15,7 +15,7 @@
 using namespace GameL;
 
 //主人公と接触しているかどうかを確認する。
-extern float Overlap;
+float Overlap;
 
 
 

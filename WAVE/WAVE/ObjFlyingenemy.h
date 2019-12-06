@@ -47,6 +47,7 @@ private:
 
 	//ˆÚ“®‚ÌŒü‚«§Œä—p
 	bool m_move;
+	bool elevator_flag;
 
 	//ENEMY‚ÌHP
 	int m_hp;
