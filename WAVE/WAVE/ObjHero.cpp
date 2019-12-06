@@ -131,8 +131,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 100;//主人公のヒットポイント用
-	hp_max = 100;
+	hp = 300;//主人公のヒットポイント用
+	hp_max = 300;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }
@@ -313,6 +313,17 @@ void CObjHero::Action()
 		m_speed_power = 0.5f;
 		m_ani_max_time = 2;
 	}
+
+	
+	//領域外に出たらゲームオーバー画面に移行
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+
+		Scene::SetScene(new CSceneGameOver());
+	}
+	
+	
 
 	//主人公の向きを制御
 	//マウスの位置を取得
@@ -502,6 +513,18 @@ void CObjHero::Action()
 			flag = true;
 		}
 
+		/*//OBJ_BULLETと当たると主人公がノックバックする
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f; //左に移動させる。
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f; //右に移動させる。
+		}*/
 	}
 	/*
 	//主人公のHPがゼロになった時主人公が消える

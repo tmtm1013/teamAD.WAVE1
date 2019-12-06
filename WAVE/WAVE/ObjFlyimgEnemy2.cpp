@@ -4,7 +4,7 @@
 #include "GameL\UserData.h"
 
 #include "GameHead.h"
-#include "ObjFlyingenemy.h"
+#include "ObjFlyingEnemy2.h"
 #include "GameL\HitBoxManager.h"
 
 
@@ -15,7 +15,7 @@ using namespace GameL;
 
 
 //コンストラクタ
-CObjFlyingenemy::CObjFlyingenemy(float x, float y)
+CObjFlyingEnemy2::CObjFlyingEnemy2(float x, float y)
 {
 	m_px = x;    //位置
 	m_py = y;
@@ -23,7 +23,7 @@ CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 }
 
 //イニシャライズ
-void CObjFlyingenemy::Init()
+void CObjFlyingEnemy2::Init()
 {
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -48,8 +48,6 @@ void CObjFlyingenemy::Init()
 
 	m_hp = 100;//ENEMYのHP
 
-	elevator_flag = true;
-
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
@@ -57,7 +55,7 @@ void CObjFlyingenemy::Init()
 }
 
 //アクション
-void CObjFlyingenemy::Action()
+void CObjFlyingEnemy2::Action()
 {
 
 	//通常速度
@@ -156,23 +154,6 @@ void CObjFlyingenemy::Action()
 
 
 
-	//摩擦の計算   -(運動energy X 摩擦係数)
-	m_vx += -(m_vx*0.098);
-
-
-
-	//自由落下運動
-	
-	if (m_py<300) {
-	    m_vy += 0.1 / (2.0f);
-	}
-	if (m_py > 300)
-	{
-		m_vy -= 0.1 / (2.0f);
-	}
-
-
-
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
 
@@ -258,7 +239,7 @@ void CObjFlyingenemy::Action()
 }
 
 //ドロー
-void CObjFlyingenemy::Draw()
+void CObjFlyingEnemy2::Draw()
 {
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);

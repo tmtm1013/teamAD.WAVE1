@@ -32,7 +32,7 @@ CSceneGameOver::~CSceneGameOver()
 void CSceneGameOver::InitScene()
 {
 	
-	Draw::LoadImage(L"GAMEOVER01.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 	Audio::LoadAudio(24, L"GameOver4.wav", BACK_MUSIC);
 	//バックミュージックスタート

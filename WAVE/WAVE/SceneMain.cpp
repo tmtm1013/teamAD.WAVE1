@@ -40,7 +40,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book11.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book15.csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
@@ -99,11 +99,8 @@ void CSceneMain::InitScene()
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
-
 	//ジャンプする敵
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_512);
 
 	//ボス
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 
@@ -156,6 +153,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);

@@ -9,10 +9,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjFlyingenemy :public CObj
+class CObjFlyingEnemy2 :public CObj
 {
-public:CObjFlyingenemy(float x, float y);
-	   ~CObjFlyingenemy() {};
+public:CObjFlyingEnemy2(float x, float y);
+	   ~CObjFlyingEnemy2() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -47,7 +47,6 @@ private:
 
 	//移動の向き制御用
 	bool m_move;
-	bool elevator_flag;
 
 	//ENEMYのHP
 	int m_hp;

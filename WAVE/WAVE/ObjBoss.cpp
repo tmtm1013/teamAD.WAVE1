@@ -228,16 +228,26 @@ void CObjBoss::Action()
 			Audio::Stop(21); //BGMストップ
 			//敵消滅でシーンをゲームクリアに移行する
 			Scene::SetScene(new CSceneBlock2());
+			
 		}
 		else if (((UserData*)Save::GetData())->SceneNum == 2) 
 		{
 			((UserData*)Save::GetData())->SceneNum++;
-			//敵消滅でシーンをゲームクリアに移行する
+			//ボス消滅でシーンをステージ３に移行する
 	    	Scene::SetScene(new CSceneBlock3());
 
 
 
 		}
+		else if (((UserData*)Save::GetData())->SceneNum == 3)
+		{
+			((UserData*)Save::GetData())->SceneNum++;
+			//ボス消滅でクリア画面に移行する
+			Scene::SetScene(new CSceneClear());
+		}
+
+
+
 		/*else if (kazu == 3) {
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
@@ -250,11 +260,13 @@ void CObjBoss::Action()
 	}
 
 
+
 }
 
 //ドロー
 void CObjBoss::Draw()
 {
+	//スクロール情報取得
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//歩くアニメーション情報を登録
@@ -279,12 +291,13 @@ void CObjBoss::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	
-	//表示位置の設定
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f * m_posture) + m_px + pb->GetScroll();
-	dst.m_right = (64 - 64.0f * m_posture) + m_px + pb->GetScroll();
-	dst.m_bottom = 64.0f + m_py;
+
+	///表示位置の設定
+	dst.m_top = -64.0f + m_py;
+	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
+	dst.m_right = m_px + (132 + pb->GetScroll());
+	dst.m_bottom = 68.0f + m_py;
+
 
 	//描画
 	Draw::Draw(13, &src, &dst, c, 0.0f);
