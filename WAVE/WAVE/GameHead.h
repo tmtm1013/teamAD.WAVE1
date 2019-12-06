@@ -24,6 +24,7 @@ enum OBJ_NAME
 	OBJ_BACKGROUND,
 
 	OBJ_FLYINGENEMY,
+	OBJ_FLYINGENEMY2,
 	OBJ_ENEMYJUMP,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
@@ -95,6 +96,7 @@ extern float Overlap;
 #include "ObjEnemyJump.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
+#include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
 
 

@@ -72,6 +72,9 @@
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>敵</Filter>
     </ClCompile>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>敵</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h" />
@@ -137,6 +140,9 @@
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingEnemy2.h">
       <Filter>敵</Filter>
     </ClInclude>
   </ItemGroup>
