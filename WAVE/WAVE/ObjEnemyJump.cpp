@@ -13,8 +13,6 @@
 
 #define GRAUND (546.0f)
 
-extern float idou;//主人公が動いているか確認用グローバル変数
-
 
 //使用するネームスペース
 using namespace GameL;
@@ -78,7 +76,7 @@ void CObjEnemyJump::Action()
 	//乱数の種を初期化
 	srand(time(NULL));
 	//1～100のランダムな数値
-	m_rnd = rand() % 3 + 1;
+	m_rnd = rand() % 10 + 1;
 	
 
 	//通常速度
@@ -95,54 +93,46 @@ void CObjEnemyJump::Action()
 	float y = obj->GetYY();
 
 
-	//ここに敵が主人公の向きに移動する条件を書く。
-	if (x <= m_px)//右
+
+	//ここが主人公の向きに移動する条件を書く。
+	if ((m_px + block->GetScroll()) < x)//右
 	{
-
-		m_move = true;
-
-
-
-	}
-	if (x >= m_px)//左
-	{
-
-
-		m_move = false;
-
-
-
-	}
-	if (m_move == false)
-	{
-		if (x == 80 || x == 300) {
-			//主人公が動いてるときスクロール分の値を適用させた行動をする
-			if (idou == 1) {
-
-
-				m_vx += m_speed_power - 0.3f;
-				m_posture = 1.0f;
-				m_ani_time += 1;
-
-
-				//ランダムで決まる数値が1の時ジャンプする
-				if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-					if (m_hit_down == true)//敵が地面にいるときジャンプする
-					{
-						m_vy = -16;
-					}
-
-
-				}
-
-
-			}
-		}
 
 		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
-		m_posture = 1.0f;
+		m_posture = 1.0;
+		m_ani_time += 1;
+		m_ani_move = 1;
+
+
+		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if (m_hit_left == true)
+		{
+
+
+			m_vy = -13;
+
+
+		}
+
+
+
+		//ランダムで決まる数値が1の時ジャンプする
+		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+			if (m_hit_down == true)//敵が地面にいるときジャンプする
+			{
+				m_vy = -16;
+			}
+
+		}
+	}
+	else//左
+	{
+
+		//主人公が移動していない時のプログラム
+		m_vx -= m_speed_power;
+		m_posture = 0.0;
 		m_ani_time += 1;
 		m_ani_move = 1;
 
@@ -155,10 +145,10 @@ void CObjEnemyJump::Action()
 				}
 
 
-			}
+			m_vy = -13;
 
 
-	}
+		}
 
 	else if (m_move == true)
 	{
@@ -177,13 +167,13 @@ void CObjEnemyJump::Action()
 				//ランダムで決まる数値が1の時ジャンプする
 				if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
 
-					if (m_hit_down == true)//敵が地面にいるときジャンプする
-					{
-						m_vy = -16;
-					}
-
-				}
+			if (m_hit_down == true)//敵が地面にいるときジャンプする
+			{
+				m_vy = -16;
 			}
+
+		}
+	}
 
 			
 			//主人公が動いてるときスクロール分の値を適用させた行動をする
@@ -218,7 +208,7 @@ void CObjEnemyJump::Action()
 		m_ani_frame += 1;
 		m_ani_time = 0;
 	}
-
+	//アニメーション
 	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
@@ -232,10 +222,6 @@ void CObjEnemyJump::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
-	{
-		m_vy = 0;
-	}
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
@@ -253,19 +239,13 @@ void CObjEnemyJump::Action()
 	m_py += m_vy;
 	
 
-	
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px+block->GetScroll(), m_py);
 
 
-	//落下した敵を消去する。
-	if (m_py > 600.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
-	}
+	
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
@@ -284,6 +264,14 @@ void CObjEnemyJump::Action()
 
 
 	}
+
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
+
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
@@ -300,7 +288,6 @@ void CObjEnemyJump::Action()
 	}
 
 	
-
 }
 
 

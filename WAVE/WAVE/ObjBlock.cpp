@@ -11,7 +11,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float m_hp;
+//extern float m_hp;
 
 CObjBlock::CObjBlock(int map[10][100])
 {
@@ -167,7 +167,7 @@ void CObjBlock::Action()
 			{
 
 				//4があれば、敵を出現
-				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
+				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
 
 				//敵出現場所の値を0にする
@@ -185,19 +185,6 @@ void CObjBlock::Action()
 				m_map[i][rx] = 0;
 
 
-				//HPが0になったら破棄
-				if (m_hp <= 0)
-				{
-
-					this->SetStatus(false);
-					//Hits::DeleteHitBox(this);
-
-					
-
-					//敵消滅でシーンをステージ２に移行する
-					//Scene::SetScene(new SceneMain());
-
-				}
 
 			}
 

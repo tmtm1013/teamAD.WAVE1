@@ -97,7 +97,12 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+
+	//blockオブジェクト作成
+
+	CObjBlock*objb = new CObjBlock(map);
+	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);

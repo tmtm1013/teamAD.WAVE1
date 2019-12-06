@@ -18,8 +18,6 @@ CObjEnemy::CObjEnemy(float x, float y)
 	m_py = y;
 }
 
-extern float idou;
-
 //イニシャライズ
 void CObjEnemy::Init()
 {
@@ -60,7 +58,7 @@ void CObjEnemy::Init()
 //アクション
 void CObjEnemy::Action()
 {
-	
+
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -78,8 +76,9 @@ void CObjEnemy::Action()
 
 
 	//ここが主人公の向きに移動する条件を書く。
-	if ((m_px  + block->GetScroll()) < x)//右
+	if ((m_px + block->GetScroll()) < x)//右
 	{
+
 
 		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
@@ -87,9 +86,18 @@ void CObjEnemy::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		
 
+		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if (m_hit_left == true)
+		{
+
+
+			m_vy = -13;
+
+
+		}
 	}
+
 	else//左
 	{
 
@@ -99,7 +107,16 @@ void CObjEnemy::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		
+		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if (m_hit_right == true)
+		{
+
+
+			m_vy = -13;
+
+
+		}
+
 
 	}
 
@@ -107,97 +124,100 @@ void CObjEnemy::Action()
 	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
-			m_ani_frame += 1;
-			m_ani_time = 0;
+		m_ani_frame += 1;
+		m_ani_time = 0;
 	}
 	//アニメーション
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-		}
+	if (m_ani_frame == 4)
+	{
+		m_ani_frame = 0;
+	}
 
 
 
 
-		//摩擦の計算   -(運動energy X 摩擦係数)
-		m_vx += -(m_vx*0.098);
+	//摩擦の計算   -(運動energy X 摩擦係数)
+	m_vx += -(m_vx*0.098);
 
 
 
 
-		//自由落下運動
-		if (m_hit_down == false)
-		{
-			m_vy += 9.8 / (16.0f);
-		}
+	//自由落下運動
+	if (m_hit_down == false)
+	{
+		m_vy += 9.8 / (16.0f);
+	}
 
 
 
 
-		//位置の更新
-		m_px += m_vx;
-		m_py += m_vy;
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
 
 
 
 
-		//落下した敵を消去する。
-		if (m_py > 600.0f)
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
-		}
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + block->GetScroll(), m_py);
 
-	
-		//HitBoxの位置の変更
-		CHitBox*hit = Hits::GetHitBox(this);
-		hit->SetPos(m_px + block->GetScroll(), m_py);
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
+	{
+
+		m_hp -= 50;
 
 
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
 
-	    //敵と弾丸が接触したらHPが減る
-	    if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
-	    {
+		m_hp -= 15;
 
-			m_hp -= 50;
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
+	{
+
+		m_hp -= 10;
+
+
+	}
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
+	{
+
+		m_hp -= 40;
 
 
 	}
 
-		//敵と弾丸が接触したらHPが減る
-		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-		{
 
-			m_hp -= 15;
+	//ブロック当たり判定
+	int d = 0;
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
+		, &d
+	);
 
+	// 落下した敵を消去する。
+	if (m_py > 600.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
 
-		}
-
-		//敵と弾丸が接触したらHPが減る
-		if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
-		{
-
-			m_hp -= 10;
-
-
-		}
-		//敵と弾丸が接触したらHPが減る
-		if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
-		{
-
-			m_hp -= 40;
+	//HPが0になったら破棄
+	if (m_hp <= 0)
+	{
 
 
-		}
-
-
-		//ブロック当たり判定
-		int d = 0;
-		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		pb->BlockHit(&m_px, &m_py, false,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
-			, &d
-		);
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 
 		//領域外に出たらゲームオーバー画面に移行
 		if (m_py > 600.0f)
@@ -208,35 +228,26 @@ void CObjEnemy::Action()
 		}
 
 
-		//HPが0になったら破棄
-		if (m_hp <= 0)
+		if (flag == true)
 		{
-
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-
-
-			if (flag == true)
-			{
-				//アイテムオブジェクト作成	
-				CObjItem*obju = new CObjItem(m_px, m_py);
-				Objs::InsertObj(obju, OBJ_ITEM, 7);
-				flag = false;
-			}
-
-
-
-			//敵が消滅したら+100点
-			((UserData*)Save::GetData())->m_point += 100;
-
-
-
-			//敵消滅でシーンをゲームクリアに移行する
-			//Scene::SetScene(new CSceneClear());
-
+			//アイテムオブジェクト作成	
+			CObjItem*obju = new CObjItem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_ITEM, 7);
+			flag = false;
 		}
+
+
+
+		//敵が消滅したら+100点
+		((UserData*)Save::GetData())->m_point += 100;
+
+
+
+		//敵消滅でシーンをゲームクリアに移行する
+		//Scene::SetScene(new CSceneClear());
+
+	}
+
 	
 }
 

@@ -10,6 +10,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+extern float Overlap;
+
+
 CObjHomingBullet::CObjHomingBullet(float x, float y)
 {
 	m_x = x;
@@ -64,6 +67,8 @@ void CObjHomingBullet::Action()
 	button = true;
 
 
+	
+
 
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -72,6 +77,11 @@ void CObjHomingBullet::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}
+
+
+
+
+
 	//領域外に出たら弾丸を破棄する
 	if (m_x > 800.0f)
 	{
