@@ -48,6 +48,7 @@ void CObjFlyingenemy::Init()
 
 	m_hp = 100;//ENEMY‚ÌHP
 
+	elevator_flag = true;
 
 	m_time = 0;//’eŠÛ—pƒ^ƒCƒ€
 
@@ -158,8 +159,17 @@ void CObjFlyingenemy::Action()
 	//–€C‚ÌŒvZ   -(‰^“®energy X –€CŒW”)
 	m_vx += -(m_vx*0.098);
 
+
+
 	//©—R—‰º‰^“®
-	m_vy += 9.8 / (16.0f);
+	
+	if (m_py<300) {
+	    m_vy += 0.1 / (2.0f);
+	}
+	if (m_py > 300)
+	{
+		m_vy -= 0.1 / (2.0f);
+	}
 
 
 
