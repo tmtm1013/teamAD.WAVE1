@@ -41,7 +41,7 @@ void CSceneBlock3::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"stage000003.csv", &size);//外部データ読み込み
 
-	int map3[10][100];
+	int map[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
@@ -50,7 +50,7 @@ void CSceneBlock3::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map3[i][j] = w;
+			map[i][j] = w;
 			count += 2;
 
 		}
@@ -63,11 +63,11 @@ void CSceneBlock3::InitScene()
 
 		//グラフィック読み込み
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
-		/*
+
 		//音楽読み込み
-		Audio::Loadaudio(0, L"wav".BACK_MUSIC);
-		Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-		*/
+	Audio::LoadAudio(22, L"back3.wav", BACK_MUSIC);
+	Audio::Start(22);//音楽スタート
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 		//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -115,7 +115,7 @@ void CSceneBlock3::InitScene()
 
 	//blockオブジェクト作成
 
-	CObjBlock*objb = new CObjBlock(map3);
+	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 

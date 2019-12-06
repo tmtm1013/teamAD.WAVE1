@@ -15,7 +15,7 @@ using namespace GameL;
 //使用ヘッダー
 #include "SceneBossStage.h"
 #include "GameHead.h"
-#include "ObjBossStage.h"
+#include "ObjBlock.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
 //#include "ObjMain.h"
@@ -43,7 +43,7 @@ void SceneBossStage::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"bossstage(2).csv", &size);//外部データ読み込み
 
-	int map4[10][20];
+	int map[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
@@ -52,7 +52,7 @@ void SceneBossStage::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map4[i][j] = w;
+			map[i][j] = w;
 			count += 2;
 
 		}
@@ -66,20 +66,11 @@ void SceneBossStage::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
 
-	//音楽読み込み
-	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
 	//音楽情報の読み込み
 	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
-	Audio::Start(0);//音楽スタート
+	Audio::Start(22);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/gun2.wav", SOUND_TYPE::EFFECT);//ハンドガン発射音読み込み
-	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//ショットガン発射音読み込み
-	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//武器切り替え音読み込み
-	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//カートリッジ落下音
-	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
@@ -125,7 +116,7 @@ void SceneBossStage::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//blockオブジェクト作成
-    CObjBossStage*objb = new CObjBossStage(map4);
+	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 

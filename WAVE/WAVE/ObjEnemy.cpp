@@ -199,6 +199,13 @@ void CObjEnemy::Action()
 			, &d
 		);
 
+		//領域外に出たらゲームオーバー画面に移行
+		if (m_py > 600.0f)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			
+		}
 
 
 		//HPが0になったら破棄

@@ -44,6 +44,12 @@ void CObjEnemyJump::Init()
 	m_speed_power = 0.1f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
+
 	m_hp = 5;//ENEMYのHP
 
 	m_time = 0;//ジャンプ用タイム
@@ -138,7 +144,7 @@ void CObjEnemyJump::Action()
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
 		m_ani_time += 1;
-
+		m_ani_move = 1;
 
 		//ランダムで決まる数値が1の時ジャンプする
 			if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
@@ -157,7 +163,7 @@ void CObjEnemyJump::Action()
 	else if (m_move == true)
 	{
 		if (x == 80 || x == 300) {
-
+			/*
 			//主人公が動いてるときスクロール分の値を適用させた行動をする
 			if (idou == 1) {
 
@@ -179,7 +185,7 @@ void CObjEnemyJump::Action()
 				}
 			}
 
-
+			
 			//主人公が動いてるときスクロール分の値を適用させた行動をする
 			if (idou == 2) {
 
@@ -199,6 +205,7 @@ void CObjEnemyJump::Action()
 					}
 				}
 			}
+			*/
 		}
 		m_vx -= m_speed_power;
 		m_posture = 0.0f;
@@ -303,6 +310,8 @@ void CObjEnemyJump::Draw()
 {
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//ブロック情報を持ってくる
+    CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//歩くアニメーション情報を登録
 	int AniData[4] =
@@ -331,7 +340,8 @@ void CObjEnemyJump::Draw()
 	//描画
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 
-
+	/*
+	*/
 
 
 }

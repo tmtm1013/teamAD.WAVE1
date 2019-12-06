@@ -40,7 +40,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book13.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book15.csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
@@ -67,7 +67,7 @@ void CSceneMain::InitScene()
 	
 
 	//音楽読み込み
-	//Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
+	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);
 	Audio::Start(21);//音楽スタート
@@ -108,7 +108,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ジャンプする敵
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_512);
 
 	//ボス
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 

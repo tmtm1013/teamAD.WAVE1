@@ -156,7 +156,7 @@ void CObjBlock::Action()
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
 	int dx = ((int)line) / 64;
-
+	int jx = ((int)line) / 64;
 
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ğ’Tõ
 	for (int i = 0; i < 10; i++)
@@ -211,6 +211,17 @@ void CObjBlock::Action()
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][dx] = 0;
 			}
+
+			//—ñ‚Ì’†‚©‚ç‚W‚ğ’T‚·
+			if (m_map[i][jx] == 8)
+			{
+				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
+
+				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
+				m_map[i][jx] = 0;
+			}
+
 			
 	}
 	
@@ -285,7 +296,10 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-
+				if (m_map[i][j] == 8)
+				{
+					;
+				}
 
 
 				else
