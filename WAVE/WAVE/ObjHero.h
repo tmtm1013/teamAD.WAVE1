@@ -88,6 +88,7 @@ class CObjHero :public CObj
 		float left;
 		float right;
 		float bottom;
+		int   ani_num;//•`‰æ”Ô†ŠÇ——p
 
 		int i = 0;
 		
