@@ -219,6 +219,13 @@ void CObjEnemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+		//領域外に出たらゲームオーバー画面に移行
+		if (m_py > 600.0f)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			
+		}
 
 
 		if (flag == true)

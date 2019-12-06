@@ -10,6 +10,7 @@ enum OBJ_NAME
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
+	OBJ_BOSS_STAGE,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
@@ -90,6 +91,8 @@ extern float Overlap;
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
+#include "ObjBossStage.h"
+#include "ObjEnemy.h"
 
 
 #include "ObjEnemy.h"
@@ -122,6 +125,7 @@ extern float Overlap;
 #include "SceneMain.h"
 #include "SceneBlock2.h"
 #include "SceneBlock3.h"
+#include "SceneBossStage.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
@@ -131,4 +135,5 @@ extern float Overlap;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneBlock2
+//-----------------------------------------------
