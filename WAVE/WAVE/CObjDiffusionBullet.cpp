@@ -19,7 +19,6 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y)
 	m_bx = x;
 	m_by = y;
 
-
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_DIFFUSION_BULLET, 1);
 
@@ -131,9 +130,9 @@ void CObjDiffusionBullet::Action()
 void CObjDiffusionBullet::Draw()
 {
 
-	//描画カラー情報
+	           //   R    G    B    透過
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-
+	
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
