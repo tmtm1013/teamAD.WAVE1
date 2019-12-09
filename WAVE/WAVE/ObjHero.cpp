@@ -64,6 +64,7 @@ void CObjHero::Init()
 	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//----サブマシンガンのカートリッジ落下音----
 	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	
 
 	m_px = 300.0f;    //位置
 	m_py = 500.0f;
@@ -450,7 +451,6 @@ void CObjHero::Action()
 
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
-
  		float r = hit_data[0]->r;
 
 		if ((r < 45 && r >= 0) || r > 315)

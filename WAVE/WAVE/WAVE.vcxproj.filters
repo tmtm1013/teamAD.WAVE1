@@ -177,9 +177,6 @@
     <ClCompile Include="ObjEnemyLongdistance.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunition.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>
@@ -223,7 +220,10 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjFlyimgEnemy2.cpp">
-      <Filter>敵</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +326,6 @@
     <ClInclude Include="CObjDiffusionBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyAmmunition.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="COHomingBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -357,7 +354,10 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjFlyingEnemy2.h">
-      <Filter>敵</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
