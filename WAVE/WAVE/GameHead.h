@@ -74,7 +74,7 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 extern float m_hp;
 extern float kazu;
-extern float Overlap;
+
 
 
 

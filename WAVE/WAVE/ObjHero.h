@@ -95,5 +95,7 @@ class CObjHero :public CObj
 
 		//“¥‚ñ‚Å‚¢‚éblock‚ÌŽí—Þ‚ðŠm”F—p
 		int m_block_type;
-
+		
+		int time;
+		int atari;
 };

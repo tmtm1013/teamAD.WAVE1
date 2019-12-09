@@ -10,7 +10,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-extern float Overlap;
 
 
 CObjHomingBullet::CObjHomingBullet(float x, float y)
@@ -37,6 +36,7 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
+
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -67,6 +67,7 @@ void CObjHomingBullet::Action()
 	button = true;
 
 
+	
 	
 
 
