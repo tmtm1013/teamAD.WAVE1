@@ -189,16 +189,10 @@
     <ClCompile Include="ObjTime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBlock2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SceneBlock2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneBlock3.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBlock3.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CObjAngleBullet.cpp">
@@ -208,9 +202,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyAmmunition.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemyLongdistance.cpp">
@@ -230,6 +221,15 @@
     </ClCompile>
     <ClCompile Include="ObjCursor.cpp">
       <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,16 +332,10 @@
     <ClInclude Include="ObjTime.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBlock2.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SceneBlock2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneBlock3.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBlock3.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
@@ -359,9 +353,6 @@
     <ClInclude Include="ObjEnemyLongdistance.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyAmmunition.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -373,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="ObjCursor.h">
       <Filter>ソース ファイル\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingEnemy2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

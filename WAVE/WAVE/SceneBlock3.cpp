@@ -73,13 +73,6 @@ void CSceneBlock3::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
-
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
@@ -100,9 +93,6 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
 
 	//blockオブジェクト作成
-
-	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
