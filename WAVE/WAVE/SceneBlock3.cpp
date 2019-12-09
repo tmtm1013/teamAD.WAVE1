@@ -94,6 +94,9 @@ void CSceneBlock3::InitScene()
 
 	//blockオブジェクト作成
 
+	CObjBlock*objf = new CObjBlock(map);
+	Objs::InsertObj(objf, OBJ_BLOCK, 4);
+
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
