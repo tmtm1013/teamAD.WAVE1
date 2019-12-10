@@ -26,6 +26,7 @@ enum OBJ_NAME
 
 	OBJ_FLYINGENEMY,
 	OBJ_ENEMYJUMP,
+	OBJ_ENEMYJUMP2,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
 	
@@ -96,6 +97,7 @@ extern float Overlap;
 
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
+#include "ObjEnemyJump2.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
@@ -133,5 +135,5 @@ extern float Overlap;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock2
+#define SET_GAME_START CSceneBlock3
 //-----------------------------------------------

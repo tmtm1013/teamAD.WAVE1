@@ -222,6 +222,10 @@ void CObjBoss::Action()
 	if (m_hp <= 0)
 	{
 
+		//ボス消滅でシーンをステージ３に移行する
+		Scene::SetScene(new CSceneBlock3());
+
+		/*
 		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
 		{
 			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
@@ -239,22 +243,20 @@ void CObjBoss::Action()
 
 
 		}
+		*/
+
+
+		/*
 		else if (((UserData*)Save::GetData())->SceneNum == 3)
 		{
 			((UserData*)Save::GetData())->SceneNum++;
 			//ボス消滅でクリア画面に移行する
 			Scene::SetScene(new CSceneClear());
 		}
+		*/
 
 
-
-		/*else if (kazu == 3) {
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-			//敵消滅でシーンをゲームクリアに移行する
-			Scene::SetScene(new CSceneClear());
-		}*/
+		
 		
 
 	}
