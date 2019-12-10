@@ -7,6 +7,8 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_HERO,
+	OBJ_CURSOR,
+
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
@@ -21,10 +23,12 @@ enum OBJ_NAME
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
+	OBJ_REVOLUTION_BULLET,
 
 	OBJ_BACKGROUND,
 
 	OBJ_FLYINGENEMY,
+	OBJ_FLYINGENEMY2,
 	OBJ_ENEMYJUMP,
 	OBJ_ENEMYJUMP2,
 	OBJ_ENEMYLONGDISTANCE,
@@ -88,6 +92,8 @@ extern float Overlap;
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
+#include "ObjCursor.h"
+
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
@@ -100,6 +106,7 @@ extern float Overlap;
 #include "ObjEnemyJump2.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
+#include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
 
 
@@ -108,6 +115,7 @@ extern float Overlap;
 #include "CObjDiffusionBullet.h"
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
+#include "ObjRevolutionBullet.h"
 
 
 #include "ObjTitle.h"
@@ -135,5 +143,5 @@ extern float Overlap;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock3
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------
