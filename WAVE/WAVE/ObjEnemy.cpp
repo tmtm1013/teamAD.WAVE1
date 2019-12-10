@@ -214,6 +214,7 @@ void CObjEnemy::Action()
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+		flag = true;
 
 
 		this->SetStatus(false);
@@ -226,16 +227,6 @@ void CObjEnemy::Action()
 			Hits::DeleteHitBox(this);
 			
 		}
-
-
-		if (flag == true)
-		{
-			//アイテムオブジェクト作成	
-			CObjItem*obju = new CObjItem(m_px, m_py);
-			Objs::InsertObj(obju, OBJ_ITEM, 7);
-			flag = false;
-		}
-
 
 
 		//敵が消滅したら+100点

@@ -236,7 +236,6 @@ void CObjFlyingenemy::Action()
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 	if (m_hp <= 0)
 	{
-
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
