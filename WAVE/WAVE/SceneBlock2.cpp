@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 CSceneBlock2::CSceneBlock2()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue=2;
 }
 
 //デストラクタ
@@ -80,15 +80,6 @@ void CSceneBlock2::InitScene()
 	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//サブマシンガンのカートリッジ落下音
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
-
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
-
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);

@@ -25,7 +25,7 @@ using namespace GameL;
 //コンストラクタ
 CSceneMain::CSceneMain()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue =1;
 }
 
 //デストラクタ
@@ -57,29 +57,16 @@ void CSceneMain::InitScene()
 		}
 	}
 
-
-	//Font作成
-	//Font::SetStrTex(L"0123456789分秒");
-
-
-	//グラフィック読み込み
-	//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
-	
-
 	//音楽読み込み
 	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);
 	Audio::Start(21);//音楽スタート
 
-
-
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
-
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
-
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
@@ -122,11 +109,11 @@ void CSceneMain::InitScene()
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
 
-	//blockオブジェクト作成
 
+
+	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
-
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
@@ -145,11 +132,7 @@ void CSceneMain::InitScene()
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
-	/*
-	//Test用　　　敵オブジェクト作成
-	CObjEnemy* obje = new CObjEnemy();
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
-	*/
+	
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
@@ -157,46 +140,10 @@ void CSceneMain::InitScene()
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
-
-
-
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-
 	
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
-	
-
-	/*
-	//外部データの読み取り（ステージ情報）
-	unique_ptr<wchar_t>p2;//ステージ情報ポインター
-	int size2;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
-
-	int map2[10][100];
-	int count2 = 1;
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 100; j++)
-		{
-			int w = 0;
-			swscanf_s(&p.get()[count2], L"%d", &w);
-
-			map[i][j] = w;
-			count += 2;
-
-
-		}
-	}
-	*/
-
-
-
 }
 
 //実行中メソッド

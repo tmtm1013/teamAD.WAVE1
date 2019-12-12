@@ -109,14 +109,6 @@ void CObjFlyingenemy::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		if (m_hit_left == true)//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-		{
-
-
-			m_vy = -13;
-
-
-		}
 
 	}
 	else//左

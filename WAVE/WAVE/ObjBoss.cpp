@@ -248,7 +248,7 @@ void CObjBoss::Action()
 			((UserData*)Save::GetData())->SceneNum++;
 			//ボス消滅でシーンをステージ３に移行する
 	    	Scene::SetScene(new CSceneBlock3());
-
+			
 
 
 		}

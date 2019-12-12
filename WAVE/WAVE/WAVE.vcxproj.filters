@@ -36,44 +36,44 @@
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\DirectXDevice.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>ObjBullet</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="CObjDiffusionBullet.cpp">
+      <Filter>ObjBullet</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\DrawFont.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="CObjFullBullet.cpp">
+      <Filter>ObjBullet</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\DrawTexture.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>ObjBullet</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\GameL_Main.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\HitBoxManager.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjBoss1.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjBoss2.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\SceneManager.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\SceneObjManager.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\SetWindow.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\UserData.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\WinInputs.cpp">
-      <Filter>リソース ファイル</Filter>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SceneBlock3.cpp">
+      <Filter>SceneStage</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソース ファイル</Filter>
@@ -81,113 +81,77 @@
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTime.cpp">
+      <Filter>ObjUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>ObjUI</Filter>
+    </ClCompile>
     <ClCompile Include="GameL\DirectXDevice.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawFont.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawTexture.cpp">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\GameL_Main.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\HitBoxManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneObjManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SetWindow.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\UserData.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjTitle.cpp">
-      <Filter>ソース ファイル\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>ソース ファイル\Title</Filter>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>ObjBullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjMain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneClear.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBlock.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ObjUI</Filter>
     </ClCompile>
     <ClCompile Include="ObjGameOver.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>SceneGameOver</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>SceneGameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\GameL_Main.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>SceneStage</Filter>
     </ClCompile>
     <ClCompile Include="ObjBackground.cpp">
-      <Filter>ソース ファイル\Background</Filter>
+      <Filter>SceneStage</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>ObjBlock\SceneClear</Filter>
     </ClCompile>
-    <ClCompile Include="CObjBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjItem.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneItem.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="COHomingBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjDiffusionBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBoss.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistance.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソース ファイル\Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソース ファイル\Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソース ファイル\Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="COHomingBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClCompile Include="SceneClear.cpp">
+      <Filter>ObjBlock\SceneClear</Filter>
     </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル</Filter>
@@ -201,8 +165,8 @@
     <ClCompile Include="SceneBlock2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBlock3.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>SceneTitle</Filter>
     </ClCompile>
     <ClCompile Include="CObjAngleBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
@@ -213,11 +177,11 @@
     <ClCompile Include="ObjBoss1.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBoss2.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>ObjBlock</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBossStage.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>ソース ファイル</Filter>
@@ -233,86 +197,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameL\Audio.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\UserData.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTitle.h">
-      <Filter>ソース ファイル\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>ソース ファイル\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneClear.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameOver.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBackground.h">
-      <Filter>ソース ファイル\Background</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjHero.h">
-      <Filter>ソース ファイル\Hero</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBlock.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjClear.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="CObjAngleBullet.h">
+      <Filter>ObjBullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ObjBullet</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="CObjDiffusionBullet.h">
+      <Filter>ObjBullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -327,34 +219,31 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjDiffusionBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ObjBullet</Filter>
     </ClInclude>
     <ClInclude Include="COHomingBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ObjBullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjTime.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="ObjBoss1.h">
+      <Filter>ObjEnemy</Filter>
     </ClInclude>
     <ClInclude Include="SceneBlock2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBlock3.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>ObjEnemy</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGren.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ObjFlyingEnemy2.h">
+      <Filter>ObjEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBoss1.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SceneMain.h">
+      <Filter>SceneStage</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBoss2.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SceneBlock3.h">
+      <Filter>SceneStage</Filter>
     </ClInclude>
     <ClInclude Include="SceneBossStage.h">
       <Filter>ソース ファイル</Filter>
@@ -369,51 +258,58 @@
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjCursor.h">
-      <Filter>ソース ファイル\Hero</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameL\Audio.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ObjUI</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\UserData.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ObjBullet</Filter>
     </ClInclude>
     <ClInclude Include="GameHead.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>SceneStage</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>SceneStage</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="GameL\Audio.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>ObjUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>SceneGameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameOver.h">
+      <Filter>SceneGameOver</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
       <Filter>ソース ファイル</Filter>
@@ -423,41 +319,79 @@
     <ClInclude Include="GameL\Audio.h">
       <Filter>リソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjClear.h">
+      <Filter>ObjBlock\SceneClear</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="SceneClear.h">
+      <Filter>ObjBlock\SceneClear</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjHero.h">
+      <Filter>ObjHero</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>SceneTitle</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>SceneTitle</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ObjItem</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjGren.h">
+      <Filter>ObjItem</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="SceneItem.h">
+      <Filter>ObjItem</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\UserData.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>ObjBlock</Filter>
     </ClInclude>
-    <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="ObjDescription.h">
+      <Filter>ObjDesc</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>ObjDesc</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ObjBullet">
+      <UniqueIdentifier>{74a5269a-ce45-4cc7-a130-9b5d077e3ec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneStage">
+      <UniqueIdentifier>{c9881f8b-3a08-4856-8009-a5503c3423fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjUI">
+      <UniqueIdentifier>{6387528b-719c-4274-a64e-9ea5c2f1f5fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソースファイル">
+      <UniqueIdentifier>{58c729b3-de65-4384-88f9-31edb111619c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjEnemy">
+      <UniqueIdentifier>{3da63b54-d596-411c-beab-1d202f3a0a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneTitle">
+      <UniqueIdentifier>{f619f78f-fe49-4d8c-96de-b30923391f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneGameOver">
+      <UniqueIdentifier>{09c9810e-cc8c-412f-9ea3-7962e0a1027e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjHero">
+      <UniqueIdentifier>{18280cbc-7f9c-4383-9670-57b8c17d54b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjItem">
+      <UniqueIdentifier>{2fea17a5-2842-46e0-81d2-693570c750e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjBlock">
+      <UniqueIdentifier>{20d166ae-8aee-4847-ba94-12f856b9344c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjBlock\SceneClear">
+      <UniqueIdentifier>{33f2efde-350e-48b9-acfa-986b4c9fec93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjDesc">
+      <UniqueIdentifier>{83d1d526-ae53-41e7-bad3-fb0cb4f9b963}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
