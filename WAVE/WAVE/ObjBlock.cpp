@@ -64,6 +64,7 @@ void CObjBlock::Action()
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
 	int dx = ((int)line) / 64;
+	int fx = ((int)line) / 64;
 	int jx = ((int)line) / 64;
 	int jx2 = ((int)line) / 64;
 
@@ -115,6 +116,18 @@ void CObjBlock::Action()
 				m_map[i][jx] = 0;
 			}
 
+			//列の中から9を探す
+			if (m_map[i][fx] == 9)
+			{
+				CObjFlyingenemy*obje = new CObjFlyingenemy(fx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_FLYINGENEMY, 14);
+
+				//敵出現場所の値を0にする
+				m_map[i][fx] = 0;
+
+			}
+
+
 			//列の中から11を探す
 			if (m_map[i][jx2] == 11)
 			{
@@ -124,6 +137,8 @@ void CObjBlock::Action()
 				//敵出現場所の値を0にする
 				m_map[i][jx] = 0;
 			}
+
+
 			
 	}
 	
@@ -179,8 +194,13 @@ void CObjBlock::Draw()
 				{
 					//アイスブロック
 
+				
+					
+
+					//アイスブロックの描画
 					BlockDraw(320.0f + 64.0f, 0.0f, &dst, c);
 					Draw::Draw(15, &src, &dst, c, 0.0f);
+
 				}
 				
 				
@@ -201,6 +221,12 @@ void CObjBlock::Draw()
 				{
 					;//敵配置用の番号のため何もしない
 				}
+				if (m_map[i][j] == 5)
+				{
+					BlockDraw(0.0f , 0.0f, &dst, c);
+					Draw::Draw(17, &src, &dst, c, 0.0f);
+				}
+
 				if (m_map[i][j] == 6)
 				{
 					;
@@ -222,6 +248,11 @@ void CObjBlock::Draw()
 
 				}
 				if (m_map[i][j] == 11)
+				{
+					;
+				}
+
+				if (m_map[i][j] == 12)
 				{
 					;
 				}
@@ -329,7 +360,13 @@ void CObjBlock::BlockHit(
 							//種類を渡すのスタートとゴールのみ変更する
 							if (m_map[i][j] >= 3)
 								*bt = m_map[i][j];
+							else if (m_map[i][j] >= 2)
+								*bt = m_map[i][j];
+							else if (m_map[i][j] >= 5)
+								*bt = m_map[i][j];
 							*vy = 0.0f;
+
+							
 						}
 						if (r > 135 && r < 225)
 						{

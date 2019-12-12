@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage0333.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -97,7 +97,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block02.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
@@ -111,6 +111,9 @@ void CSceneBlock3::InitScene()
 
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
+
+	//ダメージブロックのグラフィックの読み込み
+	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

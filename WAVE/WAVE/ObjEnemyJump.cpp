@@ -66,6 +66,17 @@ void CObjEnemyJump::Init()
 void CObjEnemyJump::Action()
 {
 
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+
+
 	//乱数の種を初期化
 	srand(time(NULL));
 	//1～100のランダムな数値
@@ -126,101 +137,37 @@ void CObjEnemyJump::Action()
 
 
 		}
+	}
 
-		else if (m_move == true)
-		{
-			if (x == 80 || x == 300) {
-				/*
-				//主人公が動いてるときスクロール分の値を適用させた行動をする
-				if (idou == 1) {
-
-
-
-					m_vx -= m_speed_power + 0.05f;
-					m_posture = 0.0f;
-					m_ani_time += 1;
-
-
-					//ランダムで決まる数値が1の時ジャンプする
-					if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-				if (m_hit_down == true)//敵が地面にいるときジャンプする
-				{
-					m_vy = -16;
-				}
-
-			}
-		}
+	if (m_ani_time > m_ani_max_time)
+	{
+		m_ani_frame += 1;
+		m_ani_time = 0;
+	}
+	//アニメーション
+	if (m_ani_frame == 4)
+	{
+		m_ani_frame = 0;
+	}
 
 
-				//主人公が動いてるときスクロール分の値を適用させた行動をする
-				if (idou == 2) {
-
-
-
-					m_vx -= m_speed_power - 0.3f;
-					m_posture = 0.0f;
-					m_ani_time += 1;
-
-
-					//ランダムで決まる数値が1の時ジャンプする
-					if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-						if (m_hit_down == true)//敵が地面にいるときジャンプする
-						{
-							m_vy = -16;
-						}
-					}
-				}
-				*/
-			}
-			m_vx -= m_speed_power;
-			m_posture = 0.0f;
-			m_ani_time += 1;
-
-		}
-
-		if (m_ani_time > m_ani_max_time)
-		{
-			m_ani_frame += 1;
-			m_ani_time = 0;
-		}
-		//アニメーション
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-		}
-
-
-
-		//摩擦の計算   -(運動energy X 摩擦係数)
-		m_vx += -(m_vx*0.098);
-
-		//自由落下運動
-		m_vy += 9.8 / (16.0f);
-
-
-
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
-
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
-
-
-		//位置の更新
-		m_px += m_vx;
-		m_py += m_vy;
-
-
+	//摩擦の計算   -(運動energy X 摩擦係数)
+	m_vx += -(m_vx*0.098);
+	//自由落下運動
+	m_vy += 9.8 / (16.0f);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+32+ block->GetScroll(), m_py);
+	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
+		
+
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
+
+
+
+		
 
 
 
@@ -228,51 +175,50 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 15;
-
+			m_hp -= 15;
 
 	}
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
 
-		m_hp -= 10;
+			m_hp -= 10;
 
 
 	}
 
-		//敵と弾丸が接触したらHPが減る
-		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-		{
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
 
 			m_hp -= 1;
 
 
-		}
+	}
 
-		//落下した敵を消去する。
-		if (m_py > 600.0f)
+	//落下した敵を消去する。
+	if (m_py > 600.0f)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
-		}
-
-		//HPが0になったら破棄
-		if (m_hp <= 0)
-		{
-
 		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+	}
 
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
+	//HPが0になったら破棄
+	if (m_hp <= 0)
+	{
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			//敵が消滅したら+100点
+			((UserData*)Save::GetData())->m_point += 100;
 
 		//敵消滅でシーンをゲームクリアに移行する
 		Scene::SetScene(new CSceneBlock2());
 
-		}
+	}
 
-
+	
 }
 
 //ドロー
@@ -311,7 +257,7 @@ void CObjEnemyJump::Draw()
 		dst.m_bottom = 0.0f + m_py;
 
 		//描画
-		Draw::Draw(14, &src, &dst, c, 0.0f);
+		Draw::Draw(12, &src, &dst, c, 0.0f);
 
 	}
 

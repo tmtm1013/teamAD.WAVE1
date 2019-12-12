@@ -114,6 +114,10 @@ void CSceneMain::InitScene()
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
 
+	//ダメージブロックのグラフィックの読み込み
+	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
+
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);

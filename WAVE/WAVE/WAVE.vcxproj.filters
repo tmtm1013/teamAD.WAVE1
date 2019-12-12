@@ -225,6 +225,12 @@
     <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>ソース ファイル\Hero</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -358,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="ObjEnemyJump2.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCursor.h">
+      <Filter>ソース ファイル\Hero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

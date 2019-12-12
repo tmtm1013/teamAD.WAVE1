@@ -48,7 +48,7 @@ void CObjEnemyJump2::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 5;//ENEMYのHP
+	m_hp = 200;//ENEMYのHP
 
 	m_time = 0;//ジャンプ用タイム
 
