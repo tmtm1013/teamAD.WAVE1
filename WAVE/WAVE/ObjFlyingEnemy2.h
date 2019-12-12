@@ -54,5 +54,5 @@ private:
 	//’eŠÛ—pŠÔ§ŒÀƒ^ƒCƒ€•Ï”
 	int m_time;
 
-
+	float flag;
 };

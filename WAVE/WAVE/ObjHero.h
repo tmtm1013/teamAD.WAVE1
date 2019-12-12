@@ -8,7 +8,7 @@ using namespace GameL;
 //シーン:主人公
 class CObjHero :public CObj
 {
-	public:CObjHero(){}
+   public:CObjHero(){}
 	       ~CObjHero() {};
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション

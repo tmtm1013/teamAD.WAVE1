@@ -17,8 +17,6 @@ using namespace GameL;
 //主人公と接触しているかどうかを確認する。
 float Overlap;
 
-
-
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
 {

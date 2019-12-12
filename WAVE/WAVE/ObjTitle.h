@@ -18,4 +18,8 @@ private :
 	float m_mou_y; //マウスの位置Y
 	bool m_mou_r; //マウスの右ボタン
 	bool m_mou_l; //マウス左ボタン
+
+	float b;//青用
+	float t;//透過用
+
 };

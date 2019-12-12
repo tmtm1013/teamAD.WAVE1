@@ -114,7 +114,6 @@ void CSceneBlock2::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//blockオブジェクト作成
-
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
