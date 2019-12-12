@@ -116,7 +116,7 @@ void CObjAngleBullet::Action()
 //ÉhÉçÅ[
 void CObjAngleBullet::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 10.0f,0.0f,0.0f,0.0f };
 	RECT_F src;
 	RECT_F dst;
 

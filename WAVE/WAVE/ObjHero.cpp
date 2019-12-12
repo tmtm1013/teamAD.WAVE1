@@ -135,8 +135,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 300;//主人公のヒットポイント用
-	hp_max = 300;
+	hp = 400;//主人公のヒットポイント用
+	hp_max = 400;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }
@@ -262,7 +262,22 @@ void CObjHero::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
-	if (Input::GetVKey(VK_SPACE) == true)//SPACEキー入力でジャンプ
+
+
+
+	//ゴールブロック
+	if (m_block_type == 3)
+	{
+		this->SetStatus(false);
+
+		Scene::SetScene(new SceneBossStage());
+	}
+
+	//ダメージブロック
+
+
+	//SPACEキー入力でジャンプ
+	if (Input::GetVKey(VK_SPACE) == true)
 	{
 		if (m_hit_down == true)
 		{
@@ -301,19 +316,29 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true)
 	{
+		//アイスブロック
+		if (m_block_type == 2)
+			m_vx += (m_vx*0.12);//摩擦の計算   (運動energy X 摩擦係数)
+
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
 	
 		if (movesecond >= 4 && m_hit_down == true)
-		{
 			m_ani_time += 1;
-		}
-		if (movesecond >=21 && m_hit_down==true)
+		
+		if (movesecond >= 21 && m_hit_down == true)
 		{
 			Audio::Start(8);
 			movesecond = 0;
 		}
+
+		//ダメージブロック
+		if (m_block_type == 5)
+			hp -=0.5;
+
+
+
 		/*else 
 		{
 			second++;
@@ -322,6 +347,10 @@ void CObjHero::Action()
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
+		//アイスブロック
+		if (m_block_type == 2)
+			m_vx += (m_vx*0.12);//摩擦の計算   -(運動energy X 摩擦係数)
+
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
@@ -335,6 +364,11 @@ void CObjHero::Action()
 			Audio::Start(8);
 			movesecond = 0;
 		}
+
+		//ダメージブロック
+		if (m_block_type == 5)
+			hp -= 0.5;
+
 		/*else
 		{
 			second++;
@@ -442,7 +476,7 @@ void CObjHero::Action()
 	{
 		HIT_DATA** hit_data;//OBJ_BULLETと当たると主人公がノックバックする
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		/*
+		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
@@ -451,7 +485,7 @@ void CObjHero::Action()
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
-		}*/
+		}
 
 		if (flag == true && hp_time <= 0.0f)
 		{

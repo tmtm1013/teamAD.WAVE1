@@ -24,7 +24,8 @@ private:
 	int m_time9;
 	int m_time10;
 
-
+	int px;
+	int py;
 
 	int Enemy;//’Êí“G‚Ì”—p•Ï”
 	int Enemyleft;//’Êí‰E“G‚Ì”—p•Ï”
