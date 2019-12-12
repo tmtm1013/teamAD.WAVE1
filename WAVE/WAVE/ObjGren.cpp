@@ -45,6 +45,18 @@ void CObjGren::Init()
 //アクション
 void CObjGren::Action()
 {
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_bx, &m_by, true, &m_bx, &m_by,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
+
+
 	m_mou_bx = (float)Input::GetPosX();
 
 	if (m_mou_bx < m_bx)
@@ -82,12 +94,20 @@ void CObjGren::Action()
 
 	}
 	//ブロックに接触したら弾丸削除
-	if (hit->CheckObjNameHit(OBJ_BLOCK) != nullptr)
+	/*if (hit->CheckObjNameHit(OBJ_BLOCK) != nullptr)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
+	}*/
+	if (m_hit_up==true|| m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}
+
+	
 	//領域外に出たら弾丸を破棄する
 	if (m_bx > 800.0f)
 	{
