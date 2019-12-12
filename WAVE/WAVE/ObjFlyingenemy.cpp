@@ -53,7 +53,7 @@ void CObjFlyingenemy::Init()
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, OBJ_ENEMY, OBJ_ENEMY, 1);
 }
 
 //アクション

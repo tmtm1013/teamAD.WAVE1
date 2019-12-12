@@ -15,7 +15,10 @@ public:CObjFlyingenemy(float x, float y);
 	   ~CObjFlyingenemy() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
-	   void Draw();   //ドロー
+	   void Draw();   //ドロー]
+
+	 
+
 
 private:
 	float m_px;    //位置

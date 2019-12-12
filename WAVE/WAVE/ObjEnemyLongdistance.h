@@ -17,6 +17,9 @@ public:CObjEnemyLongdistance(float x,float y) ;
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 
+	  
+
+
 private:
 	float m_px;    //位置
 	float m_py;
@@ -54,5 +57,5 @@ private:
 	//弾丸用時間制限タイム変数
 	int m_time;
 
-
+	
 };

@@ -14,14 +14,6 @@
 using namespace GameL;
 
 
-//コンストラクタ
-CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
-{
-	m_px = x;    //位置
-	m_py = y;
-
-}
-
 //イニシャライズ
 void CObjEnemyLongdistance::Init()
 {

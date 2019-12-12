@@ -165,11 +165,11 @@ void CObjBlock::Action()
 		//列の中から４を探す
 			if (m_map[i][ex] == 4)
 			{
-
+				/*
 				//4があれば、敵を出現
 				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
-
+				Objs::InsertObj(obje, OBJ_ENEMY, 10);
+				*/
 				//敵出現場所の値を0にする
 				m_map[i][ex] = 0;
 			
@@ -191,10 +191,10 @@ void CObjBlock::Action()
 			//列の中から７を探す
 			if (m_map[i][dx] == 7)
 			{
-
+				
 				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 13);
-
+				
 				//敵出現場所の値を0にする
 				m_map[i][dx] = 0;
 			}

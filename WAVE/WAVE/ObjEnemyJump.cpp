@@ -11,7 +11,6 @@
 #include "stdlib.h"//乱数用ヘッダー
 #include "time.h"  //乱数用ヘッダー
 
-#define GRAUND (546.0f)
 
 
 //使用するネームスペース
@@ -242,7 +241,7 @@ void CObjEnemyJump::Action()
 
 		}
 
-	}
+	
 }
 
 

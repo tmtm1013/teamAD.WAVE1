@@ -17,7 +17,6 @@ void  CObjHomingBullet::SetXX(float x)
 	m_px = x;
 
 
-
 }
 //位置情報Y変更用
 void  CObjHomingBullet::SetYY(float y)
@@ -44,8 +43,10 @@ float  CObjHomingBullet::GetBY()
 //コンストラクタ
 CObjHomingBullet::CObjHomingBullet(float x, float y)
 {
+
 	m_x = x;
 	m_y = y;
+
 }
 
 //イニシャライズ

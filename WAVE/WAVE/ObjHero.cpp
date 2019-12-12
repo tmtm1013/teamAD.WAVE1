@@ -6,6 +6,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
 #include "ObjItem.h"
+#include "CheckHit.h"
 
 #define GRAUND (546.0f)
 #define ANIMAITON_FRAME (8)
@@ -460,11 +461,7 @@ void CObjHero::Action()
 			{
 				flag = true;
 			}
-			/*OBJ_BULLETと当たると主人公がノックバックする
-			HIT_DATA** hit_data;
-			hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-			*/
-			//float r = hit_data[0]->r;
+		
 
 	        //HomingBulletの位置情報をここで取得
 			CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
@@ -488,8 +485,6 @@ void CObjHero::Action()
 		if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 		{
 
-
-
 			if (flag == true && hp_time <= 0.0f)
 			{
 				hp -= 10;
@@ -502,26 +497,38 @@ void CObjHero::Action()
 				flag = true;
 			}
 
+			//ブロック情報を持ってくる
+			CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+			//HomingBulletの位置情報をここで取得
+			CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+ 			if (obj != nullptr) {
+				float ex = obj->GetEX();
+				float ey = obj->GetEY();
+				bool Hitflag = CheckHit(m_px, ex);
 
+				if (Hitflag==true)
+				{
+				    m_vx = -5.0f;
+				}
+				else
+				{
+					m_vx = +5.0f;
+				}
+				//float r = GetAtan2Angle(ex, ey);
 
+				/*if ((r < 45 && r >= 0) || r > 315)
+				{
+					m_vx = -5.0f; //左に移動させる。
+				}
+				if (r > 135 && r < 225)
+				{
+					m_vx = +5.0f; //右に移動させる。
+				}*/
 
-			
-			HIT_DATA** hit_data1;
-			hit_data1 = hit->SearchObjNameHit(OBJ_ENEMY);
-			
-		     float r = hit_data1[0]->r;
-			if ((r < 45 && r >= 0) || r > 315)
-			{
-				m_vx = -5.0f; //左に移動させる。
 			}
-			if (r > 135 && r < 225)
-			{
-				m_vx = +5.0f; //右に移動させる。
-			}
-			
-	         
-
-	    }
+		}
+			 
+	    
 	
 	/*
 	//主人公のHPがゼロになった時主人公が消える
