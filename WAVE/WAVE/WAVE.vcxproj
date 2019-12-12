@@ -223,6 +223,7 @@
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjFlyingenemy.h" />
     <ClInclude Include="ObjFlyingEnemy2.h" />
+    <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGren.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

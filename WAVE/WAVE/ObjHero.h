@@ -71,6 +71,8 @@ class CObjHero :public CObj
 		short int movesecond; //秒間用変数	
 		short int jumpsecond; //秒間用変数
 		short int m_SEtime;//SEの再生頻度制御用変数
+		short int Action_ani_time;//攻撃アニメーション切り替え頻度制御
+		bool Action_ani_flag;
 
 		//blockとの衝突状態確認用
 		bool m_hit_up ;
