@@ -19,6 +19,9 @@ private :
 	bool m_mou_r; //マウスの右ボタン
 	bool m_mou_l; //マウス左ボタン
 
+	bool flag;
+	int time;
+
 	float b;//青用
 	float t;//透過用
 

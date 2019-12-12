@@ -23,6 +23,9 @@ void CObjTitle::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 
+	time = 0;
+	flag = true;
+
 	b = 1.0f;
 	t = 1.0f;
 
@@ -31,9 +34,6 @@ void CObjTitle::Init()
 
 void CObjTitle::Action()
 {
-
-	
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -47,17 +47,23 @@ void CObjTitle::Action()
 		b = 0.0f;
 		
 		//マウスのボタンが押されたらメインに移行
-		if (m_mou_r == true || m_mou_l == true)
+		if (m_mou_r == true || m_mou_l == true&&flag==true)
 		{
 			Audio::Start(1);
 			t = 0.0f;
-			Scene::SetScene(new CSceneDescription());
+			flag = false;
+			
 		}
 	}
-	else if(m_mou_r == true || m_mou_l == true)
+	else
 	{
 		b = 1.0f;
 	}
+	if (flag == false)
+		time++;
+	if (time >= 20)
+		Scene::SetScene(new CSceneDescription());
+
 
 	
 }
