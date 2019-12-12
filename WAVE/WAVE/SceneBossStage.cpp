@@ -13,39 +13,41 @@
 using namespace GameL;
 
 //使用ヘッダー
-#include "SceneMain.h"
+#include "SceneBossStage.h"
 #include "GameHead.h"
-#include "ObjBlock3.h"
+#include "ObjBlock.h"
 #include "ObjBackground.h"
 #include "ObjEnemyJump.h"
 //#include "ObjMain.h"
 //#include "CObjBullet.h"
 
+
+
 //コンストラクタ
-CSceneBlock3::CSceneBlock3()
+SceneBossStage::SceneBossStage()
 {
 
 }
 
 //デストラクタ
-CSceneBlock3::~CSceneBlock3()
+SceneBossStage::~SceneBossStage()
 {
 
 }
 
 //初期化メソッド
-void CSceneBlock3::InitScene()
+void SceneBossStage::InitScene()
 {
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage000003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"bossstage(2).csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 20; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -58,18 +60,18 @@ void CSceneBlock3::InitScene()
 
 
 	//Font作成
-		//Font::SetStrTex(L"0123456789分秒");
+	//Font::SetStrTex(L"0123456789分秒");
 
 
-		//グラフィック読み込み
-		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
 
-		//音楽読み込み
-	Audio::LoadAudio(22, L"back3.wav", BACK_MUSIC);
+	//音楽情報の読み込み
+	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
 	Audio::Start(22);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
-		//Font作成
+	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
 	//主人公(前進)グラフィック読み込み
@@ -97,12 +99,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
-
-	//blockオブジェクト作成
-
-	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
@@ -119,7 +116,6 @@ void CSceneBlock3::InitScene()
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//blockオブジェクト作成
-
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
@@ -142,7 +138,6 @@ void CSceneBlock3::InitScene()
 	CObjEnemy* obje = new CObjEnemy();
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 	*/
-
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
@@ -153,12 +148,42 @@ void CSceneBlock3::InitScene()
 	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
-
 	/*
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
 	*/
+
+	/*//テスト用:弾丸オブジェクト作成
+	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
+	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+	*/
+
+	/*
+	//外部データの読み取り（ステージ情報）
+	unique_ptr<wchar_t>p2;//ステージ情報ポインター
+	int size2;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
+
+	int map2[10][100];
+	int count2 = 1;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			int w = 0;
+			swscanf_s(&p.get()[count2], L"%d", &w);
+
+			map[i][j] = w;
+			count += 2;
+
+
+		}
+	}
+
+	*/
+
+
 
 	m_time = 0;
 	m_time2 = 0;
@@ -185,7 +210,7 @@ void CSceneBlock3::InitScene()
 }
 
 //実行中メソッド
-void CSceneBlock3::Scene()
+void SceneBossStage::Scene()
 {
 	m_time++;
 	m_time2++;

@@ -150,6 +150,8 @@ void CObjBlock3::Action()
 	//敵出現ラインを要素番号化
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
+	int dx = ((int)line) / 64;
+
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
@@ -171,13 +173,13 @@ void CObjBlock3::Action()
 		//列の中から6を探す
 		if (m_map3[i][rx] == 6)
 		{
-			CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(rx*64.0f, i*64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 11);
+			CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_BOSS, 11);
 
 			//敵出現場所の値を0にする
 			m_map3[i][rx] = 0;
 
-			
+
 			//HPが0になったら破棄
 			if (m_hp <= 0)
 			{
@@ -185,13 +187,25 @@ void CObjBlock3::Action()
 				this->SetStatus(false);
 				//Hits::DeleteHitBox(this);
 
-				//敵消滅でシーンをゲームクリアに移行する
-				Scene::SetScene(new CSceneGameOver());
+
+
+				//敵消滅でシーンをステージ２に移行する
+				//Scene::SetScene(new SceneMain());
 
 			}
-			
+
 		}
 
+		//列の中から７を探す
+		if (m_map3[i][dx] == 7)
+		{
+
+			CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY, 13);
+
+			//敵出現場所の値を0にする
+			m_map3[i][dx] = 0;
+		}
 
 	}
 
@@ -215,7 +229,7 @@ void CObjBlock3::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(10, &src, &dst, c, 0.0f);
 
 	//マップチップによるbloc設置
 

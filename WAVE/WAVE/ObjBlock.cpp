@@ -144,6 +144,9 @@ void CObjBlock::Action()
 			}
 		}
 	}*/
+
+	
+
 	
 	//敵出現ライン
 	//主人公の位置+500を敵出現ラインにする
@@ -153,7 +156,7 @@ void CObjBlock::Action()
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
 	int dx = ((int)line) / 64;
-
+	int jx = ((int)line) / 64;
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
@@ -185,15 +188,27 @@ void CObjBlock::Action()
 
 			}
 
-			/*//列の中から７を探す
+			//列の中から７を探す
 			if (m_map[i][dx] == 7)
 			{
 
 				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 13);
 
+				//敵出現場所の値を0にする
+				m_map[i][dx] = 0;
+			}
 
-			}*/
+			//列の中から８を探す
+			if (m_map[i][jx] == 8)
+			{
+				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
+
+				//敵出現場所の値を0にする
+				m_map[i][jx] = 0;
+			}
+
 			
 	}
 	
@@ -268,7 +283,10 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-
+				if (m_map[i][j] == 8)
+				{
+					;
+				}
 
 
 				else
@@ -432,7 +450,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 32))
+				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 64))
 				{
 					//上下左右判定
 

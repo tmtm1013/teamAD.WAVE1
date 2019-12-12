@@ -7,9 +7,12 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_HERO,
+	OBJ_CURSOR,
+
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
+	OBJ_BOSS_STAGE,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
@@ -20,10 +23,12 @@ enum OBJ_NAME
 	OBJ_DIFFUSION_BULLET,
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
+	OBJ_REVOLUTION_BULLET,
 
 	OBJ_BACKGROUND,
 
 	OBJ_FLYINGENEMY,
+	OBJ_FLYINGENEMY2,
 	OBJ_ENEMYJUMP,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
@@ -86,15 +91,20 @@ extern float kazu;
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
+#include "ObjCursor.h"
+
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
+#include "ObjBossStage.h"
+#include "ObjEnemy.h"
 
 
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
+#include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
 
 
@@ -103,6 +113,7 @@ extern float kazu;
 #include "CObjDiffusionBullet.h"
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
+#include "ObjRevolutionBullet.h"
 
 
 #include "ObjTitle.h"
@@ -120,6 +131,7 @@ extern float kazu;
 #include "SceneMain.h"
 #include "SceneBlock2.h"
 #include "SceneBlock3.h"
+#include "SceneBossStage.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
@@ -129,4 +141,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneBlock2
+//-----------------------------------------------

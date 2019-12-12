@@ -40,7 +40,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book11.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book15.csv", &size);//外部データ読み込み
 
 	int map[10][100];
 	int count = 1;
@@ -80,16 +80,7 @@ void CSceneMain::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
 
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
-
-	
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
 
@@ -108,11 +99,8 @@ void CSceneMain::InitScene()
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
-
 	//ジャンプする敵
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_512);
 
 	//ボス
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 
@@ -120,6 +108,7 @@ void CSceneMain::InitScene()
 	//弾丸を飛ばす敵
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); 
 
+	
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
@@ -152,6 +141,11 @@ void CSceneMain::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
+
 
 
 	/*//テスト用:弾丸オブジェクト作成
@@ -159,6 +153,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 	*/
 
+	
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
