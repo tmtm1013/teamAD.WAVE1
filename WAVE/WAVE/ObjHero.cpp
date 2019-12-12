@@ -461,13 +461,24 @@ void CObjHero::Action()
 			{
 				flag = true;
 			}
-		
+
+			//ブロック情報を持ってくる
+			CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	        //HomingBulletの位置情報をここで取得
 			CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
 			float x = obj->GetBX();
-			float y = obj->GetBY();
-		
+			//float y = obj->GetBY();
+			//ノックバックプログラム
+			if (m_px > x + block->GetScroll())
+			{
+				m_vx = +5.0f;
+			}
+			else //(m_px < ex)
+			{
+				m_vx = -5.0f;
+			}
+			/*
 			float r = GetAtan2Angle( x , y );
 
 			if ((r < 45 && r >= 0) || r > 315)
@@ -478,7 +489,7 @@ void CObjHero::Action()
 			{
 				m_vx = +5.0f; //右に移動させる。
 			}
-			
+			*/
 		}
 
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
@@ -499,33 +510,102 @@ void CObjHero::Action()
 
 			//ブロック情報を持ってくる
 			CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-			//HomingBulletの位置情報をここで取得
-			CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
- 			if (obj != nullptr) {
-				float ex = obj->GetEX();
-				float ey = obj->GetEY();
-				bool Hitflag = CheckHit(m_px, ex);
 
-				if (Hitflag==true)
-				{
-				    m_vx = -5.0f;
-				}
-				else
+
+
+			//通常敵機の位置情報をここで取得
+			CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+			if (obj != nullptr) {
+
+				float ex = obj->GetEX();
+
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
 				{
 					m_vx = +5.0f;
 				}
-				//float r = GetAtan2Angle(ex, ey);
-
-				/*if ((r < 45 && r >= 0) || r > 315)
+				else //(m_px < ex)
 				{
-					m_vx = -5.0f; //左に移動させる。
+					m_vx = -5.0f;
 				}
-				if (r > 135 && r < 225)
-				{
-					m_vx = +5.0f; //右に移動させる。
-				}*/
-
 			}
+
+				//	フライングエネミーの位置情報取得
+				CObjFlyingenemy*obj1 = (CObjFlyingenemy*)Objs::GetObj(OBJ_ENEMY);
+				if (obj1 != nullptr) {
+
+					float ex = obj1->GetEX();
+
+					//ノックバックプログラム
+					if (m_px > ex + block->GetScroll())
+					{
+						m_vx = +5.0f;
+					}
+					else //(m_px < ex)
+					{
+						m_vx = -5.0f;
+					}
+
+				}
+
+
+				//	フライングエネミー2の位置情報取得
+				CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
+				if (obj2 != nullptr) {
+
+					float ex = obj2->GetEX();
+
+					//ノックバックプログラム
+					if (m_px > ex + block->GetScroll())
+					{
+						m_vx = +5.0f;
+					}
+					else //(m_px < ex)
+					{
+						m_vx = -5.0f;
+					}
+
+				}
+
+
+				//ジャンプエネミーの位置情報を取得
+				CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
+				if (obj3 != nullptr) {
+
+					float ex = obj3->GetEX();
+
+					//ノックバックプログラム
+					if (m_px > ex + block->GetScroll())
+					{
+						m_vx = +5.0f;
+					}
+					else //(m_px < ex)
+					{
+						m_vx = -5.0f;
+					}
+
+				}
+
+				//遠距離敵の位置情報を取得
+				CObjEnemyLongdistance*obj4 = (CObjEnemyLongdistance*)Objs::GetObj(OBJ_ENEMY);
+				if (obj4 != nullptr) {
+
+					float ex = obj4->GetEX();
+
+					//ノックバックプログラム
+					if (m_px > ex + block->GetScroll())
+					{
+						m_vx = +5.0f;
+					}
+					else //(m_px < ex)
+					{
+						m_vx = -5.0f;
+					}
+
+				}
+
+			
+			
 		}
 			 
 	    

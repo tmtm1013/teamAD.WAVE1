@@ -14,6 +14,42 @@ using namespace GameL;
 
 
 
+//位置情報X変更用
+void  CObjFlyingenemy::SetXX(float x)
+{
+
+	m_px = x;
+
+}
+//位置情報Y変更用
+void  CObjFlyingenemy::SetYY(float y)
+{
+
+	m_py = y;
+
+}
+//位置情報X取得用
+float  CObjFlyingenemy::GetEX()
+{
+
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float CObjFlyingenemy::GetEY()
+{
+
+
+	return m_py;
+
+
+
+}
+
+
+
 //コンストラクタ
 CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 {
