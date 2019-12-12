@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 CSceneBlock2::CSceneBlock2()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue=2;
 }
 
 //デストラクタ

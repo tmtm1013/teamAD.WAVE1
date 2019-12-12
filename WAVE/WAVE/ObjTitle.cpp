@@ -30,6 +30,7 @@ void CObjTitle::Init()
 	t = 1.0f;
 
 	((UserData*)Save::GetData())->SceneNum=1; //マップ移動用
+	((UserData*)Save::GetData())->Scenecontinue = 1; //マップ移動用
 }
 
 void CObjTitle::Action()

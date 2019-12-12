@@ -142,6 +142,12 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>ObjDesc</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjDescription.cpp">
+      <Filter>ObjDesc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -282,6 +288,12 @@
     <ClInclude Include="UtilityModule.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ObjDescription.h">
+      <Filter>ObjDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>ObjDesc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ObjBullet">
@@ -316,6 +328,9 @@
     </Filter>
     <Filter Include="ObjBlock\SceneClear">
       <UniqueIdentifier>{33f2efde-350e-48b9-acfa-986b4c9fec93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjDesc">
+      <UniqueIdentifier>{83d1d526-ae53-41e7-bad3-fb0cb4f9b963}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
