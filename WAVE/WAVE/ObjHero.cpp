@@ -17,8 +17,6 @@ using namespace GameL;
 //主人公と接触しているかどうかを確認する。
 float Overlap;
 
-
-
 //位置情報X変更用
 void  CObjHero::SetXX(float x)
 {
@@ -263,7 +261,7 @@ void CObjHero::Action()
 
 	}
 	//グレネード発射
-	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
+	if (Input::GetVKey('Y') == true && m_time >= 1.0f)
 	{
 		if (m_gf == true)
 		{

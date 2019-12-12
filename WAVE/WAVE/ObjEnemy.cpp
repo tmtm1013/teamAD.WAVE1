@@ -227,6 +227,7 @@ void CObjEnemy::Action()
 			Hits::DeleteHitBox(this);
 			
 		}
+		
 
 
 		//“G‚ªÁ–Å‚µ‚½‚ç+100“_

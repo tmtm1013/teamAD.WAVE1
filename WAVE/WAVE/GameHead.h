@@ -40,7 +40,7 @@ enum OBJ_NAME
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 	OBJ_GREN,
-
+	OBJ_DESCRIPTION,
 };
 //------------------------------------------------
 
@@ -125,6 +125,7 @@ extern float Overlap;
 #include "ObjItem.h"
 #include "ObjTime.h"
 #include "ObjGren.h"
+#include "ObjDescription.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -137,6 +138,7 @@ extern float Overlap;
 #include "SceneClear.h"
 #include "SceneGameOver.h"
 #include "SceneItem.h"
+#include "SceneDescription.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

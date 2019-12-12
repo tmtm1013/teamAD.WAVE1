@@ -41,4 +41,6 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	int m_block_type; //ƒuƒƒbƒN‚Ìí—Ş
+
 };

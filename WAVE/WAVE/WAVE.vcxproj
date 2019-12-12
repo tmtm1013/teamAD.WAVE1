@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjFlyimgEnemy2.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="ObjBoss1.cpp">
@@ -173,6 +174,7 @@
     <ClCompile Include="SceneBlock3.cpp" />
     <ClCompile Include="SceneBossStage.cpp" />
     <ClCompile Include="SceneClear.cpp" />
+    <ClCompile Include="SceneDescription.cpp" />
     <ClCompile Include="SceneGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -183,6 +185,7 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjBoss1.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -232,6 +235,7 @@
     <ClInclude Include="SceneBlock3.h" />
     <ClInclude Include="SceneBossStage.h" />
     <ClInclude Include="SceneClear.h" />
+    <ClInclude Include="SceneDescription.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneItem.h" />
     <ClInclude Include="SceneMain.h" />
