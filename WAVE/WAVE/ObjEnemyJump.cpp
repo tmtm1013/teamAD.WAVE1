@@ -149,10 +149,10 @@ void CObjEnemyJump::Action()
 		//ランダムで決まる数値が1の時ジャンプする
 		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
 
-			if (m_hit_down == true)//敵が地面にいるときジャンプする
-			{
-				m_vy = -16;
-			}
+				if (m_hit_down == true)//敵が地面にいるときジャンプする
+				{
+					m_vy = -16;
+				}
 
 
 		}
@@ -242,7 +242,7 @@ void CObjEnemyJump::Action()
 
 		}
 
-	
+	}
 }
 
 

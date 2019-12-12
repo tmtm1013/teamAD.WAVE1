@@ -216,6 +216,14 @@
     <ClCompile Include="ObjBoss2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ソース ファイル</Filter>
     <ClCompile Include="ObjCursor.cpp">
       <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>

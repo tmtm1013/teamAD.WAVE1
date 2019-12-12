@@ -83,8 +83,8 @@ void CObjFlyingenemy::Action()
 	//弾丸用プログラム
 	if (m_time > 100)
 	{
-		if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
+		//if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		{
 			m_time = 0;
 
 			//弾丸オブジェクト
@@ -97,7 +97,7 @@ void CObjFlyingenemy::Action()
 
 	}
 
-
+	
 
 	//ここが主人公の向きに移動する条件を書く。
 	if ((m_px + block->GetScroll()) < x)//右
@@ -128,18 +128,9 @@ void CObjFlyingenemy::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-		if (m_hit_right == true)
-		{
-
-
-			m_vy = -13;
-
-
-		}
-
 
 	}
+	
 	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -170,7 +161,7 @@ void CObjFlyingenemy::Action()
 	{
 		m_vy -= 0.1 / (2.0f);
 	}
-
+	
 
 
 	//ブロックタイプ検知用の変数がないためのダミー
@@ -182,7 +173,7 @@ void CObjFlyingenemy::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&d
 	);
-
+	
 
 	//位置の更新
 	m_px += m_vx;
@@ -245,7 +236,6 @@ void CObjFlyingenemy::Action()
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
-
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 

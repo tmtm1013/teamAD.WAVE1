@@ -81,8 +81,8 @@ void CObjFlyingEnemy2::Action()
 	//弾丸用プログラム
 	if (m_time > 100)
 	{
-		if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
+		//if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		{
 			m_time = 0;
 
 			//弾丸オブジェクト
@@ -126,18 +126,9 @@ void CObjFlyingEnemy2::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-		if (m_hit_right == true)
-		{
-
-
-			m_vy = -13;
-
-
-		}
-
 
 	}
+
 	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -152,6 +143,23 @@ void CObjFlyingEnemy2::Action()
 		m_ani_move = 1;
 	}
 
+
+
+	//摩擦の計算   -(運動energy X 摩擦係数)
+	m_vx += -(m_vx*0.098);
+
+
+
+	//自由落下運動
+	/*
+	if (m_py<300) {
+		m_vy += 0.1 / (2.0f);
+	}
+	if (m_py > 300)
+	{
+		m_vy -= 0.1 / (2.0f);
+	}
+	*/
 
 
 	//ブロックタイプ検知用の変数がないためのダミー
@@ -226,15 +234,20 @@ void CObjFlyingEnemy2::Action()
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
-
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+		if (flag == true)
+		{
+			//アイテムオブジェクト作成	
+			CObjItem*obju = new CObjItem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_ITEM, 7);
+			flag = false;
+		}
 		//敵が消滅したら+100点
 		((UserData*)Save::GetData())->m_point += 100;
 
 	}
-
 
 }
 
