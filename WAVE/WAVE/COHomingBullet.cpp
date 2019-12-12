@@ -10,8 +10,38 @@
 //使用するネームスペース
 using namespace GameL;
 
+//位置情報X変更用
+void  CObjHomingBullet::SetXX(float x)
+{
+
+	m_px = x;
 
 
+
+}
+//位置情報Y変更用
+void  CObjHomingBullet::SetYY(float y)
+{
+
+	m_py = y;
+
+}
+//位置情報X取得用
+float  CObjHomingBullet::GetBX()
+{
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float  CObjHomingBullet::GetBY()
+{
+
+	return m_py;
+
+}
+//コンストラクタ
 CObjHomingBullet::CObjHomingBullet(float x, float y)
 {
 	m_x = x;

@@ -422,9 +422,6 @@ void CObjHero::Action()
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
 	
-	//HitBoxの位置の変更a
-	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
 	
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -434,6 +431,12 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
+
+	//自身のヒットボックスを持ってくる。
+	CHitBox*hit = Hits::GetHitBox(this);
+
+
+
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
@@ -442,12 +445,9 @@ void CObjHero::Action()
 
 	}
 
-
-
 		//遠距離敵の攻撃接触でHeroのHPが減る
 		if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 		{
-
 			if (flag == true && hp_time <= 0.0f)
 			{
 				hp -= 30;
@@ -459,12 +459,19 @@ void CObjHero::Action()
 			{
 				flag = true;
 			}
-
-			//OBJ_BULLETと当たると主人公がノックバックする
+			/*OBJ_BULLETと当たると主人公がノックバックする
 			HIT_DATA** hit_data;
 			hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
+			*/
+			//float r = hit_data[0]->r;
 
-			float r = hit_data[0]->r;
+	        //HomingBulletの位置情報をここで取得
+			CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
+			float x = obj->GetBX();
+			float y = obj->GetBY();
+		
+			float r = GetAtan2Angle( x , y );
+
 			if ((r < 45 && r >= 0) || r > 315)
 			{
 				m_vx = -5.0f; //左に移動させる。
@@ -473,13 +480,12 @@ void CObjHero::Action()
 			{
 				m_vx = +5.0f; //右に移動させる。
 			}
+			
 		}
 
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 		if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 		{
-
-
 
 
 
@@ -495,10 +501,14 @@ void CObjHero::Action()
 				flag = true;
 			}
 
-			HIT_DATA** hit_data;
-			hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
-			float r = hit_data[0]->r;
 
+
+
+			
+			HIT_DATA** hit_data1;
+			hit_data1 = hit->SearchObjNameHit(OBJ_ENEMY);
+			
+		     float r = hit_data1[0]->r;
 			if ((r < 45 && r >= 0) || r > 315)
 			{
 				m_vx = -5.0f; //左に移動させる。
@@ -507,10 +517,10 @@ void CObjHero::Action()
 			{
 				m_vx = +5.0f; //右に移動させる。
 			}
+			
+	         
 
-	
-
-	}
+	    }
 	
 	/*
 	//主人公のHPがゼロになった時主人公が消える
@@ -527,11 +537,17 @@ void CObjHero::Action()
 
 	}
 	*/
+
+		
+
+
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
 
-		
+			//ヒットボックスの最新
+			hit->SetPos(m_px, m_py);
+
 }
 
 

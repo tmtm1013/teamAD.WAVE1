@@ -85,7 +85,7 @@ extern float kazu;
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
-
+#include "UtilityModule.h"
 
 //------------------------------------------------
 
@@ -106,6 +106,7 @@ extern float kazu;
 #include "ObjFlyingenemy.h"
 #include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
+#include "ObjBossSL.h"
 
 
 #include "CObjBullet.h"

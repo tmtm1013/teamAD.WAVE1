@@ -201,12 +201,13 @@ void CObjBlock::Action()
 
 			//—ñ‚Ì’†‚©‚ç‚W‚ğ’T‚·
 			if (m_map[i][jx] == 8)
-			{
+			{/*
 				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
 
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][jx] = 0;
+				*/
 			}
 
 			
