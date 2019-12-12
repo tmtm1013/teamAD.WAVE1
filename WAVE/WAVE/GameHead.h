@@ -30,6 +30,7 @@ enum OBJ_NAME
 	OBJ_FLYINGENEMY,
 	OBJ_FLYINGENEMY2,
 	OBJ_ENEMYJUMP,
+	OBJ_ENEMYJUMP2,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
 	
@@ -70,7 +71,8 @@ struct UserData
 	int mSeveData;	//サンプルセーブデータ
 	int m_point;    //GameMain出たポイント
 	int SceneNum;   //ステージ切り替え
-
+	int Scenecontinue;//ステージやり直し
+		
 	
 };
 //------------------------------------------------
@@ -102,6 +104,7 @@ extern float kazu;
 
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
+#include "ObjEnemyJump2.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjFlyingEnemy2.h"

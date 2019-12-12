@@ -29,11 +29,12 @@ void CObjBoss::Init()
 
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
+	m_time_a = 0;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 2;    //アニメーション間隔幅
+	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 100;//ENEMYのHP
+	m_hp = 300;//ENEMYのHP
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -48,7 +49,7 @@ void CObjBoss::Init()
 
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
+	Hits::SetHitBox(this, m_px, m_py, 380, 200, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
 
 
 
@@ -61,6 +62,9 @@ void CObjBoss::Init()
 //アクション
 void CObjBoss::Action()
 {
+	//アニメーション動作タイム
+	m_time_a++;
+
 	int d;
 
 	//ブロックとの当たり判定
@@ -72,7 +76,7 @@ void CObjBoss::Action()
 
 
 	//通常速度
-	m_speed_power = 0.01f;
+	m_speed_power = 0.04f;
 	m_ani_max_time = 2;
 
 	
@@ -108,18 +112,22 @@ void CObjBoss::Action()
 		m_ani_time += 1;
 	*/
 
-		m_vx -= m_speed_power;//右から左にゆっくり進んでいく
-		m_posture = 0.0f;
+	m_vx -= m_speed_power;//右から左にゆっくり進んでいく
+	m_posture = 0.0f;
+
+
+		
+     //----アニメーション動作間隔----
+	if (m_time_a >= 4)
+	{
 		m_ani_time += 1;
-	
-
-
+		m_time_a = 0;
+	}
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
 		m_ani_time = 0;
 	}
-
 	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
@@ -145,10 +153,11 @@ void CObjBoss::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+block->GetScroll(), m_py);
-
+	hit->SetPos(m_px+54.0 + block->GetScroll(), m_py-140);
+	
 
 
 	//BOSSの周り20°間隔で発射
@@ -222,6 +231,10 @@ void CObjBoss::Action()
 	if (m_hp <= 0)
 	{
 
+		//ボス消滅でシーンをステージ３に移行する
+		Scene::SetScene(new CSceneBlock3());
+
+		/*
 		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
 		{
 			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
@@ -235,26 +248,24 @@ void CObjBoss::Action()
 			((UserData*)Save::GetData())->SceneNum++;
 			//ボス消滅でシーンをステージ３に移行する
 	    	Scene::SetScene(new CSceneBlock3());
-
+			
 
 
 		}
+		*/
+
+
+		/*
 		else if (((UserData*)Save::GetData())->SceneNum == 3)
 		{
 			((UserData*)Save::GetData())->SceneNum++;
 			//ボス消滅でクリア画面に移行する
 			Scene::SetScene(new CSceneClear());
 		}
+		*/
 
 
-
-		/*else if (kazu == 3) {
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-			//敵消滅でシーンをゲームクリアに移行する
-			Scene::SetScene(new CSceneClear());
-		}*/
+		
 		
 
 	}
@@ -291,13 +302,18 @@ void CObjBoss::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	dst.m_top = -180.0f + m_py;
+	dst.m_left = (460.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (460 - 460.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_bottom = 70.0f + m_py;
 
-	///表示位置の設定
+	/*
+	//表示位置の設定
 	dst.m_top = -64.0f + m_py;
 	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
 	dst.m_right = m_px + (132 + pb->GetScroll());
 	dst.m_bottom = 68.0f + m_py;
-
+	*/
 
 	//描画
 	Draw::Draw(13, &src, &dst, c, 0.0f);

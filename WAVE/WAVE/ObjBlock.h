@@ -11,7 +11,7 @@ class CObjBlock :public CObj
 {
 
 public:
-	CObjBlock(int map[10][100]);
+	CObjBlock(int map[10][200]);
 	~CObjBlock() {};
 	void Init();
 	void Action();
@@ -48,7 +48,7 @@ public:
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[]);
 
-	int m_map[10][100];
+	int m_map[10][200];
 
 	float m_scroll;
 

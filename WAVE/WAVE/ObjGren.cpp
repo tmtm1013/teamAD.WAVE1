@@ -100,13 +100,14 @@ void CObjGren::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}*/
+	
 	if (m_hit_up==true|| m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}
-
+	
 	
 	//領域外に出たら弾丸を破棄する
 	if (m_bx > 800.0f)

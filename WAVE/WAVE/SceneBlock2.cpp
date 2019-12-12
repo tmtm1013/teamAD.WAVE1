@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 CSceneBlock2::CSceneBlock2()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue=2;
 }
 
 //デストラクタ
@@ -41,13 +41,13 @@ void CSceneBlock2::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage000002.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage022.csv", &size);//外部データ読み込み
 
-	int map[10][100];
+	int map[10][200];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -97,7 +97,7 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"blocka2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
@@ -109,13 +109,21 @@ void CSceneBlock2::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
+	//アイスブロックのグラフィックの読み込み
+	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
+
+
+	//ダメージブロックのグラフィックの読み込み
+	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
 
 	//blockオブジェクト作成
-	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+
+	CObjBlock*objb2 = new CObjBlock(map);
+	Objs::InsertObj(objb2, OBJ_BLOCK, 4);
 
 
 	//主人公オブジェクト作成

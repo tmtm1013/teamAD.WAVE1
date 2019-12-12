@@ -40,6 +40,7 @@ class CObjHero :public CObj
 		   void SetYY(float y);//位置情報Y変更用
 		   float GetXX();//位置情報ｘ取得用
 		   float GetYY();//位置情報Y取得用
+
 	private:
 		float m_px;    //位置
 		float m_py;

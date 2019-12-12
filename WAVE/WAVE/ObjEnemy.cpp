@@ -78,7 +78,7 @@ void CObjEnemy::Init()
 	m_hit_right = false;
 
 
-	m_hp = 100;//ENEMYのHP
+	m_hp = 80;//ENEMYのHP
 
 	
 
@@ -193,7 +193,7 @@ void CObjEnemy::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
@@ -250,16 +250,15 @@ void CObjEnemy::Action()
 		flag = true;
 
 
+
+
+		//Scene::SetScene(new CSceneBlock2());//テスト
+
+
+
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		//領域外に出たらゲームオーバー画面に移行
-		if (m_py > 600.0f)
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-			
-		}
 		
 
 
@@ -278,7 +277,10 @@ void CObjEnemy::Action()
 
 //ドロー
 void CObjEnemy::Draw()
-{
+{ 
+//ブロック情報を持ってくる
+	
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//歩くアニメーション情報を登録
 	int AniData[2][6] =
 	{
@@ -298,7 +300,7 @@ void CObjEnemy::Draw()
 	src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 132;
 	src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
 	src.m_bottom = 132.0f;
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	
 	//表示位置の設定
 	/*
 	dst.m_top = -100.0f + m_py;
@@ -306,10 +308,12 @@ void CObjEnemy::Draw()
 	dst.m_right = (132 - 132.0f * m_posture) + m_px+pb->GetScroll();
 	dst.m_bottom = 50.0f + m_py;
 	*/
-	dst.m_top = -64.0f + m_py;
-	dst.m_left = pb->GetScroll() + (m_px - 54.0f);
-	dst.m_right = m_px + (132 + pb->GetScroll());
-	dst.m_bottom = 68.0f + m_py;
+	//表示位置の設定
+	dst.m_top = -66.0f + m_py;
+	dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_bottom = 66.0f + m_py;
+
 
 	//描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
