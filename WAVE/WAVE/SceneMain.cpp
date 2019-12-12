@@ -65,10 +65,8 @@ void CSceneMain::InitScene()
 
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
-
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
-
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
