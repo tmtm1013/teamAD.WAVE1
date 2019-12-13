@@ -243,7 +243,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-/*	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
 		Audio::Start(4);//ショットガン発射音再生
@@ -255,7 +255,7 @@ void CObjHero::Action()
 
 		m_time = 0.0f;
 
-	}
+	}*/
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -354,10 +354,10 @@ void CObjHero::Action()
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-	
+
 		if (movesecond >= 4 && m_hit_down == true)
 			m_ani_time += 1;
-		
+
 		if (movesecond >= 21 && m_hit_down == true)
 		{
 			Audio::Start(8);
@@ -366,15 +366,17 @@ void CObjHero::Action()
 
 		//ダメージブロック
 		if (m_block_type == 5)
-			hp -=0.5;
+			hp -= 0.5;
 
-
+	}
 
 		/*else 
 		{
 			second++;
 		}*/
-	}
+
+
+	
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
@@ -680,7 +682,7 @@ void CObjHero::Action()
 	*/
 
 		
-
+		
 
 			//位置の更新
 			m_px += m_vx;

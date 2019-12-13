@@ -253,19 +253,29 @@ void CObjFlyingenemy::Action()
 
 
 	}
-
+	
 	//落下した敵を消去する。
 	if (m_py > 600.0f)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
 	}
-
+	
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+
+		
+		
+			//アイテムオブジェクト作成	
+			CObjItem*obju = new CObjItem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_ITEM, 7);
+			
+		
+
 
 
 		//敵が消滅したら+100点

@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjRevolutionBullet : public CObj
 {
 public:
-	CObjRevolutionBullet(float x, float y, float r, float speed);
+	CObjRevolutionBullet(float x, float y);
 	~CObjRevolutionBullet() {};
 	void Init();    //イニシャライズ
 	void Action();  //アクション

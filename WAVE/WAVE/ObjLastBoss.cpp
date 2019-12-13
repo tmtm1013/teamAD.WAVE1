@@ -177,18 +177,18 @@ void CObjLastBoss::Action()
 	}
 
 	m_time3++;
-	if (m_time > 500)//50の間隔で攻撃をする
+	if (m_time3 > 500)//50の間隔で攻撃をする
 	{
-
 		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
-			CObjRevolutionBullet*obj_b;
-			for (int i = 01; i < 360; i += 20)
+
+			for (int i = 1; i < 360; i += 20)
 			{
-				m_time = 0;
+
+				m_time3 = 0;
 				//弾丸オブジェクト
-				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 1);
+				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px, m_py-20);//オブジェ作成
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 6);
 
 
 			}

@@ -54,7 +54,6 @@
       <Filter>敵</Filter>
     </ClCompile>
     <ClCompile Include="SceneDescription.cpp" />
-    <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>敵</Filter>
     </ClCompile>
@@ -79,6 +78,11 @@
     <ClCompile Include="COHomingBullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="ObjLastBoss.cpp" />
+    <ClCompile Include="ObjBoss1.cpp" />
+    <ClCompile Include="ObjBoss2.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp" />
+    <ClCompile Include="ObjDescription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjCursor.h" />
@@ -133,7 +137,6 @@
       <Filter>敵</Filter>
     </ClInclude>
     <ClInclude Include="SceneDescription.h" />
-    <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjEnemyJump2.h">
       <Filter>敵</Filter>
     </ClInclude>
@@ -158,6 +161,9 @@
     <ClInclude Include="COHomingBullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="ObjLastBoss.h" />
+    <ClInclude Include="ObjBoss1.h" />
+    <ClInclude Include="ObjBoss2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="敵">

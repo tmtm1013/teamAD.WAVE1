@@ -12,7 +12,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjRevolutionBullet::CObjRevolutionBullet(float x, float y, float r, float speed)
+CObjRevolutionBullet::CObjRevolutionBullet(float x, float y)
 {
 	m_x = x;  //主人公のX軸を取得
 	m_y = y;  //主人公のY軸を取得
