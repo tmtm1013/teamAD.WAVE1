@@ -42,6 +42,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
+	OBJ_LASTBOSS,
 };
 //------------------------------------------------
 
@@ -129,6 +130,7 @@ extern float Overlap;
 #include "ObjTime.h"
 #include "ObjGren.h"
 #include "ObjDescription.h"
+#include "ObjLastBoss.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -146,5 +148,5 @@ extern float Overlap;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START SceneBossStage
 //-----------------------------------------------

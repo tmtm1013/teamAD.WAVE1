@@ -223,7 +223,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+/*	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
 		Audio::Start(4);//ショットガン発射音再生
@@ -236,6 +236,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}
+	*/
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)	//グレネード発射
 	{
 		if (m_gf == true)
@@ -458,35 +459,6 @@ void CObjHero::Action()
 		{
 			flag = true;
 		}
-
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_ENEMY);
- 		float r = hit_data[0]->r;
-
-		if ((r < 45 && r >= 0) || r > 315)
-		{
-			m_vx = -5.0f; //左に移動させる。
-		}
-		if (r > 135 && r < 225)
-		{
-			m_vx = +5.0f; //右に移動させる。
-		}
-	}
-	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)//遠距離敵の攻撃接触でHeroのHPが減る
-	{
-		HIT_DATA** hit_data;//OBJ_BULLETと当たると主人公がノックバックする
-		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		
-		float r = hit_data[0]->r;
-		if ((r < 45 && r >= 0) || r > 315)
-		{
-			m_vx = -5.0f; //左に移動させる。
-		}
-		if (r > 135 && r < 225)
-		{
-			m_vx = +5.0f; //右に移動させる。
-		}
-
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 30;

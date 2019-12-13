@@ -88,8 +88,13 @@ void CObjBlock::Action()
 			//列の中から6を探す
 			if (m_map[i][rx] == 6)
 			{
+				/*
 				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_BOSS, 11);
+				*/
+				//LastBossテスト用
+				CObjLastBoss*obje = new CObjLastBoss(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_LASTBOSS, 11);
 
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;

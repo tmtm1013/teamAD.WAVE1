@@ -231,6 +231,7 @@ void CObjFlyingenemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
+
 		//“G‚ªÁ–Å‚µ‚½‚ç+100“_
 		((UserData*)Save::GetData())->m_point += 100;
 
