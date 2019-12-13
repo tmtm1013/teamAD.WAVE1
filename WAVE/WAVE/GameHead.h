@@ -42,6 +42,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
+	OBJ_LASTBOSS,
 };
 //------------------------------------------------
 
@@ -130,6 +131,7 @@ extern float kazu;
 #include "ObjTime.h"
 #include "ObjGren.h"
 #include "ObjDescription.h"
+#include "ObjLastBoss.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

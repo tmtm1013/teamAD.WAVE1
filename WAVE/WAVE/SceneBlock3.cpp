@@ -65,8 +65,8 @@ void CSceneBlock3::InitScene()
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 		//音楽読み込み
-	Audio::LoadAudio(22, L"back3.wav", BACK_MUSIC);
-	Audio::Start(22);//音楽スタート
+	Audio::LoadAudio(23, L"back3.wav", BACK_MUSIC);
+	Audio::Start(23);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//Font作成

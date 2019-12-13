@@ -243,7 +243,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//–òä°—Ž‰º‰¹
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//—†ù’eŠÛ”­ŽË---------
+/*	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//—†ù’eŠÛ”­ŽË---------
 	{
 		//”­ŽË‰¹‚ð–Â‚ç‚·
 		Audio::Start(4);//ƒVƒ‡ƒbƒgƒKƒ“”­ŽË‰¹Ä¶

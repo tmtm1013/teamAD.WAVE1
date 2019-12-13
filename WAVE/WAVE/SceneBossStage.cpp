@@ -67,8 +67,8 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
 
 	//音楽情報の読み込み
-	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
-	Audio::Start(22);//音楽スタート
+	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
+	Audio::Start(24);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//Font作成
@@ -113,7 +113,7 @@ void SceneBossStage::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
+	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
