@@ -12,7 +12,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjRevolutionBullet::CObjRevolutionBullet(float x, float y)
+CObjRevolutionBullet::CObjRevolutionBullet(float x, float y, float r, float speed)
 {
 	m_x = x;  //主人公のX軸を取得
 	m_y = y;  //主人公のY軸を取得
@@ -35,12 +35,23 @@ void CObjRevolutionBullet::Init()
 	flag = true;
 
 	button = false;
+
+	//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_REVOLUTION_BULLET, OBJ_HOMING_BULLET, 1);
+
 }
 
 //アクション
 void CObjRevolutionBullet::Action()
 {
-	
+
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x, m_y);
+
+
+
+
 	if (m_x < 0)
 	{
 		this->SetStatus(false);

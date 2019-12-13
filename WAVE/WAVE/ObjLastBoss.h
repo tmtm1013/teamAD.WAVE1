@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 //使用するヘッダーファイル
 #include "GameL\SceneObjManager.h"
 
@@ -7,20 +8,14 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjBoss :public CObj
+class CObjLastBoss :public CObj
 {
 public:
-	CObjBoss(float x, float y);
-	   ~CObjBoss() {};
-	   void Init();   //イニシャライズ
-	   void Action(); //アクション
-	   void Draw();   //ドロー
-
-	   float GetEX();//位置情報ｘ取得用
-	   float GetEY();//位置情報Y取得用
-	   void SetXX(float x);//位置情報X変更用
-	   void SetYY(float y);//位置情報Y変更用
-
+	CObjLastBoss(float x, float y);
+	~CObjLastBoss() {};
+	void Init();   //イニシャライズ
+	void Action(); //アクション
+	void Draw();   //ドロー
 
 private:
 	float m_px;    //位置
@@ -44,7 +39,8 @@ private:
 	//弾丸用プログラム
 	int m_time;
 	int m_time2;
-	
+	int m_time3;
+
 	//マップ移動用数値
 	int kazu;
 

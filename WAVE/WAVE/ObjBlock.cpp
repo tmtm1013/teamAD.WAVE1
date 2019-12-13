@@ -75,11 +75,11 @@ void CObjBlock::Action()
 		//列の中から４を探す
 			if (m_map[i][ex] ==4)
 			{
-
+				
 				//4があれば、敵を出現
 				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
-
+				Objs::InsertObj(obje, OBJ_ENEMY, 10);
+				
 				//敵出現場所の値を0にする
 				m_map[i][ex] = 0;
 			
@@ -88,8 +88,13 @@ void CObjBlock::Action()
 			//列の中から6を探す
 			if (m_map[i][rx] == 6)
 			{
+				/*
 				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_BOSS, 11);
+				*/
+				//LastBossテスト用
+				CObjLastBoss*obje = new CObjLastBoss(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_LASTBOSS, 11);
 
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;
@@ -98,22 +103,23 @@ void CObjBlock::Action()
 			//列の中から７を探す
 			if (m_map[i][dx] == 7)
 			{
-
+				
 				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 13);
-
+				
 				//敵出現場所の値を0にする
 				m_map[i][dx] = 0;
 			}
 
 			//列の中から８を探す
 			if (m_map[i][jx] == 8)
-			{
+			{/*
 				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
 
 				//敵出現場所の値を0にする
 				m_map[i][jx] = 0;
+				*/
 			}
 
 			//列の中から9を探す

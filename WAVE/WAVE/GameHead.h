@@ -42,6 +42,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
+	OBJ_LASTBOSS,
 };
 //------------------------------------------------
 
@@ -81,13 +82,13 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 extern float m_hp;
 extern float kazu;
-extern float Overlap;
+
 
 
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
-
+#include "UtilityModule.h"
 
 //------------------------------------------------
 
@@ -109,6 +110,7 @@ extern float Overlap;
 #include "ObjFlyingenemy.h"
 #include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
+#include "ObjBossSL.h"
 
 
 #include "CObjBullet.h"
@@ -129,6 +131,7 @@ extern float Overlap;
 #include "ObjTime.h"
 #include "ObjGren.h"
 #include "ObjDescription.h"
+#include "ObjLastBoss.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

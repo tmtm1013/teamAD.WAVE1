@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjRevolutionBullet : public CObj
 {
 public:
-	CObjRevolutionBullet(float x, float y);
+	CObjRevolutionBullet(float x, float y, float r, float speed);
 	~CObjRevolutionBullet() {};
 	void Init();    //イニシャライズ
 	void Action();  //アクション
@@ -34,6 +34,9 @@ private:
 	float pl_y;//現在のプレイヤーYの位置を保存用変数
 
 	bool button;
+
+	float m_r;  //移動する角度
+	float m_speed;  //速度
 };
 
 

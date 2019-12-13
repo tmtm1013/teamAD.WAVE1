@@ -6,47 +6,14 @@
 #include "GameHead.h"
 #include "GameL\UserData.h"
 
-#include "ObjBoss.h"
-
+#include "ObjLastBoss.h"
+#define GRAUND (546.0f)
 
 //使用するネームスペース
 using namespace GameL;
 
-
-void  CObjBoss::SetXX(float x)
-{
-
-	m_px = x;
-
-}
-//位置情報Y変更用
-void  CObjBoss::SetYY(float y)
-{
-
-	m_py = y;
-
-}
-//位置情報X取得用
-float  CObjBoss::GetEX()
-{
-
-
-	return m_px;
-
-
-}
-//位置情報Y取得用
-float CObjBoss::GetEY()
-{
-
-
-	return m_py;
-
-
-}
-
 //コンストラクタ
-CObjBoss::CObjBoss(float x, float y)
+CObjLastBoss::CObjLastBoss(float x, float y)
 {
 	m_px = x;    //位置
 	m_py = y;
@@ -54,7 +21,7 @@ CObjBoss::CObjBoss(float x, float y)
 }
 
 //イニシャライズ
-void CObjBoss::Init()
+void CObjLastBoss::Init()
 {
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
@@ -67,7 +34,7 @@ void CObjBoss::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 300;//ENEMYのHP
+	m_hp = 400;//ENEMYのHP
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -79,10 +46,10 @@ void CObjBoss::Init()
 
 	m_time = 0;//拡散弾用変数
 	m_time2 = 0;//普通遠距離攻撃用変数
-
+	m_time3 = 0;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 380, 200, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
+	Hits::SetHitBox(this, m_px, m_py, 500, 315, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
 
 
 
@@ -93,7 +60,7 @@ void CObjBoss::Init()
 
 
 //アクション
-void CObjBoss::Action()
+void CObjLastBoss::Action()
 {
 	//アニメーション動作タイム
 	m_time_a++;
@@ -112,14 +79,14 @@ void CObjBoss::Action()
 	m_speed_power = 0.04f;
 	m_ani_max_time = 2;
 
-	
+
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
-	
-	/*
+
+
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -138,19 +105,14 @@ void CObjBoss::Action()
 
 
 	}
-	*/
-	/*
-		m_vx += m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-	*/
+
 
 	m_vx -= m_speed_power;//右から左にゆっくり進んでいく
 	m_posture = 0.0f;
 
 
-		
-     //----アニメーション動作間隔----
+
+	//----アニメーション動作間隔----
 	if (m_time_a >= 4)
 	{
 		m_ani_time += 1;
@@ -174,7 +136,10 @@ void CObjBoss::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-
+	if (m_vy > 26 && m_py <= GRAUND)
+	{
+		m_vy = 0;
+	}
 
 	//位置の更新
 	m_px += m_vx;
@@ -186,16 +151,17 @@ void CObjBoss::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+54.0 + block->GetScroll(), m_py-140);
-	
+	hit->SetPos(m_px + 50.0 + block->GetScroll(), m_py - 250);
+
 
 
 	//BOSSの周り20°間隔で発射
 	m_time++;//弾丸発射間隔をあけるインクリメント
-	if (m_time>150)//50の間隔で拡散弾攻撃をする
+	if (m_time > 300)//50の間隔で拡散弾攻撃をする
 	{
-		
-	
+
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
 			//19発同時発射
 			CObjAngleBullet*obj_b;
 			for (int i = 01; i < 360; i += 20)
@@ -207,22 +173,46 @@ void CObjBoss::Action()
 
 
 			}
-		
+		}
 	}
-	
+
+	m_time3++;
+	if (m_time > 500)//50の間隔で攻撃をする
+	{
+
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+
+			CObjRevolutionBullet*obj_b;
+			for (int i = 01; i < 360; i += 20)
+			{
+				m_time = 0;
+				//弾丸オブジェクト
+				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 1);
+
+
+			}
+		}
+	}
+
+
+
 	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
-	if (m_time2>100) {
+	if (m_time2 > 100) {
 
 
-	
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			m_time2 = 0;
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
-		
+		}
+
 	}
-	
+
+
+
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -251,7 +241,7 @@ void CObjBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
 
-		m_hp -= 50;
+		m_hp -= 10;
 
 
 	}
@@ -260,41 +250,10 @@ void CObjBoss::Action()
 	{
 
 		//ボス消滅でシーンをステージ３に移行する
-		Scene::SetScene(new CSceneBlock3());
+		Scene::SetScene(new CSceneClear());
 
-		/*
-		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
-		{
-			((UserData*)Save::GetData())->SceneNum++; //マップ移動用
-			Audio::Stop(21); //BGMストップ
-			//敵消滅でシーンをゲームクリアに移行する
-			Scene::SetScene(new CSceneBlock2());
-			
-		}
-		else if (((UserData*)Save::GetData())->SceneNum == 2) 
-		{
-			((UserData*)Save::GetData())->SceneNum++;
-			//ボス消滅でシーンをステージ３に移行する
-	    	Scene::SetScene(new CSceneBlock3());
-			
+		Audio::Stop(24);//音楽ストップ
 
-
-		}
-		*/
-
-
-		/*
-		else if (((UserData*)Save::GetData())->SceneNum == 3)
-		{
-			((UserData*)Save::GetData())->SceneNum++;
-			//ボス消滅でクリア画面に移行する
-			Scene::SetScene(new CSceneClear());
-		}
-		*/
-
-
-		
-		
 
 	}
 
@@ -303,7 +262,7 @@ void CObjBoss::Action()
 }
 
 //ドロー
-void CObjBoss::Draw()
+void CObjLastBoss::Draw()
 {
 	//スクロール情報取得
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -311,7 +270,7 @@ void CObjBoss::Draw()
 	//歩くアニメーション情報を登録
 	int AniData[6] =
 	{
-		0, 1, 2, 3, 4, 5, 
+		0, 1, 2, 3, 4, 5,
 	};
 
 
@@ -330,9 +289,9 @@ void CObjBoss::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	dst.m_top = -180.0f + m_py;
-	dst.m_left = (460.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_right = (460 - 460.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_top = -290.0f + m_py;
+	dst.m_left = (600.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (600 - 600.0f * m_posture) + m_px + block->GetScroll();
 	dst.m_bottom = 70.0f + m_py;
 
 	/*

@@ -13,10 +13,19 @@ public:
 	void Init();    //イニシャライズ
 	void Action();  //アクション
 	void Draw();    //ドロー
+
+	float GetX() { return m_px; }
+	float GetY() { return m_py; }
+	float GetBX();//位置情報ｘ取得用
+	float GetBY();//位置情報Y取得用
+	void SetXX(float x);//位置情報X変更用
+	void SetYY(float y);//位置情報Y変更用
+
+
 private:
-
-
-
+	float m_px;    //位置
+	float m_py;
+	
 	float m_x;	//オブジェクトの位置
 	float m_y;
 	float m_vx;	//オブジェクトの移動用ベクトル

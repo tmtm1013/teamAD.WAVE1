@@ -10,11 +10,42 @@
 #include "stdlib.h"//乱数用ヘッダー
 #include "time.h"  //乱数用ヘッダー
 
-#define GRAUND (546.0f)
 
 
 //使用するネームスペース
 using namespace GameL;
+//位置情報X変更用
+void  CObjEnemyJump::SetXX(float x)
+{
+
+	m_px = x;
+
+}
+//位置情報Y変更用
+void  CObjEnemyJump::SetYY(float y)
+{
+
+	m_py = y;
+
+}
+//位置情報X取得用
+float  CObjEnemyJump::GetEX()
+{
+
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float CObjEnemyJump::GetEY()
+{
+
+
+	return m_py;
+
+
+}
 
 //コンストラクタ
 CObjEnemyJump::CObjEnemyJump(float x,float y)
@@ -91,7 +122,7 @@ void CObjEnemyJump::Action()
 
 
 	//主人公の位置情報をここで取得
-	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);	
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
@@ -124,31 +155,38 @@ void CObjEnemyJump::Action()
 		m_ani_time += 1;
 		m_ani_move = 1;
 
-		//ランダムで決まる数値が1の時ジャンプする
-		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-			if (m_hit_down == true)//敵が地面にいるときジャンプする
-			{
-				m_vy = -16;
-			}
+		//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
+		if (m_hit_left == true)
+		{
 
 
 			m_vy = -13;
 
 
 		}
-	}
 
-	if (m_ani_time > m_ani_max_time)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
+		//ランダムで決まる数値が1の時ジャンプする
+		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+				if (m_hit_down == true)//敵が地面にいるときジャンプする
+				{
+					m_vy = -16;
+				}
+
+
+		}
+
 	}
-	//アニメーション
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-	}
+		if (m_ani_time > m_ani_max_time)
+		{
+			m_ani_frame += 1;
+			m_ani_time = 0;
+		}
+		//アニメーション
+		if (m_ani_frame == 4)
+		{
+			m_ani_frame = 0;
+		}
 
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
