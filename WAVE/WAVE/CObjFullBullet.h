@@ -29,5 +29,16 @@ private:
 	float m_mou_bx;//マウスの X 方向の位置用変数
 	float m_mou_by;//マウスの Y 方向の位置用変数
 
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	float m_sx;   //サイズ用
+	float m_sy;
+
+	//当たっているblockの種類を確認用
+	int m_block_type;
+
 };
 

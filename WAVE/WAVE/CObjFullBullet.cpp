@@ -2,6 +2,8 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 
+#include "GameL\Audio.h"
+
 #include "GameHead.h"
 #include "CObjFullBullet.h"
 #include "GameL\HitBoxManager.h"
@@ -23,6 +25,7 @@ CObjFullBullet::CObjFullBullet(float x, float y)
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_FULL_BULLET, 1);
 
+	Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 }
 
 //イニシャライズ
@@ -37,16 +40,27 @@ void CObjFullBullet ::Init()
 	bx = 0.0f;
 	by = 0.0f;
 
+	m_sx = 16;   //サイズ用
+	m_sy = 16;
+
 	m_time = 0.0f;
 
 	flag = true;
+
+	//float Volume = Audio::VolumeMaster(-0.2f);
 
 }
 
 //アクション
 void CObjFullBullet::Action()
 {
-	
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_bx, &m_by, true, &m_sx, &m_sy,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 
 
 
@@ -91,6 +105,8 @@ void CObjFullBullet::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
 
+
+
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -118,6 +134,14 @@ void CObjFullBullet::Action()
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
+		//float Volume = Audio::VolumeMaster(-0.2f);
+		Audio::Start(11);//SE再生(装備音)
 	}
 }
 
