@@ -13,12 +13,35 @@
 //使用するネームスペース
 using namespace GameL;
 
-
-//コンストラクタ
-CObjEnemyLongdistance::CObjEnemyLongdistance(float x,float y)
+void   CObjEnemyLongdistance::SetXX(float x)
 {
-	m_px = x;    //位置
+
+	m_px = x;
+
+}
+//位置情報Y変更用
+void   CObjEnemyLongdistance::SetYY(float y)
+{
+
 	m_py = y;
+
+}
+//位置情報X取得用
+float   CObjEnemyLongdistance::GetEX()
+{
+
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float  CObjEnemyLongdistance::GetEY()
+{
+
+
+	return m_py;
+
 
 }
 

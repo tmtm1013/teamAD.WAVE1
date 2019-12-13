@@ -17,6 +17,12 @@ public:CObjFlyingEnemy2(float x, float y);
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 
+	   float GetEX();//位置情報ｘ取得用
+	   float GetEY();//位置情報Y取得用
+	   void SetXX(float x);//位置情報X変更用
+	   void SetYY(float y);//位置情報Y変更用
+
+
 private:
 	float m_px;    //位置
 	float m_py;

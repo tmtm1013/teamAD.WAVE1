@@ -90,7 +90,9 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block02.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+
+
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
@@ -113,8 +115,8 @@ void CSceneBlock3::InitScene()
 	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
-	CObjBlock*objb3 = new CObjBlock(map);
-	Objs::InsertObj(objb3, OBJ_BLOCK, 4);
+	CObjBlock*objb = new CObjBlock(map);
+	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
 	//主人公オブジェクト作成
@@ -153,43 +155,13 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 17);
 	*/
 
-	m_time = 0;
-	m_time2 = 0;
-	m_time3 = 0;
-	m_time4 = 0;
-	m_time5 = 0;
-	m_time6 = 0;
-	m_time7 = 0;
-	m_time8 = 0;
-	m_time9 = 0;
-	m_time10 = 0;
 
-	Enemy = 1;
-	Enemyleft = 1;
-	EnemyJump = 1;
-	EnemyJumpleft = 1;
-	EnemyRecovery = 1;
-	EnemyRecoveryleft = 1;
-	EnemyAmmunition = 1;
-	EnemyAmmunitionleft = 1;
-	EnemyLongdistance = 1;
-	EnemyLongdistanceleft = 1;
 
 }
 
 //実行中メソッド
 void CSceneBlock3::Scene()
 {
-	m_time++;
-	m_time2++;
-	m_time3++;
-	m_time4++;
-	m_time5++;
-	m_time6++;
-	m_time7++;
-	m_time8++;
-	m_time9++;
-	m_time10++;
 
 
 
