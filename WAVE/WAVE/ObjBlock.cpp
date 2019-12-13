@@ -75,11 +75,11 @@ void CObjBlock::Action()
 		//—ñ‚Ì’†‚©‚ç‚S‚ğ’T‚·
 			if (m_map[i][ex] ==4)
 			{
-
+				
 				//4‚ª‚ ‚ê‚ÎA“G‚ğoŒ»
 				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYLONGDISTANCE, 10);
-
+				Objs::InsertObj(obje, OBJ_ENEMY, 10);
+				
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][ex] = 0;
 			
@@ -98,22 +98,23 @@ void CObjBlock::Action()
 			//—ñ‚Ì’†‚©‚ç‚V‚ğ’T‚·
 			if (m_map[i][dx] == 7)
 			{
-
+				
 				CObjEnemy*obje = new CObjEnemy(dx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 13);
-
+				
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][dx] = 0;
 			}
 
 			//—ñ‚Ì’†‚©‚ç‚W‚ğ’T‚·
 			if (m_map[i][jx] == 8)
-			{
+			{/*
 				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
 
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][jx] = 0;
+				*/
 			}
 
 			//—ñ‚Ì’†‚©‚ç9‚ğ’T‚·

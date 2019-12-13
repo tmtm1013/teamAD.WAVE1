@@ -14,6 +14,42 @@ using namespace GameL;
 
 
 
+//位置情報X変更用
+void  CObjFlyingenemy::SetXX(float x)
+{
+
+	m_px = x;
+
+}
+//位置情報Y変更用
+void  CObjFlyingenemy::SetYY(float y)
+{
+
+	m_py = y;
+
+}
+//位置情報X取得用
+float  CObjFlyingenemy::GetEX()
+{
+
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float CObjFlyingenemy::GetEY()
+{
+
+
+	return m_py;
+
+
+
+}
+
+
+
 //コンストラクタ
 CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 {
@@ -53,7 +89,7 @@ void CObjFlyingenemy::Init()
 	m_time = 0;//弾丸用タイム
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, OBJ_ENEMY, OBJ_ENEMY, 1);
 }
 
 //アクション
