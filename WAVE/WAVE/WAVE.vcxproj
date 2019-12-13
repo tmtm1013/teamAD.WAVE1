@@ -119,6 +119,7 @@
     <ClCompile Include="CheckHit.cpp" />
     <ClCompile Include="ObjBossSL.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp" />
     <ClCompile Include="ObjFlyimgEnemy2.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="ObjBoss1.cpp">
@@ -201,6 +202,7 @@
     <ClInclude Include="ObjBossSL.h" />
     <ClInclude Include="ObjCursor.h" />
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjEnemyJump2.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />

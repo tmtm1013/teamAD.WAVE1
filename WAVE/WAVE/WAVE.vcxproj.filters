@@ -64,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="SceneDescription.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>敵</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjBoss1.h" />
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="SceneDescription.h" />
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjEnemyJump2.h">
+      <Filter>敵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="敵">
