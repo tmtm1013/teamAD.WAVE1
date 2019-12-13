@@ -17,7 +17,7 @@ void CObjTitle::Init()
 {
 	Audio::LoadAudio(1, L"SEgan/k.wav", SOUND_TYPE::EFFECT);
 
-	Draw::LoadImageW(L"Title.png", 1, TEX_SIZE_1024);
+	Draw::LoadImage(L"Title.png", 1, TEX_SIZE_1024);
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;

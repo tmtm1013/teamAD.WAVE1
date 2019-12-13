@@ -12,7 +12,7 @@ using namespace GameL;
 void CObjBackground::Init()
 {
 	//背景のグラフィック読み込み
-	Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
+	Draw::LoadImage(L"Background.png", 9, TEX_SIZE_1024);
 
 }
 

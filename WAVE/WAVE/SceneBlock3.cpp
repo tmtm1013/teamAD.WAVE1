@@ -72,25 +72,24 @@ void CSceneBlock3::InitScene()
 		//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
-	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImage(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImage(L"Item.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImage(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"Block2.png", 4, TEX_SIZE_512);
 
 	//blockオブジェクト作成
 
@@ -98,14 +97,14 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objf, OBJ_BLOCK, 4);
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 	//JumpEnemyグラフィック読み込み
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+	Draw::LoadImage(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
-	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
+	Draw::LoadImage(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
-	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+	Draw::LoadImage(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

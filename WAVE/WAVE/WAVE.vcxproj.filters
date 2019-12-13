@@ -19,12 +19,6 @@
     <ClCompile Include="ObjBoss.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBoss1.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBoss2.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
@@ -142,6 +136,8 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="SceneDescription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -158,12 +154,6 @@
     </ClInclude>
     <ClInclude Include="COHomingBullet.h">
       <Filter>ObjBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBoss1.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBoss2.h">
-      <Filter>ObjEnemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
       <Filter>ObjEnemy</Filter>
@@ -282,6 +272,8 @@
     <ClInclude Include="UtilityModule.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="SceneDescription.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ObjBullet">

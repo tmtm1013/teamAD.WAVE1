@@ -53,13 +53,13 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
+	Draw::LoadImage(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
+	Draw::LoadImage(L"Animation/wait21.png", 2, TEX_SIZE_1024);
 	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
+	Draw::LoadImage(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 	//主人公(通常攻撃)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);
+	Draw::LoadImage(L"Animation/Action.png", 18, TEX_SIZE_1024);
 	//主人公(連弾攻撃)グラフィック読み込み
 	//Draw::LoadImageW(L"Animation/Action.png", 19, TEX_SIZE_1024);
 	
@@ -132,7 +132,7 @@ void CObjHero::Init()
 	flag = true;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
 	hp = 300;//主人公のヒットポイント用
 	hp_max = 300;
@@ -391,7 +391,7 @@ void CObjHero::Action()
 	
 	//HitBoxの位置の変更a
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_px+8, m_py+12);
 	
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
