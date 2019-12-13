@@ -69,7 +69,7 @@ void CSceneMain::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImage(L"BulletGF.png", 4, TEX_SIZE_1024);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック

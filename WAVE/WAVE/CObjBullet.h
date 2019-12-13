@@ -20,13 +20,13 @@ private:
 	float m_vx;    //弾丸の X 方向の速度用変数
 	float m_vy;    //弾丸の Y 方向の速度用変数
 
+	float m_r;     //弾丸の描画角度用変数
+
 	float bx;      //弾丸の X ベクトル値収納用変数 
 	float by;      //弾丸の Y ベクトル値収納用変数
 
 	float m_sx;   //サイズ用
 	float m_sy;
-
-
 
 	 bool m_hit_up;
 	 bool m_hit_down;

@@ -74,7 +74,7 @@ void CSceneBlock3::InitScene()
 
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
+	//Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
