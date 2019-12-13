@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ObjBossSL.cpp" />
-    <ClCompile Include="ObjBoss1.cpp" />
-    <ClCompile Include="ObjBoss2.cpp" />
     <ClCompile Include="CObjAngleBullet.cpp" />
-    <ClCompile Include="ObjBoss.cpp" />
     <ClCompile Include="ObjCursor.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
@@ -67,13 +63,16 @@
     <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>敵</Filter>
     </ClCompile>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBossSL.cpp">
+      <Filter>敵</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ObjBoss1.h" />
-    <ClInclude Include="ObjBoss2.h" />
     <ClInclude Include="CObjAngleBullet.h" />
     <ClInclude Include="CObjBullet.h" />
-    <ClInclude Include="ObjBossSL.h" />
     <ClInclude Include="ObjCursor.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />
@@ -131,6 +130,12 @@
     <ClInclude Include="SceneDescription.h" />
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjEnemyJump2.h">
+      <Filter>敵</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJBoss.h">
+      <Filter>敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBossSL.h">
       <Filter>敵</Filter>
     </ClInclude>
   </ItemGroup>

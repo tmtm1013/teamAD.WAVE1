@@ -540,13 +540,13 @@ void CObjHero::Action()
 
 
 
-			//通常敵機の位置情報をここで取得
-			CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+			 //通常敵機の位置情報をここで取得
+		    CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
 			if (obj != nullptr) {
 
-				float ex = obj->GetEX();
+				  float ex = obj->GetEX();
 
-				//ノックバックプログラム
+				  //ノックバックプログラム
 				if (m_px > ex + block->GetScroll())
 				{
 					m_vx = +5.0f;
@@ -557,86 +557,123 @@ void CObjHero::Action()
 				}
 			}
 
-				//	フライングエネミーの位置情報取得
-				CObjFlyingenemy*obj1 = (CObjFlyingenemy*)Objs::GetObj(OBJ_ENEMY);
-				if (obj1 != nullptr) {
+			//フライングエネミーの位置情報取得
+			CObjFlyingenemy*obj1 = (CObjFlyingenemy*)Objs::GetObj(OBJ_ENEMY);
+			if (obj1 != nullptr) {
 
-					float ex = obj1->GetEX();
+				float ex = obj1->GetEX();
 
-					//ノックバックプログラム
-					if (m_px > ex + block->GetScroll())
-					{
-						m_vx = +5.0f;
-					}
-					else //(m_px < ex)
-					{
-						m_vx = -5.0f;
-					}
-
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
 				}
 
+			}
 
-				//	フライングエネミー2の位置情報取得
-				CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
-				if (obj2 != nullptr) {
 
-					float ex = obj2->GetEX();
+			//	フライングエネミー2の位置情報取得
+			CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
+			if (obj2 != nullptr) {
 
-					//ノックバックプログラム
-					if (m_px > ex + block->GetScroll())
-					{
-						m_vx = +5.0f;
-					}
-					else //(m_px < ex)
-					{
-						m_vx = -5.0f;
-					}
+				float ex = obj2->GetEX();
 
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
 				}
 
+			}
 
-				//ジャンプエネミーの位置情報を取得
-				CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
-				if (obj3 != nullptr) {
 
-					float ex = obj3->GetEX();
 
-					//ノックバックプログラム
-					if (m_px > ex + block->GetScroll())
-					{
-						m_vx = +5.0f;
-					}
-					else //(m_px < ex)
-					{
-						m_vx = -5.0f;
-					}
+			//ジャンプエネミーの位置情報を取得
+			CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
+			if (obj3 != nullptr) {
 
+				float ex = obj3->GetEX();
+
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
 				}
 
-				//遠距離敵の位置情報を取得
-				CObjEnemyLongdistance*obj4 = (CObjEnemyLongdistance*)Objs::GetObj(OBJ_ENEMY);
-				if (obj4 != nullptr) {
+			}
 
-					float ex = obj4->GetEX();
+			//遠距離敵の位置情報を取得
+			CObjEnemyLongdistance*obj4 = (CObjEnemyLongdistance*)Objs::GetObj(OBJ_ENEMY);
+			if (obj4 != nullptr) {
 
-					//ノックバックプログラム
-					if (m_px > ex + block->GetScroll())
-					{
-						m_vx = +5.0f;
-					}
-					else //(m_px < ex)
-					{
-						m_vx = -5.0f;
-					}
+				float ex = obj4->GetEX();
 
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
 				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
+				}
+
+			}
+
+			//BOSSの位置情報を取得
+			CObjBoss*obj5 = (CObjBoss*)Objs::GetObj(OBJ_ENEMY);
+			if (obj5 != nullptr) {
+
+				float ex = obj5->GetEX();
+
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
+				}
+
+			}
+
+			//遠距離敵の位置情報を取得
+			CObjBossSL*obj6 = (CObjBossSL*)Objs::GetObj(OBJ_ENEMY);
+			if (obj6 != nullptr) {
+
+				float ex = obj6->GetEX();
+
+				//ノックバックプログラム
+				if (m_px > ex + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < ex)
+				{
+					m_vx = -5.0f;
+				}
+
+			}
+
 
 			
 			
 		}
-			 
-	    
-	
+		
+	 
 	/*
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 

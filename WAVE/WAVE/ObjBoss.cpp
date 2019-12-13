@@ -7,10 +7,43 @@
 #include "GameL\UserData.h"
 
 #include "ObjBoss.h"
-#define GRAUND (546.0f)
+
 
 //使用するネームスペース
 using namespace GameL;
+
+
+void  CObjBoss::SetXX(float x)
+{
+
+	m_px = x;
+
+}
+//位置情報Y変更用
+void  CObjBoss::SetYY(float y)
+{
+
+	m_py = y;
+
+}
+//位置情報X取得用
+float  CObjBoss::GetEX()
+{
+
+
+	return m_px;
+
+
+}
+//位置情報Y取得用
+float CObjBoss::GetEY()
+{
+
+
+	return m_py;
+
+
+}
 
 //コンストラクタ
 CObjBoss::CObjBoss(float x, float y)
@@ -86,7 +119,7 @@ void CObjBoss::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 	
-	
+	/*
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -105,7 +138,7 @@ void CObjBoss::Action()
 
 
 	}
-	
+	*/
 	/*
 		m_vx += m_speed_power;
 		m_posture = 1.0f;
@@ -141,10 +174,7 @@ void CObjBoss::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
-	{
-		m_vy = 0;
-	}
+
 
 	//位置の更新
 	m_px += m_vx;
@@ -162,11 +192,10 @@ void CObjBoss::Action()
 
 	//BOSSの周り20°間隔で発射
 	m_time++;//弾丸発射間隔をあけるインクリメント
-	if (m_time>300)//50の間隔で拡散弾攻撃をする
+	if (m_time>150)//50の間隔で拡散弾攻撃をする
 	{
 		
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
+	
 			//19発同時発射
 			CObjAngleBullet*obj_b;
 			for (int i = 01; i < 360; i += 20)
@@ -178,21 +207,20 @@ void CObjBoss::Action()
 
 
 			}
-		}
+		
 	}
 	
 	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
 	if (m_time2>100) {
 
 
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+	
 
 			m_time2 = 0;
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
-		}
-
+		
 	}
 	
 	//敵と弾丸が接触したらHPが減る
