@@ -109,6 +109,8 @@ void CObjBullet::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
 
+	
+
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{

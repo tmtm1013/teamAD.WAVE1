@@ -110,7 +110,7 @@ void CSceneBlock3::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
+	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb3 = new CObjBlock(map);
