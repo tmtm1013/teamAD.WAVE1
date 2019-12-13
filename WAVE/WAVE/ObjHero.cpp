@@ -208,7 +208,7 @@ void CObjHero::Action()
 
 		if (movesecond >= 21 && m_hit_down == true)//SEêßå‰
 		{
-			Audio::Start(8);
+			Audio::Start(3);
 			movesecond = 0;
 		}
 
