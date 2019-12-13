@@ -134,8 +134,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 400;//主人公のヒットポイント用
-	hp_max = 400;
+	hp = 500;//主人公のヒットポイント用
+	hp_max = 500;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }

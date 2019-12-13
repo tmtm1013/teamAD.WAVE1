@@ -39,16 +39,17 @@ CSceneDescription::~CSceneDescription()
 //初期化メソッド
 void CSceneDescription::InitScene()
 {
+
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage000002.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
 
-	int map[10][100];
+	int map[10][200];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -73,14 +74,6 @@ void CSceneDescription::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
-
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);

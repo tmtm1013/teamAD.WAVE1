@@ -1,41 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="ヘッダー ファイル">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="SceneClear">
+      <UniqueIdentifier>{33f2efde-350e-48b9-acfa-986b4c9fec93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Title">
-      <UniqueIdentifier>{8655a526-8817-4926-ae7a-d9041e2dcfdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Background">
+    <Filter Include="Background">
       <UniqueIdentifier>{9ec3ea9a-b191-4661-b8b2-58f7b20b94ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Hero">
-      <UniqueIdentifier>{7a861923-b9a7-4e44-bc7f-77316bc4a3cc}</UniqueIdentifier>
+    <Filter Include="ObjEnemy">
+      <UniqueIdentifier>{3da63b54-d596-411c-beab-1d202f3a0a90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Bullet">
-      <UniqueIdentifier>{6eb574e3-6a0c-467f-953a-16c5a59ea08c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Bullet">
-      <UniqueIdentifier>{c3fc40c6-37b4-4061-acab-132d66f0aa4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\BossStage">
-      <UniqueIdentifier>{062f4ed5-33b4-4d73-b745-3875c29c546d}</UniqueIdentifier>
+    <Filter Include="ObjEnemy\Title">
+      <UniqueIdentifier>{8655a526-8817-4926-ae7a-d9041e2dcfdf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameL\Audio.cpp">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CObjBullet.cpp">
       <Filter>ObjBullet</Filter>
     </ClCompile>
@@ -66,23 +49,11 @@
     <ClCompile Include="ObjEnemyLongdistance.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFlyimgEnemy2.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBlock3.cpp">
-      <Filter>SceneStage</Filter>
-    </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\Audio.cpp">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBossStage.cpp">
-      <Filter>SceneStage</Filter>
     </ClCompile>
     <ClCompile Include="ObjTime.cpp">
       <Filter>ObjUI</Filter>
@@ -144,17 +115,11 @@
     <ClCompile Include="SceneMain.cpp">
       <Filter>SceneStage</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBackground.cpp">
-      <Filter>SceneStage</Filter>
-    </ClCompile>
     <ClCompile Include="ObjClear.cpp">
-      <Filter>ObjBlock\SceneClear</Filter>
+      <Filter>SceneClear</Filter>
     </ClCompile>
     <ClCompile Include="SceneClear.cpp">
-      <Filter>ObjBlock\SceneClear</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>SceneClear</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemyJump.cpp">
       <Filter>ソース ファイル</Filter>
@@ -162,31 +127,16 @@
     <ClCompile Include="ObjTime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBlock2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
       <Filter>SceneTitle</Filter>
     </ClCompile>
-    <ClCompile Include="CObjAngleBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGren.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBoss1.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBlock.cpp">
-      <Filter>ObjBlock</Filter>
     </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjRevolutionBullet.cpp">
@@ -195,6 +145,52 @@
     <ClCompile Include="ObjCursor.cpp">
       <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ObjHero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGren.cpp">
+      <Filter>ObjItem</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>ObjItem</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneItem.cpp">
+      <Filter>ObjItem</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBlock3.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjAngleBullet.cpp">
+      <Filter>ObjBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBlock2.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>SceneTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>ObjDesc</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBackground.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjDescription.cpp">
+      <Filter>ObjDesc</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Audio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -206,18 +202,6 @@
     <ClInclude Include="CObjDiffusionBullet.h">
       <Filter>ObjBullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjItem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneItem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyJump.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyLongdistance.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
       <Filter>ObjBullet</Filter>
     </ClInclude>
@@ -227,35 +211,14 @@
     <ClInclude Include="ObjBoss1.h">
       <Filter>ObjEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBlock2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ObjEnemy</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjFlyingEnemy2.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
     <ClInclude Include="SceneMain.h">
       <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock3.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBossStage.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingenemy.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyJump2.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjRevolutionBullet.h">
-      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjCursor.h">
       <Filter>ObjUI</Filter>
@@ -293,9 +256,6 @@
     <ClInclude Include="ObjRevolutionBullet.h">
       <Filter>ObjBullet</Filter>
     </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>SceneStage</Filter>
     </ClInclude>
@@ -308,11 +268,53 @@
     <ClInclude Include="SceneGameOver.h">
       <Filter>SceneGameOver</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGameOver.h">
-      <Filter>SceneGameOver</Filter>
-    </ClInclude>
     <ClInclude Include="ObjEnemy.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyJump2.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBoss2.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyLongdistance.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBackground.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ObjBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneItem.h">
+      <Filter>ObjItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ObjItem</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock3.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTime.h">
+      <Filter>ObjUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock2.h">
+      <Filter>SceneStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -320,10 +322,10 @@
       <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjClear.h">
-      <Filter>ObjBlock\SceneClear</Filter>
+      <Filter>SceneClear</Filter>
     </ClInclude>
     <ClInclude Include="SceneClear.h">
-      <Filter>ObjBlock\SceneClear</Filter>
+      <Filter>SceneClear</Filter>
     </ClInclude>
     <ClInclude Include="ObjHero.h">
       <Filter>ObjHero</Filter>
@@ -342,9 +344,6 @@
     </ClInclude>
     <ClInclude Include="SceneItem.h">
       <Filter>ObjItem</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBlock.h">
-      <Filter>ObjBlock</Filter>
     </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>リソースファイル</Filter>
@@ -369,9 +368,6 @@
     <Filter Include="リソースファイル">
       <UniqueIdentifier>{58c729b3-de65-4384-88f9-31edb111619c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjEnemy">
-      <UniqueIdentifier>{3da63b54-d596-411c-beab-1d202f3a0a90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SceneTitle">
       <UniqueIdentifier>{f619f78f-fe49-4d8c-96de-b30923391f0b}</UniqueIdentifier>
     </Filter>
@@ -383,12 +379,6 @@
     </Filter>
     <Filter Include="ObjItem">
       <UniqueIdentifier>{2fea17a5-2842-46e0-81d2-693570c750e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ObjBlock">
-      <UniqueIdentifier>{20d166ae-8aee-4847-ba94-12f856b9344c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ObjBlock\SceneClear">
-      <UniqueIdentifier>{33f2efde-350e-48b9-acfa-986b4c9fec93}</UniqueIdentifier>
     </Filter>
     <Filter Include="ObjDesc">
       <UniqueIdentifier>{83d1d526-ae53-41e7-bad3-fb0cb4f9b963}</UniqueIdentifier>

@@ -127,6 +127,7 @@
     </ClCompile>
     <ClCompile Include="ObjBoss.cpp" />
     <ClCompile Include="ObjCursor.cpp" />
+    <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
