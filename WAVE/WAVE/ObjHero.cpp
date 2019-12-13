@@ -131,8 +131,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 400;//主人公のヒットポイント用
-	hp_max = 400;
+	hp = 500;//主人公のヒットポイント用
+	hp_max = 500;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }
@@ -232,6 +232,15 @@ void CObjHero::Action()
 
 	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)//連弾発射----------
 	{
+		m_ani_move = 4;//------弾丸アニメーションデータを指定--------
+		Action_ani_flag = true;
+
+		if (movesecond >= 21 && m_hit_down == true)//SE制御
+		{
+			Audio::Start(3);
+			movesecond = 0;
+		}
+
 		//発射音を鳴らす
 		Audio::Start(2);//連弾発射音再生
 		//m_SEtime++;
