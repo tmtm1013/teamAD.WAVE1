@@ -138,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="SceneDescription.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="SceneDescription.h" />
+    <ClInclude Include="ObjEnemyJump2.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ObjBullet">

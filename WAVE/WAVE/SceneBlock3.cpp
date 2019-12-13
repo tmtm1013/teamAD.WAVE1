@@ -126,6 +126,11 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objboss, OBJ_BOSS, 10);
 	*/
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
+
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);

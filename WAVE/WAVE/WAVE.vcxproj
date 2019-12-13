@@ -117,6 +117,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp" />
     <ClCompile Include="ObjFlyimgEnemy2.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="CObjAngleBullet.cpp">
@@ -185,6 +186,7 @@
     </ClInclude>
     <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjCursor.h" />
+    <ClInclude Include="ObjEnemyJump2.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />

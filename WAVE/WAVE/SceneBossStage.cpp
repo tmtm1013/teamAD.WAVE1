@@ -119,6 +119,10 @@ void SceneBossStage::InitScene()
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();

@@ -33,6 +33,9 @@ CSceneTitle::~CSceneTitle()
 void CSceneTitle::InitScene()
 {
 
+	//ÉJÅ[É\ÉãçÏê¨
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
 
 	CObjTitle* p = new CObjTitle();

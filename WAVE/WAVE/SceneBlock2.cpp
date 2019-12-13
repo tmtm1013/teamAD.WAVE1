@@ -125,7 +125,6 @@ void CSceneBlock2::InitScene()
 	CObjBlock*objb2 = new CObjBlock(map);
 	Objs::InsertObj(objb2, OBJ_BLOCK, 4);
 
-
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -135,6 +134,11 @@ void CSceneBlock2::InitScene()
 	CObjBoss* objboss = new CObjBoss(600,300);
 	Objs::InsertObj(objboss, OBJ_BOSS, 10);
 	*/
+
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
