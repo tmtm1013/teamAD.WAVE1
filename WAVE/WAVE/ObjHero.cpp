@@ -461,7 +461,7 @@ void CObjHero::Action()
 	hp_time -= 0.1;
 
 
-	//自身のヒットボックスを持ってくる。
+	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
 
 
@@ -495,28 +495,17 @@ void CObjHero::Action()
 	        //HomingBulletの位置情報をここで取得
 			CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
 			float x = obj->GetBX();
-			//float y = obj->GetBY();
-			//ノックバックプログラム
-			if (m_px > x + block->GetScroll())
-			{
-				m_vx = +5.0f;
+    		if (obj != nullptr) {
+				//ノックバックプログラム
+				if (m_px > x + block->GetScroll())
+				{
+					m_vx = +5.0f;
+				}
+				else //(m_px < x)
+				{
+					m_vx = -5.0f;
+				}
 			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-			/*
-			float r = GetAtan2Angle( x , y );
-
-			if ((r < 45 && r >= 0) || r > 315)
-			{
-				m_vx = -5.0f; //左に移動させる。
-			}
-			if (r > 135 && r < 225)
-			{
-				m_vx = +5.0f; //右に移動させる。
-			}
-			*/
 		}
 
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける

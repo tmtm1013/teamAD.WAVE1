@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="CObjAngleBullet.cpp" />
     <ClCompile Include="ObjCursor.cpp" />
-    <ClCompile Include="CObjFullBullet.cpp" />
-    <ClCompile Include="CObjDiffusionBullet.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -18,8 +15,6 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="CObjBullet.cpp" />
-    <ClCompile Include="COHomingBullet.cpp" />
     <ClCompile Include="ObjBackground.cpp" />
     <ClCompile Include="ObjBlock.cpp" />
     <ClCompile Include="ObjClear.cpp" />
@@ -69,13 +64,24 @@
     <ClCompile Include="ObjBossSL.cpp">
       <Filter>敵</Filter>
     </ClCompile>
+    <ClCompile Include="CObjAngleBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjDiffusionBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjFullBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CObjAngleBullet.h" />
-    <ClInclude Include="CObjBullet.h" />
     <ClInclude Include="ObjCursor.h" />
-    <ClInclude Include="CObjFullBullet.h" />
-    <ClInclude Include="CObjDiffusionBullet.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -88,7 +94,6 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
-    <ClInclude Include="COHomingBullet.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjBackground.h" />
     <ClInclude Include="ObjBlock.h" />
@@ -138,10 +143,28 @@
     <ClInclude Include="ObjBossSL.h">
       <Filter>敵</Filter>
     </ClInclude>
+    <ClInclude Include="CObjAngleBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjDiffusionBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjFullBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="COHomingBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="敵">
       <UniqueIdentifier>{068b63bf-2ad5-4af5-a336-637ec4505d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{78fde8d8-7e23-453a-9f6e-f9592c3f0448}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

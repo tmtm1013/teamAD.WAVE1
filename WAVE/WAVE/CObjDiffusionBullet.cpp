@@ -20,7 +20,7 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y)
 	m_by = y;
 
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ğì¬
-	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_DIFFUSION_BULLET, 1);
+	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_HOMING_BULLET, 1);
 
 }
 
