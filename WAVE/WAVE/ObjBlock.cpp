@@ -13,10 +13,10 @@ using namespace GameL;
 
 //extern float m_hp;
 
-CObjBlock::CObjBlock(int map[10][100])
+CObjBlock::CObjBlock(int map[10][200])
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(10 * 100));
+	memcpy(m_map, map, sizeof(int)*(10 * 200));
 }
 
 //イニシャライズ
@@ -52,98 +52,6 @@ void CObjBlock::Action()
 		m_scroll -= hero->GetVX();
 	}
 
-	/*//主人公の衝突確認用フラグの初期化
-	hero->SetUp(false);
-	hero->SetDown(false);
-	hero->SetLeft(false);
-	hero->SetRight(false);
-
-	//踏んでいるblockの種類の初期化
-	hero->SetBT(0);
-
-	//m_mapの全要素にアクセス
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (m_map[i][j] > 0)
-			{
-				//要素番号を座標に変更
-				float x = j * 64.0f;
-				float y = i * 64.0f;
-
-				//主人公とブロックの当たり判定
-				if ((hx-(-m_scroll)+64.0f>x)&&(hx+(-m_scroll)<x+64.0f)&&(hy+64.0f>y)&&(hy<y+64.0f))
-				{
-					//上下左右判定
-
-					//vectorの作成
-					float vx = (hx+(-m_scroll)) - x;
-					float vy = hy - y;
-					//長さを求める
-					float len = sqrt(vx*vx + vy * vy);
-					//角度を求める
-					float r = atan2(vy, vx);
-					r = r * 180.0f / 3.14f;
-
-					if (r <= 0.0f)
-						r = abs(r);
-					else
-						r = 360.0f - abs(r);
-
-					//lenがある一定の長さのより短い場合判定に入る
-					if (len < 88.0f)
-					{
-						//角度で上下左右を判定
-						if (r < 45 && r>0 || r > 135)
-						{
-							//右
-							hero->SetRight(true);
-							hero->SetX(x + 64.0f+(m_scroll));
-							hero->SetVX(-hero->GetVX()*0.1f);
-						}
-						if (r > 45 && r > 135)
-						{
-							//上
-							hero->SetDown(true);
-							hero->SetY(y - 64.0f);
-							//種類を渡すのスタートとゴールのみ変更する
-							if(m_map[i][j]=2)
-							hero->SetBT(m_map[i][j]);
-							hero->SetVY(0.0f);
-						}
-						if (r > 135 && r < 225)
-						{
-							//左
-							hero->SetLeft(true);
-							hero->SetX(x - 64.0f+(m_scroll));
-							hero->SetVY(-hero->GetVX()*0.1f);
-						}
-						if (r > 225 && r < 315)
-						{
-							//下
-							hero->SetUp(true);
-							hero->SetY(y + 64.0f);
-							if (hero->GetVY() < 0)
-							{
-								hero->SetVY(0.0f);
-							}
-						}
-					}
-
-
-
-
-
-					//当たってる場合
-					hero->SetX(hx);
-					hero->SetY(hy);
-					hero->SetVY(0.0f);
-				}
-
-			}
-		}
-	}*/
 
 	
 
@@ -156,14 +64,16 @@ void CObjBlock::Action()
 	int ex = ((int)line) / 64;
 	int rx = ((int)line) / 64;
 	int dx = ((int)line) / 64;
+	int fx = ((int)line) / 64;
 	int jx = ((int)line) / 64;
+	int jx2 = ((int)line) / 64;
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
 	{
 		
 		//列の中から４を探す
-			if (m_map[i][ex] == 4)
+			if (m_map[i][ex] ==4)
 			{
 
 				//4があれば、敵を出現
@@ -183,9 +93,6 @@ void CObjBlock::Action()
 
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;
-
-
-
 			}
 
 			//列の中から７を探す
@@ -208,6 +115,29 @@ void CObjBlock::Action()
 				//敵出現場所の値を0にする
 				m_map[i][jx] = 0;
 			}
+
+			//列の中から9を探す
+			if (m_map[i][fx] == 9)
+			{
+				CObjFlyingenemy*obje = new CObjFlyingenemy(fx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_FLYINGENEMY, 14);
+
+				//敵出現場所の値を0にする
+				m_map[i][fx] = 0;
+
+			}
+
+
+			//列の中から11を探す
+			if (m_map[i][jx2] == 11)
+			{
+				CObjEnemyJump2*obje = new CObjEnemyJump2(jx2*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMYJUMP2, 12);
+
+				//敵出現場所の値を0にする
+				m_map[i][jx] = 0;
+			}
+
 
 			
 	}
@@ -234,20 +164,12 @@ void CObjBlock::Draw()
 	dst.m_bottom = 600.0f;
 	Draw::Draw(9, &src, &dst, c, 0.0f);
 
-	//マップチップによるbloc設置
-
-	//切り取り位置の設定
-	/*src.m_top = 0.0f;
-	src.m_left = 320.0f;
-	src.m_right = src.m_left + 64.0f;
-	src.m_bottom = 64.0f;
-
-	/*m_scroll -= 3.0f;//scroll実験用*/
+	
 
 	//マップチップによるblock設置
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			if (m_map[i][j] > 0)
 			{
@@ -256,29 +178,59 @@ void CObjBlock::Draw()
 				dst.m_left = j * 64.0f + m_scroll;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
-				/*
+
+				if (m_map[i][j] == 1)
+				{
+					src.m_top = 0.0f;
+					src.m_left = 320.0f;
+					src.m_right = src.m_left + 64.0f;
+					src.m_bottom = src.m_top + 64.0f;
+					BlockDraw(320.0f, 0.0f, &dst, c);
+					//描画
+					Draw::Draw(10, &src, &dst, c, 0.0f);
+				}
+				
 				if (m_map[i][j] == 2)
 				{
-					//スタートブロック
+					//アイスブロック
+
+				
+					
+
+					//アイスブロックの描画
 					BlockDraw(320.0f + 64.0f, 0.0f, &dst, c);
+					Draw::Draw(15, &src, &dst, c, 0.0f);
 
 				}
-				else if (m_map[i][j] == 3)
+				
+				
+				if (m_map[i][j] == 3)
 				{
 					//ゴールブロック
-					BlockDraw(320.0f + 64.0f, 64.0f, &dst, c);
+					/*src.m_top = 0.0f;
+					src.m_left = 600.0f+64.0f;
+					src.m_right = src.m_left + 64.0f;
+					src.m_bottom = src.m_top+64.0f;*/
+					
+					//Scene::SetScene(new SceneBossStage());
+
+					BlockDraw(600.0f, 0.0f, &dst, c);
+					Draw::Draw(11, &src, &dst, c, 0.0f);
 				}
-				*/
 			    if (m_map[i][j] == 4)
 				{
 					;//敵配置用の番号のため何もしない
+				}
+				if (m_map[i][j] == 5)
+				{
+					BlockDraw(0.0f , 0.0f, &dst, c);
+					Draw::Draw(17, &src, &dst, c, 0.0f);
 				}
 
 				if (m_map[i][j] == 6)
 				{
 					;
 				}
-
 				if (m_map[i][j] == 7)
 				{
 					;
@@ -287,12 +239,24 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-
-
-				else
+				if (m_map[i][j] == 9)
 				{
-					BlockDraw(320.0f, 0.0f, &dst, c);
+					;
 				}
+				if (m_map[i][j] == 10)
+				{
+
+				}
+				if (m_map[i][j] == 11)
+				{
+					;
+				}
+
+				if (m_map[i][j] == 12)
+				{
+					;
+				}
+			
 			}
 		}
 	}
@@ -312,9 +276,6 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F*dst, float c[])
 	src.m_left = x;
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
-
-	//描画
-	Draw::Draw(10, &src, dst, c, 0.0f);
 
 }
 // BlockHit関数
@@ -342,13 +303,15 @@ void CObjBlock::BlockHit(
 	*left = false;
 	*right = false;
 
+
+
 	//踏んでいるblockの種類の初期化
 	*bt = 0;
 
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{
@@ -395,9 +358,15 @@ void CObjBlock::BlockHit(
 							*down = true;
 							*y = by - 64.0f;
 							//種類を渡すのスタートとゴールのみ変更する
-							if (m_map[i][j] >= 2)
+							if (m_map[i][j] >= 3)
+								*bt = m_map[i][j];
+							else if (m_map[i][j] >= 2)
+								*bt = m_map[i][j];
+							else if (m_map[i][j] >= 5)
 								*bt = m_map[i][j];
 							*vy = 0.0f;
+
+							
 						}
 						if (r > 135 && r < 225)
 						{
@@ -438,7 +407,7 @@ void CObjBlock::BlockBulletHit(
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{
@@ -612,7 +581,7 @@ bool CObjBlock::HeroBlockCrossPoint(
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 200; j++)
 		{
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{

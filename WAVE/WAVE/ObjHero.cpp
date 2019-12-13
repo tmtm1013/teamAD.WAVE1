@@ -65,14 +65,15 @@ void CObjHero::Init()
 	
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/submachinegun2.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/gun-gird1.wav", SOUND_TYPE::EFFECT);//-----武器切り替え音読み込み----
-	Audio::LoadAudio(6, L"SEgan/cartridge1.wav", SOUND_TYPE::EFFECT);//----カートリッジ落下音----
-	Audio::LoadAudio(7, L"SEgan/cartridge2.wav", SOUND_TYPE::EFFECT);//----サブマシンガンのカートリッジ落下音----
+	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//-----技切り替え時の音(通常弾)----
+	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(連弾)----
+	Audio::LoadAudio(7, L"SEgan/SpecialM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
 	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	Audio::LoadAudio(10, L"SEgan/light.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	
 	
 
 	m_px = 300.0f; //主人公の X 位置
@@ -134,8 +135,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 300;//主人公のヒットポイント用
-	hp_max = 300;
+	hp = 400;//主人公のヒットポイント用
+	hp_max = 400;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }
@@ -162,7 +163,7 @@ void CObjHero::Action()
 	if (Input::GetVKey('2') == true)//サブマシンガン
 	{
 		if (m_SEtime >= 12) {
-			Audio::Start(5);//SE再生(装備音)
+			Audio::Start(6);//SE再生(装備音)
 			m_SEtime = 0;
 		}
 		bullet_type = 2;//弾丸の種類を指定
@@ -170,7 +171,7 @@ void CObjHero::Action()
 	if (Input::GetVKey('3') == true)//ショットガン
 	{
 		if (m_SEtime >= 12) {
-			Audio::Start(5);//SE再生(装備音)
+			Audio::Start(7);//SE再生(装備音)
 			m_SEtime = 0;
 		}
 		bullet_type = 3;//弾丸の種類を指定
@@ -178,7 +179,7 @@ void CObjHero::Action()
 	//弾丸発射頻度制御
 	m_time += 0.1;
 
-	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射
+	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射--------
 	{
 		if (m_f == true)
 		{
@@ -200,7 +201,7 @@ void CObjHero::Action()
 		m_f = true;
 	}
 
-	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)//連弾発射
+	if (Input::GetMouButtonL() == true && m_time >= 0.8f&&bullet_type == 2)//連弾発射----------
 	{
 		m_ani_move = 4;//------弾丸アニメーションデータを指定--------
 		Action_ani_flag = true;
@@ -222,7 +223,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射
+	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
 		Audio::Start(4);//ショットガン発射音再生
@@ -261,7 +262,22 @@ void CObjHero::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
-	if (Input::GetVKey(VK_SPACE) == true)//SPACEキー入力でジャンプ
+
+
+
+	//ゴールブロック
+	if (m_block_type == 3)
+	{
+		this->SetStatus(false);
+
+		Scene::SetScene(new SceneBossStage());
+	}
+
+	//ダメージブロック
+
+
+	//SPACEキー入力でジャンプ
+	if (Input::GetVKey(VK_SPACE) == true)
 	{
 		if (m_hit_down == true)
 		{
@@ -300,19 +316,29 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true)
 	{
+		//アイスブロック
+		if (m_block_type == 2)
+			m_vx += (m_vx*0.12);//摩擦の計算   (運動energy X 摩擦係数)
+
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
 	
 		if (movesecond >= 4 && m_hit_down == true)
-		{
 			m_ani_time += 1;
-		}
-		if (movesecond >=21 && m_hit_down==true)
+		
+		if (movesecond >= 21 && m_hit_down == true)
 		{
 			Audio::Start(8);
 			movesecond = 0;
 		}
+
+		//ダメージブロック
+		if (m_block_type == 5)
+			hp -=0.5;
+
+
+
 		/*else 
 		{
 			second++;
@@ -321,6 +347,10 @@ void CObjHero::Action()
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
+		//アイスブロック
+		if (m_block_type == 2)
+			m_vx += (m_vx*0.12);//摩擦の計算   -(運動energy X 摩擦係数)
+
 		m_vx -= m_speed_power;//左に移動ベクトル減算
 		m_posture = 0.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
@@ -334,6 +364,11 @@ void CObjHero::Action()
 			Audio::Start(8);
 			movesecond = 0;
 		}
+
+		//ダメージブロック
+		if (m_block_type == 5)
+			hp -= 0.5;
+
 		/*else
 		{
 			second++;
@@ -441,7 +476,7 @@ void CObjHero::Action()
 	{
 		HIT_DATA** hit_data;//OBJ_BULLETと当たると主人公がノックバックする
 		hit_data = hit->SearchObjNameHit(OBJ_HOMING_BULLET);
-		/*
+		
 		float r = hit_data[0]->r;
 		if ((r < 45 && r >= 0) || r > 315)
 		{
@@ -450,7 +485,7 @@ void CObjHero::Action()
 		if (r > 135 && r < 225)
 		{
 			m_vx = +5.0f; //右に移動させる。
-		}*/
+		}
 
 		if (flag == true && hp_time <= 0.0f)
 		{

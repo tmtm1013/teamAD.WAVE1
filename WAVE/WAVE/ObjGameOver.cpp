@@ -10,6 +10,7 @@
 #include "GameHead.h"
 #include "ObjGameOver.h"
 #include "GameL\DrawFont.h"
+#include "GameL\UserData.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -37,8 +38,23 @@ void CObjGameOver::Action()
 		//マウスのボタンが押されたらリスタート
 		if (m_mou_r == true)
 		{
-			Scene::SetScene(new CSceneMain());
-			Audio::Stop(24); //BGMストップ
+			if (((UserData*)Save::GetData())->Scenecontinue == 1)
+			{
+				Scene::SetScene(new CSceneMain());
+				Audio::Stop(24); //BGMストップ
+			}
+			else if(((UserData*)Save::GetData())->Scenecontinue == 2)
+			{
+				Scene::SetScene(new CSceneBlock2());
+				Audio::Stop(24); //BGMストップ
+			}
+			else if(((UserData*)Save::GetData())->Scenecontinue == 3)
+			{
+				Scene::SetScene(new CSceneBlock3());
+				Audio::Stop(24); //BGMストップ
+			}
+
+			
 		}
 	}
 

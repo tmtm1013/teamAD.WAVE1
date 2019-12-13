@@ -58,7 +58,17 @@ void CObjEnemyLongdistance::Init()
 //アクション
 void CObjEnemyLongdistance::Action()
 {
-	
+
+	// ブロックタイプ検知用の変数がないためのダミー
+		int d;
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+
 	//通常速度
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
@@ -118,6 +128,7 @@ void CObjEnemyLongdistance::Action()
 		}
 
 	}
+
 	else//左
     {
 
@@ -139,6 +150,7 @@ void CObjEnemyLongdistance::Action()
 
 
     }
+
 	//アニメーション
 	if (m_ani_time > m_ani_max_time)
 	{
@@ -161,35 +173,14 @@ void CObjEnemyLongdistance::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-
-
-	//ブロックタイプ検知用の変数がないためのダミー
-	int d;
-	
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
 
 	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
-
-
-
-	if (m_px < 0.0f)
-	{
-		m_px = 0.0f;
-	}
-	
-
-    //HitBoxの位置の変更
-    CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+32+ block->GetScroll(), m_py);
-
 
 
 	//敵と弾丸が接触したらHPが減る
@@ -266,7 +257,7 @@ void CObjEnemyLongdistance::Draw()
 	{
 
 		//描画カラー情報
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+		float c[4] = { 10.0f,0.0f,0.0f,1.0f };
 
 		RECT_F src;//描画元切り取り位置
 		RECT_F dst;//描画先表示位置

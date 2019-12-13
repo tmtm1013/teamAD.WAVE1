@@ -5,17 +5,16 @@
 //使用するネームスペース
 using namespace GameL;
 
-
 //オブジェクト：敵
-class CObjBoss :public CObj
+class CObjEnemyJump2 :public CObj
 {
-public:
-	CObjBoss(float x, float y);
-	   ~CObjBoss() {};
+public:CObjEnemyJump2(float x, float y);
+	   ~CObjEnemyJump2() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 
+	   static int EnemyCount;
 private:
 	float m_px;    //位置
 	float m_py;
@@ -25,7 +24,8 @@ private:
 
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
-	int m_time_a;
+	int m_ani_move; //モーション番号
+
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
 
@@ -33,19 +33,21 @@ private:
 	bool m_move;
 
 	//ENEMYのHP
-	int m_hp;
+	int   m_hp;
 
-	//弾丸用プログラム
-	int m_time;
-	int m_time2;
-	
-	//マップ移動用数値
-	int kazu;
+	int m_time;//ジャンプ用タイム
 
-	//blockとの衝突状態確認用
+	int m_rnd;//ジャンプ用ランダム変数
+
+		//blockとの衝突状態確認用
 	bool m_hit_up;
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;
+
+
+	float m_sx;  //画像サイズ保管用変数
+	float m_sy;
+
 
 };
