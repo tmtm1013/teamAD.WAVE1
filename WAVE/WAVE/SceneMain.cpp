@@ -123,11 +123,11 @@ void CSceneMain::InitScene()
 	CObjEnemyJump2* objz = new CObjEnemyJump2(600,300);
 	Objs::InsertObj(objz, OBJ_ENEMYJUMP2, 12);
 	*/
-	/*
+	
 	//BOSSオブジェクト作成
-	CObjBoss* objboss = new CObjBoss(600,300);
-	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-	*/
+	CObjLastBoss* objLastboss = new CObjLastBoss(600,300);
+	Objs::InsertObj(objLastboss, OBJ_LASTBOSS, 10);
+	
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();

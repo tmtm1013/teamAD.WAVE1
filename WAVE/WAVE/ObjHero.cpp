@@ -204,7 +204,6 @@ void CObjHero::Action()
 		
 	}
 
-
 	//弾丸発射頻度制御
 	m_time += 0.1;
 
@@ -252,10 +251,10 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
-		Audio::Start(4);//ショットガン発射音再生
+		//Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -264,7 +263,7 @@ void CObjHero::Action()
 
 		m_time = 0.0f;
 
-	}*/
+	}
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
