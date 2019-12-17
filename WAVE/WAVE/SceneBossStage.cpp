@@ -41,7 +41,7 @@ void SceneBossStage::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"BStage1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"lBStage1.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -53,7 +53,16 @@ void SceneBossStage::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
+			}
+			else
+			{
+				count += 2;
+			}
+
 
 		}
 	}
@@ -85,6 +94,9 @@ void SceneBossStage::InitScene()
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+
+
+	Draw::LoadImageW(L"kakyuu.png", 18, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -142,6 +154,13 @@ void SceneBossStage::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
+	//スコア表示
+	CObjMain* s = new CObjMain();
+	Objs::InsertObj(s, OBJ_MAIN, 17);
 
 
 	/*//テスト用:弾丸オブジェクト作成

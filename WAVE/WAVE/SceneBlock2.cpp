@@ -41,7 +41,7 @@ void CSceneBlock2::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage022.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage0222.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -82,7 +82,7 @@ void CSceneBlock2::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -151,46 +151,13 @@ void CSceneBlock2::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
-
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-	/*
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
-	*/
-
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-
-	/*
-	//外部データの読み取り（ステージ情報）
-	unique_ptr<wchar_t>p2;//ステージ情報ポインター
-	int size2;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
-
-	int map2[10][100];
-	int count2 = 1;
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 100; j++)
-		{
-			int w = 0;
-			swscanf_s(&p.get()[count2], L"%d", &w);
-
-			map[i][j] = w;
-			count += 2;
-
-
-		}
-	}
-
-	*/
 
 
 

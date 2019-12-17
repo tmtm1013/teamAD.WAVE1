@@ -82,7 +82,7 @@ void CObjFlyingenemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 100;//ENEMYのHP
+	m_hp = 30;//ENEMYのHP
 
 	elevator_flag = true;
 
@@ -255,19 +255,29 @@ void CObjFlyingenemy::Action()
 
 
 	}
-
+	
 	//落下した敵を消去する。
 	if (m_py > 600.0f)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
 	}
-
+	
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+
+		
+		
+			//アイテムオブジェクト作成	
+			CObjItem*obju = new CObjItem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_ITEM, 7);
+			
+		
+
 
 
 		//敵が消滅したら+100点
@@ -297,7 +307,7 @@ void CObjFlyingenemy::Draw()
 	{
 
 		//描画カラー情報
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+		float c[4] = { 0.0f,0.0f,5.0f,1.0f };
 
 		RECT_F src;//描画元切り取り位置
 		RECT_F dst;//描画先表示位置

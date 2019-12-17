@@ -78,7 +78,7 @@ void CObjEnemy::Init()
 	m_hit_right = false;
 
 
-	m_hp = 80;//ENEMY‚ÌHP
+	m_hp =60;//ENEMY‚ÌHP
 
 	
 
