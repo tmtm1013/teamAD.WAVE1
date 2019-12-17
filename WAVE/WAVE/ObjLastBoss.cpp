@@ -7,6 +7,10 @@
 #include "GameL\UserData.h"
 
 #include "ObjLastBoss.h"
+
+#include "stdio.h" //乱数用ヘッダー
+#include "stdlib.h"//乱数用ヘッダー
+#include "time.h"  //乱数用ヘッダー
 #define GRAUND (546.0f)
 
 //使用するネームスペース
@@ -44,6 +48,10 @@ void CObjLastBoss::Init()
 
 	m_move = false;//true=右
 
+	m_rnd = 0;
+
+	m_ani_move = 0;
+
 	m_time = 0;//拡散弾用変数
 	m_time2 = 0;//普通遠距離攻撃用変数
 	m_time3 = 0;
@@ -74,10 +82,15 @@ void CObjLastBoss::Action()
 		&d
 	);
 
-
+	
 	//通常速度
-	m_speed_power = 0.04f;
+	m_speed_power = 0.14f;
 	m_ani_max_time = 2;
+
+	//乱数の種を初期化
+	srand(time(NULL));
+	//1～100のランダムな数値
+	m_rnd = rand() % 10 + 1;
 
 
 
@@ -90,27 +103,12 @@ void CObjLastBoss::Action()
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
-
 		m_move = true;
-
-
-
 	}
 	if (x >= m_px)//左
 	{
-
-
 		m_move = false;
-
-
-
 	}
-
-
-	m_vx -= m_speed_power;//右から左にゆっくり進んでいく
-	m_posture = 0.0f;
-
-
 
 	//----アニメーション動作間隔----
 	if (m_time_a >= 4)
@@ -136,24 +134,33 @@ void CObjLastBoss::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	if (m_vy > 26 && m_py <= GRAUND)
-	{
-		m_vy = 0;
-	}
-
-	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
-
+	
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 50.0 + block->GetScroll(), m_py - 250);
+	hit->SetPos(m_px - 150.0 + block->GetScroll(), m_py - 250);
+
+	m_time3++;
+	if (m_time3 > 200)
+	{
+		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 
+			for (int i = 1; i < 360; i += 20)
+			{
+
+				m_time3 = 0;
+				//弾丸オブジェクト
+				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 6);
+
+
+			}
+		}
+	}
 
 	//BOSSの周り20°間隔で発射
 	m_time++;//弾丸発射間隔をあけるインクリメント
@@ -176,27 +183,6 @@ void CObjLastBoss::Action()
 		}
 	}
 
-	m_time3++;
-	if (m_time > 500)//50の間隔で攻撃をする
-	{
-
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
-			CObjRevolutionBullet*obj_b;
-			for (int i = 01; i < 360; i += 20)
-			{
-				m_time = 0;
-				//弾丸オブジェクト
-				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 1);
-
-
-			}
-		}
-	}
-
-
-
 	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
 	if (m_time2 > 100) {
 
@@ -210,6 +196,51 @@ void CObjLastBoss::Action()
 		}
 
 	}
+
+	//ここが主人公の向きに移動する条件を書く。
+	if ((m_px + block->GetScroll()) < x)//右
+	{
+		//主人公が移動していない時のプログラム
+		m_vx += m_speed_power;
+		m_posture = 1.0;
+		m_ani_time += 1;
+		m_ani_move = 1;
+
+		//ランダムで決まる数値が1の時ジャンプする
+		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+			if (m_hit_down == true)//敵が地面にいるときジャンプする
+				m_vy = -16;
+		}
+
+	}
+	else//左
+	{
+
+		//主人公が移動していない時のプログラム
+		m_vx -= m_speed_power;
+		m_posture = 0.0;
+		m_ani_time += 1;
+		m_ani_move = 1;
+
+		//ランダムで決まる数値が1の時ジャンプする
+		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
+
+			if (m_hit_down == true)//敵が地面にいるときジャンプする
+			{
+				m_vy = -16;
+			}
+
+
+		}
+
+	}
+
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
+
+
 
 
 
@@ -290,8 +321,8 @@ void CObjLastBoss::Draw()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	dst.m_top = -290.0f + m_py;
-	dst.m_left = (600.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_right = (600 - 600.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_left = (-200 + 600.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (400 - 600.0f * m_posture) + m_px + block->GetScroll();
 	dst.m_bottom = 70.0f + m_py;
 
 	/*

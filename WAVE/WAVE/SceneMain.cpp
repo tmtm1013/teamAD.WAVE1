@@ -126,8 +126,8 @@ void CSceneMain::InitScene()
 	*/
 	/*
 	//BOSSオブジェクト作成
-	CObjBoss* objboss = new CObjBoss(600,300);
-	Objs::InsertObj(objboss, OBJ_BOSS, 10);
+	CObjLastBoss* objLastboss = new CObjLastBoss(600,300);
+	Objs::InsertObj(objLastboss, OBJ_LASTBOSS, 10);
 	*/
 
 	//背景のオブジェクト作成

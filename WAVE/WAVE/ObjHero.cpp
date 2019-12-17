@@ -204,7 +204,6 @@ void CObjHero::Action()
 		
 	}
 
-
 	//弾丸発射頻度制御
 	m_time += 0.1;
 
@@ -255,7 +254,7 @@ void CObjHero::Action()
 	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
-		Audio::Start(4);//ショットガン発射音再生
+		//Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
@@ -357,10 +356,10 @@ void CObjHero::Action()
 		m_vx += m_speed_power;//右に移動ベクトル加算
 		m_posture = 1.0f;//アニメーションタイムを+1加算
 		m_ani_move = 1;//歩くアニメーションデータを指定
-	
+
 		if (movesecond >= 4 && m_hit_down == true)
 			m_ani_time += 1;
-		
+
 		if (movesecond >= 21 && m_hit_down == true)
 		{
 			Audio::Start(8);
@@ -383,7 +382,9 @@ void CObjHero::Action()
 		{
 			second++;
 		}*/
-	}
+
+
+	
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
 	{
@@ -697,7 +698,7 @@ void CObjHero::Action()
 	*/
 
 		
-
+		
 
 			//位置の更新
 			m_px += m_vx;

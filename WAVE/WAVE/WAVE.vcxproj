@@ -116,10 +116,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjDescription.cpp" />
-    <ClCompile Include="ObjEnemyJump2.cpp" />
-    <ClCompile Include="ObjFlyimgEnemy2.cpp" />
-    <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
     <ClCompile Include="ObjBoss1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -134,6 +130,7 @@
     </ClCompile>
     <ClCompile Include="ObjBoss.cpp" />
     <ClCompile Include="ObjCursor.cpp" />
+    <ClCompile Include="ObjEnemyJump2.cpp" />
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
