@@ -667,7 +667,6 @@ void CObjHero::Action()
 
 			}
 
-
 			
 			
 		}

@@ -46,10 +46,10 @@ void CObjClear::Draw()
 
 
 	//ï\é¶à íuÇÃê›íË
-	dst.m_top = 0.0f;
+	dst.m_top = -200.0f;
 	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 800.0f;
 
 	//ï`âÊ
 	Draw::Draw(6, &src, &dst, c, 0.0f);
@@ -65,7 +65,7 @@ void CObjClear::Draw()
 
 	Font::StrDraw(L"Enter to Title", 180, 450, 62, c);
 
-
+	Draw::LoadImageW(L"ClearH.png", 6, TEX_SIZE_512);
 
 
 }
