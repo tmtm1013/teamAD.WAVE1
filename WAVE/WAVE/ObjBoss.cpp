@@ -203,7 +203,7 @@ void CObjBoss::Action()
 				m_time = 0;
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_b = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
 
 
 			}

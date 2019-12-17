@@ -104,6 +104,7 @@ void CSceneMain::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
 
+	
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -123,11 +124,11 @@ void CSceneMain::InitScene()
 	CObjEnemyJump2* objz = new CObjEnemyJump2(600,300);
 	Objs::InsertObj(objz, OBJ_ENEMYJUMP2, 12);
 	*/
-	/*
+	
 	//BOSSオブジェクト作成
 	CObjBoss* objboss = new CObjBoss(600,300);
 	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-	*/
+	
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();

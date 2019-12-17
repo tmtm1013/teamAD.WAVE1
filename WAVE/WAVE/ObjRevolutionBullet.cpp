@@ -12,6 +12,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjRevolutionBullet::CObjRevolutionBullet(float x, float y, float r, float speed)
 {
 	m_x = x;  //主人公のX軸を取得

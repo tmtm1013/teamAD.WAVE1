@@ -125,9 +125,11 @@ void CObjFlyingenemy::Action()
 
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 10);
 
 			m_ani_move = 1;
+
+
 
 		}
 

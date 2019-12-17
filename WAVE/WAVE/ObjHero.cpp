@@ -219,10 +219,10 @@ void CObjHero::Action()
 			CObjBullet* obj_b = new CObjBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
-				//Audio::Start(6);//薬莢落下音
-
+			//Audio::Start(6);//薬莢落下音
 			m_f = false;
 			m_time = 0.0f;
+
 		}
 	}
 	else if (Input::GetMouButtonL() == false)
@@ -243,14 +243,14 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-/*	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
 		Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f,0,0); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
@@ -369,11 +369,12 @@ void CObjHero::Action()
 			hp -=0.5;
 
 
-
-		/*else 
+		/*
+		else 
 		{
 			second++;
-		}*/
+		}
+		*/
 	}
 	//左に移動時の処理
 	else if (Input::GetVKey('A') == true)
@@ -399,12 +400,12 @@ void CObjHero::Action()
 		//ダメージブロック
 		if (m_block_type == 5)
 			hp -= 0.5;
-
-		/*else
+		/*
+		else
 		{
 			second++;
-		}*/
-
+		}
+		*/
 	}
 	else//キー入力がない場合は静止フレームにする
 	{
@@ -463,8 +464,7 @@ void CObjHero::Action()
 
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
-
-
+	
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
@@ -489,23 +489,9 @@ void CObjHero::Action()
 				flag = true;
 			}
 
-			//ブロック情報を持ってくる
-			CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-	        //HomingBulletの位置情報をここで取得
-			CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
-			float x = obj->GetBX();
-    		if (obj != nullptr) {
-				//ノックバックプログラム
-				if (m_px > x + block->GetScroll())
-				{
-					m_vx = +5.0f;
-				}
-				else //(m_px < x)
-				{
-					m_vx = -5.0f;
-				}
-			}
+			
+	       
+			
 		}
 
 		//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける

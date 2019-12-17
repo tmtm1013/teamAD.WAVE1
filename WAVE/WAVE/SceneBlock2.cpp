@@ -64,7 +64,7 @@ void CSceneBlock2::InitScene()
 
 
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"image.png", 20, TEX_SIZE_512);
 	
 	//音楽読み込み
 	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
@@ -112,9 +112,12 @@ void CSceneBlock2::InitScene()
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
 
-
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
+
+	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
+	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

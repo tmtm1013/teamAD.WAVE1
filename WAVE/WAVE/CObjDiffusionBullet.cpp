@@ -9,7 +9,6 @@
 
 #define BULLET_SPEED (30.0f)
 
-
 //使用するネームスペース
 using namespace GameL;
 
