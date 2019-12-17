@@ -142,18 +142,15 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-
-	/*
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
-	*/
 
+	
 
 
 }

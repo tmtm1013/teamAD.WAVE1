@@ -9,7 +9,7 @@
 #include "GameL\HitBoxManager.h"
 
 
-#define FULL_BULLET_SPEED (30.0f)
+#define FULL_BULLET_SPEED (5.0f)
 
 
 //使用するネームスペース
@@ -158,14 +158,15 @@ void CObjFullBullet::Draw()
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 512.0f;
+	src.m_bottom = 512.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f + m_by;
-	dst.m_left = 0.0f + m_bx;
-	dst.m_right = 16.0f + m_bx;
-	dst.m_bottom = 16.0f + m_by;
+	dst.m_top = -16.0f + m_by;
+	dst.m_left = -16.0f + m_bx;
+	dst.m_right = 32.0f + m_bx;
+	dst.m_bottom = 32.0f + m_by;
+
 
 	//描画
 	Draw::Draw(4, &src, &dst, c, 0.0f);

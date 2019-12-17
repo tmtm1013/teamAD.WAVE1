@@ -283,7 +283,7 @@ void CObjLastBoss::Action()
 		//ボス消滅でシーンをステージ３に移行する
 		Scene::SetScene(new CSceneClear());
 
-		Audio::Stop(24);//音楽ストップ
+		//Audio::Stop(24);//音楽ストップ
 
 
 	}

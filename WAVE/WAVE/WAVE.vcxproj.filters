@@ -34,15 +34,6 @@
     <ClCompile Include="ObjBoss.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBoss1.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBoss2.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTime.cpp">
       <Filter>ObjUI</Filter>
     </ClCompile>
@@ -109,9 +100,6 @@
     <ClCompile Include="SceneClear.cpp">
       <Filter>SceneClear</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -121,20 +109,11 @@
     <ClCompile Include="ObjBoss1.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFlyingenemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjRevolutionBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjCursor.cpp">
       <Filter>ソース ファイル\Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ObjHero</Filter>
     </ClCompile>
     <ClCompile Include="ObjGren.cpp">
       <Filter>ObjItem</Filter>
@@ -174,9 +153,6 @@
     </ClCompile>
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="CheckHit.cpp" />
-    <ClCompile Include="ObjDescription.cpp">
-      <Filter>ObjDesc</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBossSL.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
@@ -192,14 +168,32 @@
     <ClCompile Include="ObjEnemyLongdistance.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
     <ClCompile Include="ObjFlyimgEnemy2.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>ObjEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>ObjEnemy</Filter>
+    <ClCompile Include="ObjDescription.cpp">
+      <Filter>ObjDesc</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ObjHero</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ObjHero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,9 +211,6 @@
     </ClInclude>
     <ClInclude Include="COHomingBullet.h">
       <Filter>ObjBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBoss1.h">
-      <Filter>ObjEnemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ObjEnemy</Filter>
@@ -290,9 +281,6 @@
     <ClInclude Include="ObjBlock.h">
       <Filter>SceneStage</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBoss2.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ObjEnemy</Filter>
     </ClInclude>
@@ -329,9 +317,6 @@
     <ClInclude Include="ObjGren.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneDescription.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjFlyingenemy.h">
       <Filter>ObjEnemy</Filter>
     </ClInclude>
@@ -346,6 +331,15 @@
     </ClInclude>
     <ClInclude Include="ObjLastBoss.h">
       <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjDescription.h">
+      <Filter>ObjDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>ObjDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ObjHero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -369,9 +363,6 @@
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
       <Filter>Bullet</Filter>
