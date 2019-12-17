@@ -105,6 +105,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
 
 
+
 	//ƒ{ƒŠƒ…[ƒ€‚ğ1.0‚É–ß‚·
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);

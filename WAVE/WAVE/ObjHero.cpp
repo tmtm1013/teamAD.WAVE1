@@ -131,8 +131,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 500;//主人公のヒットポイント用
-	hp_max = 500;
+	hp = 600;//主人公のヒットポイント用
+	hp_max = 600;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 }
@@ -252,14 +252,14 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-/*	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
 	{
 		//発射音を鳴らす
 		Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f, 5.0, 2); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
@@ -298,13 +298,7 @@ void CObjHero::Action()
 
 
 
-	//ゴールブロック
-	if (m_block_type == 3)
-	{
-		this->SetStatus(false);
-
-		Scene::SetScene(new SceneBossStage());
-	}
+	
 
 	//ダメージブロック
 
@@ -377,7 +371,13 @@ void CObjHero::Action()
 		if (m_block_type == 5)
 			hp -=0.5;
 
+		//ゴールブロック
+		if (m_block_type == 3)
+		{
+			this->SetStatus(false);
 
+			Scene::SetScene(new SceneBossStage());
+		}
 
 		/*else 
 		{
@@ -409,6 +409,14 @@ void CObjHero::Action()
 		if (m_block_type == 5)
 			hp -= 0.5;
 
+
+		//ゴールブロック
+		if (m_block_type == 3)
+		{
+			this->SetStatus(false);
+
+			Scene::SetScene(new SceneBossStage());
+		}
 		/*else
 		{
 			second++;
@@ -508,11 +516,11 @@ void CObjHero::Action()
 				//ノックバックプログラム
 				if (m_px > x + block->GetScroll())
 				{
-					m_vx = +5.0f;
+					m_vx =-5.0f;
 				}
 				else //(m_px < x)
 				{
-					m_vx = -5.0f;
+					m_vx = +5.0f;
 				}
 			}
 		}
@@ -547,11 +555,11 @@ void CObjHero::Action()
 				  //ノックバックプログラム
 				if (m_px > ex + block->GetScroll())
 				{
-					m_vx = +5.0f;
+					m_vx = -5.0f;
 				}
 				else //(m_px < ex)
 				{
-					m_vx = -5.0f;
+					m_vx = +5.0f;
 				}
 			}
 
@@ -564,11 +572,11 @@ void CObjHero::Action()
 				//ノックバックプログラム
 				if (m_px > ex + block->GetScroll())
 				{
-					m_vx = +5.0f;
+					m_vx = -5.0f;
 				}
 				else //(m_px < ex)
 				{
-					m_vx = -5.0f;
+					m_vx = +5.0f;
 				}
 
 			}

@@ -82,7 +82,7 @@ void CObjFlyingenemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 100;//ENEMY‚ÌHP
+	m_hp = 30;//ENEMY‚ÌHP
 
 	elevator_flag = true;
 

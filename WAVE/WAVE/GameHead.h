@@ -36,7 +36,6 @@ enum OBJ_NAME
 	
 
 
-
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
@@ -62,6 +61,7 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
+
 };
 //------------------------------------------------
 
@@ -74,7 +74,6 @@ struct UserData
 	int SceneNum;   //ステージ切り替え
 	int Scenecontinue;//ステージやり直し
 		
-	
 };
 //------------------------------------------------
 
@@ -149,5 +148,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle//CSceneBlock3//
+#define SET_GAME_START CSceneTitle//CSceneBlock3//SceneBossStage//
 //-----------------------------------------------

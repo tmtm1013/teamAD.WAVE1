@@ -41,18 +41,6 @@
       <Filter>ObjEnemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
-      <Filter>敵</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
-      <Filter>敵</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistance.cpp">
-      <Filter>敵</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFlyingenemy.cpp">
-      <Filter>敵</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjTime.cpp">
@@ -145,9 +133,6 @@
     <ClCompile Include="ObjCursor.cpp">
       <Filter>ソース ファイル\Hero</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>ObjHero</Filter>
     </ClCompile>
@@ -187,10 +172,35 @@
     <ClCompile Include="ObjBackground.cpp">
       <Filter>Background</Filter>
     </ClCompile>
+    <ClCompile Include="GameL\Audio.cpp" />
+    <ClCompile Include="CheckHit.cpp" />
     <ClCompile Include="ObjDescription.cpp">
       <Filter>ObjDesc</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\Audio.cpp" />
+    <ClCompile Include="ObjBossSL.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLastBoss.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>ObjEnemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -213,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingenemy.h">
-      <Filter>敵</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
       <Filter>SceneStage</Filter>
@@ -316,6 +323,30 @@
     <ClInclude Include="SceneBlock2.h">
       <Filter>SceneStage</Filter>
     </ClInclude>
+    <ClInclude Include="CheckHit.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGren.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingEnemy2.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJBoss.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBossSL.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjLastBoss.h">
+      <Filter>ObjEnemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -335,12 +366,6 @@
     </ClInclude>
     <ClInclude Include="SceneTitle.h">
       <Filter>SceneTitle</Filter>
-    </ClInclude>
-    <ClInclude Include="OBJBoss.h">
-      <Filter>敵</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBossSL.h">
-      <Filter>敵</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
       <Filter>Bullet</Filter>

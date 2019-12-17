@@ -34,7 +34,7 @@ void CObjLastBoss::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 400;//ENEMYのHP
+	m_hp = 350;//ENEMYのHP
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
