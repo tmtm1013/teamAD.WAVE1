@@ -656,24 +656,23 @@ void CObjHero::Action()
 
 			}
 
-
-
-
-	}
-
-
-		/*
-		//主人公のHPがゼロになった時主人公が消える
-		if (hp<=0)
-		{
-
-
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-			//主人公のHPがゼロになった時ゲームオーバー画面に移行する
-			Scene::SetScene(new CSceneGameOver());
+			
+			
+		}
+		
+	 
+	/*
+	//主人公のHPがゼロになった時主人公が消える
+	if (hp<=0) 
+	{
+		
+		
+		
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+		
+		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
+		Scene::SetScene(new CSceneGameOver());
 
 		}
 		*/
