@@ -1,5 +1,14 @@
 #pragma once
 
+
+#include "GameL\SceneObjManager.h"
+#include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
+#include "GameL/DrawFont.h"
+#include "GameL/UserData.h"
+#include "GameL/WinInputs.h"
+
+using namespace GameL;
 //オブジェクトネーム------------------------------
 enum OBJ_NAME
 {
@@ -86,6 +95,10 @@ extern float kazu;
 
 
 //------------------------------------------------
+//ゲーム内で使用するグラフィックテータ
+//弾丸グラフィック読み込み
+
+
 //ゲーム内で使用するクラスヘッダ------------------
 #include "UtilityModule.h"
 

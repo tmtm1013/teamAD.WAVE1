@@ -5,6 +5,7 @@
 #include "GameL\Audio.h"
 #include "GameHead.h"
 #include "GameL\UserData.h"
+//#include "Graf.h"
 
 #include "ObjLastBoss.h"
 
@@ -23,7 +24,6 @@ CObjLastBoss::CObjLastBoss(float x, float y)
 	m_py = y;
 
 }
-
 //イニシャライズ
 void CObjLastBoss::Init()
 {

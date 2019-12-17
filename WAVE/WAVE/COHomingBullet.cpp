@@ -52,6 +52,8 @@ CObjHomingBullet::CObjHomingBullet(float x, float y)
 //イニシャライズ
 void CObjHomingBullet::Init()
 {
+	
+
 	//距離
 	leng = 0;
 	m_vx = 10.0;
@@ -197,7 +199,7 @@ void CObjHomingBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(50, &m_eff, &dst, c, 0.0f);
+		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
 		//着弾アニメーション
 
 	}

@@ -258,7 +258,7 @@ void CObjHero::Action()
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f,0,0); //弾丸オブジェクト作成
+		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
