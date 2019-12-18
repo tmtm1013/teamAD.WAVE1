@@ -78,12 +78,12 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
-
+	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);//作成したHitBox更新用の入り口を取り出す
 	hit->SetPos(m_x, m_y);
-
-
+	
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_del = true;
@@ -192,7 +192,6 @@ void CObjHomingBullet::Draw()
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
-
 		//表示位置の設定
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
@@ -205,30 +204,21 @@ void CObjHomingBullet::Draw()
 	}
 	else 
 	{
-		
+		float c[4] = { 1.0f,0.0f,1.0f,1.0f };
+
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 512.0f;
+		src.m_bottom = 512.0f;
+
 		//表示位置の設定
 		dst.m_top = 16.0f + m_y;
 		dst.m_left = 16.0f + m_x;
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-
-
-		
 		Draw::Draw(4, &src, &dst, c, 0.0f);
-
-		
-
-
-	
-
 
 	}
 }

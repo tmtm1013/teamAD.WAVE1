@@ -220,7 +220,7 @@ void CObjBoss::Action()
 			m_time2 = 0;
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 4);
 		
 	}
 	
