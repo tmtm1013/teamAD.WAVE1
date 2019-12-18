@@ -41,11 +41,13 @@ float  CObjHomingBullet::GetBY()
 
 }
 //コンストラクタ
-CObjHomingBullet::CObjHomingBullet(float x, float y)
+CObjHomingBullet::CObjHomingBullet(float x, float y,int ani)
 {
 
 	m_x = x;
 	m_y = y;
+
+	m_aninum = ani;
 
 }
 
@@ -135,6 +137,12 @@ void CObjHomingBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	//ブロックと当たると弾丸削除
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
 
 }
 
@@ -157,5 +165,5 @@ void CObjHomingBullet::Draw()
 	dst.m_right = 32.0f + m_x;
 	dst.m_bottom = 32.0f + m_y;
 
-	Draw::Draw(18, &src, &dst, c, 0.0f);
+	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
 }
