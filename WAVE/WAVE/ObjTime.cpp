@@ -29,6 +29,7 @@ void CObjTime::Action()
 		m_time--;
 		m_count = 0;
 	}
+
 }
 
 //ƒhƒ[

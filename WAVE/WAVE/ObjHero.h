@@ -8,7 +8,7 @@ using namespace GameL;
 //シーン:主人公
 class CObjHero :public CObj
 {
-	public:CObjHero(){}
+   public:CObjHero(){}
 	       ~CObjHero() {};
 		   void Init();   //イニシャライズ
 		   void Action(); //アクション
@@ -40,6 +40,7 @@ class CObjHero :public CObj
 		   void SetYY(float y);//位置情報Y変更用
 		   float GetXX();//位置情報ｘ取得用
 		   float GetYY();//位置情報Y取得用
+
 	private:
 		float m_px;    //位置
 		float m_py;
@@ -50,6 +51,7 @@ class CObjHero :public CObj
 		bool m_mou_pl; //マウス左ボタン
 
 		bool  m_f;     //弾丸発射制御用
+		bool  m_gf;     //グレネード発射用フラグ
 		float m_time;  //弾丸発射可能頻度制御
 		int bullet_type;//弾丸の種類
 
@@ -63,13 +65,15 @@ class CObjHero :public CObj
 
 		float m_speed_power;  //スピードパワー
 		float m_ani_max_time; //アニメーション動作間隔最大値
-		int m_ani_move;//アニメーション切り替え用
-		int m_ret;  //アニメーションターン用変数
-		int m_SEtime;//SEの再生頻度制御用変数1
+		int   m_ani_move;//アニメーション切り替え用
+		
 		bool SE_flag;
 
-		int movesecond; //秒間用変数	
-		int jumpsecond; //秒間用変数
+		short int movesecond; //秒間用変数	
+		short int jumpsecond; //秒間用変数
+		short int m_SEtime;//SEの再生頻度制御用変数
+		short int Action_ani_time;//攻撃アニメーション切り替え頻度制御
+		bool Action_ani_flag;
 
 		//blockとの衝突状態確認用
 		bool m_hit_up ;
@@ -87,6 +91,7 @@ class CObjHero :public CObj
 		float left;
 		float right;
 		float bottom;
+		int   ani_num;//描画番号管理用
 
 		int i = 0;
 		
@@ -95,5 +100,7 @@ class CObjHero :public CObj
 
 		//踏んでいるblockの種類を確認用
 		int m_block_type;
-
+		
+		int time;
+		int atari;
 };

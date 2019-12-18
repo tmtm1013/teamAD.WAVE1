@@ -35,5 +35,12 @@ private:
 	float x, y;
 	float vx, vy;
 
-	
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	int m_block_type; //ブロックの種類
+
 };

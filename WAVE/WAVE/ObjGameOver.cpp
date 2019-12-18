@@ -3,12 +3,14 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL/Audio.h"
 
 #include "SceneMain.h"
 #include "ObjTitle.h"
 #include "GameHead.h"
 #include "ObjGameOver.h"
 #include "GameL\DrawFont.h"
+#include "GameL\UserData.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -36,8 +38,23 @@ void CObjGameOver::Action()
 		//マウスのボタンが押されたらリスタート
 		if (m_mou_r == true)
 		{
-			Scene::SetScene(new CSceneMain());
+			if (((UserData*)Save::GetData())->Scenecontinue == 1)
+			{
+				Scene::SetScene(new CSceneMain());
+				Audio::Stop(24); //BGMストップ
+			}
+			else if(((UserData*)Save::GetData())->Scenecontinue == 2)
+			{
+				Scene::SetScene(new CSceneBlock2());
+				Audio::Stop(24); //BGMストップ
+			}
+			else if(((UserData*)Save::GetData())->Scenecontinue == 3)
+			{
+				Scene::SetScene(new CSceneBlock3());
+				Audio::Stop(24); //BGMストップ
+			}
 
+			
 		}
 	}
 
@@ -49,7 +66,7 @@ void CObjGameOver::Action()
 		if (m_mou_r == true)
 		{
 			Scene::SetScene(new CSceneTitle());
-
+			Audio::Stop(24); //BGMストップ
 		}
 	}
 
@@ -71,7 +88,7 @@ void CObjGameOver::Action()
 void CObjGameOver::Draw()
 {
 
-	Draw::LoadImage(L"GAMEOVER01.png", 15, TEX_SIZE_512);
+	
 
 	float c[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -91,7 +108,7 @@ void CObjGameOver::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 
 	//仮マウス位置表示
 	wchar_t str[256];

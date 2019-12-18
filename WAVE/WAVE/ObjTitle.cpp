@@ -4,6 +4,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\UserData.h"
+#include "GameL\Audio.h"
 
 #include "ObjTitle.h"
 #include "GameHead.h"
@@ -14,6 +15,7 @@ using namespace GameL;
 
 void CObjTitle::Init()
 {
+	Audio::LoadAudio(1, L"SEgan/k.wav", SOUND_TYPE::EFFECT);
 
 	Draw::LoadImageW(L"Title.png", 1, TEX_SIZE_1024);
 	m_mou_x = 0.0f;
@@ -21,7 +23,14 @@ void CObjTitle::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 
+	time = 0;
+	flag = true;
+
+	b = 1.0f;
+	t = 1.0f;
+
 	((UserData*)Save::GetData())->SceneNum=1; //マップ移動用
+	((UserData*)Save::GetData())->Scenecontinue = 1; //マップ移動用
 }
 
 void CObjTitle::Action()
@@ -36,12 +45,28 @@ void CObjTitle::Action()
 	//マウスの位置とクリックする場所で当たり判定
 	if (m_mou_x > 240 && m_mou_x < 550 && m_mou_y > 400 && m_mou_y < 450)
 	{
+		b = 0.0f;
+		
 		//マウスのボタンが押されたらメインに移行
-		if (m_mou_r == true || m_mou_l == true)
+		if (m_mou_r == true || m_mou_l == true&&flag==true)
 		{
-			Scene::SetScene(new CSceneMain());
+			Audio::Start(1);
+			t = 0.0f;
+			flag = false;
+			
 		}
 	}
+	else
+	{
+		b = 1.0f;
+	}
+	if (flag == false)
+		time++;
+	if (time >= 20)
+		Scene::SetScene(new CSceneDescription());
+
+
+	
 }
 
 void CObjTitle::Draw()
@@ -84,9 +109,10 @@ void CObjTitle::Draw()
 		Font::StrDraw(L"L=押している", 20, 40, 12, c);
 	else
 		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
+	         //   R    G    B    透過
+	float d[4] = { 0, 0, b, t };
 
-	float d[4] = { 0, 0, 0, 1.0f };
+	Font::StrDraw(L"GAME START", 240, 400, 60, d);
 
-	Font::StrDraw(L"GAME START", 240, 400, 60, d);	
 }
 

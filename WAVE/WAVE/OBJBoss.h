@@ -16,6 +16,12 @@ public:
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 
+	   float GetEX();//位置情報ｘ取得用
+	   float GetEY();//位置情報Y取得用
+	   void SetXX(float x);//位置情報X変更用
+	   void SetYY(float y);//位置情報Y変更用
+
+
 private:
 	float m_px;    //位置
 	float m_py;
@@ -25,7 +31,7 @@ private:
 
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
-
+	int m_time_a;
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
 

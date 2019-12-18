@@ -17,11 +17,20 @@ public:CObjEnemyLongdistance(float x,float y) ;
 	   void Action(); //アクション
 	   void Draw();   //ドロー
 
+	   float GetEX();//位置情報ｘ取得用
+	   float GetEY();//位置情報Y取得用
+	   void SetXX(float x);//位置情報X変更用
+	   void SetYY(float y);//位置情報Y変更用
+
+
 private:
 	float m_px;    //位置
 	float m_py;
 	float m_vx;    //移動ベクトル
 	float m_vy;
+	float ScrollEnemy;//敵の位置情報にスクロールの影響を与えるため作った変数。
+	float Scrollplayer;
+
 	float m_posture;  //姿勢
 
 	float m_sx;  //画像サイズをBlockHitに渡す用
@@ -51,5 +60,5 @@ private:
 	//弾丸用時間制限タイム変数
 	int m_time;
 
-
+	
 };
