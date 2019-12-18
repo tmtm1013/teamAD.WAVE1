@@ -62,10 +62,6 @@ void CSceneBlock2::InitScene()
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
-
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	
 	//音楽読み込み
 	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
 	Audio::Start(22);//音楽スタート
@@ -82,7 +78,7 @@ void CSceneBlock2::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -112,9 +108,12 @@ void CSceneBlock2::InitScene()
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
 
-
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
+
+	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
+	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -148,248 +147,22 @@ void CSceneBlock2::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
-
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-	/*
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
-	*/
-
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-
-	/*
-	//外部データの読み取り（ステージ情報）
-	unique_ptr<wchar_t>p2;//ステージ情報ポインター
-	int size2;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage02.csv", &size);//外部データ読み込み
-
-	int map2[10][100];
-	int count2 = 1;
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 100; j++)
-		{
-			int w = 0;
-			swscanf_s(&p.get()[count2], L"%d", &w);
-
-			map[i][j] = w;
-			count += 2;
-
-
-		}
-	}
-
-	*/
 
 
 
-	m_time = 0;
-	m_time2 = 0;
-	m_time3 = 0;
-	m_time4 = 0;
-	m_time5 = 0;
-	m_time6 = 0;
-	m_time7 = 0;
-	m_time8 = 0;
-	m_time9 = 0;
-	m_time10 = 0;
-
-	Enemy = 1;
-	Enemyleft = 1;
-	EnemyJump = 1;
-	EnemyJumpleft = 1;
-	EnemyRecovery = 1;
-	EnemyRecoveryleft = 1;
-	EnemyAmmunition = 1;
-	EnemyAmmunitionleft = 1;
-	EnemyLongdistance = 1;
-	EnemyLongdistanceleft = 1;
 
 }
 
 //実行中メソッド
 void CSceneBlock2::Scene()
 {
-	m_time++;
-	m_time2++;
-	m_time3++;
-	m_time4++;
-	m_time5++;
-	m_time6++;
-	m_time7++;
-	m_time8++;
-	m_time9++;
-	m_time10++;
-
-
-
-
-
-	/*
-	//通常敵表示用プログラム（左画面出現）
-		if (m_time > 100)//敵の出現間隔
-		{
-
-			if (Enemy <=2) {//敵の出現数
-
-				//敵オブジェクト作成
-				CObjEnemy* obj_enemy = new CObjEnemy();
-				Objs::InsertObj(obj_enemy, OBJ_ENEMY, 10);
-			}
-
-			Enemy++;
-
-			m_time = 0;
-		}
-		//通常敵表示用プログラム（右画面出現）
-		if (m_time2>250) {//敵の出現間隔
-
-			if (Enemyleft <= 2) {//敵の出現数
-
-				CObjEnemyleft* obj_enemyleft = new CObjEnemyleft();
-				Objs::InsertObj(obj_enemyleft, OBJ_ENEMY, 10);
-			}
-
-			Enemyleft++;
-
-			m_time2 = 0;
-		}
-
-
-		//ジャンプする敵出現用プログラム（左画面出現）
-		if (m_time3>100) {//敵の出現間隔
-
-			if (EnemyJump <= 2) {//敵の出現数
-
-				CObjEnemyJump* obj_enemyjump = new CObjEnemyJump();
-				Objs::InsertObj(obj_enemyjump, OBJ_ENEMY, 10);
-
-
-			}
-
-			EnemyJump++;
-
-			m_time3 = 0;
-
-		}
-		//ジャンプする敵出現用プログラム（右画面出現）
-		if (m_time4 > 100) {//敵の出現間隔
-
-			if (EnemyJumpleft <= 2) {//敵の出現数
-
-				CObjEnemyJumpleft* obj_enemyjumpleft = new CObjEnemyJumpleft();
-				Objs::InsertObj(obj_enemyjumpleft, OBJ_ENEMY, 10);
-			}
-
-			EnemyJumpleft++;
-
-			m_time4 = 0;
-
-		}
-
-
-		//回復アイテム所持敵出現用プログラム（左画面出現）
-		if (m_time5 > 100) {//敵の出現間隔
-
-			if (EnemyRecovery <= 2) {//敵の出現数
-
-				CObjEnemyRecovery* obj_enemyrecovery = new CObjEnemyRecovery();
-				Objs::InsertObj(obj_enemyrecovery, OBJ_ENEMY, 10);
-			}
-
-			EnemyRecovery++;
-
-			m_time5 = 0;
-
-		}
-		//回復アイテム所持敵出現用プログラム（右画面出現）
-		if (m_time6 > 100) {//敵の出現間隔
-
-			if (EnemyRecoveryleft <= 2) {//敵の出現数
-
-				ObjEnemyRecoveryleft* obj_enemyrecoveryleft = new ObjEnemyRecoveryleft();
-				Objs::InsertObj(obj_enemyrecoveryleft, OBJ_ENEMY, 10);
-			}
-
-			EnemyRecoveryleft++;
-
-			m_time6 = 0;
-
-		}
-
-
-		//弾薬アイテム所持敵出現用プログラム（左画面出現）
-		if (m_time7 > 100) {//敵の出現間隔
-
-			if (EnemyAmmunition <= 2) {//敵の出現数
-
-				CObjEnemyAmmunition* obj_enemyammunition = new CObjEnemyAmmunition();
-				Objs::InsertObj(obj_enemyammunition, OBJ_ENEMY, 10);
-			}
-
-			EnemyAmmunition++;
-
-			m_time7 = 0;
-
-		}
-		//弾薬アイテム所持敵出現用プログラム（右画面出現）
-		if (m_time8 > 100) {//敵の出現間隔
-
-			if (EnemyAmmunitionleft <= 2) {//敵の出現数
-
-				CObjEnemyAmmunitionleft* obj_enemyammunitionleft = new CObjEnemyAmmunitionleft();
-				Objs::InsertObj(obj_enemyammunitionleft, OBJ_ENEMY, 10);
-			}
-
-			EnemyAmmunitionleft++;
-
-			m_time8 = 0;
-
-		}
-
-
-	   //遠距離攻撃敵出現プログラム（右画面出現）
-		if (m_time9 > 100) {//敵の出現間隔
-
-			if (EnemyLongdistance <= 1) {//敵の出現数
-
-				CObjEnemyLongdistance* obj_enemylongdistance = new CObjEnemyLongdistance();
-				Objs::InsertObj(obj_enemylongdistance, OBJ_ENEMY, 10);
-			}
-
-			EnemyLongdistance++;
-
-			m_time9 = 0;
-
-		}
-		*/
-		////遠距離攻撃敵出現プログラム（右画面出現）
-		//if (m_time10 > 100) {//敵の出現間隔
-
-		   // if (EnemyLongdistanceleft <= 1) {//敵の出現数
-
-		   //	 CObjEnemyLongdistanceleft* obj_enemylongdistanceleft = new CObjEnemyLongdistanceleft(750,0);
-		   //	 Objs::InsertObj(obj_enemylongdistanceleft, OBJ_ENEMY, 10);
-		   // }
-
-		   // EnemyLongdistanceleft++;
-
-		   // m_time10 = 0;
-
-		//}
-
-
-
-
-
 
 
 }

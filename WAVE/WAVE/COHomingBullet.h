@@ -37,6 +37,12 @@ private:
 
 	bool button;
 
+	int m_ani;//着弾アニメーション用
+	int m_ani_time;//着弾アニメーション間隔用タイム
+	bool m_del;//消去チェック
+	RECT_F m_eff;//着弾エフェクト描画用
+
+
 	int m_aninum;
 
 	//blockとの衝突状態確認用

@@ -78,7 +78,7 @@ void CObjEnemyJump::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 5;//ENEMYのHP
+	m_hp = 100;//ENEMYのHP
 
 	m_time = 0;//ジャンプ用タイム
 
@@ -274,7 +274,7 @@ void CObjEnemyJump::Draw()
 		0, 1, 2, 3, 4, 5, //攻撃モーション
 	};
 
-	if (m_ani_move = 0)
+	if (m_ani_move == 0)
 	{
 
 		//描画カラー情報
@@ -299,7 +299,7 @@ void CObjEnemyJump::Draw()
 
 	}
 
-	if (m_ani_move = 1)
+	if (m_ani_move == 1)
 	{
 	   //描画カラー     R     G    B    透過 
 		float c[4] = { 1.0f,0.0f,.0f,1.0f };

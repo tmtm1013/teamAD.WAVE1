@@ -7,7 +7,7 @@
 #include "ObjEnemy.h"
 #include "GameL\HitBoxManager.h"
 
-#define BULLET_SPEED (10.0f)
+#define BULLET_SPEED (15.0f)
 
 
 //使用するネームスペース
@@ -19,15 +19,16 @@ CObjBullet::CObjBullet(float x, float y)
 	m_bx = x;
 	m_by = y;
 	
-
-	//当たり判定用のHitBoxを作成
-    Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE,  OBJ_BULLET, 1);
-
 }
 
 //イニシャライズ
 void CObjBullet::Init()
 {
+
+	//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_BULLET, 1);
+
+
 	m_vx = 0.1f;
 	m_vy = -0.1f;
 
@@ -50,6 +51,11 @@ void CObjBullet::Init()
 
 	flag = true;
 
+
+
+
+
+
 }
 
 //アクション
@@ -64,9 +70,6 @@ void CObjBullet::Action()
 		&m_block_type
 	);
 	
-	
-
-
 	//マウスの位置を取得
 	if (flag==true)
 	{
@@ -151,7 +154,7 @@ void CObjBullet::Action()
 void CObjBullet::Draw()
 {
 
-	//描画カラー情報
+	//描画カラー情報rgba
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
@@ -160,14 +163,14 @@ void CObjBullet::Draw()
 	//切り取り位置の設定
 	src.m_top    = 0.0f;
 	src.m_left   = 0.0f;
-	src.m_right  = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right  = 512.0f;
+	src.m_bottom = 512.0f;
 	
 	//表示位置の設定
-	dst.m_top    = 0.0f  + m_by;
-	dst.m_left   = 0.0f  + m_bx;
-	dst.m_right  = 16.0f + m_bx;
-	dst.m_bottom = 16.0f + m_by;
+	dst.m_top    = -16.0f  + m_by;
+	dst.m_left   = -16.0f  + m_bx;
+	dst.m_right  = 32.0f + m_bx;
+	dst.m_bottom = 32.0f + m_by;
 
 	//描画
 	Draw::Draw(4, &src, &dst, c, 0.0f);

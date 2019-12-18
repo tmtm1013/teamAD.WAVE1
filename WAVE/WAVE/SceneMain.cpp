@@ -69,7 +69,7 @@ void CSceneMain::InitScene()
 	Font::SetStrTex(L"0123456789分秒");
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
@@ -107,6 +107,10 @@ void CSceneMain::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
 
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+	
+	
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -126,11 +130,11 @@ void CSceneMain::InitScene()
 	CObjEnemyJump2* objz = new CObjEnemyJump2(600,300);
 	Objs::InsertObj(objz, OBJ_ENEMYJUMP2, 12);
 	*/
-	/*
+	
 	//BOSSオブジェクト作成
-	CObjLastBoss* objLastboss = new CObjLastBoss(600,300);
-	Objs::InsertObj(objLastboss, OBJ_LASTBOSS, 10);
-	*/
+	CObjBoss* objboss = new CObjBoss(600,300);
+	Objs::InsertObj(objboss, OBJ_BOSS, 10);
+	
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();

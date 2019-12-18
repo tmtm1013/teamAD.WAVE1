@@ -5,6 +5,7 @@
 #include "GameL\Audio.h"
 #include "GameHead.h"
 #include "GameL\UserData.h"
+//#include "Graf.h"
 
 #include "ObjLastBoss.h"
 
@@ -23,7 +24,6 @@ CObjLastBoss::CObjLastBoss(float x, float y)
 	m_py = y;
 
 }
-
 //イニシャライズ
 void CObjLastBoss::Init()
 {
@@ -38,7 +38,7 @@ void CObjLastBoss::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 400;//ENEMYのHP
+	m_hp = 350;//ENEMYのHP
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -283,7 +283,7 @@ void CObjLastBoss::Action()
 		//ボス消滅でシーンをステージ３に移行する
 		Scene::SetScene(new CSceneClear());
 
-		Audio::Stop(24);//音楽ストップ
+		//Audio::Stop(24);//音楽ストップ
 
 
 	}
