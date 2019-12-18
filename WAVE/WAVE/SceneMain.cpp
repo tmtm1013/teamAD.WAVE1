@@ -71,8 +71,9 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
 
-	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -130,11 +131,11 @@ void CSceneMain::InitScene()
 	CObjEnemyJump2* objz = new CObjEnemyJump2(600,300);
 	Objs::InsertObj(objz, OBJ_ENEMYJUMP2, 12);
 	*/
-	
+	/*
 	//BOSSオブジェクト作成
 	CObjBoss* objboss = new CObjBoss(600,300);
 	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-	
+	*/
 
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();

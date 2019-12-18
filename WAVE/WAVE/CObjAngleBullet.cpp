@@ -225,6 +225,20 @@ void CObjAngleBullet::Draw()
 	RECT_F dst;
 
 
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
+
+	//表示位置の設定
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 64.0f + m_x;
+	dst.m_bottom = 64.0f + m_y;
+
+	Draw::Draw(18, &src, &dst, c, m_r);
+
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
@@ -239,22 +253,5 @@ void CObjAngleBullet::Draw()
 		//着弾アニメーション
 
 	}
-	else
-	{
 
-
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		//表示位置の設定
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 16.0f + m_x;
-		dst.m_bottom = 16.0f + m_y;
-
-		Draw::Draw(4, &src, &dst, c, m_r);
-	}
 }

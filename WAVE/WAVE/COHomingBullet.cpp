@@ -197,6 +197,25 @@ void CObjHomingBullet::Draw()
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
+
+
+	//表示位置の設定
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
+
+
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
+
+	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
+
+
+
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
@@ -211,32 +230,5 @@ void CObjHomingBullet::Draw()
 		//着弾アニメーション
 
 	}
-	else 
-	{
-		
-		//表示位置の設定
-		dst.m_top = 16.0f + m_y;
-		dst.m_left = 16.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 32.0f + m_y;
 
-
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-
-
-		
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-
-		
-
-
-	
-
-
-	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
 }
