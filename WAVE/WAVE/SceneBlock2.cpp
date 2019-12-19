@@ -119,6 +119,8 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
 
 
+
+
 	//ƒ{ƒŠƒ…[ƒ€‚ğ1.0‚É–ß‚·
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);
