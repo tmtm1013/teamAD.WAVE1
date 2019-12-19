@@ -5,6 +5,7 @@
 #include "GameL\Audio.h"
 #include "GameHead.h"
 #include "GameL\UserData.h"
+//#include "Graf.h"
 
 #include "ObjBoss.h"
 
@@ -218,7 +219,7 @@ void CObjBoss::Action()
 
 			m_time2 = 0;
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,18);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 		
 	}

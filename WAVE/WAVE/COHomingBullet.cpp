@@ -41,17 +41,21 @@ float  CObjHomingBullet::GetBY()
 
 }
 //コンストラクタ
-CObjHomingBullet::CObjHomingBullet(float x, float y)
+CObjHomingBullet::CObjHomingBullet(float x, float y,int ani)
 {
 
 	m_x = x;
 	m_y = y;
+
+	m_aninum = ani;
 
 }
 
 //イニシャライズ
 void CObjHomingBullet::Init()
 {
+	
+
 	//距離
 	leng = 0;
 	m_vx = 10.0;
@@ -76,12 +80,12 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
-
+	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);//作成したHitBox更新用の入り口を取り出す
 	hit->SetPos(m_x, m_y);
-
-
+	
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_del = true;
@@ -177,6 +181,12 @@ void CObjHomingBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	//ブロックと当たると弾丸削除
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
 
 
 }
@@ -187,6 +197,25 @@ void CObjHomingBullet::Draw()
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
+
+
+	//表示位置の設定
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
+
+
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
+
+	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
+
+
+
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
@@ -197,36 +226,9 @@ void CObjHomingBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(50, &m_eff, &dst, c, 0.0f);
+		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
 		//着弾アニメーション
 
 	}
-	else 
-	{
-		
-		//表示位置の設定
-		dst.m_top = 16.0f + m_y;
-		dst.m_left = 16.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 32.0f + m_y;
 
-
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-
-
-		
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-
-		
-
-
-	
-
-
-	}
 }
