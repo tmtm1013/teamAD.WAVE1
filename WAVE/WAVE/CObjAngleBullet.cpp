@@ -53,51 +53,9 @@ void CObjAngleBullet::Init()
 //アクション
 void CObjAngleBullet::Action()
 {
-
-
-	if (m_del == true)
-	{
-		//着弾アニメーション
-		//リソース着弾アニメーション位置
-		RECT_F ani_src[4] =
-		{
-
-
-			{32, 0, 32,64},
-			{32,32, 64,64},
-			{32,64, 96,64},
-			{32,96,128,64},
-
-
-		};
-		//アニメーションのコマ間隔
-		if (m_ani_time > 2)
-		{
-			m_ani++;		//アニメーションのコマを1つ進める
-			m_ani_time = 0;
-
-			m_eff = ani_src[m_ani];
-		}
-		else
-		{
-			m_ani_time++;
-		}
-
-		if (m_ani == 4)
-		{
-
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-
-		}
-
-		return;
-
-	}
-
-
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x, m_y);
 
 	//移動
 	m_x += m_vx * m_speed;
@@ -111,12 +69,9 @@ void CObjAngleBullet::Action()
 	);
 
 
-	//HitBoxの位置の変更
-	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
-
 		m_del = true;
 		hit->SetInvincibility(true);
 	}
@@ -174,7 +129,7 @@ void CObjAngleBullet::Action()
 		||m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+		//Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}
 
@@ -242,7 +197,6 @@ void CObjAngleBullet::Draw()
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
-
 		//表示位置の設定
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
@@ -251,7 +205,21 @@ void CObjAngleBullet::Draw()
 
 		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
 		//着弾アニメーション
-
 	}
+	else
+	{
+
+
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		//表示位置の設定
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 16.0f + m_x;
+		dst.m_bottom = 16.0f + m_y;
 
 }

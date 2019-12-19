@@ -155,7 +155,7 @@ void CObjLastBoss::Action()
 				m_time3 = 0;
 				//弾丸オブジェクト
 				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 18);
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 4);
 
 
 			}
@@ -176,7 +176,7 @@ void CObjLastBoss::Action()
 				m_time = 0;
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 18);
+				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 4);
 
 
 			}

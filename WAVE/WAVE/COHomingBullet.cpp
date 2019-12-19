@@ -80,12 +80,12 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
-
+	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);//作成したHitBox更新用の入り口を取り出す
 	hit->SetPos(m_x, m_y);
-
-
+	
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_del = true;
