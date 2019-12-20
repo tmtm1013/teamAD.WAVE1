@@ -221,5 +221,5 @@ void CObjAngleBullet::Draw()
 		dst.m_left = 0.0f + m_x;
 		dst.m_right = 16.0f + m_x;
 		dst.m_bottom = 16.0f + m_y;
-
+	}
 }

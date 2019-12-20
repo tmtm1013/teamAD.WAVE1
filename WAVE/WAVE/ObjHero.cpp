@@ -96,6 +96,8 @@ void CObjHero::Init()
 	m_vy = 0.0f;
 	m_posture = 1.0f;  //右向き0.0f 左向き1.0f
 
+
+
 	m_ani_time = 0;  //左右移動・静止アニメーションタイム制御
 	m_ani_timeJump = 0; //ジャンプアニメーションタイム制御
 	m_ani_frame = 0;   //静止フレームを初期にする
