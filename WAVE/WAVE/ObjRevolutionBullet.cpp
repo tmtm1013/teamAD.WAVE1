@@ -49,6 +49,13 @@ void CObjRevolutionBullet::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_x, &m_y, true, &m_x, &m_y,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 	// 位置の計算
 	Angle += 20;
 	x = Cx + (cos(Angle)*R );
@@ -79,7 +86,7 @@ void CObjRevolutionBullet::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + x, m_y + y);
+	hit->SetPos(m_x + x , m_y + y);
 	
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -87,6 +94,7 @@ void CObjRevolutionBullet::Action()
 		this->SetStatus(false);//自身に消去命令を出す。
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	/*
 	//領域外に出たら弾丸を破棄する
 	if (m_x > 800.0f)
 	{
@@ -98,17 +106,19 @@ void CObjRevolutionBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	*/
 	if (m_y < 0.0f)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
+	}/*
 	if (m_y > 600.0f)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
+	}*/
 	//ブロックと当たると弾丸削除
+	
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
@@ -120,6 +130,8 @@ void CObjRevolutionBullet::Action()
 //ドロー
 void CObjRevolutionBullet::Draw()
 {
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
@@ -127,17 +139,20 @@ void CObjRevolutionBullet::Draw()
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
 
 
 	//表示位置の設定
 	dst.m_top = 0.0f +m_y+ y;
-	dst.m_left = 0.0f +m_x+ x;
-	dst.m_right = 32.0f +m_x+x;
+	dst.m_left = 0.0f + x + m_x ;
+	dst.m_right = 32.0f + x + m_x ;
 	dst.m_bottom = 32.0f +m_y+ y;
 
 	//描画
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	Draw::Draw(18, &src, &dst, c, 0.0f);
+
+
+
 
 }

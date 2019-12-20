@@ -43,7 +43,7 @@ private:
 	RECT_F m_eff;//着弾エフェクト描画用
 
 
-	int m_aninum;
+	short int m_aninum;//描画番号格納用変数
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;
