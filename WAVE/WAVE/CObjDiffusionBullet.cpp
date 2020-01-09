@@ -9,7 +9,6 @@
 
 #define BULLET_SPEED (30.0f)
 
-
 //使用するネームスペース
 using namespace GameL;
 
@@ -20,7 +19,7 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y)
 	m_by = y;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_DIFFUSION_BULLET, 1);
+	Hits::SetHitBox(this, m_bx, m_by, 32, 32, ELEMENT_WHITE, OBJ_HOMING_BULLET, 1);
 
 }
 

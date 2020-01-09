@@ -27,6 +27,7 @@ private:
 
 	float x;
 	float y;
+	short int pos;
 
 	bool flag; //弾丸バウンド制御用フラグ
 
@@ -34,6 +35,19 @@ private:
 	float pl_y;//現在のプレイヤーYの位置を保存用変数
 
 	bool button;
+
+	float m_r;  //移動する角度
+	float m_speed;  //速度
+
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	//当たっているblockの種類を確認用
+	int m_block_type;
+
 };
 
 

@@ -22,6 +22,15 @@ CObjAngleBullet::CObjAngleBullet(float x, float y,float r,float speed)
 //イニシャライズ
 void CObjAngleBullet::Init()
 {
+	m_eff.m_top = 32;
+	m_eff.m_left = 0;
+	m_eff.m_right = 32.0;
+	m_eff.m_bottom = 64.0;
+
+	m_ani = 0;
+	m_ani_time = 0;
+	m_del = false;
+
 	m_vx = cos(3.14f / 180.0f*m_r);
 	m_vy = sin(3.14f / 180.0f*m_r);
 
@@ -34,14 +43,17 @@ void CObjAngleBullet::Init()
 	m_hit_left  = false;
 	m_hit_right = false;
 
-
-		//当たり判定用のHitBoxを作成
+    //当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_ANGLE_BULLET, OBJ_HOMING_BULLET, 1);
 }
 
 //アクション
 void CObjAngleBullet::Action()
 {
+    //HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x, m_y);
+
 	//移動
 	m_x += m_vx * m_speed;
 	m_y -= m_vy * m_speed;
@@ -53,28 +65,57 @@ void CObjAngleBullet::Action()
 		&m_block_type
 	);
 
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		m_del = true;
+		hit->SetInvincibility(true);
+	}
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[4] =
+		{
+			{32, 0, 32,64},
+			{32,32, 64,64},
+			{32,64, 96,64},
+			{32,96,128,64},
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time > 2)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time = 0;
 
-	//HitBoxの位置の変更
-	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
+			m_ani_time++;
+		}
+		if (m_ani == 4)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+		}
+
+		return;
+
+	}
 
 	if (m_x < 0)
 	{
 		this->SetStatus(false);
 	}
-
-
 	if (  m_hit_up == true
 		||m_hit_down == true
 		||m_hit_left == true
 		||m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-
+		//Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
-
-	
 
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -116,21 +157,39 @@ void CObjAngleBullet::Action()
 //ドロー
 void CObjAngleBullet::Draw()
 {
-	float c[4] = { 10.0f,0.0f,0.0f,0.0f };
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
 
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
 
-	//表示位置の設定
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 16.0f + m_x;
-	dst.m_bottom = 16.0f + m_y;
 
-	Draw::Draw(4, &src, &dst, c, m_r);
+	//弾丸の状態で描画を変更
+	if (m_del == true)
+	{
+		//表示位置の設定
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 32.0f + m_y;
+
+		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
+		//着弾アニメーション
+	}
+	else
+	{
+
+
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
+
+		dst.m_top = -24.0f + m_y;
+		dst.m_left = -20.0f + m_x;
+		dst.m_right = 52.0f + m_x;
+		dst.m_bottom = 48.0f + m_y;
+
+		Draw::Draw(18, &src, &dst, c, 0.0f);
+	}
 }

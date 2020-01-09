@@ -2,60 +2,36 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="CObjAngleBullet.cpp">
-      <Filter>ObjBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjBullet.cpp">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CObjDiffusionBullet.cpp">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="COHomingBullet.cpp">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBoss.cpp">
-      <Filter>ObjEnemy</Filter>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistance.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFlyimgEnemy2.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFlyingenemy.cpp">
-      <Filter>ObjEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock3.cpp">
-      <Filter>SceneStage</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock2.cpp">
-      <Filter>SceneStage</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBossStage.cpp">
-      <Filter>SceneStage</Filter>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>Hero</Filter>
     </ClCompile>
     <ClCompile Include="ObjTime.cpp">
-      <Filter>ObjUI</Filter>
+      <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="ObjCursor.cpp">
-      <Filter>ObjUI</Filter>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\DirectXDevice.cpp">
+    <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawFont.cpp">
@@ -64,13 +40,13 @@
     <ClCompile Include="GameL\DrawTexture.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="GameL\GameL_Main.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
     <ClCompile Include="GameL\HitBoxManager.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\SceneManager.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneObjManager.cpp">
@@ -79,122 +55,144 @@
     <ClCompile Include="GameL\SetWindow.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\UserData.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjRevolutionBullet.cpp">
-      <Filter>ObjBullet</Filter>
+    <ClCompile Include="GameL\UserData.cpp">
+      <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMain.cpp">
-      <Filter>ObjUI</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameOver.cpp">
-      <Filter>SceneGameOver</Filter>
+    <ClCompile Include="GameL\SceneManager.cpp">
+      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
-      <Filter>SceneGameOver</Filter>
+      <Filter>GameOver</Filter>
     </ClCompile>
-    <ClCompile Include="GameL\GameL_Main.cpp">
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneClear.cpp">
+      <Filter>Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneItem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGren.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBackground.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMain.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DirectXDevice.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneMain.cpp">
-      <Filter>SceneStage</Filter>
+      <Filter>SceneStage\ステージ1</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBackground.cpp">
-      <Filter>SceneStage</Filter>
+    <ClCompile Include="SceneBlock2.cpp">
+      <Filter>SceneStage\ステージ2</Filter>
     </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>ObjBlock\SceneClear</Filter>
+    <ClCompile Include="SceneBlock3.cpp">
+      <Filter>SceneStage\ステージ3</Filter>
     </ClCompile>
-    <ClCompile Include="SceneClear.cpp">
-      <Filter>ObjBlock\SceneClear</Filter>
+    <ClCompile Include="ObjDescription.cpp">
+      <Filter>SceneStage\チュートリアル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
-      <Filter>ObjHero</Filter>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>SceneStage\チュートリアル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjTitle.cpp">
-      <Filter>SceneTitle</Filter>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>SceneStage\ボスステージ</Filter>
     </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>SceneTitle</Filter>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
-    <ClCompile Include="ObjItem.cpp">
-      <Filter>ObjItem</Filter>
+    <ClCompile Include="ObjFlyimgEnemy2.cpp">
+      <Filter>Enemy\フライング</Filter>
     </ClCompile>
-    <ClCompile Include="ObjGren.cpp">
-      <Filter>ObjItem</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneItem.cpp">
-      <Filter>ObjItem</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBlock.cpp">
-      <Filter>ObjBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjDescription.cpp" />
-    <ClCompile Include="SceneDescription.cpp" />
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>ObjEnemy</Filter>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>Enemy\フライング</Filter>
     </ClCompile>
     <ClCompile Include="ObjBossSL.cpp">
-      <Filter>ObjEnemy</Filter>
+      <Filter>Enemy\ボススライム</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>Enemy\ランディング</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLastBoss.cpp">
+      <Filter>Enemy\ラストボス</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>Enemy\フライング</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>Enemy\ラストボス</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckHit.cpp">
+      <Filter>Module</Filter>
     </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
-      <Filter>ObjHero</Filter>
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>Enemy\ジャンプ</Filter>
+    </ClCompile>
+    <ClCompile Include="Graf.cpp">
+      <Filter>SceneStage</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump2.cpp">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
-      <Filter>ObjBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjBullet.h">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjDiffusionBullet.h">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="COHomingBullet.h">
-      <Filter>ObjBullet</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>ObjEnemy</Filter>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyJump.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyLongdistance.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingenemy.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingEnemy2.h">
-      <Filter>ObjEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock3.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock2.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBossStage.h">
-      <Filter>SceneStage</Filter>
+    <ClInclude Include="ObjHero.h">
+      <Filter>Hero</Filter>
     </ClInclude>
     <ClInclude Include="ObjTime.h">
-      <Filter>ObjUI</Filter>
+      <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="ObjCursor.h">
-      <Filter>ObjUI</Filter>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DirectXDevice.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\Audio.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawFont.h">
@@ -203,13 +201,16 @@
     <ClInclude Include="GameL\DrawTexture.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>SceneStage</Filter>
+    </ClInclude>
     <ClInclude Include="GameL\HitBoxManager.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneObjManager.h">
@@ -224,102 +225,160 @@
     <ClInclude Include="GameL\WinInputs.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjRevolutionBullet.h">
-      <Filter>ObjBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\Audio.h">
+    <ClInclude Include="GameL\SceneManager.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>ObjUI</Filter>
-    </ClInclude>
     <ClInclude Include="SceneGameOver.h">
-      <Filter>SceneGameOver</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGameOver.h">
-      <Filter>SceneGameOver</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBackground.h">
-      <Filter>SceneStage</Filter>
+      <Filter>GameOver</Filter>
     </ClInclude>
     <ClInclude Include="ObjClear.h">
-      <Filter>ObjBlock\SceneClear</Filter>
+      <Filter>Clear</Filter>
     </ClInclude>
     <ClInclude Include="SceneClear.h">
-      <Filter>ObjBlock\SceneClear</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjHero.h">
-      <Filter>ObjHero</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTitle.h">
-      <Filter>SceneTitle</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>SceneTitle</Filter>
+      <Filter>Clear</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
-      <Filter>ObjItem</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGren.h">
-      <Filter>ObjItem</Filter>
+      <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="SceneItem.h">
-      <Filter>ObjItem</Filter>
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGren.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBackground.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCursor.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="ObjBlock.h">
-      <Filter>ObjBlock</Filter>
+      <Filter>SceneStage</Filter>
     </ClInclude>
-    <ClInclude Include="ObjDescription.h" />
-    <ClInclude Include="SceneDescription.h" />
+    <ClInclude Include="SceneMain.h">
+      <Filter>SceneStage\ステージ1</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock2.h">
+      <Filter>SceneStage\ステージ2</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock3.h">
+      <Filter>SceneStage\ステージ3</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjDescription.h">
+      <Filter>SceneStage\チュートリアル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>SceneStage\チュートリアル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
+      <Filter>SceneStage\ボスステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>Enemy\ジャンプ</Filter>
+    </ClInclude>
     <ClInclude Include="ObjEnemyJump2.h">
-      <Filter>ObjEnemy</Filter>
+      <Filter>Enemy\ジャンプ</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>Enemy\フライング</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingEnemy2.h">
+      <Filter>Enemy\フライング</Filter>
     </ClInclude>
     <ClInclude Include="ObjBossSL.h">
-      <Filter>ObjEnemy</Filter>
+      <Filter>Enemy\ボススライム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>Enemy\ランディング</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjLastBoss.h">
+      <Filter>Enemy\ラストボス</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyLongdistance.h">
+      <Filter>Enemy\フライング</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJBoss.h">
+      <Filter>Enemy\ラストボス</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckHit.h">
+      <Filter>Module</Filter>
     </ClInclude>
     <ClInclude Include="UtilityModule.h">
-      <Filter>ObjHero</Filter>
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Graf.h">
+      <Filter>SceneStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="ObjBullet">
-      <UniqueIdentifier>{74a5269a-ce45-4cc7-a130-9b5d077e3ec7}</UniqueIdentifier>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{78fde8d8-7e23-453a-9f6e-f9592c3f0448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hero">
+      <UniqueIdentifier>{7b88d6c7-3f4f-4507-96b5-f4ae3d2ed33f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{068b63bf-2ad5-4af5-a336-637ec4505d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{40e016e0-c1d8-46fe-9257-2e15dff428a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="SceneStage">
-      <UniqueIdentifier>{c9881f8b-3a08-4856-8009-a5503c3423fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ObjUI">
-      <UniqueIdentifier>{6387528b-719c-4274-a64e-9ea5c2f1f5fc}</UniqueIdentifier>
+      <UniqueIdentifier>{d2dfec54-8162-495a-950a-6f8c0cfd2ac7}</UniqueIdentifier>
     </Filter>
     <Filter Include="リソースファイル">
-      <UniqueIdentifier>{58c729b3-de65-4384-88f9-31edb111619c}</UniqueIdentifier>
+      <UniqueIdentifier>{456e3cbb-0e76-4864-b82b-8f8edfd780ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjEnemy">
-      <UniqueIdentifier>{3da63b54-d596-411c-beab-1d202f3a0a90}</UniqueIdentifier>
+    <Filter Include="GameOver">
+      <UniqueIdentifier>{00cd8d14-5dec-44f9-ba66-c045ca90aac1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneTitle">
-      <UniqueIdentifier>{f619f78f-fe49-4d8c-96de-b30923391f0b}</UniqueIdentifier>
+    <Filter Include="Clear">
+      <UniqueIdentifier>{2e60c30d-460d-4235-b826-57cd301fd23a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneGameOver">
-      <UniqueIdentifier>{09c9810e-cc8c-412f-9ea3-7962e0a1027e}</UniqueIdentifier>
+    <Filter Include="Item">
+      <UniqueIdentifier>{324e840a-11ab-4999-889e-dbc7c6ce9726}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjHero">
-      <UniqueIdentifier>{18280cbc-7f9c-4383-9670-57b8c17d54b6}</UniqueIdentifier>
+    <Filter Include="SceneStage\ステージ1">
+      <UniqueIdentifier>{88ad5944-e152-4bc6-a10d-eeec3557a524}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjItem">
-      <UniqueIdentifier>{2fea17a5-2842-46e0-81d2-693570c750e9}</UniqueIdentifier>
+    <Filter Include="SceneStage\ステージ2">
+      <UniqueIdentifier>{b1c831fb-1d83-4eb6-beb1-e7345b187aca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjBlock">
-      <UniqueIdentifier>{20d166ae-8aee-4847-ba94-12f856b9344c}</UniqueIdentifier>
+    <Filter Include="SceneStage\ステージ3">
+      <UniqueIdentifier>{931f25cd-2427-49d7-a331-d5e64d953f6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjBlock\SceneClear">
-      <UniqueIdentifier>{33f2efde-350e-48b9-acfa-986b4c9fec93}</UniqueIdentifier>
+    <Filter Include="SceneStage\チュートリアル">
+      <UniqueIdentifier>{f26583f3-0209-4759-9704-7eeaf0ea3be0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneStage\ボスステージ">
+      <UniqueIdentifier>{1b5502f1-2452-456e-8cb0-8d70b07b7b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\ジャンプ">
+      <UniqueIdentifier>{c60441ed-bf75-44d6-9e1a-fac29f32947c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\フライング">
+      <UniqueIdentifier>{0e283d79-983d-40f9-8e7f-92fda2dcf916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\ボススライム">
+      <UniqueIdentifier>{289b3c39-0f6c-4387-8f7b-6a33244ed9b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\ランディング">
+      <UniqueIdentifier>{49104eb1-7112-4067-b163-ef41500fae75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\ラストボス">
+      <UniqueIdentifier>{1e814ebf-4b0d-453b-b0f5-ab943c4becc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{6d8a6783-f4dc-475e-a64e-564746f9d727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{83babad7-3f20-4694-ba7f-c3e683b5876a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

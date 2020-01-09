@@ -41,15 +41,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -85,6 +85,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -116,16 +117,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjBossSL.cpp" />
+    <ClCompile Include="Graf.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp" />
+    <ClCompile Include="ObjLastBoss.cpp" />
+    <ClCompile Include="CheckHit.cpp" />
+    <ClCompile Include="ObjBossSL.cpp" />
     <ClCompile Include="ObjFlyimgEnemy2.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="CObjAngleBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBoss.cpp" />
-    <ClCompile Include="ObjCursor.cpp" />
+    <ClCompile Include="ObjCursor.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjEnemyLongdistance.cpp" />
     <ClCompile Include="CObjFullBullet.cpp" />
     <ClCompile Include="CObjDiffusionBullet.cpp" />
@@ -170,7 +179,9 @@
     <ClCompile Include="SceneBlock3.cpp" />
     <ClCompile Include="SceneBossStage.cpp" />
     <ClCompile Include="SceneClear.cpp" />
-    <ClCompile Include="SceneDescription.cpp" />
+    <ClCompile Include="SceneDescription.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -181,12 +192,21 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ObjBossSL.h" />
+    <ClInclude Include="Graf.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjLastBoss.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="CheckHit.h" />
+    <ClInclude Include="OBJBoss.h" />
     <ClInclude Include="CObjAngleBullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CObjBullet.h" />
+    <ClInclude Include="ObjBossSL.h" />
     <ClInclude Include="ObjCursor.h" />
     <ClInclude Include="ObjEnemyJump2.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
@@ -204,7 +224,9 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
-    <ClInclude Include="ObjEnemyJump.h" />
+    <ClInclude Include="ObjEnemyJump.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="COHomingBullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -215,7 +237,6 @@
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjFlyingenemy.h" />
     <ClInclude Include="ObjFlyingEnemy2.h" />
-    <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGren.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -228,7 +249,9 @@
     <ClInclude Include="SceneBlock3.h" />
     <ClInclude Include="SceneBossStage.h" />
     <ClInclude Include="SceneClear.h" />
-    <ClInclude Include="SceneDescription.h" />
+    <ClInclude Include="SceneDescription.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneItem.h" />
     <ClInclude Include="SceneMain.h" />

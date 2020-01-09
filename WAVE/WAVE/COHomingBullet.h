@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjHomingBullet : public CObj
 {
 public:
-	CObjHomingBullet(float x, float y);
+	CObjHomingBullet(float x, float y,int ani);
 	~CObjHomingBullet() {};
 	void Init();    //イニシャライズ
 	void Action();  //アクション
@@ -36,4 +36,22 @@ private:
 
 
 	bool button;
+
+	int m_ani;//着弾アニメーション用
+	int m_ani_time;//着弾アニメーション間隔用タイム
+	bool m_del;//消去チェック
+	RECT_F m_eff;//着弾エフェクト描画用
+
+
+	short int m_aninum;//描画番号格納用変数
+
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	//当たっているblockの種類を確認用
+	int m_block_type;
+
 };

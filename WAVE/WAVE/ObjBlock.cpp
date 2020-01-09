@@ -67,6 +67,7 @@ void CObjBlock::Action()
 	int fx = ((int)line) / 64;
 	int jx = ((int)line) / 64;
 	int jx2 = ((int)line) / 64;
+	int lx = ((int)line) / 64;
 
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ğ’Tõ
 	for (int i = 0; i < 10; i++)
@@ -88,9 +89,14 @@ void CObjBlock::Action()
 			//—ñ‚Ì’†‚©‚ç6‚ğ’T‚·
 			if (m_map[i][rx] == 6)
 			{
+
 				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_BOSS, 11);
-
+				
+				/*//LastBossƒeƒXƒg—p
+				CObjLastBoss*obje = new CObjLastBoss(rx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_LASTBOSS, 11);
+				*/
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][rx] = 0;
 			}
@@ -108,13 +114,13 @@ void CObjBlock::Action()
 
 			//—ñ‚Ì’†‚©‚ç‚W‚ğ’T‚·
 			if (m_map[i][jx] == 8)
-			{/*
+			{
 				CObjEnemyJump*obje = new CObjEnemyJump(jx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMYJUMP, 12);
 
 				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
 				m_map[i][jx] = 0;
-				*/
+				
 			}
 
 			//—ñ‚Ì’†‚©‚ç9‚ğ’T‚·
@@ -127,6 +133,17 @@ void CObjBlock::Action()
 				m_map[i][fx] = 0;
 
 			}
+
+			//—ñ‚Ì’†‚©‚ç10‚ğ’T‚·
+			if (m_map[i][lx] == 10)
+			{
+				CObjLastBoss*obje = new CObjLastBoss(lx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_LASTBOSS, 13);
+
+				//“GoŒ»êŠ‚Ì0‚É‚·‚é
+				m_map[i][lx] = 0;
+			}
+
 
 
 			//—ñ‚Ì’†‚©‚ç11‚ğ’T‚·

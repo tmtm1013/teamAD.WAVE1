@@ -69,7 +69,7 @@ void CObjEnemyLongdistance::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 100;//ENEMYのHP
+	m_hp = 10;//ENEMYのHP
 
 
 	m_time = 0;//弾丸用タイム
@@ -120,7 +120,7 @@ void CObjEnemyLongdistance::Action()
 			m_time = 0;
 
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,4);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
 			m_ani_move = 1;

@@ -65,49 +65,60 @@ void CSceneBlock3::InitScene()
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 		//音楽読み込み
-	Audio::LoadAudio(22, L"back3.wav", BACK_MUSIC);
-	Audio::Start(22);//音楽スタート
+	Audio::LoadAudio(23, L"back3.wav", BACK_MUSIC);
+	Audio::Start(23);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
+	//主人公(前進)グラフィック読み込み
+//弾丸グラフィック読み込み
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
-	//弾丸グラフィック読み込み
-	//Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
 
 	//Enemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	//体力グラフィック読み込み
-	Draw::LoadImage(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImage(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
-	Draw::LoadImage(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
+	//ゴールブロックのグラフィック読み込み
+	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
 
+	//ジャンプする敵
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_512);
 
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	//ボス
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048);
 
-	//JumpEnemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
-
-	Draw::LoadImage(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
-
-	Draw::LoadImage(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+	//弾丸を飛ばす敵
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048);
 
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
+
+
+	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
+	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -128,11 +139,6 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objboss, OBJ_BOSS, 10);
 	*/
 
-	//カーソル作成
-	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
-
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
@@ -147,18 +153,15 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
-	/*//テスト用:弾丸オブジェクト作成
-	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト
-	Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-	*/
-
-	/*
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
-	*/
 
+	
 
 
 }

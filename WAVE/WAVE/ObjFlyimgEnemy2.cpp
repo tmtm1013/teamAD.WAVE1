@@ -117,7 +117,7 @@ void CObjFlyingEnemy2::Action()
 			m_time = 0;
 
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,20);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
 
 			m_ani_move = 1;

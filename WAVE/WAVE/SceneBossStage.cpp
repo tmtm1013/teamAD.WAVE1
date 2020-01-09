@@ -41,7 +41,7 @@ void SceneBossStage::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"BStage1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"lBStage1.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -53,7 +53,16 @@ void SceneBossStage::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
+			}
+			else
+			{
+				count += 2;
+			}
+
 
 		}
 	}
@@ -62,66 +71,65 @@ void SceneBossStage::InitScene()
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
-
-	//グラフィック読み込み
-	Draw::LoadImage(L"image1.png", 1, TEX_SIZE_512);
-
 	//音楽情報の読み込み
-	Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
-	Audio::Start(22);//音楽スタート
+	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
+	Audio::Start(24);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
 	//主人公(前進)グラフィック読み込み
-	Draw::LoadImage(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
 
 	//主人公(待機)グラフィック読み込み
-	Draw::LoadImage(L"Animation/wait21.png", 2, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
 
 	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImage(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"kakyuu.png", 18, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	//体力グラフィック読み込み
-	Draw::LoadImage(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImage(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
-	Draw::LoadImage(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImage(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 	//JumpEnemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
-	Draw::LoadImage(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
-	Draw::LoadImage(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+
+	Draw::LoadImage(L"image1234.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
+	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
-
-	//カーソル作成
-	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
 
 	//主人公オブジェクト作成
@@ -146,6 +154,13 @@ void SceneBossStage::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
+	//スコア表示
+	CObjMain* s = new CObjMain();
+	Objs::InsertObj(s, OBJ_MAIN, 17);
 
 
 	/*//テスト用:弾丸オブジェクト作成

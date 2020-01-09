@@ -39,10 +39,11 @@ CSceneDescription::~CSceneDescription()
 //初期化メソッド
 void CSceneDescription::InitScene()
 {
+
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage000003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -62,7 +63,7 @@ void CSceneDescription::InitScene()
 
 
 	//グラフィック読み込み
-	Draw::LoadImage(L"image1.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
 
 	//音楽読み込み
 	//Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
@@ -73,36 +74,34 @@ void CSceneDescription::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
 
-
-	//弾丸グラフィック読み込み
-	Draw::LoadImage(L"Bullet3.png", 4, TEX_SIZE_256);
+		//弾丸グラフィック読み込み
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	//Enemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
+	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	//体力グラフィック読み込み
-	Draw::LoadImage(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImage(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
-	Draw::LoadImage(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImage(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 
 	//JumpEnemyグラフィック読み込み
-	Draw::LoadImage(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
-	Draw::LoadImage(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
+	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
-	Draw::LoadImage(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -111,11 +110,6 @@ void CSceneDescription::InitScene()
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
-
-	//カーソル作成
-	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
 
 	//操作説明オブジェクト作成
 	CObjDescription* obj_de = new CObjDescription(10,10);

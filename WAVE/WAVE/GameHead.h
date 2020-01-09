@@ -1,5 +1,14 @@
 #pragma once
 
+
+#include "GameL\SceneObjManager.h"
+#include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
+#include "GameL/DrawFont.h"
+#include "GameL/UserData.h"
+#include "GameL/WinInputs.h"
+
+using namespace GameL;
 //オブジェクトネーム------------------------------
 enum OBJ_NAME
 {
@@ -36,12 +45,12 @@ enum OBJ_NAME
 	
 
 
-
 	OBJ_CLEAR,
 	OBJ_GAME_OVER,
 	OBJ_ITEM,
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
+	OBJ_LASTBOSS,
 };
 //------------------------------------------------
 
@@ -61,6 +70,7 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
+
 };
 //------------------------------------------------
 
@@ -73,7 +83,6 @@ struct UserData
 	int SceneNum;   //ステージ切り替え
 	int Scenecontinue;//ステージやり直し
 		
-	
 };
 //------------------------------------------------
 
@@ -86,6 +95,10 @@ extern float kazu;
 
 
 //------------------------------------------------
+//ゲーム内で使用するグラフィックテータ
+//弾丸グラフィック読み込み
+
+
 //ゲーム内で使用するクラスヘッダ------------------
 #include "UtilityModule.h"
 
@@ -130,6 +143,7 @@ extern float kazu;
 #include "ObjTime.h"
 #include "ObjGren.h"
 #include "ObjDescription.h"
+#include "ObjLastBoss.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -147,5 +161,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START CSceneTitle//CSceneMain//SceneBossStage//CSceneBlock2//
 //-----------------------------------------------
