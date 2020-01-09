@@ -40,28 +40,21 @@ void CObjBullet::Init()
 	m_sx = 16.0f;  //画像サイズBlockHit関数に渡す用
 	m_sy = 16.0f;
 
-
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
 
-
 	flag = true;
 
 	m_r = 5.0;
-
-
-
 
 }
 
 //アクション
 void CObjBullet::Action()
 {
-
-	
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockBulletHit(&m_bx, &m_by, true,&m_sx,&m_sy,
@@ -69,9 +62,6 @@ void CObjBullet::Action()
 		&m_block_type
 	);
 	
-	
-
-
 	//マウスの位置を取得
 	if (flag==true)
 	{
@@ -104,45 +94,24 @@ void CObjBullet::Action()
 	m_vx *= BULLET_SPEED;
 	m_vy *= BULLET_SPEED;
 
+	//角度
+	m_r = GetAtan2Angle(m_vx, m_vy);
+
+
 	//移動ベクトルを座標に加算する
 	m_bx += m_vx;
 	m_by += m_vy;
-	
-	
-	
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
 
-	
-
-	//敵機オブジェクトと接触したら弾丸消去
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	//領域外にでると弾丸を削除する
+	bool Check = CheckWindow(m_bx, m_by, 0.0f, 0.0f, 800.0f, 600.0f);
+	if (Check == false)
 	{
-		this->SetStatus(false);//自身に消去命令を出す。
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-
-	}
-	//領域外に出たら弾丸を破棄する
-	if (m_bx > 800.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-	if (m_bx < 0.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-	if (m_by < 0.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-	if (m_by > 600.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	    this->SetStatus(false);
+	    Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
 	if (m_hit_up == true||m_hit_down == true|| m_hit_left == true||m_hit_right == true)
 	{
@@ -171,8 +140,8 @@ void CObjBullet::Draw()
 	//表示位置の設定
 	dst.m_top    = 0.0f  + m_by;
 	dst.m_left   = 0.0f  + m_bx;
-	dst.m_right  = 16.0f + m_bx;
-	dst.m_bottom = 16.0f + m_by;
+	dst.m_right  = 32.0f + m_bx;
+	dst.m_bottom = 32.0f + m_by;
 
 	//描画
 	Draw::Draw(4, &src, &dst, c, m_r);

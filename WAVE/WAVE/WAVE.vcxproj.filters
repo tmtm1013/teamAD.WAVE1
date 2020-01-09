@@ -133,9 +133,6 @@
     <ClCompile Include="ObjBlock.cpp">
       <Filter>ObjBlock</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="SceneDescription.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp">
@@ -143,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="ObjBossSL.cpp">
       <Filter>ObjEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ObjHero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +275,6 @@
     <ClInclude Include="ObjBlock.h">
       <Filter>ObjBlock</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="SceneDescription.h" />
     <ClInclude Include="ObjEnemyJump2.h">
@@ -285,6 +282,9 @@
     </ClInclude>
     <ClInclude Include="ObjBossSL.h">
       <Filter>ObjEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ObjHero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
