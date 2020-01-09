@@ -127,17 +127,17 @@ void CObjRevolutionBullet::Draw()
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
 
 
 	//•\¦ˆÊ’u‚Ìİ’è
 	dst.m_top = 0.0f +m_y+ y;
 	dst.m_left = 0.0f +m_x+ x;
-	dst.m_right = 32.0f +m_x+x;
-	dst.m_bottom = 32.0f +m_y+ y;
+	dst.m_right = 64.0f +m_x+x;
+	dst.m_bottom = 64.0f +m_y+ y;
 
 	//•`‰æ
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	Draw::Draw(18, &src, &dst, c, 0.0f);
 
 }
