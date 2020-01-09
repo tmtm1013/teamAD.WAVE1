@@ -437,7 +437,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 64))
+				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 24 > by) && (*y < by + 64))
 				{
 					//上下左右判定
 
