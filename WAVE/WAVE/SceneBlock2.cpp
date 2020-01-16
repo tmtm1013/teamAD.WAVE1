@@ -121,6 +121,8 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
 
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

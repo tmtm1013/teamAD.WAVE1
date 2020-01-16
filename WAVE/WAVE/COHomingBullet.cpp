@@ -80,6 +80,14 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_x, &m_y, true, &m_x, &m_y,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);//作成したHitBox更新用の入り口を取り出す

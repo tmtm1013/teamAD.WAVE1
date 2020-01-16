@@ -60,41 +60,27 @@ void CSceneDescription::InitScene()
 		}
 	}
 
-
+	//Font作成
+	Font::SetStrTex(L"0123456789分秒");
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
 
-	//音楽読み込み
-	//Audio::LoadAudio(22, L"back2.wav", BACK_MUSIC);
-	//Audio::Start(22);//音楽スタート
-	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-
-	
-	//Font作成
-	Font::SetStrTex(L"0123456789分秒");
-
-
-		//弾丸グラフィック読み込み
+    //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
-	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);//体力グラフィック読み込み
 
-	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
 
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
-	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
 
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);	//ゲームオーバーのグラフィック読み込み
 
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
