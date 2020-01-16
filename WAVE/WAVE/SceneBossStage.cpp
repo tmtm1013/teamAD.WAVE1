@@ -110,6 +110,8 @@ void SceneBossStage::InitScene()
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	
+	Draw::LoadImageW(L"ドラゴン飛行3.png", 27, TEX_SIZE_1024);
 
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵

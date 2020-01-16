@@ -473,7 +473,7 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
 
-		hp += 50;
+		hp += 100;
 
 	}
 
@@ -662,7 +662,7 @@ void CObjHero::Action()
 		}
 		
 	 
-	/*
+	
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 
 	{
@@ -675,8 +675,8 @@ void CObjHero::Action()
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
 
-		}
-		*/
+	}
+		
 
 
 
