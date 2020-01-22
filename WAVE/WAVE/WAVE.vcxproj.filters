@@ -160,6 +160,12 @@
     <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
+    <ClCompile Include="ObjAitem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjAttackPoint.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -314,6 +320,12 @@
     </ClInclude>
     <ClInclude Include="Graf.h">
       <Filter>SceneStage</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjAitem.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjAttackPoint.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -259,7 +259,13 @@ void CObjEnemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		
+		if (flag == true)
+		{
+			//アイテムオブジェクト作成	
+			CObjAitem*obju = new CObjAitem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_AITEM, 7);
+			flag = false;
+		}
 
 
 		//敵が消滅したら+100点

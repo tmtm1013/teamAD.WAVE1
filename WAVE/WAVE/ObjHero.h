@@ -106,4 +106,6 @@ class CObjHero :public CObj
 		
 		int time;
 		int atari;
+
+		int Remainingammo;
 };
