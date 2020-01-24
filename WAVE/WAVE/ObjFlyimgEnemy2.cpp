@@ -148,6 +148,7 @@ void CObjFlyingEnemy2::Action()
 		}
 
 	}
+
 	else//左
 	{
 
@@ -167,6 +168,7 @@ void CObjFlyingEnemy2::Action()
 		m_ani_time = 0;
 		m_ani_move = 1;
 	}
+
 	//アニメーション
 	if (m_ani_frame == 4)
 	{
@@ -322,7 +324,8 @@ void CObjFlyingEnemy2::Draw()
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 
 	}
-
+}
+	/*
 	if (m_ani_move = 1)
 	{
 		//描画カラー情報
@@ -343,9 +346,8 @@ void CObjFlyingEnemy2::Draw()
 		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_bottom = 66.0f + m_py;
 
-
 		//描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
-}
+}*/
 

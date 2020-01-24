@@ -110,6 +110,9 @@ void CSceneMain::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 	
 	
 
