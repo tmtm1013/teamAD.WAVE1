@@ -97,7 +97,7 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	//体力グラフィック読み込み
-	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);
+	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
@@ -124,6 +124,11 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
+	//HPカバーグラフィック読み込み
+	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
+
+	//主人公画像読み込み
+	Draw::LoadImageW(L"tiruno.jpg", 26, TEX_SIZE_1024);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

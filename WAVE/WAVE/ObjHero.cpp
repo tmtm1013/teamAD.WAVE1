@@ -129,8 +129,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 600;//主人公のヒットポイント用
-	hp_max = 600;
+	hp = 100;//主人公のヒットポイント用
+	hp_max = 100;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 	Remainingammo = 3;
@@ -490,9 +490,9 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 100)
 	{
-		hp += 100;
+		hp += 10;
 	}
 	//
 	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr)
@@ -771,30 +771,30 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 123.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 35.0f;
+	dst.m_left = 29.0f;
+	dst.m_right = dst.m_top + (210.0f*(hp / (float)hp_max));
+	dst.m_bottom = 53.0f;
 
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 
-
-	//HP
-	//切り取り位置
+	//HPカバー
+	//切り取り位置設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 163.0f;
 
-	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	//表示位置の設定
+	dst.m_top = 30.0f;
+	dst.m_left = 30.0f;
+	dst.m_right = 250.0f;
+	dst.m_bottom = 55.0f;
 
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(25, &src, &dst, c, 0.0f);
+
 }
