@@ -31,6 +31,10 @@ CSceneGameOver::~CSceneGameOver()
 //初期化メソッド
 void CSceneGameOver::InitScene()
 {
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 	
 	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 

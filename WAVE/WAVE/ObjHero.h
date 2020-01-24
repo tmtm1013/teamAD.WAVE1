@@ -55,6 +55,9 @@ class CObjHero :public CObj
 		float m_time;  //弾丸発射可能頻度制御
 		int bullet_type;//弾丸の種類
 
+		bool Guard_flag;//ガード用フラグ
+		int  guard;     //ガード用変数
+
 		float m_vx;    //移動ベクトル
 		float m_vy;
 		float m_posture;  //姿勢
@@ -103,4 +106,6 @@ class CObjHero :public CObj
 		
 		int time;
 		int atari;
+
+		int Remainingammo;
 };

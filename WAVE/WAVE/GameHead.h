@@ -51,6 +51,8 @@ enum OBJ_NAME
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
 	OBJ_LASTBOSS,
+	OBJ_AITEM,
+	OBJ_ATTACK_POINT,
 };
 //------------------------------------------------
 
@@ -82,7 +84,7 @@ struct UserData
 	int m_point;    //GameMain出たポイント
 	int SceneNum;   //ステージ切り替え
 	int Scenecontinue;//ステージやり直し
-		
+	short int attackpoint;//主人公の必殺技用
 };
 //------------------------------------------------
 
@@ -144,6 +146,8 @@ extern float kazu;
 #include "ObjGren.h"
 #include "ObjDescription.h"
 #include "ObjLastBoss.h"
+#include "ObjAitem.h"
+#include "ObjAttackPoint.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -161,5 +165,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneTitle//CSceneMain//CSceneBlock2
 //-----------------------------------------------

@@ -52,25 +52,21 @@ float  CObjHero::GetYY()
 //イニシャライズ
 void CObjHero::Init()
 {
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);
 	
-
-
+	Draw::LoadImageW(L"Animation/EDGE3.png",   1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png",  2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png",   3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE3.png",  16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+	
 	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);//-----------ハンドガン発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);//サブマシンガン発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);//-------ショットガン発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//-----技切り替え時の音(通常弾)----
-	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(連弾)----
-	Audio::LoadAudio(7, L"SEgan/SpecialM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
-	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
+	Audio::LoadAudio(2, L"SEgan/nomal.wav",        SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/FullSound.wav",    SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(4, L"SEgan/cannon1.wav",      SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
+	Audio::LoadAudio(5, L"SEgan/NomalM.wav",       SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
+	Audio::LoadAudio(6, L"SEgan/FullM.wav",        SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
+	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
+	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	
 	
@@ -108,7 +104,6 @@ void CObjHero::Init()
 	bottom = 96.0;
 	ani_num = 0; //描画番号管理用
 
-
 	m_SEtime = 0;    //装着時のSE制御
 	movesecond = 0;  //左右移動時のアニメーション/SE制御
 	jumpsecond = 0;  //ジャンプ時のアニメーション/SE制御
@@ -128,6 +123,9 @@ void CObjHero::Init()
 
 	flag = true;
 
+	Guard_flag = false;//ガード用フラグ
+	guard = 1;//ガード用変数
+
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
@@ -135,20 +133,19 @@ void CObjHero::Init()
 	hp_max = 600;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
+	Remainingammo = 3;
 }
 
 //アクション
 void CObjHero::Action()
 {
-	
 	//SE・アニメーション制御time
 	movesecond++;
 	jumpsecond++;
 	m_SEtime++;
 	
-
 	//武器切り替え(1～3)
-	if (Input::GetVKey('1') == true)//ハンドガン
+	if (Input::GetVKey('1') == true)//通常弾
 	{
 		if (m_SEtime >= 12) {
 			Audio::Start(5);//SE再生(装備音)
@@ -156,7 +153,7 @@ void CObjHero::Action()
 		}
 		bullet_type = 1;//弾丸の種類を指定
 	}
-	if (Input::GetVKey('2') == true)//サブマシンガン
+	if (Input::GetVKey('2') == true)//れん弾
 	{
 		if (m_SEtime >= 12) {
 			Audio::Start(6);//SE再生(装備音)
@@ -164,7 +161,7 @@ void CObjHero::Action()
 		}
 		bullet_type = 2;//弾丸の種類を指定
 	}
-	if (Input::GetVKey('3') == true)//ショットガン
+	if (Input::GetVKey('3') == true)//螺旋弾
 	{
 		if (m_SEtime >= 12) {
 			Audio::Start(7);//SE再生(装備音)
@@ -206,7 +203,7 @@ void CObjHero::Action()
 
 	//弾丸発射頻度制御
 	m_time += 0.1;
-
+	/*
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射--------
 	{
 		if (m_f == true)
@@ -223,6 +220,33 @@ void CObjHero::Action()
 			m_time = 0.0f;
 
 		}
+	}
+	else if (Input::GetMouButtonL() == false)
+	{
+		m_f = true;
+	}
+	*/
+	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 && 
+		((UserData*)Save::GetData())->attackpoint > 0)//通常弾発射--------
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			Audio::Start(2);
+			for (int i = 360 / 64; i <= 360; i += 360 / 64)
+			{
+				//弾丸オブジェクト
+				CObjDiffusionBullet* obj_ex = new CObjDiffusionBullet(m_px, m_py, i);//オブジェ作成
+				Objs::InsertObj(obj_ex, OBJ_DIFFUSION_BULLET, 6);
+			}
+			//Audio::Start(6);//薬莢落下音
+			m_f = false;
+			m_time = 0.0f;
+
+			((UserData*)Save::GetData())->attackpoint--;
+		}
+
+		
 	}
 	else if (Input::GetMouButtonL() == false)
 	{
@@ -251,19 +275,24 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//特殊弾丸発射---------
 	{
 		//発射音を鳴らす
 		//Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+		CObjDiffusionBullet* obj_rb = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_rb, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+		/*
+		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
+		
 		m_time = 0.0f;
 
-	}
+	}*/
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -301,7 +330,6 @@ void CObjHero::Action()
 			m_vy = -16;
 		}
 	}
-
 	//Zキー入力で速度アップ
 	if (Input::GetVKey('Z') == true)
 	{
@@ -309,7 +337,6 @@ void CObjHero::Action()
 		m_speed_power = 1.1f;
 		m_ani_max_time = 1;
 	}
-
 	else
 	{
 		//通常速度
@@ -317,6 +344,10 @@ void CObjHero::Action()
 		m_ani_max_time = 2;
 	}
 
+	if (Input::GetVKey('C') == true/*&&Guard_flag==false*/)//ガード--------
+		guard = 2;
+	else
+		guard = 1;
 	
 	//領域外に出たらゲームオーバー画面に移行
 	if (m_py > 600.0f)
@@ -326,8 +357,6 @@ void CObjHero::Action()
 		Scene::SetScene(new CSceneGameOver());
 	}
 	
-	
-
 	//主人公の向きを制御
 	//マウスの位置を取得
 	m_mou_px = (float)Input::GetPosX();
@@ -410,17 +439,15 @@ void CObjHero::Action()
 			}*/
 
 	}
-	else//キー入力がない場合は静止フレームにする
+	else//キー入力がない場合は静止フレームにする---
 	{
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 
-
 		movesecond = 100;
 
-
 	}
-	if (m_hit_down == false)//ジャンプアニメーション
+	if (m_hit_down == false)//ジャンプアニメーション---
 	{
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
 		if (jumpsecond >= 10)
@@ -433,26 +460,23 @@ void CObjHero::Action()
 		}
 		else
 			jumpsecond = 100;
-
 	}
-	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
+	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす---
 	{
 		SE_flag = false;
 		Audio::Start(9);
 	}
-	//アニメーション間隔制御
+	//---------アニメーション間隔制御-------------
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;//アニメーションフレームを+1加算
 		m_ani_time = 0; //アニメーションタイムを初期化
 	}
-
-	//アニメーションを初期化
+	//アニメーションを初期化---
 	if (m_ani_frame == 10)
 	{
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
-
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -462,25 +486,25 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
-
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
-	
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
 	{
-
-		hp += 50;
-
+		hp += 100;
 	}
-
+	//
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr)
+	{
+		((UserData*)Save::GetData())->attackpoint+=1;
+	}
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 30;
+			hp -= 30/guard;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -515,7 +539,7 @@ void CObjHero::Action()
 
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 10;
+			hp -= 10 / guard;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -543,7 +567,7 @@ void CObjHero::Action()
 			}
 			else //(m_px < ex)
 			{
-				m_vx = +5.0f;
+				m_vx = 5.0f;
 			}
 		}
 
@@ -560,7 +584,7 @@ void CObjHero::Action()
 			}
 			else //(m_px < ex)
 			{
-				m_vx = +5.0f;
+				m_vx = 5.0f;
 			}
 
 		}
@@ -660,7 +684,7 @@ void CObjHero::Action()
 		}
 		
 	 
-	/*
+	
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 
 	{
@@ -673,8 +697,8 @@ void CObjHero::Action()
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
 
-		}
-		*/
+	}
+		
 
 
 

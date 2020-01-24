@@ -15,5 +15,6 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-	
+	short int backnum;
+
 };

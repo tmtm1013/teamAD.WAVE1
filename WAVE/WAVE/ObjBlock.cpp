@@ -89,14 +89,14 @@ void CObjBlock::Action()
 			//列の中から6を探す
 			if (m_map[i][rx] == 6)
 			{
-				/*
+
 				CObjBoss*obje = new CObjBoss(rx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_BOSS, 11);
-				*/
-				//LastBossテスト用
+				
+				/*//LastBossテスト用
 				CObjLastBoss*obje = new CObjLastBoss(rx*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_LASTBOSS, 11);
-
+				*/
 				//敵出現場所の値を0にする
 				m_map[i][rx] = 0;
 			}
@@ -437,7 +437,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 32 > by) && (*y < by + 64))
+				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 24 > by) && (*y < by + 64))
 				{
 					//上下左右判定
 

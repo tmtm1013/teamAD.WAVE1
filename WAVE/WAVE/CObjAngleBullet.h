@@ -24,6 +24,8 @@ private:
 	//当たっているblockの種類を確認用
 	int m_block_type;
 
+	float x;
+	float y;
 
 	float m_x;	//オブジェクトの位置X
 	float m_y;  //オブジェクトの位置Y

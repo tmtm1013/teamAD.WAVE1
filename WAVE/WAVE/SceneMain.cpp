@@ -26,6 +26,7 @@ using namespace GameL;
 CSceneMain::CSceneMain()
 {
 	((UserData*)Save::GetData())->Scenecontinue =1;
+	((UserData*)Save::GetData())->attackpoint   =2;//初期必殺技残弾数
 }
 
 //デストラクタ
@@ -110,6 +111,10 @@ void CSceneMain::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+	Draw::LoadImageW(L"EhitEff.png", 24, TEX_SIZE_512);
+
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
@@ -151,6 +156,10 @@ void CSceneMain::InitScene()
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
+	//主人公の 必殺技 残弾数表示
+	CObjAttackPoint* at = new CObjAttackPoint();
+	Objs::InsertObj(at, OBJ_ATTACK_POINT, 13);
 	
 	//スコア表示
 	CObjMain* s = new CObjMain();

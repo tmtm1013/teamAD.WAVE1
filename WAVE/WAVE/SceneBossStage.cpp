@@ -71,10 +71,6 @@ void SceneBossStage::InitScene()
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
-
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-
 	//音楽情報の読み込み
 	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
 	Audio::Start(24);//音楽スタート
@@ -93,8 +89,7 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
 
 	//弾丸グラフィック読み込み
-	Draw::LoadImageW(L"Bullet3.png", 4, TEX_SIZE_256);
-
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"kakyuu.png", 18, TEX_SIZE_256);
 
@@ -115,6 +110,8 @@ void SceneBossStage::InitScene()
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	
+	Draw::LoadImageW(L"ドラゴン飛行3.png", 27, TEX_SIZE_1024);
 
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
@@ -122,6 +119,11 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+
+	Draw::LoadImage(L"image1234.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

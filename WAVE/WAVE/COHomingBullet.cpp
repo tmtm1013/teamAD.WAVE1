@@ -58,8 +58,8 @@ void CObjHomingBullet::Init()
 
 	//距離
 	leng = 0;
-	m_vx = 10.0;
-	m_vy = 10.0f;
+	m_vx = 8.0;
+	m_vy = 8.0f;
 	x = 0;
 	y = 0;
 	button = false;
@@ -81,6 +81,14 @@ void CObjHomingBullet::Init()
 //アクション
 void CObjHomingBullet::Action()
 {
+
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_x, &m_y, true, &m_x, &m_y,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 	
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);//作成したHitBox更新用の入り口を取り出す
@@ -96,15 +104,21 @@ void CObjHomingBullet::Action()
 	{
 		//着弾アニメーション
 		//リソース着弾アニメーション位置
-		RECT_F ani_src[4] =
+		RECT_F ani_src[9] =
 		{
-
-
-			{32, 0, 32,64},
-			{32,32, 64,64},
-			{32,64, 96,64},
-			{32,96,128,64},
+			//切り取り位置の設定
+		//top left light bot
+			{51,0, 50,0},
+			{51,50,105,0},
+			{51,105,155,0},
+			{51,155,205,0},
+		    {51,205,255,0},
+		    {51,255,305,0},
+		    {51,305,355,0},
+		    {51,355,405,0},
+		    {51,405,512,0},
 			
+
 
 		};
 		//アニメーションのコマ間隔
@@ -201,10 +215,10 @@ void CObjHomingBullet::Draw()
 
 
 	//表示位置の設定
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	dst.m_top = -10.0f + m_y;
+	dst.m_left = -8.0f + m_x;
+	dst.m_right = 24.0f + m_x;
+	dst.m_bottom = 22.0f + m_y;
 
 
 	//切り取り位置の設定
@@ -220,16 +234,17 @@ void CObjHomingBullet::Draw()
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
-
+		float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 		//表示位置の設定
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 32.0f + m_y;
+		dst.m_top = -12.0f + m_y;
+		dst.m_left = -10.0f + m_x;
+		dst.m_right = 26.0f + m_x;
+		dst.m_bottom = 24.0f + m_y;
 
-		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
+		Draw::Draw(22, &m_eff, &dst, c, 0.0f);
 		//着弾アニメーション
 
 	}
+
 
 }

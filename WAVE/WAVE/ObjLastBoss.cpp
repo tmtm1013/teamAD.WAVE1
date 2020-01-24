@@ -154,8 +154,8 @@ void CObjLastBoss::Action()
 
 				m_time3 = 0;
 				//弾丸オブジェクト
-				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px + block->GetScroll(), m_py);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET, 4);
+				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,18);
 
 
 			}
@@ -176,7 +176,7 @@ void CObjLastBoss::Action()
 				m_time = 0;
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 4);
+				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 18);
 
 
 			}
@@ -191,7 +191,7 @@ void CObjLastBoss::Action()
 
 			m_time2 = 0;
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,18);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 18);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 18);
 		}
 
@@ -297,13 +297,13 @@ void CObjLastBoss::Draw()
 {
 	//スクロール情報取得
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+	/*
 	//歩くアニメーション情報を登録
 	int AniData[6] =
 	{
 		0, 1, 2, 3, 4, 5,
 	};
-
+	*/
 
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -313,9 +313,9 @@ void CObjLastBoss::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f + AniData[m_ani_frame] * 230;
-	src.m_right = 230.0f + AniData[m_ani_frame] * 230;
-	src.m_bottom = 150.0f;
+	src.m_left = 0.0f/* + AniData[m_ani_frame] * 230*/;
+	src.m_right = 512.0f /*+ AniData[m_ani_frame] * 230*/;
+	src.m_bottom = 512.0f;
 
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -334,6 +334,6 @@ void CObjLastBoss::Draw()
 	*/
 
 	//描画
-	Draw::Draw(13, &src, &dst, c, 0.0f);
+	Draw::Draw(27, &src, &dst, c, 0.0f);
 
 }
