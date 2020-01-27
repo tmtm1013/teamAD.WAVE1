@@ -96,8 +96,6 @@ void CObjBullet::Action()
 			{51,355,405,0},
 			{51,405,512,0},
 
-
-
 		};
 		//アニメーションのコマ間隔
 		if (m_ani_time > 2)
@@ -126,7 +124,6 @@ void CObjBullet::Action()
 
 	}
 
-	
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockBulletHit(&m_bx, &m_by, true,&m_sx,&m_sy,
@@ -162,8 +159,6 @@ void CObjBullet::Action()
 		m_vy = 1.0f / r * by;
 	}
 
-
-
 	//弾丸に速度つける
 	m_vx *= BULLET_SPEED;
 	m_vy *= BULLET_SPEED;
@@ -171,12 +166,6 @@ void CObjBullet::Action()
 	//移動ベクトルを座標に加算する
 	m_bx += m_vx;
 	m_by += m_vy;
-	
-
-
-
-
-
 
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
