@@ -233,7 +233,7 @@ void CObjHomingBullet::Draw()
 	//’eŠÛ‚Ìó‘Ô‚Å•`‰æ‚ğ•ÏX
 	if (m_del == true)
 	{
-		float c[4] = { 0.0f,1.0f,1.0f,1.0f };
+		float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 		//•\¦ˆÊ’u‚Ìİ’è
 		dst.m_top = -12.0f + m_y;
 		dst.m_left = -10.0f + m_x;

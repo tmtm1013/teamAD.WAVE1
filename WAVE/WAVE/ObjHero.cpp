@@ -92,8 +92,6 @@ void CObjHero::Init()
 	m_vy = 0.0f;
 	m_posture = 1.0f;  //右向き0.0f 左向き1.0f
 
-
-
 	m_ani_time = 0;  //左右移動・静止アニメーションタイム制御
 	m_ani_timeJump = 0; //ジャンプアニメーションタイム制御
 	m_ani_frame = 0;   //静止フレームを初期にする
@@ -105,7 +103,6 @@ void CObjHero::Init()
 	right = 80.0;
 	bottom = 96.0;
 	ani_num = 0; //描画番号管理用
-
 
 	m_SEtime = 0;    //装着時のSE制御
 	movesecond = 0;  //左右移動時のアニメーション/SE制御
@@ -136,18 +133,17 @@ void CObjHero::Init()
 	hp_max = 100;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
+	Remainingammo = 3;
 }
 
 //アクション
 void CObjHero::Action()
 {
-	
 	//SE・アニメーション制御time
 	movesecond++;
 	jumpsecond++;
 	m_SEtime++;
 	
-
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//通常弾
 	{
@@ -207,7 +203,7 @@ void CObjHero::Action()
 
 	//弾丸発射頻度制御
 	m_time += 0.1;
-
+	/*
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射--------
 	{
 		if (m_f == true)
@@ -224,6 +220,33 @@ void CObjHero::Action()
 			m_time = 0.0f;
 
 		}
+	}
+	else if (Input::GetMouButtonL() == false)
+	{
+		m_f = true;
+	}
+	*/
+	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 && 
+		((UserData*)Save::GetData())->attackpoint > 0)//通常弾発射--------
+	{
+		if (m_f == true)
+		{
+			//発射音を鳴らす
+			Audio::Start(2);
+			for (int i = 360 / 64; i <= 360; i += 360 / 64)
+			{
+				//弾丸オブジェクト
+				CObjDiffusionBullet* obj_ex = new CObjDiffusionBullet(m_px, m_py, i);//オブジェ作成
+				Objs::InsertObj(obj_ex, OBJ_DIFFUSION_BULLET, 6);
+			}
+			//Audio::Start(6);//薬莢落下音
+			m_f = false;
+			m_time = 0.0f;
+
+			((UserData*)Save::GetData())->attackpoint--;
+		}
+
+		
 	}
 	else if (Input::GetMouButtonL() == false)
 	{
@@ -252,19 +275,24 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//特殊弾丸発射---------
 	{
 		//発射音を鳴らす
 		//Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+		CObjDiffusionBullet* obj_rb = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_rb, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+		/*
+		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
+		
 		m_time = 0.0f;
 
-	}
+	}*/
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -427,8 +455,8 @@ void CObjHero::Action()
 		m_ani_time += 1 ;//アニメーションタイムを+1加算
 		m_ani_move  = 0 ;//静止アニメーションデータを指定
 
-		
 		movesecond = 100;
+
 	}
 	if (m_hit_down == false)//ジャンプアニメーション-----
 	{
@@ -461,7 +489,6 @@ void CObjHero::Action()
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
 
-
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
 
@@ -470,19 +497,19 @@ void CObjHero::Action()
 
 	hp_time -= 0.1;
 
-
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
-	
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 100)
 	{
-
-		hp += 50;
-
+		hp += 10;
 	}
-
+	//
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr)
+	{
+		((UserData*)Save::GetData())->attackpoint+=1;
+	}
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
@@ -668,7 +695,7 @@ void CObjHero::Action()
 	}
 		
 	 
-	/*
+	
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 
 	{
@@ -682,7 +709,10 @@ void CObjHero::Action()
 		Scene::SetScene(new CSceneGameOver());
 
 	}
-	*/
+		
+
+
+
 
 		//位置の更新
 		m_px += m_vx;
@@ -751,30 +781,30 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 123.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 35.0f;
+	dst.m_left = 29.0f;
+	dst.m_right = dst.m_top + (210.0f*(hp / (float)hp_max));
+	dst.m_bottom = 53.0f;
 
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 
-
-	//HP
-	//切り取り位置
+	//HPカバー
+	//切り取り位置設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 163.0f;
 
-	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	//表示位置の設定
+	dst.m_top = 30.0f;
+	dst.m_left = 30.0f;
+	dst.m_right = 250.0f;
+	dst.m_bottom = 55.0f;
 
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(25, &src, &dst, c, 0.0f);
+
 }
