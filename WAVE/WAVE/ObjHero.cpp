@@ -203,7 +203,7 @@ void CObjHero::Action()
 
 	//’eŠÛ”­ŽË•p“x§Œä
 	m_time += 0.1;
-	/*
+	
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//’Êí’e”­ŽË--------
 	{
 		if (m_f == true)
@@ -225,7 +225,7 @@ void CObjHero::Action()
 	{
 		m_f = true;
 	}
-	*/
+	
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 && 
 		((UserData*)Save::GetData())->attackpoint > 0)//’Êí’e”­ŽË--------
 	{
@@ -293,6 +293,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}*/
+	/*
 	//ƒOƒŒƒl[ƒh”­ŽË
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -313,7 +314,7 @@ void CObjHero::Action()
 	{
 		m_gf = true;
 	}
-	
+	*/
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,

@@ -67,9 +67,6 @@
     <ClCompile Include="SceneGameOver.cpp">
       <Filter>GameOver</Filter>
     </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SceneClear.cpp">
       <Filter>Clear</Filter>
     </ClCompile>
@@ -165,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="ObjAttackPoint.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>Clear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

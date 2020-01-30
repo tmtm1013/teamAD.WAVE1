@@ -64,4 +64,6 @@ private:
 
 	float flag;
 
+	short int m_SEtime;
+
 };
