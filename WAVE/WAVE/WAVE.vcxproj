@@ -124,6 +124,7 @@
     </ClCompile>
     <ClCompile Include="ObjAttackPoint.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="ObjDescriptionUi.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
     <ClCompile Include="CheckHit.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="ObjAitem.h" />
     <ClInclude Include="ObjAttackPoint.h" />
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjDescriptionUi.h" />
     <ClInclude Include="ObjLastBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

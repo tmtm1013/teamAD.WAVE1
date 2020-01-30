@@ -87,3 +87,21 @@ float GetAtan2Angle(float w, float h)
 
 	return r;
 }
+
+//ノックバックプログラム
+//主人公のX軸       : m_px
+//オブジェクトのX軸 : ex
+float KnockBack(float m_px,float ex)
+{
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+   if (m_px > ex + block->GetScroll())//スクロール値加算
+   {
+   	  return 5.0f;
+   }
+   else
+   {
+	  return -5.0f;
+   }
+}

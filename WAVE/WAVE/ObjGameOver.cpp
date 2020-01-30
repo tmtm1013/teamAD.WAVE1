@@ -110,7 +110,7 @@ void CObjGameOver::Draw()
 	//描画
 	Draw::Draw(11, &src, &dst, c, 0.0f);
 
-	//仮マウス位置表示
+	/*//仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x = %f, y = %f", m_mou_x, m_mou_y);
 	Font::StrDraw(str, 20, 20, 12, c);
@@ -123,6 +123,6 @@ void CObjGameOver::Draw()
 		Font::StrDraw(L"L=押している", 20, 40, 12, c);
 	else
 		Font::StrDraw(L"L=押していない", 20, 40, 12, c);
-
+		*/
 
 }
