@@ -120,8 +120,6 @@ void CObjEnemy::Action()
 
 
 
-
-	
 	if (m_attack == false) {
 		//ここが主人公の向きに移動する条件を書く。
 		if ((m_px + block->GetScroll()) < x)//右
@@ -176,6 +174,7 @@ void CObjEnemy::Action()
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
+
 
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -260,6 +259,7 @@ void CObjEnemy::Action()
 	}
 
 
+
 	//ブロック当たり判定
 	int d = 0;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -317,7 +317,9 @@ void CObjEnemy::Action()
 		}
 		else
 		{
+
 			m_ani_time2++;
+
 		}
 
 		if (m_ani == 5)
@@ -427,15 +429,6 @@ void CObjEnemy::Draw()
 				Draw::Draw(5, &src, &dst, c, 0.0f);
 
 			}
-
-
-
-
-
-
-
-
-
 
 
 		}

@@ -590,23 +590,6 @@ void CObjHero::Action()
 		}
 
 
-		//	フライングエネミー2の位置情報取得
-		CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
-		if (obj2 != nullptr) {
-
-			float ex = obj2->GetEX();
-
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
-		}
 			//ジャンプエネミーの位置情報を取得
 			CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
 			if (obj3 != nullptr) {
@@ -661,26 +644,6 @@ void CObjHero::Action()
 
 			}
 
-			//遠距離敵の位置情報を取得
-			CObjBossSL*obj6 = (CObjBossSL*)Objs::GetObj(OBJ_ENEMY);
-			if (obj6 != nullptr) {
-
-				float ex = obj6->GetEX();
-
-				//ノックバックプログラム
-				if (m_px > ex + block->GetScroll())
-				{
-					m_vx = +5.0f;
-				}
-				else //(m_px < ex)
-				{
-					m_vx = -5.0f;
-				}
-
-			}
-
-			
-			
 		}
 		
 	 
@@ -690,13 +653,13 @@ void CObjHero::Action()
 	{
 		
 		
-		
+		/*
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
-
+		*/
 	}
 		
 

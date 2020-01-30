@@ -55,5 +55,9 @@ private:
 	float m_sx ;  //画像サイズ保管用変数
 	float m_sy ;
 
+	bool m_attack;//攻撃アニメーションフラグ
+	int m_ani_frame2;//攻撃アニメーション用タイム
+	float m_ani_max_time2; //アニメーション動作間隔最大値
+
 	
 };

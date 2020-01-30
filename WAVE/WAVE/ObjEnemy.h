@@ -74,9 +74,7 @@ private:
 
 
 	bool m_attack;//攻撃アニメーションフラグ
-
 	int m_ani_frame2;//攻撃アニメーション用タイム
-	
 	float m_ani_max_time2; //アニメーション動作間隔最大値
 
 };
