@@ -154,9 +154,6 @@
     <ClCompile Include="ObjAitem.cpp">
       <Filter>Item</Filter>
     </ClCompile>
-    <ClCompile Include="ObjAttackPoint.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -305,9 +302,6 @@
     </ClInclude>
     <ClInclude Include="ObjAitem.h">
       <Filter>Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjAttackPoint.h">
-      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

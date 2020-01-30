@@ -122,7 +122,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjAttackPoint.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
     <ClCompile Include="CheckHit.cpp" />
@@ -196,7 +195,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjAitem.h" />
-    <ClInclude Include="ObjAttackPoint.h" />
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjLastBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

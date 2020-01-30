@@ -129,11 +129,15 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 600;//主人公のヒットポイント用
-	hp_max = 600;
+	hp = 100;//主人公のヒットポイント用
+	hp_max = 100;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 	Remainingammo = 3;
+
+	//必殺技回数
+	attackpoint_max = 3;
+	attackpoint_now = attackpoint_max;
 }
 
 //アクション
@@ -203,7 +207,7 @@ void CObjHero::Action()
 
 	//弾丸発射頻度制御
 	m_time += 0.1;
-	/*
+	
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射--------
 	{
 		if (m_f == true)
@@ -225,12 +229,17 @@ void CObjHero::Action()
 	{
 		m_f = true;
 	}
-	*/
+	
+
+	//必殺技
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 && 
-		((UserData*)Save::GetData())->attackpoint > 0)//通常弾発射--------
+		attackpoint_now <= 3 && attackpoint_now > 0)
 	{
 		if (m_f == true)
 		{
+
+
+
 			//発射音を鳴らす
 			Audio::Start(2);
 			for (int i = 360 / 64; i <= 360; i += 360 / 64)
@@ -243,9 +252,11 @@ void CObjHero::Action()
 			m_f = false;
 			m_time = 0.0f;
 
-			((UserData*)Save::GetData())->attackpoint--;
-		}
 
+			attackpoint_now--;
+
+
+		}
 		
 	}
 	else if (Input::GetMouButtonL() == false)
@@ -293,6 +304,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}*/
+	/*
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -313,7 +325,7 @@ void CObjHero::Action()
 	{
 		m_gf = true;
 	}
-	
+	*/
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,
@@ -490,15 +502,17 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 90)
 	{
-		hp += 100;
+		hp += 10;
 	}
-	//
-	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr)
+
+	//必殺技回数回復
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2)
 	{
-		((UserData*)Save::GetData())->attackpoint+=1;
+		attackpoint_now += 1;
 	}
+
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
@@ -734,30 +748,61 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 123.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 35.0f;
+	dst.m_left = 29.0f;
+	dst.m_right = dst.m_top + (210.0f*(hp / (float)hp_max));
+	dst.m_bottom = 53.0f;
 
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 
+	//HPカバー
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 163.0f;
 
-	//HP
+	//表示位置の設定
+	dst.m_top = 30.0f;
+	dst.m_left = 30.0f;
+	dst.m_right = 250.0f;
+	dst.m_bottom = 55.0f;
+
+	Draw::Draw(25, &src, &dst, c, 0.0f);
+
+	//必殺技ゲージ
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 248.0f;
+	src.m_bottom = 26.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 66.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = (40.0f + (attackpoint_now * 50.0f));
+	//dst.m_right = 190.0f - (pow * 50) ;
+	//190 140 95 40
+	dst.m_bottom = 75.0f;
 
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(26, &src, &dst, c, 0.0f);
+
+	//必殺技カバー表示
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 30.0f;
+
+	//表示位置設定
+	dst.m_top = 65.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 192.0f;
+	dst.m_bottom = 75.0f;
+
+	Draw::Draw(27, &src, &dst, c, 0.0f);
 }

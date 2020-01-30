@@ -73,7 +73,7 @@ void CObjDescription::Draw()
 
 	Font::StrDraw(L"ジャンプ　　　Spaceキー", 125, 130, 20, c);
 
-	Font::StrDraw(L"ダッシュ　　　Zキー", 455, 130, 20, c);
+	//Font::StrDraw(L"ダッシュ　　　Zキー", 455, 130, 20, c);
 
 	Font::StrDraw(L"攻撃　　　マウス左クリック", 129, 160, 20, c);
 

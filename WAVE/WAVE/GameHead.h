@@ -143,7 +143,6 @@ extern float kazu;
 #include "ObjDescription.h"
 #include "ObjLastBoss.h"
 #include "ObjAitem.h"
-#include "ObjAttackPoint.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
