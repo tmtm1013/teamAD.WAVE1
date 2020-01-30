@@ -64,6 +64,7 @@ void CObjHomingBullet::Init()
 	y = 0;
 	button = false;
 
+
 	m_eff.m_top = 32;
 	m_eff.m_left = 0;
 	m_eff.m_right = 32.0;

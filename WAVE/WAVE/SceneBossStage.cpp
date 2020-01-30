@@ -120,16 +120,20 @@ void SceneBossStage::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
-	Draw::LoadImage(L"image1234.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"image1234.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
+	//必殺技ゲージグラフィック読み込み
+	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.3 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

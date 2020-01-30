@@ -118,6 +118,15 @@ void CSceneMain::InitScene()
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
+	//必殺技ゲージグラフィック読み込み
+	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
+	
+	
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -154,10 +163,6 @@ void CSceneMain::InitScene()
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
-	//主人公の 必殺技 残弾数表示
-	CObjAttackPoint* at = new CObjAttackPoint();
-	Objs::InsertObj(at, OBJ_ATTACK_POINT, 13);
 	
 	//スコア表示
 	CObjMain* s = new CObjMain();

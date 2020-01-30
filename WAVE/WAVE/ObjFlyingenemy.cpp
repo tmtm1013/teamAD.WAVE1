@@ -74,7 +74,7 @@ void CObjFlyingenemy::Init()
 
 	m_speed_power = 0.3f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
-	m_ani_move = 0;
+	
 
 	//blockとの衝突状態用確認用
 	m_hit_up = false;
@@ -88,6 +88,10 @@ void CObjFlyingenemy::Init()
 
 	m_time = 0;//弾丸用タイム
 
+	//攻撃アニメーション
+	m_attack = false;
+	m_ani_frame2 = 0;
+	m_ani_max_time2 = 4;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, OBJ_ENEMY, OBJ_ENEMY, 1);
 }
@@ -127,55 +131,85 @@ void CObjFlyingenemy::Action()
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,21);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
 
-			m_ani_move = 1;
+		
+			m_attack = true;
 
-
-
+			//敵を動かさないようにする。
+			m_vx = 0;
+			m_vy = 0;
 		}
 
 	}
 
 	
+	//攻撃アニメーションの時歩くモーションに入らない
+	if (m_attack == false) {
 
-	//ここが主人公の向きに移動する条件を書く。
-	if ((m_px + block->GetScroll()) < x)//右
-	{
+		//ここが主人公の向きに移動する条件を書く。
+		if ((m_px + block->GetScroll()) < x)//右
+		{
 
-		//主人公が移動していない時のプログラム
-		m_vx += m_speed_power;
-		m_posture = 1.0;
+			//主人公が移動していない時のプログラム
+			m_vx += m_speed_power;
+			m_posture = 1.0;
+			m_ani_time += 1;
+
+
+
+		}
+		else//左
+		{
+
+			//主人公が移動していない時のプログラム
+			m_vx -= m_speed_power;
+			m_posture = 0.0;
+			m_ani_time += 1;
+
+
+
+		}
+
+		//アニメーション
+		if (m_ani_time > m_ani_max_time)
+		{
+			m_ani_frame += 1;
+			m_ani_time = 0;
+
+		}
+		//アニメーション
+		if (m_ani_frame == 4)
+		{
+			m_ani_frame = 0;
+
+		}
+	}
+
+	//攻撃アニメーション
+	if (m_attack == true) {
+
+		
+
 		m_ani_time += 1;
-		m_ani_move = 1;
+
+
+		if (m_ani_time > m_ani_max_time2)
+		{
+			m_ani_frame2 += 1;
+			m_ani_time = 0;
+		}
+
+
+		//アニメーション
+		if (m_ani_frame2 == 3)
+		{
+			m_ani_frame2 = 0;
+
+			m_attack = false;
+		}
+
 
 
 	}
-	else//左
-	{
-
-		//主人公が移動していない時のプログラム
-		m_vx -= m_speed_power;
-		m_posture = 0.0;
-		m_ani_time += 1;
-		m_ani_move = 1;
-
-
-	}
-	
-	//アニメーション
-	if (m_ani_time > m_ani_max_time)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
-		m_ani_move = 1;
-	}
-	//アニメーション
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-		m_ani_move = 1;
-	}
-
-
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -297,51 +331,25 @@ void CObjFlyingenemy::Draw()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//歩くアニメーション情報を登録
-	int AniData[2][6] =
+	int AniData[6] =
 	{
 		0, 1, 2, 3, 4, 5, //移動モーション
-		0, 1, 2, 3, //攻撃モーション
+		
 	};
-
-	if (m_ani_move = 0)
+	int AniDatatack[4]
 	{
 
-		//描画カラー情報
-		float c[4] = { 0.0f,0.0f,5.0f,1.0f };
+		0, 1, 2, 3, //攻撃モーション
 
-		RECT_F src;//描画元切り取り位置
-		RECT_F dst;//描画先表示位置
+	};
+	
 
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 132;
-		src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
-		src.m_bottom = 132.0f;
-
-		//表示位置の設定
-		dst.m_top = 132.0f + m_py;
-		dst.m_left = (-132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-		dst.m_bottom = 0.0f + m_py;
-
-		//描画
-		Draw::Draw(14, &src, &dst, c, 0.0f);
-
-	}
-
-	if (m_ani_move = 1)
-	{
+	
 		//描画カラー情報
 		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 		RECT_F src;//描画元切り取り位置
 		RECT_F dst;//描画先表示位置
-
-		//切り取り位置の設定
-		src.m_top = 0.0f + (132 - 132 * m_ani_move);
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 132;
-		src.m_right = 132.0f + AniData[m_ani_move][m_ani_frame] * 132;
-		src.m_bottom = 132.0f;
 
 		//表示位置の設定
 		dst.m_top = -66.0f + m_py;
@@ -349,9 +357,36 @@ void CObjFlyingenemy::Draw()
 		dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
 		dst.m_bottom = 66.0f + m_py;
 
+		if (m_attack == true) {
 
-		//描画
-		Draw::Draw(14, &src, &dst, c, 0.0f);
-	}
+
+
+			//切り取り位置の設定
+			src.m_top = 133.0f;
+			src.m_left = 3.0f + AniDatatack[m_ani_frame2] * 132;
+			src.m_right = 132.0f + AniDatatack[m_ani_frame2] * 132;
+			src.m_bottom = 264.0f;
+
+
+			//描画
+			Draw::Draw(14, &src, &dst, c, 0.0f);
+		}
+
+		else
+		{
+
+
+			//切り取り位置の設定
+			src.m_top = 0.0f;
+			src.m_left = 0.0f + AniData[m_ani_frame] * 132;
+			src.m_right = 132.0f + AniData[m_ani_frame] * 132;
+			src.m_bottom = 132.0f;
+
+
+			//描画
+			Draw::Draw(14, &src, &dst, c, 0.0f);
+
+
+		}
 }
 
