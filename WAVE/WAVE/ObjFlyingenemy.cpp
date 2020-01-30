@@ -61,6 +61,8 @@ CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 //イニシャライズ
 void CObjFlyingenemy::Init()
 {
+	Audio::LoadAudio(0, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);
+
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -96,6 +98,8 @@ void CObjFlyingenemy::Init()
 void CObjFlyingenemy::Action()
 {
 
+	m_SEtime++;
+
 	//通常速度
 	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
@@ -126,13 +130,11 @@ void CObjFlyingenemy::Action()
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,21);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
-
+			
+			Audio::Start(0);//SE再生
+				
 			m_ani_move = 1;
-
-
-
 		}
-
 	}
 
 	

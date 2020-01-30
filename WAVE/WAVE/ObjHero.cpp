@@ -304,6 +304,7 @@ void CObjHero::Action()
 		m_time = 0.0f;
 
 	}*/
+	/*
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -324,7 +325,7 @@ void CObjHero::Action()
 	{
 		m_gf = true;
 	}
-	
+	*/
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,
