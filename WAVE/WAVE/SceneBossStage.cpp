@@ -127,8 +127,9 @@ void SceneBossStage::InitScene()
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
-	//主人公画像読み込み
-	Draw::LoadImageW(L"tiruno.jpg", 26, TEX_SIZE_1024);
+	//必殺技ゲージグラフィック読み込み
+	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

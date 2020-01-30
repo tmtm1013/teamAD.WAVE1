@@ -85,10 +85,14 @@ class CObjHero :public CObj
 		bool m_hit_right ;
 		bool flag;
 
+		//ステータス関係
 		int hp;
 		int hp_max;
 		int hp_now;
 		float hp_time;
+		int attackpoint;
+		int attackpoint_max;
+		float attackpoint_now;
 
 		float top;//切り取り位置格納用変数
 		float left;

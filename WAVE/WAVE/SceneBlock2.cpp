@@ -126,6 +126,10 @@ void CSceneBlock2::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 
+	//必殺技ゲージグラフィック読み込み
+	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);
