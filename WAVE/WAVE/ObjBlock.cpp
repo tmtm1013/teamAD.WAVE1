@@ -79,7 +79,7 @@ void CObjBlock::Action()
 			{
 				
 				//4があれば、敵を出現
-				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 10);
 				
 				//敵出現場所の値を0にする

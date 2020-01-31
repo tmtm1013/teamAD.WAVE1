@@ -1,3 +1,4 @@
+/*
 // 使用するヘッダーファイル
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
@@ -94,12 +95,12 @@ void CObjGren::Action()
 
 	}
 	//ブロックに接触したら弾丸削除
-	/*if (hit->CheckObjNameHit(OBJ_BLOCK) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_BLOCK) != nullptr)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
-	}*/
+	}
 	
 	if (m_hit_up==true|| m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
@@ -173,3 +174,4 @@ void CObjGren::Draw()
 
 
 
+*/

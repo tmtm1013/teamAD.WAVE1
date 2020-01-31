@@ -92,6 +92,9 @@ class CObjHero :public CObj
 		int hp_max;
 		int hp_now;
 		float hp_time;
+		int attackpoint;
+		int attackpoint_max;
+		float attackpoint_now;
 
 		float top;//Ø‚èæ‚èˆÊ’uŠi”[—p•Ï”
 		float left;
@@ -109,4 +112,6 @@ class CObjHero :public CObj
 		
 		int time;
 		int atari;
+
+		int Remainingammo;
 };

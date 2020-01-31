@@ -68,8 +68,9 @@ void CObjHero::Init()
 	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
 	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-	
-	
+	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+
 
 	m_px = 300.0f; //主人公の X 位置
 	m_py = 500.0f; //主人公の Y 位置
@@ -92,8 +93,6 @@ void CObjHero::Init()
 	m_vy = 0.0f;
 	m_posture = 1.0f;  //右向き0.0f 左向き1.0f
 
-
-
 	m_ani_time = 0;  //左右移動・静止アニメーションタイム制御
 	m_ani_timeJump = 0; //ジャンプアニメーションタイム制御
 	m_ani_frame = 0;   //静止フレームを初期にする
@@ -105,7 +104,6 @@ void CObjHero::Init()
 	right = 80.0;
 	bottom = 96.0;
 	ani_num = 0; //描画番号管理用
-
 
 	m_SEtime = 0;    //装着時のSE制御
 	movesecond = 0;  //左右移動時のアニメーション/SE制御
@@ -134,22 +132,25 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 600;//主人公のヒットポイント用
-	hp_max = 600;
+	hp = 100;//主人公のヒットポイント用
+	hp_max = 100;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
+	Remainingammo = 3;
+
+	//必殺技回数
+	attackpoint_max = 3;
+	attackpoint_now = attackpoint_max;
 }
 
 //アクション
 void CObjHero::Action()
 {
-	
 	//SE・アニメーション制御time
 	movesecond++;
 	jumpsecond++;
 	m_SEtime++;
 	
-
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//通常弾
 	{
@@ -209,7 +210,7 @@ void CObjHero::Action()
 
 	//弾丸発射頻度制御
 	m_time += 0.1;
-
+	
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)//通常弾発射--------
 	{
 		if (m_f == true)
@@ -226,6 +227,40 @@ void CObjHero::Action()
 			m_time = 0.0f;
 
 		}
+	}
+	else if (Input::GetMouButtonL() == false)
+	{
+		m_f = true;
+	}
+	
+
+	//必殺技
+	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 && 
+		attackpoint_now <= 3 && attackpoint_now > 0)
+	{
+		if (m_f == true)
+		{
+
+
+
+			//発射音を鳴らす
+			Audio::Start(2);
+			for (int i = 360 / 64; i <= 360; i += 360 / 64)
+			{
+				//弾丸オブジェクト
+				CObjDiffusionBullet* obj_ex = new CObjDiffusionBullet(m_px, m_py, i);//オブジェ作成
+				Objs::InsertObj(obj_ex, OBJ_DIFFUSION_BULLET, 6);
+			}
+			//Audio::Start(6);//薬莢落下音
+			m_f = false;
+			m_time = 0.0f;
+
+
+			attackpoint_now--;
+
+
+		}
+		
 	}
 	else if (Input::GetMouButtonL() == false)
 	{
@@ -254,19 +289,25 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-	if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//螺旋弾丸発射---------
+	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//特殊弾丸発射---------
 	{
 		//発射音を鳴らす
 		//Audio::Start(4);//ショットガン発射音再生
 
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
+		CObjDiffusionBullet* obj_rb = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		Objs::InsertObj(obj_rb, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
+
+		/*
+		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
+		
 		m_time = 0.0f;
 
-	}
+	}*/
+	/*
 	//グレネード発射
 	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
 	{
@@ -287,7 +328,7 @@ void CObjHero::Action()
 	{
 		m_gf = true;
 	}
-	
+	*/
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,
@@ -433,9 +474,7 @@ void CObjHero::Action()
 		m_ani_time += 1;//アニメーションタイムを+1加算
 		m_ani_move = 0;//静止アニメーションデータを指定
 
-
 		movesecond = 100;
-
 
 	}
 
@@ -453,7 +492,6 @@ void CObjHero::Action()
 		}
 		else
 			jumpsecond = 100;
-
 	}
 	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす---
 	{
@@ -504,11 +542,15 @@ void CObjHero::Action()
 	
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 90)
 	{
+		hp += 10;
+	}
 
-		hp += 50;
-
+	//必殺技回数回復
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2)
+	{
+		attackpoint_now += 1;
 	}
 
 	//遠距離敵の攻撃接触でHeroのHPが減る
@@ -517,7 +559,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 30/guard;
-
+			
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -525,7 +567,7 @@ void CObjHero::Action()
 		{
 			flag = true;
 		}
-
+		Audio::Start(11);
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -553,7 +595,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 10 / guard;
-
+			Audio::Start(10);
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -565,7 +607,7 @@ void CObjHero::Action()
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
+		
 
 		//通常敵機の位置情報をここで取得
 		CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
@@ -603,23 +645,6 @@ void CObjHero::Action()
 		}
 
 
-		//	フライングエネミー2の位置情報取得
-		CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
-		if (obj2 != nullptr) {
-
-			float ex = obj2->GetEX();
-
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
-		}
 			//ジャンプエネミーの位置情報を取得
 			CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
 			if (obj3 != nullptr) {
@@ -674,44 +699,24 @@ void CObjHero::Action()
 
 			}
 
-			//遠距離敵の位置情報を取得
-			CObjBossSL*obj6 = (CObjBossSL*)Objs::GetObj(OBJ_ENEMY);
-			if (obj6 != nullptr) {
-
-				float ex = obj6->GetEX();
-
-				//ノックバックプログラム
-				if (m_px > ex + block->GetScroll())
-				{
-					m_vx = +5.0f;
-				}
-				else //(m_px < ex)
-				{
-					m_vx = -5.0f;
-				}
-
-			}
-
-			
-			
 		}
 		
 	 
-	/*
+	
 	//主人公のHPがゼロになった時主人公が消える
 	if (hp<=0) 
 	{
 		
 		
-		
+		/*
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
-
-		}
 		*/
+	}
+		
 
 
 
@@ -784,30 +789,61 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 123.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 35.0f;
+	dst.m_left = 29.0f;
+	dst.m_right = dst.m_top + (210.0f*(hp / (float)hp_max));
+	dst.m_bottom = 53.0f;
 
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 
+	//HPカバー
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 163.0f;
 
-	//HP
+	//表示位置の設定
+	dst.m_top = 30.0f;
+	dst.m_left = 30.0f;
+	dst.m_right = 250.0f;
+	dst.m_bottom = 55.0f;
+
+	Draw::Draw(25, &src, &dst, c, 0.0f);
+
+	//必殺技ゲージ
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 16.0f;
+	src.m_right = 248.0f;
+	src.m_bottom = 26.0f;
 
 	//表示位置設定
-	dst.m_top = 32.0f;
-	dst.m_left = 32.0f;
-	dst.m_right = dst.m_top + (128.0f*(hp / (float)hp_max));
-	dst.m_bottom = 40.0f;
+	dst.m_top = 66.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = (40.0f + (attackpoint_now * 50.0f));
+	//dst.m_right = 190.0f - (pow * 50) ;
+	//190 140 95 40
+	dst.m_bottom = 75.0f;
 
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(26, &src, &dst, c, 0.0f);
+
+	//必殺技カバー表示
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 30.0f;
+
+	//表示位置設定
+	dst.m_top = 65.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 192.0f;
+	dst.m_bottom = 75.0f;
+
+	Draw::Draw(27, &src, &dst, c, 0.0f);
 }

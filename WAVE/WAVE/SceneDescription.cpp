@@ -72,7 +72,7 @@ void CSceneDescription::InitScene()
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
-	Draw::LoadImageW(L"Gauge.jpg", 6, TEX_SIZE_256);//体力グラフィック読み込み
+	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
 
@@ -88,6 +88,13 @@ void CSceneDescription::InitScene()
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+
+	//HPカバーグラフィック読み込み
+	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
+
+	//必殺技ゲージグラフィック読み込み
+	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

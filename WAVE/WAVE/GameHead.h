@@ -39,9 +39,7 @@ enum OBJ_NAME
 	OBJ_BACKGROUND,
 
 	OBJ_FLYINGENEMY,
-	OBJ_FLYINGENEMY2,
 	OBJ_ENEMYJUMP,
-	OBJ_ENEMYJUMP2,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
 	
@@ -53,6 +51,8 @@ enum OBJ_NAME
 	OBJ_GREN,
 	OBJ_DESCRIPTION,
 	OBJ_LASTBOSS,
+	OBJ_AITEM,
+	OBJ_ATTACK_POINT,
 };
 //------------------------------------------------
 
@@ -84,7 +84,7 @@ struct UserData
 	int m_point;    //GameMain出たポイント
 	int SceneNum;   //ステージ切り替え
 	int Scenecontinue;//ステージやり直し
-		
+	short int attackpoint;//主人公の必殺技用
 };
 //------------------------------------------------
 
@@ -121,12 +121,10 @@ extern float kazu;
 
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
-#include "ObjEnemyJump2.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
-#include "ObjFlyingEnemy2.h"
 #include "ObjBoss.h"
-#include "ObjBossSL.h"
+
 
 
 #include "CObjBullet.h"
@@ -148,6 +146,7 @@ extern float kazu;
 #include "ObjGren.h"
 #include "ObjDescription.h"
 #include "ObjLastBoss.h"
+#include "ObjAitem.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
