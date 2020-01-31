@@ -69,7 +69,7 @@ void CObjHero::Init()
 	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
-	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(11, L"SEgan/HitMA.wav", SOUND_TYPE::EFFECT);
 
 
 	m_px = 300.0f; //主人公の X 位置
