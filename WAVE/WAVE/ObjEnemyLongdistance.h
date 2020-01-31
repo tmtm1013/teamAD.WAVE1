@@ -11,11 +11,12 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjEnemyLongdistance :public CObj
 {
-public:CObjEnemyLongdistance(float x,float y) ;
+public:CObjEnemyLongdistance(float x, float y);
 	   ~CObjEnemyLongdistance() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
-	   void Draw();   //ドロー
+	   void Draw();   //ドロー]
+
 
 	   float GetEX();//位置情報ｘ取得用
 	   float GetEY();//位置情報Y取得用
@@ -42,7 +43,7 @@ private:
 
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
-	int m_ani_move; //モーション種類制御
+
 
 
 	//blockとの衝突状態確認用
@@ -53,6 +54,7 @@ private:
 
 	//移動の向き制御用
 	bool m_move;
+	bool elevator_flag;
 
 	//ENEMYのHP
 	int m_hp;
@@ -60,5 +62,10 @@ private:
 	//弾丸用時間制限タイム変数
 	int m_time;
 
-	
+	float flag;
+
+	bool m_attack;//攻撃アニメーションフラグ
+	int m_ani_frame2;//攻撃アニメーション用タイム
+	float m_ani_max_time2; //アニメーション動作間隔最大値
+
 };

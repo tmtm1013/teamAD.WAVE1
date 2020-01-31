@@ -68,8 +68,9 @@ void CObjHero::Init()
 	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
 	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-	
-	
+	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+
 
 	m_px = 300.0f; //主人公の X 位置
 	m_py = 500.0f; //主人公の Y 位置
@@ -519,7 +520,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 30/guard;
-
+			
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -527,7 +528,7 @@ void CObjHero::Action()
 		{
 			flag = true;
 		}
-
+		Audio::Start(11);
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -554,7 +555,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 10 / guard;
-
+			Audio::Start(10);
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -566,7 +567,7 @@ void CObjHero::Action()
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
+		
 
 		//通常敵機の位置情報をここで取得
 		CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
@@ -604,23 +605,6 @@ void CObjHero::Action()
 		}
 
 
-		//	フライングエネミー2の位置情報取得
-		CObjFlyingEnemy2*obj2 = (CObjFlyingEnemy2*)Objs::GetObj(OBJ_ENEMY);
-		if (obj2 != nullptr) {
-
-			float ex = obj2->GetEX();
-
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
-		}
 			//ジャンプエネミーの位置情報を取得
 			CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
 			if (obj3 != nullptr) {
@@ -675,26 +659,6 @@ void CObjHero::Action()
 
 			}
 
-			//遠距離敵の位置情報を取得
-			CObjBossSL*obj6 = (CObjBossSL*)Objs::GetObj(OBJ_ENEMY);
-			if (obj6 != nullptr) {
-
-				float ex = obj6->GetEX();
-
-				//ノックバックプログラム
-				if (m_px > ex + block->GetScroll())
-				{
-					m_vx = +5.0f;
-				}
-				else //(m_px < ex)
-				{
-					m_vx = -5.0f;
-				}
-
-			}
-
-			
-			
 		}
 		
 	 
@@ -704,13 +668,13 @@ void CObjHero::Action()
 	{
 		
 		
-		
+		/*
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
-
+		*/
 	}
 		
 

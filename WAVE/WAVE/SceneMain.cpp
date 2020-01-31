@@ -124,9 +124,15 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
+
+	//グラフィック読み込み
+	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
+	
+	
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.3 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 
 

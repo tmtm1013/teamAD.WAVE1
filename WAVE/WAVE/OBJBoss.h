@@ -54,4 +54,9 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	bool m_attack;//単発攻撃アニメーションフラグ
+	bool m_attack2;//範囲攻撃アニメーションフラグ
+	int m_ani_frame2;//攻撃アニメーション用タイム
+	float m_ani_max_time2; //アニメーション動作間隔最大値
+	float m_ani_max_time3; //アニメーション動作間隔最大値
 };

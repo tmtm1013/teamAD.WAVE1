@@ -77,8 +77,8 @@ void CObjDescription::Draw()
 
 	Font::StrDraw(L"攻撃　　　マウス左クリック", 129, 160, 20, c);
 
-	Font::StrDraw(L"攻撃切り替え　2(ふ)キー", 455, 160, 20, c);
+	Font::StrDraw(L"攻撃切り替え　1(ぬ）キー：単発　2(ふ)キー：連射　", 180, 200, 20, c);
 
-	Font::StrDraw(L"穴に落ちたらゲームスタート", 215, 200, 30, c);
+	Font::StrDraw(L"穴に落ちたらゲームスタート", 215, 240, 30, c);
 
 }

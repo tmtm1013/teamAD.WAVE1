@@ -78,7 +78,7 @@ void CObjBlock::Action()
 			{
 				
 				//4があれば、敵を出現
-				CObjFlyingenemy*obje = new CObjFlyingenemy(ex*64.0f, i*64.0f);
+				CObjEnemyLongdistance*obje = new CObjEnemyLongdistance(ex*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_ENEMY, 10);
 				
 				//敵出現場所の値を0にする
@@ -144,20 +144,8 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
+		
 
-
-			//列の中から11を探す
-			if (m_map[i][jx2] == 11)
-			{
-				CObjEnemyJump2*obje = new CObjEnemyJump2(jx2*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYJUMP2, 12);
-
-				//敵出現場所の値を0にする
-				m_map[i][jx] = 0;
-			}
-
-
-			
 	}
 	
 }
