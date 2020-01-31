@@ -164,5 +164,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock2//CSceneTitle//CSceneMain//CSceneBlock3//SceneBossStage//CSceneBlock3//
+#define SET_GAME_START CSceneMain//CSceneBlock2
 //-----------------------------------------------

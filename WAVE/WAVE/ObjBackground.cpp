@@ -15,6 +15,7 @@ void CObjBackground::Init()
 		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
+	backnum = 0;
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
 		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
 		backnum=9;

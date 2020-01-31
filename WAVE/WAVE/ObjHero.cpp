@@ -809,8 +809,6 @@ void CObjHero::Draw()
 	dst.m_top = 66.0f;
 	dst.m_left = 40.0f;
 	dst.m_right = (40.0f + (attackpoint_now * 50.0f));
-	//dst.m_right = 190.0f - (pow * 50) ;
-	//190 140 95 40
 	dst.m_bottom = 75.0f;
 
 	Draw::Draw(26, &src, &dst, c, 0.0f);
