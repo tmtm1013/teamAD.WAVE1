@@ -123,6 +123,7 @@
     </ClCompile>
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjEnemyJump2.cpp" />
+    <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
     <ClCompile Include="CheckHit.cpp" />
     <ClCompile Include="ObjBossSL.cpp" />
@@ -197,6 +198,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

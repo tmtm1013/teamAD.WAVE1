@@ -16,7 +16,7 @@ void CObjBackground::Init()
 		backnum=9;
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 2){
-		Draw::LoadImageW(L"icestage1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"stage2.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
 		
@@ -24,7 +24,10 @@ void CObjBackground::Init()
 		Draw::LoadImageW(L"hstage1.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
-		
+	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
+		Draw::LoadImageW(L"hstage2.png", 9, TEX_SIZE_1024);
+		backnum = 9;
+	}
 }
 
 //ƒAƒNƒVƒ‡ƒ“

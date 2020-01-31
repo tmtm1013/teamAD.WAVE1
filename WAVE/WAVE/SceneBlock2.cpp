@@ -41,7 +41,7 @@ void CSceneBlock2::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage0222.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage222.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -53,7 +53,16 @@ void CSceneBlock2::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
+
+			}
+			else
+			{
+				count += 2;
+			}
 
 		}
 	}
@@ -79,10 +88,6 @@ void CSceneBlock2::InitScene()
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
-
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
-
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -115,6 +120,19 @@ void CSceneBlock2::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
 
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle2.png", 24, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"snow1.png", 30, TEX_SIZE_512);
+	
+	//道中２のグラフィック読み込み
+	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
+
+
 	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
 	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
@@ -129,6 +147,7 @@ void CSceneBlock2::InitScene()
 	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
+
 
 	CObjBlock*objb2 = new CObjBlock(map);
 	Objs::InsertObj(objb2, OBJ_BLOCK, 4);

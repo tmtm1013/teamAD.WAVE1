@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage0333.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage33.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -51,7 +51,16 @@ void CSceneBlock3::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
+
+			}
+			else
+			{
+				count += 2;
+			}
 
 		}
 	}
@@ -113,6 +122,8 @@ void CSceneBlock3::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
 
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
 
 	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
 	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);

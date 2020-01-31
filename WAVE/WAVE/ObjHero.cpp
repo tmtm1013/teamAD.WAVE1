@@ -124,7 +124,9 @@ void CObjHero::Init()
 
 	m_block_type = 0;
 
-	flag = true;
+	m_hit_icicle=false;//ICICLEとの衝突状態確認用フラグ
+
+	flag = true;//
 
 	Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
@@ -291,6 +293,8 @@ void CObjHero::Action()
 	pb->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
+
+
 	);
 
 	//SPACEキー入力でジャンプ
@@ -374,6 +378,12 @@ void CObjHero::Action()
 			second++;
 		}*/
 
+		//氷柱
+		if (m_block_type == 12)
+		{
+			hp -= 10;
+
+		}
 
 	}
 	//左に移動時の処理
@@ -410,6 +420,13 @@ void CObjHero::Action()
 				second++;
 			}*/
 
+			//氷柱
+		if (m_block_type == 12)
+		{
+			hp -= 10;
+
+		}
+
 	}
 	else//キー入力がない場合は静止フレームにする---
 	{
@@ -421,6 +438,7 @@ void CObjHero::Action()
 
 
 	}
+
 	if (m_hit_down == false)//ジャンプアニメーション---
 	{
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
@@ -431,6 +449,7 @@ void CObjHero::Action()
 
 			SE_flag = true;
 			jumpsecond = 0;
+
 		}
 		else
 			jumpsecond = 100;
@@ -453,18 +472,35 @@ void CObjHero::Action()
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
 
-
-	//摩擦の計算   -(運動energy X 摩擦係数)
-	m_vx += -(m_vx*0.098);
-
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
+
+	//自身のヒットボックスを持ってくる
+	CHitBox*hit = Hits::GetHitBox(this);
+	//摩擦の計算   -(運動energy X 摩擦係数)
+		m_vx += -(m_vx*0.098);
+		if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr)//主人公がICICLEに当たった時
+		{
+			if (flag == true && hp_time <= 0.0f)
+			{
+				hp -= 10;
+
+				flag = false;
+				hp_time = 1.6f;
+			}
+			if (hp_time >= 0.0f)
+			{
+				flag = true;
+			}
+		
+		}
+
+
 
 	hp_time -= 0.1;
 
 
-	//自身のヒットボックスを持ってくる
-	CHitBox*hit = Hits::GetHitBox(this);
+	
 	
 
 	//回復薬に当たるとhpを+する
@@ -508,6 +544,7 @@ void CObjHero::Action()
 			}
 		}
 	}
+
 
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)

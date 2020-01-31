@@ -85,6 +85,9 @@ class CObjHero :public CObj
 		bool m_hit_right ;
 		bool flag;
 
+		//ICICLE‚Æ‚ÌÕ“Ëó‘ÔŠm”F—p
+		bool m_hit_icicle;
+
 		int hp;
 		int hp_max;
 		int hp_now;

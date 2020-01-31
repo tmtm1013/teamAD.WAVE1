@@ -40,7 +40,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p= Save::ExternalDataOpen(L"stage001.csv", &size);//外部データ読み込み
+	p= Save::ExternalDataOpen(L"stage11.csv", &size);//外部データ読み込み
 	
 	int map[10][200];
 	int count = 1;
@@ -52,8 +52,16 @@ void CSceneMain::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
 
+			}
+			else
+			{
+				count += 2;
+			}
 		}
 	}
 
@@ -88,7 +96,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"blockg111.png", 10, TEX_SIZE_1024);
+	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_1024);
 
 	//ゴールブロックのグラフィック読み込み
 	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
@@ -107,6 +115,14 @@ void CSceneMain::InitScene()
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
+
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
+
+	
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
