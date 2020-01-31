@@ -87,3 +87,33 @@ float GetAtan2Angle(float w, float h)
 
 	return r;
 }
+
+
+//int* m_ani_time      アニメーション描画タイムを保存用
+//int* m_ani_max_time  アニメーション描画までの値を指定用
+//int* m_ani_frame     アニメーションフレームを進めるための値を指定用
+//float* m_posture     描画の向きを指定用    0.0=右  1.0=左
+
+//int ani_time        アニメーション描画タイムを加算する値
+//int ani_frame       アニメーションフレームの数の指定
+//float posture       描画の向きを指定
+void Anime(int* m_ani_time, float* m_ani_max_time, int* m_ani_frame, float* m_posture,
+	int ani_time, int ani_frame, float posture)
+{
+	*m_ani_time += ani_time;
+
+	if (*m_ani_time > *m_ani_max_time)//条件が満たされると 1 フレーム進む
+	{
+		*m_ani_frame +=1;
+		*m_ani_time = 0;
+	}
+	//アニメーション
+	if (*m_ani_frame == ani_frame)
+	{
+		*m_ani_frame = 0;
+
+	}
+
+	//アニメーション向き変更
+	*m_posture = posture;
+}

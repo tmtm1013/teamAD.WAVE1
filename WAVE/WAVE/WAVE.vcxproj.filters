@@ -148,11 +148,11 @@
     <ClCompile Include="Graf.cpp">
       <Filter>SceneStage</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClCompile>
     <ClCompile Include="ObjAitem.cpp">
       <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjSlime.cpp">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +302,9 @@
     </ClInclude>
     <ClInclude Include="ObjAitem.h">
       <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSlime.h">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

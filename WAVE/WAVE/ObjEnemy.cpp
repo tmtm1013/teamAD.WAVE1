@@ -130,8 +130,7 @@ void CObjEnemy::Action()
 			m_vx += m_speed_power;
 			m_posture = 1.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
-
+			
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_left == true)
@@ -149,7 +148,7 @@ void CObjEnemy::Action()
 			m_vx -= m_speed_power;
 			m_posture = 0.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
+		
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_right == true)

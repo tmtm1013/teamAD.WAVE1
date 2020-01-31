@@ -21,6 +21,7 @@ void  CObjFlyingenemy::SetXX(float x)
 	m_px = x;
 
 }
+
 //位置情報Y変更用
 void  CObjFlyingenemy::SetYY(float y)
 {
@@ -37,6 +38,7 @@ float  CObjFlyingenemy::GetEX()
 
 
 }
+
 //位置情報Y取得用
 float CObjFlyingenemy::GetEY()
 {
@@ -102,7 +104,6 @@ void CObjFlyingenemy::Init()
 void CObjFlyingenemy::Action()
 {
 
-	m_SEtime++;
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -135,7 +136,7 @@ void CObjFlyingenemy::Action()
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,21);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
 
-			m_ani_move = 1;
+		
 
 
 
