@@ -27,7 +27,7 @@ CObjLastBoss::CObjLastBoss(float x, float y)
 //イニシャライズ
 void CObjLastBoss::Init()
 {
-	//Audio::LoadAudio(0, L"SEgan/.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(0, L"SEgan/Honoo.wav", SOUND_TYPE::EFFECT);
 
 
 
@@ -164,7 +164,7 @@ void CObjLastBoss::Action()
 				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
 				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,18);
 
-				//Audio::Start();
+				Audio::Start(0);
 			}
 		}
 	}
@@ -184,7 +184,7 @@ void CObjLastBoss::Action()
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
 				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 18);
-				//Audio::Start();
+				Audio::Start(0);
 
 			}
 		}
@@ -200,7 +200,7 @@ void CObjLastBoss::Action()
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 18);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 18);
-			//Audio::Start();
+			Audio::Start(0);
 
 		}
 
