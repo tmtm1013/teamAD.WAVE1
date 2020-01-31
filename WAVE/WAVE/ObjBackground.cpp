@@ -11,6 +11,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
+	backnum = 0;
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
 		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
 		backnum=9;
