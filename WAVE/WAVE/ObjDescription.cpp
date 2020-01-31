@@ -15,7 +15,7 @@ using namespace GameL;
 //コンストラクタ
 CObjDescription::CObjDescription(float x, float y)
 {
-	
+	((UserData*)Save::GetData())->Scenecontinue = 0;
 
 }
 

@@ -53,24 +53,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 	
-	Draw::LoadImageW(L"Animation/EDGE3.png",   1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png",  2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png",   3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png",  16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 	
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/nomal.wav",        SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav",    SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav",      SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/NomalM.wav",       SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
-	Audio::LoadAudio(6, L"SEgan/FullM.wav",        SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
-	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
-	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
-	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
-	Audio::LoadAudio(11, L"SEgan/HitMA.wav", SOUND_TYPE::EFFECT);
-
 
 	m_px = 300.0f; //主人公の X 位置
 	m_py = 500.0f; //主人公の Y 位置
@@ -122,7 +105,9 @@ void CObjHero::Init()
 
 	m_block_type = 0;
 
-	flag = true;
+	m_hit_icicle=false;//ICICLEとの衝突状態確認用フラグ
+
+	flag = true;//
 
 	Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
@@ -130,8 +115,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 100;//主人公のヒットポイント用
-	hp_max = 100;
+	hp = 300;//主人公のヒットポイント用
+	hp_max = 300;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 	Remainingammo = 3;
@@ -332,6 +317,8 @@ void CObjHero::Action()
 	pb->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
+
+
 	);
 
 	//SPACEキー入力でジャンプ
@@ -415,6 +402,12 @@ void CObjHero::Action()
 			second++;
 		}*/
 
+		//氷柱
+		if (m_block_type == 12)
+		{
+			hp -= 10;
+
+		}
 
 	}
 	//左に移動時の処理
@@ -451,6 +444,13 @@ void CObjHero::Action()
 				second++;
 			}*/
 
+			//氷柱
+		if (m_block_type == 12)
+		{
+			hp -= 10;
+
+		}
+
 	}
 	else//キー入力がない場合は静止フレームにする---
 	{
@@ -460,6 +460,7 @@ void CObjHero::Action()
 		movesecond = 100;
 
 	}
+
 	if (m_hit_down == false)//ジャンプアニメーション---
 	{
 		m_ani_move = 2;//ジャンプアニメーションデータを指定
@@ -470,6 +471,7 @@ void CObjHero::Action()
 
 			SE_flag = true;
 			jumpsecond = 0;
+
 		}
 		else
 			jumpsecond = 100;
@@ -491,16 +493,36 @@ void CObjHero::Action()
 		m_ani_frame = 0;//アニメーションフレームを初期化
 	}
 
-	//摩擦の計算   -(運動energy X 摩擦係数)
-	m_vx += -(m_vx*0.098);
-
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	hp_time -= 0.1;
-
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
+	//摩擦の計算   -(運動energy X 摩擦係数)
+		m_vx += -(m_vx*0.098);
+		if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr)//主人公がICICLEに当たった時
+		{
+			if (flag == true && hp_time <= 0.0f)
+			{
+				hp -= 10;
+
+				flag = false;
+				hp_time = 1.6f;
+			}
+			if (hp_time >= 0.0f)
+			{
+				flag = true;
+			}
+		
+		}
+
+
+
+	hp_time -= 0.1;
+
+
+	
+	
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 90)
@@ -547,6 +569,7 @@ void CObjHero::Action()
 			}
 		}
 	}
+
 
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)

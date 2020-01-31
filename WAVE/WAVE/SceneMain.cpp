@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p= Save::ExternalDataOpen(L"stage001.csv", &size);//外部データ読み込み
+	p= Save::ExternalDataOpen(L"stage11.csv", &size);//外部データ読み込み
 	
 	int map[10][200];
 	int count = 1;
@@ -53,8 +53,16 @@ void CSceneMain::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			
+			if (w >= 10)
+			{
+				count += 3;
 
+			}
+			else
+			{
+				count += 2;
+			}
 		}
 	}
 
@@ -66,6 +74,27 @@ void CSceneMain::InitScene()
 
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
+	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
+	//SE読み込み
+	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
+	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
+	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
+	Audio::LoadAudio(7, L"SEgan/SpecialM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
+	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
+	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+
+
+
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
@@ -89,7 +118,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"blockg111.png", 10, TEX_SIZE_1024);
+	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_1024);
 
 	//ゴールブロックのグラフィック読み込み
 	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
@@ -108,6 +137,14 @@ void CSceneMain::InitScene()
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
+
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
+
+	
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);

@@ -17,6 +17,14 @@ public:
 	void Action();
 	void Draw();
 
+	int r;
+	int h;
+
+	float m_tx;
+	float m_ty;
+	float m_x;
+	float m_y;
+
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
 

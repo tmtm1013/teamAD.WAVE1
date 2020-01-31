@@ -151,8 +151,8 @@
     <ClCompile Include="ObjEnemyJump2.cpp">
       <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
-    <ClCompile Include="ObjAitem.cpp">
-      <Filter>Item</Filter>
+    <ClCompile Include="ObjIcicle.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,8 +300,8 @@
     <ClInclude Include="Graf.h">
       <Filter>SceneStage</Filter>
     </ClInclude>
-    <ClInclude Include="ObjAitem.h">
-      <Filter>Item</Filter>
+    <ClInclude Include="ObjIcicle.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +352,9 @@
     </Filter>
     <Filter Include="Enemy\フライング">
       <UniqueIdentifier>{0e283d79-983d-40f9-8e7f-92fda2dcf916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\ボススライム">
+      <UniqueIdentifier>{289b3c39-0f6c-4387-8f7b-6a33244ed9b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Enemy\ランディング">
       <UniqueIdentifier>{49104eb1-7112-4067-b163-ef41500fae75}</UniqueIdentifier>

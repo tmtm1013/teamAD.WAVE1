@@ -85,7 +85,9 @@ class CObjHero :public CObj
 		bool m_hit_right ;
 		bool flag;
 
-		//ステータス関係
+		//ICICLEとの衝突状態確認用
+		bool m_hit_icicle;
+
 		int hp;
 		int hp_max;
 		int hp_now;

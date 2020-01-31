@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 SceneBossStage::SceneBossStage()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue = 4;
 }
 
 //デストラクタ
@@ -103,7 +103,7 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"block3.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
@@ -168,6 +168,7 @@ void SceneBossStage::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
@@ -175,6 +176,7 @@ void SceneBossStage::InitScene()
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
+
 
 
 	/*//テスト用:弾丸オブジェクト作成

@@ -11,13 +11,17 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
+	if (((UserData*)Save::GetData())->Scenecontinue ==0) {
+		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
+		backnum = 9;
+	}
 	backnum = 0;
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
 		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
 		backnum=9;
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 2){
-		Draw::LoadImageW(L"icestage1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"stage2.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
 		
@@ -25,7 +29,10 @@ void CObjBackground::Init()
 		Draw::LoadImageW(L"hstage1.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
-		
+	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
+		Draw::LoadImageW(L"hstage2.png", 9, TEX_SIZE_1024);
+		backnum = 9;
+	}
 }
 
 //アクション
