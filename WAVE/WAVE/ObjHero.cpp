@@ -53,24 +53,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 	
-	Draw::LoadImageW(L"Animation/EDGE3.png",   1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png",  2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png",   3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png",  16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 	
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/nomal.wav",        SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav",    SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav",      SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/NomalM.wav",       SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
-	Audio::LoadAudio(6, L"SEgan/FullM.wav",        SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
-	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
-	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
-	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
-	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
-
 
 	m_px = 300.0f; //主人公の X 位置
 	m_py = 500.0f; //主人公の Y 位置
@@ -132,8 +115,8 @@ void CObjHero::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 100;//主人公のヒットポイント用
-	hp_max = 100;
+	hp = 300;//主人公のヒットポイント用
+	hp_max = 300;
 	hp_now = hp_max;
 	hp_time = 0.0f;//主人公のヒットポイント制御用
 	Remainingammo = 3;

@@ -124,14 +124,8 @@
     <ClCompile Include="ObjEnemyJump.cpp">
       <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFlyimgEnemy2.cpp">
-      <Filter>Enemy\フライング</Filter>
-    </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>Enemy\フライング</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBossSL.cpp">
-      <Filter>Enemy\ボススライム</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>Enemy\ランディング</Filter>
@@ -150,9 +144,6 @@
     </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
       <Filter>Module</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
     <ClCompile Include="Graf.cpp">
       <Filter>SceneStage</Filter>
@@ -285,17 +276,8 @@
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>Enemy\ジャンプ</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyJump2.h">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClInclude>
     <ClInclude Include="ObjFlyingenemy.h">
       <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingEnemy2.h">
-      <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBossSL.h">
-      <Filter>Enemy\ボススライム</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
       <Filter>Enemy\ランディング</Filter>

@@ -145,15 +145,9 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
-			//—ñ‚Ì’†‚©‚ç11‚ğ’T‚·
-			if (m_map[i][jx2] == 11)
-			{
-				CObjEnemyJump2*obje = new CObjEnemyJump2(jx2*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMYJUMP2, 12);
+			
 
-				//“GoŒ»êŠ‚Ì’l‚ğ0‚É‚·‚é
-				m_map[i][jx] = 0;
-			}
+			
 
 			//—ñ‚Ì’†‚©‚ç12‚ğ’T‚·
 			if (m_map[i][ix] == 12)

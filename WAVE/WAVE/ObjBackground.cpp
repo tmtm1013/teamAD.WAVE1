@@ -11,6 +11,10 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
+	if (((UserData*)Save::GetData())->Scenecontinue ==0) {
+		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
+		backnum = 9;
+	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
 		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
 		backnum=9;

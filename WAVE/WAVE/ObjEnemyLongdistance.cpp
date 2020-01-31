@@ -305,11 +305,11 @@ void CObjEnemyLongdistance::Action()
 
 
 
-		/*
+		
 		//アイテムオブジェクト作成	
 		CObjItem*obju = new CObjItem(m_px, m_py);
 		Objs::InsertObj(obju, OBJ_ITEM, 7);
-		*/
+		
 
 
 
