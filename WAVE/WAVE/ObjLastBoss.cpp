@@ -27,6 +27,12 @@ CObjLastBoss::CObjLastBoss(float x, float y)
 //イニシャライズ
 void CObjLastBoss::Init()
 {
+	Audio::LoadAudio(0, L"SEgan/Honoo.wav", SOUND_TYPE::EFFECT);
+
+
+
+
+
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -38,7 +44,8 @@ void CObjLastBoss::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 350;//ENEMYのHP
+	Boss_hp_max = 100;//ENEMYのHP
+	Boss_hp_now = Boss_hp_max;
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -157,7 +164,7 @@ void CObjLastBoss::Action()
 				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
 				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,18);
 
-
+				Audio::Start(0);
 			}
 		}
 	}
@@ -177,7 +184,7 @@ void CObjLastBoss::Action()
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
 				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 18);
-
+				Audio::Start(0);
 
 			}
 		}
@@ -193,7 +200,10 @@ void CObjLastBoss::Action()
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 18);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 18);
+			Audio::Start(0);
+
 		}
+
 
 	}
 
@@ -248,7 +258,7 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 15;
+		Boss_hp_now -= 15;
 
 
 	}
@@ -256,7 +266,7 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
 
-		m_hp -= 10;
+		Boss_hp_now -= 10;
 
 
 	}
@@ -264,7 +274,7 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-		m_hp -= 40;
+		Boss_hp_now -= 40;
 
 
 	}
@@ -272,15 +282,15 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
 
-		m_hp -= 10;
+		Boss_hp_now -= 10;
 
 
 	}
 	//HPが0になったら破棄
-	if (m_hp <= 0)
+	if (Boss_hp_now <= 0)
 	{
 
-		//ボス消滅でシーンをステージ３に移行する
+		//ボス消滅でシーンをクリア画面に移行する
 		Scene::SetScene(new CSceneClear());
 
 		//Audio::Stop(24);//音楽ストップ
@@ -334,6 +344,39 @@ void CObjLastBoss::Draw()
 	*/
 
 	//描画
-	Draw::Draw(27, &src, &dst, c, 0.0f);
+	Draw::Draw(31, &src, &dst, c, 0.0f);
 
+	//-------------------------------------------------------------------------------------
+	//HPカバー
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0;
+	src.m_bottom = 20.0f;
+
+	//表示位置設定
+	dst.m_top = 580.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 760.0f;
+	dst.m_bottom = 595.0f;
+
+	//描画
+	Draw::Draw(28, &src, &dst, c, 0.0f);
+
+	//ボスHPグラフィック表示
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 248.0;
+	src.m_bottom = 12.0f;
+
+	//表示位置設定
+	dst.m_top = 582.0f;
+	dst.m_left = 46.0f;
+	dst.m_right = 751.0f * (Boss_hp_now / (float)Boss_hp_max);
+	dst.m_bottom = 593.0f;
+
+	//描画
+	Draw::Draw(29, &src, &dst, c, 0.0f);
+	
 }

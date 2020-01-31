@@ -126,14 +126,14 @@ void CObjFlyingenemy::Action()
 
 
 	//弾丸用プログラム
-	if (m_time > 100)
+	if (m_time > 50)
 	{
 		//if (!(x + 150.0f > m_px + (block->GetScroll()) && x - 200.0f < m_px + (block->GetScroll()))) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 		{
 			m_time = 0;
 
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,21);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,32);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
 
 		
@@ -307,11 +307,11 @@ void CObjFlyingenemy::Action()
 
 
 		
-		
+		/*
 			//アイテムオブジェクト作成	
 			CObjItem*obju = new CObjItem(m_px, m_py);
 			Objs::InsertObj(obju, OBJ_ITEM, 7);
-			
+			*/
 		
 
 
@@ -348,7 +348,7 @@ void CObjFlyingenemy::Draw()
 
 	
 		//描画カラー情報
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+		float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 
 		RECT_F src;//描画元切り取り位置
 		RECT_F dst;//描画先表示位置

@@ -117,12 +117,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjAitem.cpp" />
     <ClCompile Include="Graf.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjAitem.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
     <ClCompile Include="CheckHit.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
@@ -197,6 +198,7 @@
     </ClInclude>
     <ClInclude Include="ObjAitem.h" />
     <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

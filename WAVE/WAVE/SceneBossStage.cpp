@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 SceneBossStage::SceneBossStage()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue = 4;
 }
 
 //デストラクタ
@@ -71,10 +71,7 @@ void SceneBossStage::InitScene()
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
-	//音楽情報の読み込み
-	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
-	Audio::Start(24);//音楽スタート
-	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -106,12 +103,12 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"block3.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 	
-	Draw::LoadImageW(L"ドラゴン飛行.png", 27, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ドラゴン飛行.png", 31, TEX_SIZE_1024);
 
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
@@ -130,6 +127,15 @@ void SceneBossStage::InitScene()
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	//ボスのHPグラフィック読み込み
+	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"HPGauge02_purple.png", 29, TEX_SIZE_512);
+
+	//音楽情報の読み込み
+	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
+	Audio::Start(24);//音楽スタート
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -162,6 +168,7 @@ void SceneBossStage::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
@@ -169,6 +176,7 @@ void SceneBossStage::InitScene()
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
+
 
 
 	/*//テスト用:弾丸オブジェクト作成

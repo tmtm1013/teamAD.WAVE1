@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\Audio.h"
@@ -21,11 +20,14 @@ enum OBJ_NAME
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
+	
 	OBJ_BOSS_STAGE,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
 	OBJ_TIME,
+
+	OBJ_ICICLE,
 
 	OBJ_BULLET,
 	OBJ_FULL_BULLET,
@@ -112,9 +114,11 @@ extern float kazu;
 #include "ObjBlock.h"
 #include "ObjBlock2.h"
 #include "ObjBlock3.h"
+
 #include "ObjBossStage.h"
 #include "ObjEnemy.h"
 
+#include "ObjIcicle.h"
 
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
@@ -162,5 +166,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock2// CSceneMain//CSceneBlock2//CSceneTitle//CSceneMain//
+#define SET_GAME_START CSceneMain//CSceneBlock2
 //-----------------------------------------------

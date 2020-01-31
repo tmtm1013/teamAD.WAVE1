@@ -287,7 +287,9 @@ void CObjEnemy::Action()
 		m_del = true;//着弾エフェクト移行用フラグ
 		hit->SetInvincibility(true);//判定無効
 
-
+		//アイテムオブジェクト作成	
+		CObjAitem*obju = new CObjAitem(m_px, m_py);
+		Objs::InsertObj(obju, OBJ_AITEM, 7);
 
 
 	}
