@@ -122,7 +122,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
-
+	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
 	//ƒ{ƒŠƒ…[ƒ€‚ğ1.0‚É–ß‚·
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);

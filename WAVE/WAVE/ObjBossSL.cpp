@@ -243,7 +243,7 @@ void CObjBossSL::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 15;
+	    b_hp_now -= 15;
 
 
 	}
@@ -251,7 +251,7 @@ void CObjBossSL::Action()
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
 
-		m_hp -= 10;
+		b_hp_now -= 10;
 
 
 	}
@@ -259,7 +259,7 @@ void CObjBossSL::Action()
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-		m_hp -= 40;
+		b_hp_now -= 40;
 
 
 	}
@@ -267,12 +267,12 @@ void CObjBossSL::Action()
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
 
-		m_hp -= 50;
+		b_hp_now -= 50;
 
 
 	}
 	//HPが0になったら破棄
-	if (m_hp <= 0)
+	if (b_hp_now <= 0)
 	{
 
 		if (((UserData*)Save::GetData())->SceneNum == 1)//マップ移動用 
@@ -354,5 +354,38 @@ void CObjBossSL::Draw()
 
 	//描画
 	Draw::Draw(13, &src, &dst, c, 0.0f);
+
+	//------------------------------------------------------------
+	//HPカバー
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0;
+	src.m_bottom = 20.0f;
+
+	//表示位置設定
+	dst.m_top = 580.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 760.0f;
+	dst.m_bottom = 595.0f;
+
+	//描画
+	Draw::Draw(28, &src, &dst, c, 0.0f);
+
+	//ボスHPグラフィック表示
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 248.0;
+	src.m_bottom = 12.0f;
+
+	//表示位置設定
+	dst.m_top = 582.0f;
+	dst.m_left = 46.0f;
+	dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+	dst.m_bottom = 593.0f;
+
+	//描画
+	Draw::Draw(29, &src, &dst, c, 0.0f);
 
 }

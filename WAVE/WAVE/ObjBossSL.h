@@ -5,7 +5,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-
 //オブジェクト：敵
 class CObjBossSL :public CObj
 {
@@ -58,4 +57,7 @@ private:
 
 	int m_rnd;//ジャンプ用ランダム変数
 
+	//ボスHP関係用
+	int b_hp_now;
+	int b_hp_max;
 };
