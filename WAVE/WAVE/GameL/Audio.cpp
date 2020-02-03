@@ -219,7 +219,7 @@ void CAudio::Start(int id)
 		return ;
 	}
 }
-//ストップ
+//ストップa
 void CAudio::Stop(int id)
 {
 	//マスターボイスエラーチェック
