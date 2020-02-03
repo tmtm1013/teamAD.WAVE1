@@ -92,8 +92,16 @@ void CObjSlime::Init()
 	m_ani_frame2 = 0;
 	m_ani_max_time2 = 4;
 
+
+	//消滅エフェクト
+	m_ani = 0;
+	m_ani_time2 = 0;
+	m_del = false;
+
+
+
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 48, 48, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 
@@ -208,7 +216,7 @@ void CObjSlime::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
+	hit->SetPos(m_px  + block->GetScroll(), m_py + 12);
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
@@ -335,16 +343,11 @@ void CObjSlime::Action()
 			Hits::DeleteHitBox(this);
 
 
-			//敵が消滅したら+100点
-			((UserData*)Save::GetData())->m_point += 10;
-
-
 			//アイテムオブジェクト作成	
 			CObjAitem*obju = new CObjAitem(m_px, m_py);
 			Objs::InsertObj(obju, OBJ_AITEM, 7);
 
-			//ボス消滅でシーンをステージ2に移行する
-			Scene::SetScene(new CSceneBlock2());
+	
 
 		}
 
@@ -383,10 +386,10 @@ void CObjSlime::Draw()
 
 
 	//表示位置の設定
-	dst.m_top = -66.0f + m_py;
-	dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_bottom = 66.0f + m_py;
+	dst.m_top = 0.0f + m_py;
+	dst.m_left = (50.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (50 - 50.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_bottom = 73.0f + m_py;
 
 
 	if (m_attack == true) {
