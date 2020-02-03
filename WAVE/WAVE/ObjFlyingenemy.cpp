@@ -131,7 +131,7 @@ void CObjFlyingenemy::Action()
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,32);//ƒIƒuƒWƒFì¬
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
 
-		
+			Audio::Start(15);
 			m_attack = true;
 
 			//“G‚ð“®‚©‚³‚È‚¢‚æ‚¤‚É‚·‚éB
@@ -263,7 +263,7 @@ void CObjFlyingenemy::Action()
 
 		m_hp -= 15;
 
-
+		Audio::Start(12);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
@@ -271,7 +271,7 @@ void CObjFlyingenemy::Action()
 
 		m_hp -= 10;
 
-
+		Audio::Start(13);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
@@ -279,7 +279,7 @@ void CObjFlyingenemy::Action()
 
 		m_hp -= 40;
 
-
+		Audio::Start(14);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)

@@ -258,6 +258,7 @@ void CObjEnemyJump::Action()
 
 			m_hp -= 15;
 
+			Audio::Start(12);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
@@ -265,16 +266,16 @@ void CObjEnemyJump::Action()
 
 			m_hp -= 10;
 
-
+			Audio::Start(13);
 	}
 
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-			m_hp -= 1;
+			m_hp -= 40;
 
-
+			Audio::Start(14);
 	}
 
 	//—‰º‚µ‚½“G‚ğÁ‹‚·‚éB

@@ -66,12 +66,7 @@ void CSceneMain::InitScene()
 		}
 	}
 
-	//音楽読み込み
-	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
-	//バックミュージックスタート
-	float Volume = Audio::VolumeMaster(-0.8f);
-	Audio::Start(21);//音楽スタート
-
+	
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
 	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
@@ -90,11 +85,15 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(7, L"SEgan/SpecialM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
 	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
-	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
-	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);//敵に主人公が当たった時の音
+	Audio::LoadAudio(11, L"SEgan/HitMA.wav", SOUND_TYPE::EFFECT);//敵の魔法攻撃に当たった時の音
+	Audio::LoadAudio(12, L"SEgan/sou.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
 
-
-
+	//音楽読み込み
+	Audio::LoadAudio(21, L"back1.wav", BACK_MUSIC);
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
@@ -165,11 +164,13 @@ void CSceneMain::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 	
-	
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.8f);
+	Audio::Start(21);//音楽スタート
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.5 - v);
+	v = Audio::VolumeMaster(1.0 - v);
 
 
 

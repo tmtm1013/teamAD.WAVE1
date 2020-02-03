@@ -25,7 +25,7 @@ CObjFullBullet::CObjFullBullet(float x, float y)
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_FULL_BULLET, 1);
 
-	Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	//Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 }
 
 //イニシャライズ
@@ -141,7 +141,7 @@ void CObjFullBullet::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 		//float Volume = Audio::VolumeMaster(-0.2f);
-		Audio::Start(11);//SE再生(装備音)
+		//Audio::Start(11);//SE再生(装備音)
 	}
 }
 
