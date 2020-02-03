@@ -260,7 +260,7 @@ void CObjLastBoss::Action()
 
 		Boss_hp_now -= 15;
 
-
+		Audio::Start(12);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
@@ -268,7 +268,7 @@ void CObjLastBoss::Action()
 
 		Boss_hp_now -= 10;
 
-
+		Audio::Start(13);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
@@ -276,7 +276,7 @@ void CObjLastBoss::Action()
 
 		Boss_hp_now -= 40;
 
-
+		Audio::Start(14);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)

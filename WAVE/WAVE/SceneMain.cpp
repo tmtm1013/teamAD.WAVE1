@@ -66,12 +66,7 @@ void CSceneMain::InitScene()
 		}
 	}
 
-	//音楽読み込み
-	Audio::LoadAudio(21, L"back1.wav",BACK_MUSIC);
-	//バックミュージックスタート
-	float Volume = Audio::VolumeMaster(-0.8f);
-	Audio::Start(21);//音楽スタート
-
+	
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
 	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
@@ -97,6 +92,8 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
 
+	//音楽読み込み
+	Audio::LoadAudio(21, L"back1.wav", BACK_MUSIC);
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
@@ -167,7 +164,9 @@ void CSceneMain::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 	
-	
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.8f);
+	Audio::Start(21);//音楽スタート
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
