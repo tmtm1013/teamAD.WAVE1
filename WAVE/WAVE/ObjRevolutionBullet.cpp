@@ -150,7 +150,7 @@ void CObjRevolutionBullet::Draw()
 	dst.m_bottom = 32.0f +m_y+ y;
 
 	//•`‰æ
-	Draw::Draw(18, &src, &dst, c, 0.0f);
+	Draw::Draw(40, &src, &dst, c, 0.0f);
 
 
 

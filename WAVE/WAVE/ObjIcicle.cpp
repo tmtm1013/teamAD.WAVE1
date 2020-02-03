@@ -251,6 +251,6 @@ void CObjIcicle::Draw()
 
 
 	//•`‰æ
-	Draw::Draw(24, &src, &dst, c, 0.0f);
+	Draw::Draw(33, &src, &dst, c, 0.0f);
 
 }

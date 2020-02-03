@@ -229,8 +229,6 @@ void CObjHomingBullet::Draw()
 
 	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
 
-
-
 	//’eŠÛ‚Ìó‘Ô‚Å•`‰æ‚ğ•ÏX
 	if (m_del == true)
 	{

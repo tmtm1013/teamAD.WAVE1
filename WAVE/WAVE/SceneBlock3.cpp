@@ -144,11 +144,13 @@ void CSceneBlock3::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
 
+	Draw::LoadImageW(L"ster.png", 32, TEX_SIZE_256);//Flyingenemyの魔法攻撃弾グラフィック
+
 	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"icicle.png", 24, TEX_SIZE_512);
 
 	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
-	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"image1234.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
@@ -159,6 +161,8 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
+	//グラフィック読み込み
+	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu", 32, TEX_SIZE_1024);
@@ -166,7 +170,7 @@ void CSceneBlock3::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.3 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
