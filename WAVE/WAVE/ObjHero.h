@@ -76,6 +76,7 @@ private:
 
 	short int movesecond; //秒間用変数	
 	short int jumpsecond; //秒間用変数
+	short int jump_time;//ジャンプ時間管理用
 	short int m_SEtime;//SEの再生頻度制御用変数
 	short int Action_ani_time;//攻撃アニメーション切り替え頻度制御
 	bool Action_ani_flag;

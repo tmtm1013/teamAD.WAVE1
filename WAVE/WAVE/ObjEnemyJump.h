@@ -38,9 +38,6 @@ private:
 	//移動の向き制御用
 	bool m_move;
 
-	//ENEMYのHP
-	int   m_hp;
-
 	int m_time;//ジャンプ用タイム
 
 	int m_rnd;//ジャンプ用ランダム変数
@@ -59,5 +56,13 @@ private:
 	int m_ani_frame2;//攻撃アニメーション用タイム
 	float m_ani_max_time2; //アニメーション動作間隔最大値
 
-	
+	int m_ani;//着弾アニメーション用
+	int m_ani_time2;//エフェクトアニメーション用間隔用タイム
+	bool m_del;//消去チェック
+	RECT_F m_eff;//着弾エフェクト描画用
+
+
+	//ボスHP管理用
+	int b_hp_now;
+	int b_hp_max;
 };

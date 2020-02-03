@@ -125,10 +125,12 @@ void CObjSlime::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
+
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
+
 
 
 	if (m_attack == false) {
@@ -287,21 +289,68 @@ void CObjSlime::Action()
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+		//敵を動かさないようにする。
+		m_vx = 0;
+		m_vy = 0;
 
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
-
-
-		//アイテムオブジェクト作成	
-		CObjAitem*obju = new CObjAitem(m_px, m_py);
-		Objs::InsertObj(obju, OBJ_AITEM, 7);
-
+		m_del = true;//着弾エフェクト移行用フラグ
+		hit->SetInvincibility(true);//判定無効
 
 	}
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[5] =
+		{
 
+
+			{0,  0,  204 ,200},
+			{0, 204, 408 ,200},
+			{0, 408, 612,200},
+			{0, 612,816, 200},
+			{0, 816,1020,200},
+
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time2 > 2)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time2 = 0;
+
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
+
+			m_ani_time2++;
+
+		}
+
+		if (m_ani == 5)
+		{
+
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+
+			//敵が消滅したら+100点
+			((UserData*)Save::GetData())->m_point += 10;
+
+
+			//アイテムオブジェクト作成	
+			CObjAitem*obju = new CObjAitem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_AITEM, 7);
+
+			//ボス消滅でシーンをステージ2に移行する
+			Scene::SetScene(new CSceneBlock2());
+
+		}
+
+		return;
+
+	}
 
 }
 
@@ -341,26 +390,50 @@ void CObjSlime::Draw()
 
 
 	if (m_attack == true) {
+		//弾丸の状態で描画を変更if (m_del == true)
+		if (m_del == true)
+		{
 
-		//切り取り位置の設定
-		src.m_top = 48.0f;
-		src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-		src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-		src.m_bottom = 96.0f;
+			Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+			//着弾アニメーション
 
-		//描画
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
+		else
+		{
+
+
+			//切り取り位置の設定
+			src.m_top = 48.0f;
+			src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
+			src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
+			src.m_bottom = 96.0f;
+
+			//描画
+			Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
 	}
-	else {
+	else
+	{
+		//弾丸の状態で描画を変更if (m_del == true)
+		if (m_del == true)
+		{
+
+			Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+			//着弾アニメーション
+
+		}
+		else
+		{
 
 
-		// 切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-		src.m_right = 48.0f + AniData[m_ani_frame] * 48;
-		src.m_bottom = 48.0f;
+			// 切り取り位置の設定
+			src.m_top = 0.0f;
+			src.m_left = 0.0f + AniData[m_ani_frame] * 48;
+			src.m_right = 48.0f + AniData[m_ani_frame] * 48;
+			src.m_bottom = 48.0f;
 
-		//描画
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+			//描画
+			Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
 	}
 }

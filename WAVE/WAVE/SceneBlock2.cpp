@@ -146,6 +146,9 @@ void CSceneBlock2::InitScene()
 	//道中２のグラフィック読み込み
 	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
 
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu", 32, TEX_SIZE_1024);
+
 
 	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
 	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);

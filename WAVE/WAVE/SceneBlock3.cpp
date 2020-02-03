@@ -159,6 +159,10 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
 
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu", 32, TEX_SIZE_1024);
+
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);
@@ -201,7 +205,6 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 17);
 
 	
-
 
 }
 

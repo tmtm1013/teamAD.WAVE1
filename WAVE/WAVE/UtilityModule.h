@@ -10,3 +10,8 @@ float GetAtan2Angle(float w, float h);
 
 void Anime(int* m_ani_time, float* m_ani_max_time, int* m_ani_frame, float* m_posture,
 	int ani_time, int ani_frame, float posture);//アニメーションフレームを進めるための関数
+
+float  KnockBack(float m_px, float ex);//ノックバック関数
+
+//CheckHit当たっているか調べるための関数
+bool CheckHit(float m_x, float m_y, float e_x, float e_y);

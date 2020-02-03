@@ -53,20 +53,7 @@ float  CObjHero::GetYY()
 void CObjHero::Init()
 {
 	
-	Draw::LoadImageW(L"Animation/EDGE4.png",   1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png",  2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE5.png",   3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 	
-	//SE読み込み
-	Audio::LoadAudio(2, L"SEgan/nomal.wav",        SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav",    SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
-	Audio::LoadAudio(4, L"SEgan/cannon1.wav",      SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
-	Audio::LoadAudio(5, L"SEgan/NomalM.wav",       SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
-	Audio::LoadAudio(6, L"SEgan/FullM.wav",        SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
-	Audio::LoadAudio(7, L"SEgan/SpecialM.wav",     SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
-	Audio::LoadAudio(8, L"SEgan/landing.wav",      SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
-	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	
 	
 
@@ -104,6 +91,7 @@ void CObjHero::Init()
 	m_SEtime = 0;    //装着時のSE制御
 	movesecond = 0;  //左右移動時のアニメーション/SE制御
 	jumpsecond = 0;  //ジャンプ時のアニメーション/SE制御
+	jump_time = 0.0f;//ジャンプ時間管理用変数
 
 	SE_flag = true;//SE制御用フラグ
 
@@ -271,7 +259,6 @@ void CObjHero::Action()
 		m_time = 0.0f;
 		//Audio::Start(7);//薬莢落下音
 	}
-
 	//必殺技-----------------------------------------------------------------------
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 &&
 		attackpoint_now <= 3 && attackpoint_now > 0)
@@ -302,47 +289,6 @@ void CObjHero::Action()
 		m_f = true;
 	}
 
-
-	/*if (Input::GetMouButtonL() == true && m_time >= 6.0f&&bullet_type == 3)//特殊弾丸発射---------
-	{
-		//発射音を鳴らす
-		//Audio::Start(4);//ショットガン発射音再生
-
-
-		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjDiffusionBullet* obj_rb = new CObjDiffusionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
-		Objs::InsertObj(obj_rb, OBJ_DIFFUSION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-		/*
-		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjRevolutionBullet* obj_rb = new CObjRevolutionBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
-		Objs::InsertObj(obj_rb, OBJ_REVOLUTION_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-		m_time = 0.0f;
-
-	}*/
-	/*
-	//グレネード発射
-	if (Input::GetVKey('Y') == true && m_time >= 10.0f)
-	{
-		if (m_gf == true)
-		{
-			//発射音を鳴らす
-			//Audio::Start(2);
-
-			//弾丸オブジェクト作成
-			CObjGren* obj_g = new CObjGren(m_px, m_py );//弾丸オブジェクト作成
-			Objs::InsertObj(obj_g, OBJ_GREN, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-			m_gf = false;
-			m_time = 0.0f;
-		}
-	}
-	else
-	{
-		m_gf = true;
-	}
-	*/
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->BlockHit(&m_px, &m_py, true,
@@ -350,14 +296,17 @@ void CObjHero::Action()
 		&m_block_type
 	);
 
+	//ガード管理用変数を初期化
+	guard = 1;
+
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true && Action_guard == false)
 	{
 		//主人公移動
 		m_vx += 0.5;
-
+		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			1, 12, 0.0f);
+			  1, 12, 0.0f);
 	
 		Action_Walk = true;
 
@@ -368,8 +317,9 @@ void CObjHero::Action()
 	{
 		//主人公移動
 		m_vx -= 0.6f;
+		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			1, 12, 1.0f);
+			   1, 12, 1.0f);
 
 		Action_Walk = true;
 
@@ -377,54 +327,72 @@ void CObjHero::Action()
 	}
 	else if (Input::GetVKey('C') == true && m_hit_down == true)//ガードアクション-----------
 	{
-
-
 		Action_guard = true;
 
-
-
+		guard = 0;//ダメージを無効化
 	}
 	else//キー入力がない場合は静止フレームにする---
 	{
+		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame_Waiting, &m_posture,
 			1, 9, NULL);
 
 		//待機モーション向き
-		if (Action_direction == false) 
+		if (Action_direction == false)
 			m_posture = 0.0f;//アニメーション向き変更
 		else
 			m_posture = 1.0f;	//アニメーション向き変更
 
 		Action_Waiting = true;
 	}
-	//Zキー入力で速度アップ
-	if (Input::GetVKey('Z') == true && Action_Walk == true)
+	if (Input::GetVKey('Z') == true && Action_Walk == true)	//Zキー入力で速度アップ---------
 	{
 		//主人公移動
-		m_vx += 0.6;
-
+		if (Action_direction == true) {
+			m_vx -= 0.6;
+		}
+		else {
+			m_vx += 0.6;
+		}
+		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			2, 12, 0.0f);
+			  2, 12, m_posture);
 	}
 	//SPACEキー入力でジャンプ
 	if (Input::GetVKey(VK_SPACE) == true)
 	{
-		if (m_hit_down == true)
+		
+		if (m_hit_down == true && m_py > 100)
+			m_vy =-16.0f;
+		/*
+		else if (jump_time < 100 && m_hit_down == false && m_py > 100)
 		{
-			m_vy = -16;
+			jump_time++;
+			
+			m_vy -= 0.7f;
+	
+            
 		}
+		if (m_hit_up==true)
+			m_vy =+ 8.0f;
 
+		if (m_py < 100)
+		{
+			m_vy += 1.0f;
+		}*/
+	}
+	else if (m_hit_down == true)
+	{
+		jump_time = 0.0f;
 	}
 	//ジャンプアニメーション用
 	if (m_hit_down == false) {
-
+		//アニメーション関数の呼び出し
 		Anime(&m_ani_time_Jump, &m_ani_max_time_Jump, &m_ani_frame_Jump, &m_posture,
 			1, 10, NULL);
 		
 		Action_Jump = true;
 	}
-
-
 
 	//主人公の向きを制御
 	//マウスの位置を取得
@@ -433,8 +401,6 @@ void CObjHero::Action()
 	//マウスのボタンの状態
 	m_mou_pr = Input::GetMouButtonR();
 	m_mou_pl = Input::GetMouButtonL();
-
-
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
 	m_vx += -(m_vx*0.098);
@@ -448,32 +414,26 @@ void CObjHero::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 90)
-	{
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 290)
 		hp += 10;
-	}
 
 	//必殺技回数回復
 	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2)
-	{
 		attackpoint_now += 1;
-	}
-
+	
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 30 / guard;
+			hp -= 30 * guard;
 
 			flag = false;
 			hp_time = 1.6f;
 		}
 		if (hp_time >= 0.0f)
-		{
 			flag = true;
-		}
-
+		
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -481,25 +441,16 @@ void CObjHero::Action()
 		CObjHomingBullet*obj = (CObjHomingBullet*)Objs::GetObj(OBJ_HOMING_BULLET);
 		float x = obj->GetBX();
 		if (obj != nullptr) {
-			//ノックバックプログラム
-			if (m_px > x + block->GetScroll())
-			{
-				m_vx = -5.0f;
-			}
-			else //(m_px < x)
-			{
-				m_vx = +5.0f;
-			}
+			m_vx = KnockBack(m_px, x);//ノックバック関数
 		}
 	}
 
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
-
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 10 / guard;
+			hp -= 10 * guard;
 
 			flag = false;
 			hp_time = 1.6f;
@@ -512,97 +463,43 @@ void CObjHero::Action()
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-		//通常敵機の位置情報をここで取得
-		CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+		CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);//通常敵機の位置情報をここで取得
 		if (obj != nullptr) {
 
 			float ex = obj->GetEX();
 
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = -5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = 5.0f;
-			}
-		}
+			m_vx=KnockBack(m_px, ex);//ノックバック関数
 
-		//フライングエネミーの位置情報取得
-		CObjFlyingenemy*obj1 = (CObjFlyingenemy*)Objs::GetObj(OBJ_ENEMY);
+		}
+		CObjFlyingenemy*obj1 = (CObjFlyingenemy*)Objs::GetObj(OBJ_ENEMY);//フライングエネミーの位置情報取得
 		if (obj1 != nullptr) {
 
 			float ex = obj1->GetEX();
 
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = -5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = 5.0f;
-			}
-
+			m_vx = KnockBack(m_px, ex);
 		}
-
-		//ジャンプエネミーの位置情報を取得
-		CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);
+		CObjEnemyJump*obj3 = (CObjEnemyJump*)Objs::GetObj(OBJ_ENEMY);//ジャンプエネミーの位置情報を取得
 		if (obj3 != nullptr) {
 
 			float ex = obj3->GetEX();
 
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
+			m_vx = KnockBack(m_px, ex);
 		}
-
-		//遠距離敵の位置情報を取得
-		CObjEnemyLongdistance*obj4 = (CObjEnemyLongdistance*)Objs::GetObj(OBJ_ENEMY);
+		CObjEnemyLongdistance*obj4 = (CObjEnemyLongdistance*)Objs::GetObj(OBJ_ENEMY);//遠距離敵の位置情報を取得
 		if (obj4 != nullptr) {
 
 			float ex = obj4->GetEX();
 
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
+			m_vx = KnockBack( m_px, ex);
 		}
-
-		//BOSSの位置情報を取得
-		CObjBoss*obj5 = (CObjBoss*)Objs::GetObj(OBJ_ENEMY);
+		CObjBoss*obj5 = (CObjBoss*)Objs::GetObj(OBJ_ENEMY);	//BOSSの位置情報を取得
 		if (obj5 != nullptr) {
 
 			float ex = obj5->GetEX();
 
-			//ノックバックプログラム
-			if (m_px > ex + block->GetScroll())
-			{
-				m_vx = +5.0f;
-			}
-			else //(m_px < ex)
-			{
-				m_vx = -5.0f;
-			}
-
+			m_vx = KnockBack(m_px, ex);
 		}
-
 	}
-
 
 	//位置の更新
 	m_px += m_vx;

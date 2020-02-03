@@ -16,9 +16,6 @@
     <ClCompile Include="COHomingBullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjRevolutionBullet.cpp">
-      <Filter>Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>Hero</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
     <ClCompile Include="ObjBoss.cpp">
       <Filter>Enemy\ラストボス</Filter>
     </ClCompile>
-    <ClCompile Include="CheckHit.cpp">
-      <Filter>Module</Filter>
-    </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
       <Filter>Module</Filter>
     </ClCompile>
@@ -153,6 +147,12 @@
     </ClCompile>
     <ClCompile Include="ObjSlime.cpp">
       <Filter>Enemy\ジャンプ</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjIcicle.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,9 +291,6 @@
     <ClInclude Include="OBJBoss.h">
       <Filter>Enemy\ラストボス</Filter>
     </ClInclude>
-    <ClInclude Include="CheckHit.h">
-      <Filter>Module</Filter>
-    </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>Module</Filter>
     </ClInclude>
@@ -305,6 +302,9 @@
     </ClInclude>
     <ClInclude Include="ObjSlime.h">
       <Filter>Enemy\ジャンプ</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjIcicle.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

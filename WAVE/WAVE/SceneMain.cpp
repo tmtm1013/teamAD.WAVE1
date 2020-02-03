@@ -74,11 +74,9 @@ void CSceneMain::InitScene()
 
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
-	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 
 	//SE読み込み
@@ -92,6 +90,8 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
+	
 
 
 
@@ -101,8 +101,7 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
 
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
 
 
 	//Enemyグラフィック読み込み
@@ -138,16 +137,23 @@ void CSceneMain::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
 
-	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
+
 
 	//土中のグラフィック読み込み
 	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
-	
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle.png", 33, TEX_SIZE_512);
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 35, TEX_SIZE_256);
+
+	
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 	Draw::LoadImageW(L"EhitEff.png", 24, TEX_SIZE_512);
@@ -165,7 +171,7 @@ void CSceneMain::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 	
-	Draw::LoadImageW(L"EDGE5.png", 28, TEX_SIZE_1024);
+	
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
