@@ -122,9 +122,11 @@ void CSceneMain::InitScene()
 	//ボス
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 
 
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
+
 	//土中のグラフィック読み込み
 	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
-
 
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
@@ -148,8 +150,6 @@ void CSceneMain::InitScene()
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(1.0 - v);
-
-
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

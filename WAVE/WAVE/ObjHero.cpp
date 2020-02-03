@@ -65,7 +65,7 @@ void CObjHero::Init()
 
 	m_mou_px = 0.0f;//向き
 	m_mou_py = 0.0f;
-
+	
 	m_mou_pr = 0.0f; //マウスのReftの状態
 	m_mou_pl = 0.0f; //マウスのLightの状態
 
@@ -251,6 +251,7 @@ void CObjHero::Action()
 		//発射音を鳴らす
 		Audio::Start(2);//連弾発射音再生
 		//m_SEtime++;
+		
 
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
 		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成

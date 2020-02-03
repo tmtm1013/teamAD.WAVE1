@@ -9,6 +9,8 @@
 
 #include "UtilityModule.h"
 
+#define M_PI 3.14
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -21,6 +23,34 @@ CObjRevolutionBullet::CObjRevolutionBullet(float x, float y)
 //イニシャライズ
 void CObjRevolutionBullet::Init()
 {
+	m_vx = 0.0f;//弾丸のX軸方向の速度
+    m_vy = 1.0f;//弾丸のY軸方向の速度
+	x = 0;  //主人公のX軸位置情報
+	y = 0;  //主人公のY軸位置情報
+
+
+	Cx = 0;//円の中心の座標
+	Cy = 0;
+
+	//円の動きの角度
+  //R = 50;   //円の動きの半径
+
+	rad = 5.0f;//増加角度
+
+	//Angle = 0;//M_PI / 180 * 0.0f
+
+	omega = M_PI / 180 * rad;//増加する角度のラジアン値
+	r = 60.0f;//半径
+	theta = 0.0f;//M_PI / 180 * 0.0f
+
+	flag = true;
+
+	button = false;
+
+
+	pos = 0;
+
+	/*
 	m_vx = 2.0f;//弾丸のX軸方向の速度
 	//m_vy = 0.0f;//弾丸のY軸方向の速度
 	x = 0;  //主人公のX軸位置情報
@@ -37,7 +67,7 @@ void CObjRevolutionBullet::Init()
 	flag = true;
 
 	button = false;
-
+	*/
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_x, m_y, 16, 16, ELEMENT_WHITE, OBJ_REVOLUTION_BULLET, 1);
 
@@ -51,24 +81,34 @@ void CObjRevolutionBullet::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockBulletHit(&m_x, &m_y, true, &m_x, &m_y,
+	pb->BlockBulletHit(&x, &y, true, &x, &y,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
 
-	// 位置の計算
+	// とりあえず16方向
+		int n = 16;
+
+	//弾と弾
+	float rad;
+
+	//位置を計算
+	x = Cx + r * cos(theta);
+	y = Cy + r * sin(theta);
+
+	/*// 位置の計算
 	Angle += 20;
 	x = Cx + (cos(Angle)*R );
 	y = Cy + (sin(Angle)*R );
-	
+	*/
 	if (button == false)
 	{
 		//主人公の位置情報をここで取得
 		CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 		
 		float ex = obj->GetXX();
-
-		//ノックバックプログラム
+		
+		//
 		if (m_x + block->GetScroll() > ex + block->GetScroll())
 		{
 			pos = -1;
@@ -77,11 +117,16 @@ void CObjRevolutionBullet::Action()
 		{
 			pos = 1;
 		}
-		//float x = obj->GetXX();
-		//float y = obj->GetYY();
+		float x = obj->GetXX();
+		float y = obj->GetYY();
         button = true;
 		
 	}
+
+	//角度を変化させる
+	theta += omega;
+	Cx += 1 * pos;//中心の位置を右に移動
+
 	m_x += m_vx * pos;
 
 	//HitBoxの位置の変更
@@ -150,7 +195,7 @@ void CObjRevolutionBullet::Draw()
 	dst.m_bottom = 32.0f +m_y+ y;
 
 	//描画
-	Draw::Draw(40, &src, &dst, c, 0.0f);
+	Draw::Draw(24, &src, &dst, c, 0.0f);
 
 
 

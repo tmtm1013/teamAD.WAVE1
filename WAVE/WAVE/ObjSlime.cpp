@@ -172,13 +172,9 @@ void CObjSlime::Action()
 
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-			if (m_hit_left == true)
+			if (m_hit_right == true)
 			{
-
-
 				m_vy = -13;
-
-
 			}
 
 			//ランダムで決まる数値が1の時ジャンプする
@@ -342,12 +338,6 @@ void CObjSlime::Action()
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 
-
-			//アイテムオブジェクト作成	
-			CObjAitem*obju = new CObjAitem(m_px, m_py);
-			Objs::InsertObj(obju, OBJ_AITEM, 7);
-
-	
 
 		}
 

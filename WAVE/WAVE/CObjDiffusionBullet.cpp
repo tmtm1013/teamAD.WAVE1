@@ -111,7 +111,7 @@ void CObjDiffusionBullet::Action()
 //ÉhÉçÅ[
 void CObjDiffusionBullet::Draw()
 {
-	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
 

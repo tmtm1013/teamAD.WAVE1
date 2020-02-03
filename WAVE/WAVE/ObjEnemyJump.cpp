@@ -346,13 +346,7 @@ void CObjEnemyJump::Action()
 			Hits::DeleteHitBox(this);
 
 
-			//敵が消滅したら+100点
-			((UserData*)Save::GetData())->m_point += 10;
 
-
-			//アイテムオブジェクト作成	
-			CObjAitem*obju = new CObjAitem(m_px, m_py);
-			Objs::InsertObj(obju, OBJ_AITEM, 7);
 
 			//ボス消滅でシーンをステージ2に移行する
 			Scene::SetScene(new CSceneBlock2());

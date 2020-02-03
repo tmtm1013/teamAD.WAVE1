@@ -101,12 +101,14 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
 
+
+
+
 //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
-
+	///敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -116,10 +118,7 @@ void CSceneBlock3::InitScene()
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
-
+	
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
@@ -141,16 +140,11 @@ void CSceneBlock3::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"ster.png", 32, TEX_SIZE_256);//Flyingenemyの魔法攻撃弾グラフィック
-
 	//氷柱のグラフィック読み込み
 	Draw::LoadImageW(L"icicle.png", 24, TEX_SIZE_512);
 
-	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
-	Draw::LoadImage(L"image1234.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
-
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
@@ -160,10 +154,9 @@ void CSceneBlock3::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
-
+	
 	//プレイヤー必殺技画像
-	Draw::LoadImageW(L"hissatu", 32, TEX_SIZE_1024);
-
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
