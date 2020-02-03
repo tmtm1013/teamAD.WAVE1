@@ -110,22 +110,23 @@ extern float kazu;
 #include "ObjHero.h"
 #include "ObjCursor.h"
 
+//ブロックヘッダー
 #include "ObjBlock.h"
-#include "ObjBlock2.h"
-#include "ObjBlock3.h"
+//#include "ObjBlock2.h"
+//#include "ObjBlock3.h"
 
 #include "ObjBossStage.h"
 #include "ObjEnemy.h"
 
 #include "ObjIcicle.h"
 
+//エネミーオブジェクトヘッダー
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
-
-
+#include "ObjSlime.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
@@ -157,12 +158,12 @@ extern float kazu;
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
-#include "SceneGameOver.h"
+#include "SceneGameOver.h"dd 
 #include "SceneItem.h"
 #include "SceneDescription.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain//CSceneBlock2
+#define SET_GAME_START CSceneBlock3//CSceneBlock2//CSceneMain//CSceneTitle//SceneBossStage//
 //-----------------------------------------------

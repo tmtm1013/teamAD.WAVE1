@@ -66,8 +66,6 @@ void CObjLastBoss::Init()
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 500, 315, ELEMENT_GREEN, OBJ_ENEMY, 1);//当たり判定
 
-
-
 }
 
 
@@ -162,7 +160,7 @@ void CObjLastBoss::Action()
 				m_time3 = 0;
 				//弾丸オブジェクト
 				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,18);
+				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,40);
 
 				Audio::Start(0);
 			}
@@ -183,7 +181,7 @@ void CObjLastBoss::Action()
 				m_time = 0;
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 18);
+				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 40);
 				Audio::Start(0);
 
 			}
@@ -198,8 +196,8 @@ void CObjLastBoss::Action()
 
 			m_time2 = 0;
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 18);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 18);
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 40);//オブジェ作成
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 40);
 			Audio::Start(0);
 
 		}

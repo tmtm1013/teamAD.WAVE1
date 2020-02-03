@@ -190,6 +190,6 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 52.0f + m_x;
 		dst.m_bottom = 48.0f + m_y;
 
-		Draw::Draw(18, &src, &dst, c, 0.0f);
+		Draw::Draw(40, &src, &dst, c, 0.0f);
 	}
 }

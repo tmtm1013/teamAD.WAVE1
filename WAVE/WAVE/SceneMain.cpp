@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p= Save::ExternalDataOpen(L"stage11.csv", &size);//外部データ読み込み
+	p= Save::ExternalDataOpen(L"stage111.csv", &size);//外部データ読み込み
 	
 	int map[10][200];
 	int count = 1;
@@ -101,9 +101,6 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
 
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
-
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -139,7 +136,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
 
 	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"icicle.png", 24, TEX_SIZE_512);
+
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
 
 	//土中のグラフィック読み込み
 	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
