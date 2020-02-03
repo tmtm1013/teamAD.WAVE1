@@ -158,12 +158,12 @@ extern float kazu;
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
-#include "SceneGameOver.h"dd 
+#include "SceneGameOver.h"
 #include "SceneItem.h"
 #include "SceneDescription.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle//CSceneMain//CSceneBlock2
+#define SET_GAME_START SceneBossStage//CSceneTitle//CSceneMain//CSceneBlock2
 //-----------------------------------------------
