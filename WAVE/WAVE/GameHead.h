@@ -160,7 +160,7 @@ extern float kazu;
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneClear.h"
-#include "SceneGameOver.h"dd 
+#include "SceneGameOver.h"
 #include "SceneItem.h"
 #include "SceneDescription.h"
 //-----------------------------------------------
