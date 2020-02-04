@@ -95,7 +95,7 @@ void CObjDangerWall::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//通常速度
-	m_speed_power = 1.2f;
+	m_speed_power = 1.1;
 	m_ani_max_time = 2;
 
 	m_ani_move = 1;//歩くアニメーション条件

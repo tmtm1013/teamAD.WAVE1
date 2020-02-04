@@ -215,7 +215,7 @@ void CObjHero::Action()
 	m_time += 0.1;
 
 	//通常弾発射-----------------------------------------------------------------
-	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1)
+	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1 )
 	{
 		if (m_f == true)
 		{
@@ -237,14 +237,14 @@ void CObjHero::Action()
 		m_f = true;
 	}
 	//連弾発射--------------------------------------------------------------------
-	if (Input::GetMouButtonL() == true && m_time >= 2 && bullet_type == 2)
+	if (Input::GetMouButtonL() == true && m_time >= 2 && bullet_type == 2 )
 	{
 		m_ani_move = 4;//------弾丸アニメーションデータを指定--------
 		Action_ani_flag = true;
 
 		if (movesecond >= 21 && m_hit_down == true)//SE制御
 		{
-			Audio::Start(3);
+			//Audio::Start(3);
 			movesecond = 0;
 		}
 
@@ -303,6 +303,7 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true && Action_guard == false)
 	{
+		
 		//主人公移動
 		m_vx += 0.5;
 		//アニメーション関数の呼び出し
@@ -317,7 +318,7 @@ void CObjHero::Action()
 	else if (Input::GetVKey('A') == true && Action_guard == false)
 	{
 		//主人公移動
-		m_vx -= 0.6f;
+		m_vx -= 0.5f;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
 			   1, 12, 1.0f);
@@ -326,7 +327,7 @@ void CObjHero::Action()
 
 		Action_direction = true;
 	}
-	else if (Input::GetVKey('C') == true && m_hit_down == true)//ガードアクション-----------
+	else if (Input::GetVKey('S') == true && m_hit_down == true && Input::GetMouButtonL()==false)//ガードアクション-----------
 	{
 		Action_guard = true;
 
@@ -346,7 +347,7 @@ void CObjHero::Action()
 
 		Action_Waiting = true;
 	}
-	if (Input::GetVKey('Z') == true && Action_Walk == true)	//Zキー入力で速度アップ---------
+	if (Input::GetVKey(VK_SHIFT) == true && Action_Walk == true)	//Zキー入力で速度アップ---------
 	{
 		//主人公移動
 		if (Action_direction == true) {
@@ -606,8 +607,6 @@ void CObjHero::Draw()
 
 
 	}
-
-
 
 	//--------------------------------------------------
 	//HP

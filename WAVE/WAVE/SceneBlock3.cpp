@@ -162,29 +162,23 @@ void CSceneBlock3::InitScene()
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
 
+	//背景のオブジェクト作成
+	CObjBackground* objbg = new CObjBackground();
+	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
+
+
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
+	//背景のオブジェクト作成
+	CObjDangerWall* objdw = new CObjDangerWall(0,64);
+	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 0);
+
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
-
-	/*
-	//BOSSオブジェクト作成
-	CObjBoss* objboss = new CObjBoss(600,300);
-	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-	*/
-
-	//背景のオブジェクト作成
-	CObjBackground* objbg = new CObjBackground();
-	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
-	/*
-	//Test用　　　敵オブジェクト作成
-	CObjEnemy* obje = new CObjEnemy();
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
-	*/
 
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
