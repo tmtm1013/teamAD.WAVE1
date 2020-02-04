@@ -281,7 +281,7 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-			b_hp_now -= 1;
+			b_hp_now -= 30;
 
 
 			Audio::Start(14);
@@ -357,7 +357,6 @@ void CObjEnemyJump::Action()
 
 	}
 
-	
 }
 
 //ÉhÉçÅ[

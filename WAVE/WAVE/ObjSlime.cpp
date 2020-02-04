@@ -273,14 +273,14 @@ void CObjSlime::Action()
 
 
 	}
-
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-		m_hp -= 1;
+		m_hp -= 30;
 
 
+		Audio::Start(14);
 	}
 
 	//—‰º‚µ‚½“G‚ğÁ‹‚·‚éB

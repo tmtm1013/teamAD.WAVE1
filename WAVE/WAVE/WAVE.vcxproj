@@ -122,6 +122,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjAitem.cpp" />
+    <ClCompile Include="ObjDangerWall.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
     <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
@@ -196,6 +197,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjAitem.h" />
+    <ClInclude Include="ObjDangerWall.h" />
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">

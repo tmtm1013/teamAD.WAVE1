@@ -130,12 +130,16 @@ void CSceneDescription::InitScene()
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 }
 
 //実行中メソッド
 void CSceneDescription::Scene()
-{
-	
+{ 
 
 	bool flag;
 

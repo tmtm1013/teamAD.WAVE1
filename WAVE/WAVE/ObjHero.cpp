@@ -501,6 +501,14 @@ void CObjHero::Action()
 			m_vx = KnockBack(m_px, ex);
 		}
 	}
+	//主人公が画面下に落ちたらゲームオーバーに移行
+	if (hp <= 0 || m_py > 600.0f)
+	{
+		this->SetStatus(false);//主人公オブジェクト削除
+		Hits::DeleteHitBox(this);//主人公ヒットボックス削除
+
+		Scene::SetScene(new CSceneGameOver());
+	}
 
 	//位置の更新
 	m_px += m_vx;
