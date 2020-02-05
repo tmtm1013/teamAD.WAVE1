@@ -278,8 +278,8 @@ void CObjBoss::Action()
 			
 				m_time2 = 0;
 				//’eŠÛƒIƒuƒWƒFƒNƒg
-				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll()+50, m_py-50, 18);//ƒIƒuƒWƒFì¬
-				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+				CObjHomingBullet* obj_bo = new CObjHomingBullet(m_px + block->GetScroll()+50, m_py-50, 20);//ƒIƒuƒWƒFì¬
+				Objs::InsertObj(obj_bo, OBJ_HOMING_BULLET, 20);
 				m_attack = true;//UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“ˆÚs—pƒtƒ‰ƒO
 			//“G‚ð“®‚©‚³‚È‚¢‚æ‚¤‚É‚·‚éB
 				m_vx = 0;
@@ -292,7 +292,7 @@ void CObjBoss::Action()
 
 			m_hp -= 15;
 
-
+			Audio::Start(12);
 		}
 		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 		if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
@@ -300,7 +300,7 @@ void CObjBoss::Action()
 
 			m_hp -= 10;
 
-
+			Audio::Start(13);
 		}
 		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 		if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
@@ -308,7 +308,7 @@ void CObjBoss::Action()
 
 			m_hp -= 40;
 
-
+			Audio::Start(14);
 		}
 		//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 		if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)

@@ -111,23 +111,23 @@ void CObjDiffusionBullet::Action()
 //ドロー
 void CObjDiffusionBullet::Draw()
 {
-	float c[4] = { 0.0f,1.0f,0.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
 
 	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 126.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 32.0f;
+	src.m_top = 600.0f;
+	src.m_left = 200.0f;
+	src.m_right = 400.0f;
+	src.m_bottom = 800.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_by;
-	dst.m_left = 0.0f + m_bx;
-	dst.m_right = 32.0f + m_bx;
+	dst.m_left = -5.0f + m_bx;
+	dst.m_right = 27.0f + m_bx;
 	dst.m_bottom = 32.0f + m_by;
 	//描画
-	Draw::Draw(0, &src, &dst, c, m_r);
+	Draw::Draw(34, &src, &dst, c, m_r);
 
 
 

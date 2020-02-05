@@ -16,9 +16,6 @@
     <ClCompile Include="COHomingBullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjRevolutionBullet.cpp">
-      <Filter>Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="ObjHero.cpp">
       <Filter>Hero</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
     </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
       <Filter>GameOver</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneClear.cpp">
       <Filter>Clear</Filter>
@@ -124,14 +118,8 @@
     <ClCompile Include="ObjEnemyJump.cpp">
       <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFlyimgEnemy2.cpp">
-      <Filter>Enemy\フライング</Filter>
-    </ClCompile>
     <ClCompile Include="ObjFlyingenemy.cpp">
       <Filter>Enemy\フライング</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBossSL.cpp">
-      <Filter>Enemy\ボススライム</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>Enemy\ランディング</Filter>
@@ -145,29 +133,29 @@
     <ClCompile Include="ObjBoss.cpp">
       <Filter>Enemy\ラストボス</Filter>
     </ClCompile>
-    <ClCompile Include="CheckHit.cpp">
-      <Filter>Module</Filter>
-    </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
       <Filter>Module</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
     <ClCompile Include="Graf.cpp">
       <Filter>SceneStage</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyJump2.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClCompile>
     <ClCompile Include="ObjAitem.cpp">
       <Filter>Item</Filter>
     </ClCompile>
-    <ClCompile Include="ObjAttackPoint.cpp">
-      <Filter>UI</Filter>
+    <ClCompile Include="ObjSlime.cpp">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClCompile>
-    <ClCompile Include="ObjDescriptionUi.cpp">
-      <Filter>UI</Filter>
+    <ClCompile Include="ObjIcicle.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjDangerWall.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>Clear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,9 +249,6 @@
     <ClInclude Include="ObjCursor.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>Title</Filter>
     </ClInclude>
@@ -291,17 +276,8 @@
     <ClInclude Include="ObjEnemyJump.h">
       <Filter>Enemy\ジャンプ</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemyJump2.h">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClInclude>
     <ClInclude Include="ObjFlyingenemy.h">
       <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingEnemy2.h">
-      <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBossSL.h">
-      <Filter>Enemy\ボススライム</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
       <Filter>Enemy\ランディング</Filter>
@@ -315,9 +291,6 @@
     <ClInclude Include="OBJBoss.h">
       <Filter>Enemy\ラストボス</Filter>
     </ClInclude>
-    <ClInclude Include="CheckHit.h">
-      <Filter>Module</Filter>
-    </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>Module</Filter>
     </ClInclude>
@@ -327,11 +300,17 @@
     <ClInclude Include="ObjAitem.h">
       <Filter>Item</Filter>
     </ClInclude>
-    <ClInclude Include="ObjAttackPoint.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="ObjSlime.h">
+      <Filter>Enemy\ジャンプ</Filter>
     </ClInclude>
-    <ClInclude Include="ObjDescriptionUi.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="ObjIcicle.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjDangerWall.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>Clear</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -382,9 +361,6 @@
     </Filter>
     <Filter Include="Enemy\フライング">
       <UniqueIdentifier>{0e283d79-983d-40f9-8e7f-92fda2dcf916}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\ボススライム">
-      <UniqueIdentifier>{289b3c39-0f6c-4387-8f7b-6a33244ed9b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Enemy\ランディング">
       <UniqueIdentifier>{49104eb1-7112-4067-b163-ef41500fae75}</UniqueIdentifier>

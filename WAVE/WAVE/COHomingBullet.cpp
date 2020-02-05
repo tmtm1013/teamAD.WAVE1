@@ -213,6 +213,11 @@ void CObjHomingBullet::Draw()
 	RECT_F src;
 	RECT_F dst;
 
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
 
 	//表示位置の設定
 	dst.m_top = -10.0f + m_y;
@@ -220,16 +225,7 @@ void CObjHomingBullet::Draw()
 	dst.m_right = 24.0f + m_x;
 	dst.m_bottom = 22.0f + m_y;
 
-
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 256.0f;
-	src.m_bottom = 256.0f;
-
 	Draw::Draw(m_aninum, &src, &dst, c, 0.0f);
-
-
 
 	//弾丸の状態で描画を変更
 	if (m_del == true)

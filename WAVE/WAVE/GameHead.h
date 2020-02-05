@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\Audio.h"
@@ -21,11 +20,14 @@ enum OBJ_NAME
 	OBJ_BLOCK,
 	OBJ_BLOCL2,
 	OBJ_BLOCK3,
+	
 	OBJ_BOSS_STAGE,
 	OBJ_ENEMY,
 	OBJ_TITLE,
 	OBJ_MAIN,
 	OBJ_TIME,
+
+	OBJ_ICICLE,
 
 	OBJ_BULLET,
 	OBJ_FULL_BULLET,
@@ -38,8 +40,10 @@ enum OBJ_NAME
 
 	OBJ_FLYINGENEMY,
 	OBJ_ENEMYJUMP,
+	OBJ_SlIME,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
+	OBJ_DANGER_WALL,
 	
 
 
@@ -108,20 +112,25 @@ extern float kazu;
 #include "ObjHero.h"
 #include "ObjCursor.h"
 
+//ブロックヘッダー
 #include "ObjBlock.h"
-#include "ObjBlock2.h"
-#include "ObjBlock3.h"
+//#include "ObjBlock2.h"
+//#include "ObjBlock3.h"
+
 #include "ObjBossStage.h"
 #include "ObjEnemy.h"
 
+#include "ObjIcicle.h"
 
+//エネミーオブジェクトヘッダー
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
+#include "ObjSlime.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
-
-
+#include "ObjSlime.h"
+#include "ObjDangerWall.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
@@ -160,5 +169,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle//CSceneMain//CSceneBlock2
+#define SET_GAME_START CSceneBlock3//CSceneTitle//CSceneClear//CSceneBlock2//SceneBossStage//CSceneBlock2//CSceneMain////CSceneTitle////
 //-----------------------------------------------

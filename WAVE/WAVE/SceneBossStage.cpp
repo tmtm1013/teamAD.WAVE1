@@ -26,7 +26,7 @@ using namespace GameL;
 //コンストラクタ
 SceneBossStage::SceneBossStage()
 {
-
+	((UserData*)Save::GetData())->Scenecontinue = 4;
 }
 
 //デストラクタ
@@ -71,27 +71,41 @@ void SceneBossStage::InitScene()
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
 
-	//音楽情報の読み込み
-	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
-	Audio::Start(24);//音楽スタート
+	Font::SetStrTex(L"0123456789分秒");
+
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
+
+	//SE読み込み
+	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
+	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
+	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
+	Audio::LoadAudio(7, L"SEgan/SpecialM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(らせん弾)----
+	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
+	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);//敵に主人公が当たった時の音
+	Audio::LoadAudio(11, L"SEgan/HitMA.wav", SOUND_TYPE::EFFECT);//敵の魔法攻撃に当たった時の音
+	Audio::LoadAudio(12, L"SEgan/sou.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
+
+	
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
-
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);
-
-	//主人公(待機)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);
-
-	//主人公(ジャンプ)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);
+	
+	///敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"kakyuu.png", 18, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -99,37 +113,39 @@ void SceneBossStage::InitScene()
 	//体力グラフィック読み込み
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
-	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"block3.png", 10, TEX_SIZE_512);
 
 	//ゲームオーバーのグラフィック読み込み
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
 	
-	Draw::LoadImageW(L"ドラゴン飛行.png", 27, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ドラゴン飛行.png", 31, TEX_SIZE_1024);
 
-	//JumpEnemyグラフィック読み込み
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"image1234.png", 23, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
-	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
-
-	Draw::LoadImageW(L"image1234.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
-	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
+
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	//ボスのHPグラフィック読み込み
+	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"HPGauge02_purple.png", 29, TEX_SIZE_512);
+
+	//音楽情報の読み込み
+	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
+	Audio::Start(24);//音楽スタート
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
@@ -162,6 +178,7 @@ void SceneBossStage::InitScene()
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
 
+
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
@@ -169,6 +186,7 @@ void SceneBossStage::InitScene()
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
+
 
 
 	/*//テスト用:弾丸オブジェクト作成

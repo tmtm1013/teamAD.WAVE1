@@ -25,7 +25,6 @@ void CObjBlock::Init()
 	
 
 	m_scroll = 0.0f;
-
 }
 
 //アクション
@@ -53,7 +52,7 @@ void CObjBlock::Action()
 	}
 
 
-	
+
 
 	
 	//敵出現ライン
@@ -68,6 +67,9 @@ void CObjBlock::Action()
 	int jx = ((int)line) / 64;
 	int jx2 = ((int)line) / 64;
 	int lx = ((int)line) / 64;
+	int sx = ((int)line) / 64;
+	int ix = ((int)line) / 64;
+	int ox = ((int)line) / 64;
 
 	//敵出現ラインの列を探索
 	for (int i = 0; i < 10; i++)
@@ -144,8 +146,43 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
-		
+			//列の中から11を探す
+			if (m_map[i][lx] == 11)
+			{
+				CObjSlime*obje = new CObjSlime(lx*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY, 14);
 
+				//敵出現場所の0にする
+				m_map[i][lx] = 0;
+			}
+
+			
+
+			//列の中から12を探す
+			if (m_map[i][ix] == 12)
+			{
+				CObjIcicle*obje = new CObjIcicle(ix*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_ICICLE, 33);
+
+				//敵出現場所の値を0にする
+				m_map[i][jx] = 0;
+
+			}
+			
+			//列の中から20を探す
+			if (m_map[i][ox] == 20)
+			{
+				//アイテムオブジェクト作成	
+				CObjAitem*obje = new CObjAitem(ox*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_AITEM, 7);
+				
+
+			
+
+				//敵出現場所の値を0にする
+ 				m_map[i][ox] = 0;
+			}
+			
 	}
 	
 }
@@ -261,8 +298,32 @@ void CObjBlock::Draw()
 				if (m_map[i][j] == 12)
 				{
 					;
+					/*
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 512.0f;
+					src.m_bottom = 512.0f;
+					Draw::Draw(24, &src, &dst, c, 0.0f);
+					*/
 				}
-			
+
+				if (m_map[i][j] == 13)
+				{
+					;
+
+				}
+				
+				if (m_map[i][j] == 14)
+				{
+					//描画
+					Draw::Draw(30, &src, &dst, c, 0.0f);
+				}
+
+				if (m_map[i][j] == 15)
+				{
+					//描画
+					Draw::Draw(31, &src, &dst, c, 0.0f);
+				}
 			}
 		}
 	}
@@ -302,6 +363,7 @@ void CObjBlock::BlockHit(
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
+
 {
 	//衝突確認用フラグの初期化
 	*up = false;

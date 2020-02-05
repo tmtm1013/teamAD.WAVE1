@@ -35,7 +35,8 @@ private:
 	bool m_move;
 
 	//ENEMY‚ÌHP
-	int m_hp;
+	int Boss_hp_max;
+	int Boss_hp_now;
 
 	//’eŠÛ—pƒvƒƒOƒ‰ƒ€
 	int m_time;

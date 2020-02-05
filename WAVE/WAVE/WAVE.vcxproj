@@ -22,19 +22,19 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{216606D6-8CB9-4DEE-992F-AACF99C8E4D2}</ProjectGuid>
     <RootNamespace>WAVE</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -42,12 +42,12 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -117,19 +117,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjAitem.cpp" />
     <ClCompile Include="Graf.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjAttackPoint.cpp" />
+    <ClCompile Include="ObjAitem.cpp" />
+    <ClCompile Include="ObjDangerWall.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
-    <ClCompile Include="ObjDescriptionUi.cpp" />
-    <ClCompile Include="ObjEnemyJump2.cpp" />
+    <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
-    <ClCompile Include="CheckHit.cpp" />
-    <ClCompile Include="ObjBossSL.cpp" />
-    <ClCompile Include="ObjFlyimgEnemy2.cpp" />
     <ClCompile Include="ObjFlyingenemy.cpp" />
     <ClCompile Include="CObjAngleBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -177,6 +173,7 @@
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjRevolutionBullet.cpp" />
+    <ClCompile Include="ObjSlime.cpp" />
     <ClCompile Include="ObjTime.cpp" />
     <ClCompile Include="SceneBlock2.cpp" />
     <ClCompile Include="SceneBlock3.cpp" />
@@ -200,21 +197,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjAitem.h" />
-    <ClInclude Include="ObjAttackPoint.h" />
+    <ClInclude Include="ObjDangerWall.h" />
     <ClInclude Include="ObjDescription.h" />
-    <ClInclude Include="ObjDescriptionUi.h" />
+    <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="CheckHit.h" />
     <ClInclude Include="OBJBoss.h" />
     <ClInclude Include="CObjAngleBullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CObjBullet.h" />
-    <ClInclude Include="ObjBossSL.h" />
     <ClInclude Include="ObjCursor.h" />
-    <ClInclude Include="ObjEnemyJump2.h" />
     <ClInclude Include="ObjEnemyLongdistance.h" />
     <ClInclude Include="CObjFullBullet.h" />
     <ClInclude Include="CObjDiffusionBullet.h" />
@@ -242,7 +236,6 @@
     <ClInclude Include="ObjClear.h" />
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjFlyingenemy.h" />
-    <ClInclude Include="ObjFlyingEnemy2.h" />
     <ClInclude Include="ObjGren.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -250,6 +243,7 @@
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjRevolutionBullet.h" />
+    <ClInclude Include="ObjSlime.h" />
     <ClInclude Include="ObjTime.h" />
     <ClInclude Include="SceneBlock2.h" />
     <ClInclude Include="SceneBlock3.h" />
