@@ -65,7 +65,7 @@ void CObjClear::Draw()
 
 	Font::StrDraw(L"Enter to Title", 180, 450, 62, c);
 
-	Draw::LoadImageW(L"ClearH.png", 6, TEX_SIZE_512);
+	Draw::LoadImageW(L"Clear.png", 6, TEX_SIZE_512);
 
 
 }
