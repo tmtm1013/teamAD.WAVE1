@@ -101,8 +101,7 @@ void CSceneMain::InitScene()
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
 
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+	
 
 
 	//Enemyグラフィック読み込み
@@ -112,7 +111,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
@@ -141,13 +140,15 @@ void CSceneMain::InitScene()
 	//氷柱のグラフィック読み込み
 	Draw::LoadImageW(L"icicle.png", 21, TEX_SIZE_512);
 
-	//土中のグラフィック読み込み
-	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
+	
 
 	
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 	Draw::LoadImageW(L"EhitEff.png", 24, TEX_SIZE_512);
@@ -162,8 +163,13 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
 
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
+
 	//グラフィック読み込み
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
+
+	
 	
 	
 

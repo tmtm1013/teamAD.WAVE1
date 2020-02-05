@@ -117,7 +117,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
@@ -157,6 +157,8 @@ void CSceneBlock3::InitScene()
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	
 
 
 	//ボリュームを1.0に戻す

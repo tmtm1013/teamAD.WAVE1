@@ -80,8 +80,8 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+	
+	
 
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
@@ -109,7 +109,7 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//手榴弾グラフィック読み込み
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
@@ -133,34 +133,43 @@ void CSceneBlock2::InitScene()
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
 
-	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);//
-	Draw::LoadImageW(L"ster.png", 32,TEX_SIZE_256);//Flyingenemyの魔法攻撃弾グラフィック
+	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
 
-	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle2.png", 24, TEX_SIZE_512);
-
-	//土中のグラフィック読み込み
-	Draw::LoadImageW(L"snow1.png", 30, TEX_SIZE_512);
-	
-	//道中２のグラフィック読み込み
-	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
-
-
-	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
-	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
-	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
-	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
-
-	//HPカバーグラフィック読み込み
-	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 
+	//敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
+	//氷柱のグラフィック読み込み
+	Draw::LoadImageW(L"icicle2.png", 24, TEX_SIZE_512);
+
+	//HPカバーグラフィック読み込み
+	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
+
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"snow1.png", 30, TEX_SIZE_512);
+
+	//道中２のグラフィック読み込み
+	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"ster.png", 32,TEX_SIZE_256);//Flyingenemyの魔法攻撃弾グラフィック
+
+	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
+	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
+
+	
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

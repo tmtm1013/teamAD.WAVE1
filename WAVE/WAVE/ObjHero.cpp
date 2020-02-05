@@ -692,13 +692,13 @@ void CObjHero::Action()
 	{
 		
 		
-		/*
+		
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		
 		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
-		*/
+		
 	}
 		
 
