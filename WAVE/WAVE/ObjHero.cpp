@@ -511,10 +511,15 @@ void CObjHero::Action()
 	//主人公が画面下に落ちたらゲームオーバーに移行
 	if (hp <= 0 || m_py > 600.0f)
 	{
-		this->SetStatus(false);//主人公オブジェクト削除
-		Hits::DeleteHitBox(this);//主人公ヒットボックス削除
-
+		
+		
+		
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+		
+		//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 		Scene::SetScene(new CSceneGameOver());
+		
 	}
 
 	//位置の更新
