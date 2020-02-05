@@ -70,19 +70,10 @@ void CSceneBlock2::InitScene()
 
 	//Font作成
 	//Font::SetStrTex(L"0123456789分秒");
-
+	
 	//音楽読み込み
 	Audio::LoadAudio(22, L"back2.wav",BACK_MUSIC);
 	Audio::Start(22);//音楽スタート
-	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
-	
-	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	
-	
-
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
 	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
@@ -93,11 +84,21 @@ void CSceneBlock2::InitScene()
 	Audio::LoadAudio(8, L"SEgan/landing.wav", SOUND_TYPE::EFFECT);//-------ジャンプ音の読み込み----
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
-	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(11, L"SEgan/HitMA.wav", SOUND_TYPE::EFFECT);//敵の魔法攻撃に当たった時の音
+	Audio::LoadAudio(12, L"SEgan/sou.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
+	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
+	
 
 
-	//Font作成
-	Font::SetStrTex(L"0123456789分秒");
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
+	
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
@@ -109,17 +110,11 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
-
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"blocka2.png", 10, TEX_SIZE_512);
-
-	//ゲームオーバーのグラフィック読み込み
-	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);
-
+	
 	//JumpEnemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
 
@@ -130,25 +125,23 @@ void CSceneBlock2::InitScene()
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
 
-	//ダメージブロックのグラフィックの読み込み
-	Draw::LoadImageW(L"dblock1.png", 16, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
-
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
-
-	//グラフィック読み込み
-	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
-
 	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
-
-	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle2.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"icicle2.png", 33, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"snow1.png", 30, TEX_SIZE_512);
+	
+	//道中２のグラフィック読み込み
+	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
+
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
+
+	//弾丸エフェクト
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
@@ -157,18 +150,14 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
-	//土中のグラフィック読み込み
-	Draw::LoadImageW(L"snow1.png", 30, TEX_SIZE_512);
+	//消滅エフェクト画像
+	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 
-	//道中２のグラフィック読み込み
-	Draw::LoadImageW(L"bblock1.png", 31, TEX_SIZE_512);
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"image1234.png", 23, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"ster.png", 32,TEX_SIZE_256);//Flyingenemyの魔法攻撃弾グラフィック
-
-	//外部グラフィックファイルの読み込み０番に登録(512×512ピクセル)
-	Draw::LoadImage(L"image1234.png", 50, TEX_SIZE_512);
-
-	
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
 
 
 	//ボリュームを1.0に戻す

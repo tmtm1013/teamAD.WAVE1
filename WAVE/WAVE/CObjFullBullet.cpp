@@ -25,7 +25,7 @@ CObjFullBullet::CObjFullBullet(float x, float y)
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_FULL_BULLET, 1);
 
-	Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
+	//Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 }
 
 //イニシャライズ
@@ -99,11 +99,12 @@ void CObjFullBullet::Action()
 		//移動ベクトルを座標に加算する
 		m_bx += m_vx;
 		m_by += m_vy;
-	
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_bx, m_by);
+	hit->SetPos(m_bx , m_by);
 
 
 
@@ -141,13 +142,15 @@ void CObjFullBullet::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 		//float Volume = Audio::VolumeMaster(-0.2f);
-		Audio::Start(11);//SE再生(装備音)
+		//Audio::Start(11);//SE再生(装備音)
 	}
 }
 
 //ドロー
 void CObjFullBullet::Draw()
 {
+
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -163,8 +166,8 @@ void CObjFullBullet::Draw()
 
 	//表示位置の設定
 	dst.m_top = -16.0f + m_by;
-	dst.m_left = -16.0f + m_bx;
-	dst.m_right = 32.0f + m_bx;
+	dst.m_left = -16.0f + m_bx ;
+	dst.m_right = 32.0f + m_bx ;
 	dst.m_bottom = 32.0f + m_by;
 
 

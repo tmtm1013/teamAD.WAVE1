@@ -78,18 +78,26 @@ void CObjEnemyJump::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_hp = 100;//ENEMYのHP
-
 	m_time = 0;//ジャンプ用タイム
 
 	m_move = false;//true=右
 
 	m_rnd = 0;//ジャンプ用ランダム変数
 
+	//ボスHP
+	b_hp_max = 200;
+	b_hp_now = b_hp_max;
+
 	//攻撃アニメーション
 	m_attack = false;
 	m_ani_frame2 = 0;
 	m_ani_max_time2 = 4;
+
+	//消滅エフェクト
+	m_ani = 0;
+	m_ani_time2 = 0;
+	m_del = false;
+
 
 	EnemyCount++;
 
@@ -256,25 +264,27 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-			m_hp -= 15;
+			b_hp_now -= 15;
 
+			Audio::Start(12);
 	}
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
 
-			m_hp -= 10;
+			b_hp_now -= 10;
 
-
+			Audio::Start(13);
 	}
 
 	//敵と弾丸が接触したらHPが減る
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-			m_hp -= 1;
+			b_hp_now -= 30;
 
 
+			Audio::Start(14);
 	}
 
 	//落下した敵を消去する。
@@ -285,21 +295,68 @@ void CObjEnemyJump::Action()
 	}
 
 	//HPが0になったら破棄
-	if (m_hp <= 0)
+	if (b_hp_now <= 0)
 	{
+		//敵を動かさないようにする。
+		m_vx = 0;
+		m_vy = 0;
+
+		m_del = true;//着弾エフェクト移行用フラグ
+		hit->SetInvincibility(true);//判定無効
+
+
+
+
+	}
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[5] =
+		{
+
+
+			{0,  0,  204 ,200},
+			{0, 204, 408 ,200},
+			{0, 408, 612,200},
+			{0, 612,816, 200},
+			{0, 816,1020,200},
+
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time2 > 2)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time2 = 0;
+
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
+
+			m_ani_time2++;
+
+		}
+
+		if (m_ani == 5)
+		{
+
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 
-			//敵が消滅したら+100点
-			((UserData*)Save::GetData())->m_point += 100;
 
-		//敵消滅でシーンをゲームクリアに移行する
-		Scene::SetScene(new CSceneBlock2());
+
+
+			//ボス消滅でシーンをステージ2に移行する
+			Scene::SetScene(new CSceneBlock2());
+
+		}
+
+		return;
 
 	}
 
-	
 }
 
 //ドロー
@@ -324,7 +381,7 @@ void CObjEnemyJump::Draw()
 
 
 	   //描画カラー     R     G    B    透過 
-		float c[4] = { 1.0f,0.0f,.0f,1.0f };
+		float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 
 		RECT_F src;//描画元切り取り位置
 		RECT_F dst;//描画先表示位置
@@ -338,33 +395,89 @@ void CObjEnemyJump::Draw()
 
 
 		if (m_attack == true) {
+			//弾丸の状態で描画を変更if (m_del == true)
+			if (m_del == true)
+			{
 
-			//切り取り位置の設定
-			src.m_top = 48.0f ;
-			src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-			src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-			src.m_bottom = 96.0f;
+				Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+				//着弾アニメーション
 
-			//描画
-			Draw::Draw(12, &src, &dst, c, 0.0f);
+			}
+			else
+			{
+
+
+				//切り取り位置の設定
+				src.m_top = 48.0f;
+				src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
+				src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
+				src.m_bottom = 96.0f;
+
+				//描画
+				Draw::Draw(12, &src, &dst, c, 0.0f);
+			}
 		}
-		else {
+		else
+		{
+
+			//弾丸の状態で描画を変更if (m_del == true)
+			if (m_del == true)
+			{
+
+				Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+				//着弾アニメーション
+
+			}
+			else
+			{
 
 
-			// 切り取り位置の設定
-			src.m_top = 0.0f ;
-			src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-			src.m_right = 48.0f + AniData[m_ani_frame] * 48;
-			src.m_bottom = 48.0f;
+				// 切り取り位置の設定
+				src.m_top = 0.0f;
+				src.m_left = 0.0f + AniData[m_ani_frame] * 48;
+				src.m_right = 48.0f + AniData[m_ani_frame] * 48;
+				src.m_bottom = 48.0f;
 
-			//描画
-			Draw::Draw(12, &src, &dst, c, 0.0f);
+				//描画
+				Draw::Draw(12, &src, &dst, c, 0.0f);
+
+			}
 		}
 
 
+	//---------------------------------------------------------------------
 		
-		
+	//HPカバー
+	//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0;
+		src.m_bottom = 20.0f;
 
+		//表示位置設定
+		dst.m_top = 580.0f;
+		dst.m_left = 40.0f;
+		dst.m_right = 760.0f;
+		dst.m_bottom = 595.0f;
+
+		//描画
+		Draw::Draw(28, &src, &dst, c, 0.0f);
+
+		//ボスHPグラフィック表示
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 248.0;
+		src.m_bottom = 12.0f;
+
+		//表示位置設定
+		dst.m_top = 582.0f;
+		dst.m_left = 46.0f;
+		dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+		dst.m_bottom = 593.0f;
+
+		//描画
+		Draw::Draw(29, &src, &dst, c, 0.0f);
 
 	
 	

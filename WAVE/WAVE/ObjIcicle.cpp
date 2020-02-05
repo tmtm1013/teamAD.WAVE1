@@ -119,9 +119,7 @@ void CObjIcicle::Action()
 	if (m_hit_down==true)
 		m_hp =- 1;
 	
-
 	
-
 	//à íuÇÃçXêV
 	m_px += m_vx;
 	m_py += m_vy;
@@ -251,6 +249,6 @@ void CObjIcicle::Draw()
 
 
 	//ï`âÊ
-	Draw::Draw(24, &src, &dst, c, 0.0f);
+	Draw::Draw(33, &src, &dst, c, 0.0f);
 
 }
