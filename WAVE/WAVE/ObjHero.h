@@ -41,45 +41,45 @@ public:CObjHero() {}
 	   float GetXX();//位置情報ｘ取得用
 	   float GetYY();//位置情報Y取得用
 
-private:
-	float m_px;    //位置
-	float m_py;
-	float m_sx;   //サイズ用
-	float m_sy;
+ private:
+	  float m_px;    //位置
+	  float m_py;
+	  float m_sx;   //サイズ用
+	  float m_sy;
 
-	bool m_mou_pr; //マウスの右ボタン
-	bool m_mou_pl; //マウス左ボタン
+  	  bool m_mou_pr; //マウスの右ボタン
+	  bool m_mou_pl; //マウス左ボタン
 
-	bool  m_f;     //弾丸発射制御用
-	bool  m_gf;     //グレネード発射用フラグ
-	float m_time;  //弾丸発射可能頻度制御
-	int bullet_type;//弾丸の種類
+	  bool  m_f;     //弾丸発射制御用
+	  bool  m_gf;     //グレネード発射用フラグ
+	  float m_time;  //弾丸発射可能頻度制御
+	  int bullet_type;//弾丸の種類
 
-	bool Guard_flag;//ガード用フラグ
-	int  guard;     //ガード用変数
+	  bool Guard_flag;//ガード用フラグ
+	  int  guard;     //ガード用変数
 
-	float m_vx;    //移動ベクトル
-	float m_vy;
-	float m_posture;  //姿勢
+	  float m_vx;    //移動ベクトル
+	  float m_vy;
+	  float m_posture;  //姿勢
 
-	int  m_ani_time;  //アニメーションフレーム動作間隔
-	int  m_ani_timeJump;
+	  int  m_ani_time;  //アニメーションフレーム動作間隔
+	  int  m_ani_timeJump;
 
 
-	float m_speed_power;  //スピードパワー
-	float m_ani_max_time; //アニメーション動作間隔最大値
-	float m_ani_max_time_Jump;
-	int m_ani_time_Jump;
-	int   m_ani_move;//アニメーション切り替え用
+	  float m_speed_power;  //スピードパワー
+	  float m_ani_max_time; //アニメーション動作間隔最大値
+	  float m_ani_max_time_Jump;
+	  int m_ani_time_Jump;
+	  int   m_ani_move;//アニメーション切り替え用
 
-	bool SE_flag;
+	  bool SE_flag;
 
-	short int movesecond; //秒間用変数	
-	short int jumpsecond; //秒間用変数
-	short int jump_time;//ジャンプ時間管理用
-	short int m_SEtime;//SEの再生頻度制御用変数
-	short int Action_ani_time;//攻撃アニメーション切り替え頻度制御
-	bool Action_ani_flag;
+	  short int movesecond; //秒間用変数	
+	  short int jumpsecond; //秒間用変数
+	  short int jump_time;//ジャンプ時間管理用
+	  short int m_SEtime;//SEの再生頻度制御用変数
+	  short int Action_ani_time;//攻撃アニメーション切り替え頻度制御
+	  bool Action_ani_flag;
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;

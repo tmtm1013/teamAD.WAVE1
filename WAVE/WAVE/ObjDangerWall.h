@@ -10,7 +10,7 @@ using namespace GameL;
 //オブジェクト：敵
 class CObjDangerWall :public CObj
 {
-public:CObjDangerWall(float x, float y);
+public:CObjDangerWall() {};
 	   ~CObjDangerWall() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
@@ -46,8 +46,5 @@ private:
 	bool m_del;//消去チェック
 	RECT_F m_eff;//着弾エフェクト描画用
 
-	bool m_attack;//攻撃アニメーションフラグ
-	int m_ani_frame2;//攻撃アニメーション用タイム
-	float m_ani_max_time2; //アニメーション動作間隔最大値
-
+	
 };

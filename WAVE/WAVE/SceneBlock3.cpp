@@ -51,7 +51,7 @@ void CSceneBlock3::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			
+
 			if (w >= 10)
 			{
 				count += 3;
@@ -118,7 +118,7 @@ void CSceneBlock3::InitScene()
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-	
+
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
@@ -136,6 +136,9 @@ void CSceneBlock3::InitScene()
 
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
+
+	//溶岩壁
+	Draw::LoadImageW(L"LavaAni1.png", 16, TEX_SIZE_512);
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
@@ -172,8 +175,8 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
-	//背景のオブジェクト作成
-	CObjDangerWall* objdw = new CObjDangerWall(0,64);
+	//溶岩壁オブジェクト作成
+	CObjDangerWall* objdw = new CObjDangerWall();
 	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 0);
 
 	//主人公オブジェクト作成

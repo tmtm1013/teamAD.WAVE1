@@ -64,43 +64,43 @@ void CObjFullBullet::Action()
 
 
 
-		//マウスの位置を取得
-		if (flag == true)
-		{
-			m_mou_bx = (float)Input::GetPosX();
-			m_mou_by = (float)Input::GetPosY();
+	//マウスの位置を取得
+	if (flag == true)
+	{
+		m_mou_bx = (float)Input::GetPosX();
+		m_mou_by = (float)Input::GetPosY();
 
-			bx = (m_mou_bx - m_bx)*m_vx;
-			by = (m_by - m_mou_by)*m_vy;
+		bx = (m_mou_bx - m_bx)*m_vx;
+		by = (m_by - m_mou_by)*m_vy;
 
-			flag = false;
-		}
+		flag = false;
+	}
 
-		float r = 0.0f;
-		r = bx * bx + by * by;
-		r = sqrt(r);//r をルートを求める
+	float r = 0.0f;
+	r = bx * bx + by * by;
+	r = sqrt(r);//r をルートを求める
 
-		//長さが0かどうか調べる
-		if (r == 0.0f)
-		{
-			;//0なら何もしない
-		}
-		else
-		{
-			//正規化を行う
-			m_vx = 1.0f / r * bx;
-			m_vy = 1.0f / r * by;
-		}
+	//長さが0かどうか調べる
+	if (r == 0.0f)
+	{
+		;//0なら何もしない
+	}
+	else
+	{
+		//正規化を行う
+		m_vx = 1.0f / r * bx;
+		m_vy = 1.0f / r * by;
+	}
 
-		//弾丸に速度つける
-		m_vx *= FULL_BULLET_SPEED;
-		m_vy *= FULL_BULLET_SPEED;
+	//弾丸に速度つける
+	m_vx *= FULL_BULLET_SPEED;
+	m_vy *= FULL_BULLET_SPEED;
 
-		//移動ベクトルを座標に加算する
-		m_bx += m_vx;
-		m_by += m_vy;
+	//移動ベクトルを座標に加算する
+	m_bx += m_vx;
+	m_by += m_vy;
 
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);

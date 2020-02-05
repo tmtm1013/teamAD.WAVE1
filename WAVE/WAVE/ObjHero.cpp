@@ -327,7 +327,7 @@ void CObjHero::Action()
 
 		Action_direction = true;
 	}
-	else if (Input::GetVKey('S') == true && m_hit_down == true && Input::GetMouButtonL()==false)//ガードアクション-----------
+	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL()==false)//ガードアクション-----------
 	{
 		Action_guard = true;
 
@@ -450,18 +450,16 @@ void CObjHero::Action()
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
-		if (flag == true && hp_time <= 0.0f)
-		{
-			hp -= 10 * guard;
+		if (flag == true && hp_time <= 0.0f){   
 
-			flag = false;
-			hp_time = 1.6f;
+			hp -= 5 * guard;//ダメージ量×ガード値
+
+			flag = false;//主人公HP減算量管理フラグ 
+			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
-		if (hp_time >= 0.0f)
-		{
+		if (hp_time >= 0.0f){
 			flag = true;
 		}
-
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -501,7 +499,15 @@ void CObjHero::Action()
 
 			m_vx = KnockBack(m_px, ex);
 		}
+		
 	}
+	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr) {//主人公がOBJ_DANGER_WALLに当たった時の処理
+		m_vx += 6.0f;//主人公ノックバック
+		hp -= 30;//主人公のHP減算
+	}
+
+	
+
 	//主人公が画面下に落ちたらゲームオーバーに移行
 	if (hp <= 0 || m_py > 600.0f)
 	{
