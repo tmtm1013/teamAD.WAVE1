@@ -99,11 +99,12 @@ void CObjFullBullet::Action()
 		//移動ベクトルを座標に加算する
 		m_bx += m_vx;
 		m_by += m_vy;
-	
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_bx, m_by);
+	hit->SetPos(m_bx , m_by);
 
 
 
@@ -149,6 +150,8 @@ void CObjFullBullet::Action()
 void CObjFullBullet::Draw()
 {
 
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -163,8 +166,8 @@ void CObjFullBullet::Draw()
 
 	//表示位置の設定
 	dst.m_top = -16.0f + m_by;
-	dst.m_left = -16.0f + m_bx;
-	dst.m_right = 32.0f + m_bx;
+	dst.m_left = -16.0f + m_bx ;
+	dst.m_right = 32.0f + m_bx ;
 	dst.m_bottom = 32.0f + m_by;
 
 

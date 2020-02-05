@@ -73,12 +73,12 @@ void SceneBossStage::InitScene()
 
 	Font::SetStrTex(L"0123456789分秒");
 
-	//主人公(前進)グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
+	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
 
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
@@ -101,10 +101,11 @@ void SceneBossStage::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 	
+	///敵弾丸グラフィック読み込み
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
+
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
-
-	
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -112,11 +113,6 @@ void SceneBossStage::InitScene()
 	//体力グラフィック読み込み
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
-	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block3.png", 10, TEX_SIZE_512);
@@ -126,19 +122,17 @@ void SceneBossStage::InitScene()
 	
 	Draw::LoadImageW(L"ドラゴン飛行.png", 31, TEX_SIZE_1024);
 
-	//JumpEnemyグラフィック読み込み
-	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_1024); //ジャンプする敵
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"image1234.png", 23, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
-	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
-
-	Draw::LoadImageW(L"image1234.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
-	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
+
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
 
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
@@ -147,8 +141,6 @@ void SceneBossStage::InitScene()
 	//ボスのHPグラフィック読み込み
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_purple.png", 29, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"kakyuu.png", 40, TEX_SIZE_256);
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);

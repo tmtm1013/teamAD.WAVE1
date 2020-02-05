@@ -119,9 +119,7 @@ void CObjIcicle::Action()
 	if (m_hit_down==true)
 		m_hp =- 1;
 	
-
 	
-
 	//à íuÇÃçXêV
 	m_px += m_vx;
 	m_py += m_vy;

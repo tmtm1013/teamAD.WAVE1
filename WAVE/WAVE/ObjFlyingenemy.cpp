@@ -21,6 +21,7 @@ void  CObjFlyingenemy::SetXX(float x)
 	m_px = x;
 
 }
+
 //位置情報Y変更用
 void  CObjFlyingenemy::SetYY(float y)
 {
@@ -37,6 +38,7 @@ float  CObjFlyingenemy::GetEX()
 
 
 }
+
 //位置情報Y取得用
 float CObjFlyingenemy::GetEY()
 {
@@ -61,6 +63,8 @@ CObjFlyingenemy::CObjFlyingenemy(float x, float y)
 //イニシャライズ
 void CObjFlyingenemy::Init()
 {
+	Audio::LoadAudio(0, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);
+
 	m_vx = 0.0f;    //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
@@ -88,6 +92,13 @@ void CObjFlyingenemy::Init()
 
 	m_time = 0;//弾丸用タイム
 
+	m_ani = 0;
+	m_ani_time2 = 0;
+	m_del = false;
+
+
+
+
 	//攻撃アニメーション
 	m_attack = false;
 	m_ani_frame2 = 0;
@@ -99,6 +110,7 @@ void CObjFlyingenemy::Init()
 //アクション
 void CObjFlyingenemy::Action()
 {
+
 
 	//通常速度
 	m_speed_power = 0.1f;
@@ -128,17 +140,15 @@ void CObjFlyingenemy::Action()
 			m_time = 0;
 
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,32);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 21);
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py,20);//オブジェ作成
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
 
 			Audio::Start(15);
 			m_attack = true;
 
-			//敵を動かさないようにする。
-			m_vx = 0;
-			m_vy = 0;
-		}
 
+
+		}
 	}
 
 	
@@ -297,29 +307,75 @@ void CObjFlyingenemy::Action()
 		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
 	}
 	
-	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-
-		
-		/*
-			//アイテムオブジェクト作成	
-			CObjItem*obju = new CObjItem(m_px, m_py);
-			Objs::InsertObj(obju, OBJ_ITEM, 7);
-			*/
-		
 
 
 
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
+		//敵を動かさないようにする。
+		m_vx = 0;
+		m_vy = 0;
+
+		m_del = true;//着弾エフェクト移行用フラグ
+
+		hit->SetInvincibility(true);//判定無効
+
+
+
 
 	}
 
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[5] =
+		{
 
+
+			{0,  0,  204 ,200},
+			{0, 204, 408 ,200},
+			{0, 408, 612,200},
+			{0, 612,816, 200},
+			{0, 816,1020,200},
+
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time2 > 2)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time2 = 0;
+
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
+
+			m_ani_time2++;
+
+		}
+
+		if (m_ani == 5)
+		{
+
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+
+			//敵が消滅したら+100点
+			((UserData*)Save::GetData())->m_point += 10;
+
+		
+
+		}
+
+
+
+
+		return;
+
+	}
 }
 
 //ドロー
@@ -359,34 +415,51 @@ void CObjFlyingenemy::Draw()
 
 		if (m_attack == true) {
 
+			if (m_del == true)
+			{
+
+				Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+				//着弾アニメーション
+
+			}
+			else
+			{
 
 
-			//切り取り位置の設定
-			src.m_top = 133.0f;
-			src.m_left = 3.0f + AniDatatack[m_ani_frame2] * 132;
-			src.m_right = 132.0f + AniDatatack[m_ani_frame2] * 132;
-			src.m_bottom = 264.0f;
+				//切り取り位置の設定
+				src.m_top = 133.0f;
+				src.m_left = 3.0f + AniDatatack[m_ani_frame2] * 132;
+				src.m_right = 132.0f + AniDatatack[m_ani_frame2] * 132;
+				src.m_bottom = 264.0f;
 
 
-			//描画
-			Draw::Draw(14, &src, &dst, c, 0.0f);
+				//描画
+				Draw::Draw(14, &src, &dst, c, 0.0f);
+			}
 		}
-
 		else
 		{
+			if (m_del == true)
+			{
+
+				Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+				//着弾アニメーション
+
+			}
+			else
+			{
+
+				//切り取り位置の設定
+				src.m_top = 0.0f;
+				src.m_left = 0.0f + AniData[m_ani_frame] * 132;
+				src.m_right = 132.0f + AniData[m_ani_frame] * 132;
+				src.m_bottom = 132.0f;
 
 
-			//切り取り位置の設定
-			src.m_top = 0.0f;
-			src.m_left = 0.0f + AniData[m_ani_frame] * 132;
-			src.m_right = 132.0f + AniData[m_ani_frame] * 132;
-			src.m_bottom = 132.0f;
+				//描画
+				Draw::Draw(14, &src, &dst, c, 0.0f);
 
-
-			//描画
-			Draw::Draw(14, &src, &dst, c, 0.0f);
-
-
+			}
 		}
 }
 

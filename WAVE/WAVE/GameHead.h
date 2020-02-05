@@ -40,8 +40,10 @@ enum OBJ_NAME
 
 	OBJ_FLYINGENEMY,
 	OBJ_ENEMYJUMP,
+	OBJ_SlIME,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
+	OBJ_DANGER_WALL,
 	
 
 
@@ -123,10 +125,12 @@ extern float kazu;
 //エネミーオブジェクトヘッダー
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
+#include "ObjSlime.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
 #include "ObjSlime.h"
+#include "ObjDangerWall.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
@@ -165,5 +169,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneClear//SceneBossStage//CSceneTitle//CSceneMain//CSceneBlock2
+#define SET_GAME_START CSceneMain//CObjTitle//CSceneBlock2//CSceneMain//
 //-----------------------------------------------

@@ -130,8 +130,7 @@ void CObjEnemy::Action()
 			m_vx += m_speed_power;
 			m_posture = 1.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
-
+			
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_left == true)
@@ -149,7 +148,7 @@ void CObjEnemy::Action()
 			m_vx -= m_speed_power;
 			m_posture = 0.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
+		
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_right == true)
@@ -333,6 +332,11 @@ void CObjEnemy::Action()
 			//敵が消滅したら+100点
 			((UserData*)Save::GetData())->m_point += 10;
 
+
+			//アイテムオブジェクト作成	
+			CObjAitem*obju = new CObjAitem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_AITEM, 7);
+
 		}
 
 		return;
@@ -380,7 +384,7 @@ void CObjEnemy::Draw()
 
 
 		if (m_attack== true) {
-			//弾丸の状態で描画を変更
+			//弾丸の状態で描画を変更if (m_del == true)
 			if (m_del == true)
 			{
 

@@ -172,8 +172,8 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
-		//着弾アニメーション
+		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
+		
 	}
 	else
 	{
@@ -190,6 +190,6 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 52.0f + m_x;
 		dst.m_bottom = 48.0f + m_y;
 
-		Draw::Draw(40, &src, &dst, c, 0.0f);
+		Draw::Draw(24, &src, &dst, c, 0.0f);
 	}
 }

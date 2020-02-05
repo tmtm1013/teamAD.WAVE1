@@ -26,6 +26,7 @@ void CObjClear::Action()
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
+
 }
 
 //ƒhƒ[
