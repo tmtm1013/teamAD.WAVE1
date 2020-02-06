@@ -107,7 +107,6 @@ void CObjEnemy::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//í èÌë¨ìx
-	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
 
 

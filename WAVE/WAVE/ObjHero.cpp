@@ -250,7 +250,7 @@ void CObjHero::Action()
 		//m_SEtime++;
 		
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjFullBullet* obj_fb = new CObjFullBullet(m_px , m_py,m_vx); //弾丸オブジェクト作成
+		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
@@ -263,7 +263,7 @@ void CObjHero::Action()
 		if (m_f == true)
 		{
 			//発射音を鳴らす
-			Audio::Start(2);
+			Audio::Start(3);
 			for (int i = 360 / 64; i <= 360; i += 360 / 64)
 			{
 				//弾丸オブジェクト
@@ -299,13 +299,20 @@ void CObjHero::Action()
 	//左に移動時の処理
 	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)
 	{
-		
+
 		//主人公移動
 		m_vx += 0.5;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			  1, 12, 0.0f);
-	
+			1, 12, 0.0f);
+
+		movesecond++;
+		if (movesecond >= 63 && m_hit_down == true)
+		{
+			Audio::Start(8);
+			movesecond = 0;
+		}
+
 		Action_Walk = true;
 
 		Action_direction = false;
@@ -317,16 +324,23 @@ void CObjHero::Action()
 		m_vx -= 0.5f;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			   1, 12, 1.0f);
+			  1, 12, 1.0f);
+
+		movesecond++;
+		if (movesecond >= 63 && m_hit_down == true)
+		{
+			Audio::Start(8);
+			movesecond = 0;
+		}
 
 		Action_Walk = true;
 
 		Action_direction = true;
 	}
-	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL()==false&&m_del==false)//ガードアクション-----------
+	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL() == false && m_del == false)//ガードアクション-----------
 	{
 		Action_guard = true;
-
+		
 		guard = 0;//ダメージを無効化
 	}
 	else if(m_del==false)//キー入力がない場合は静止フレームにする---
@@ -334,6 +348,7 @@ void CObjHero::Action()
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame_Waiting, &m_posture,
 			1, 9, NULL);
+		movesecond = 100;
 
 		//待機モーション向き
 		if (Action_direction == false)
@@ -345,6 +360,9 @@ void CObjHero::Action()
 	}
 	if (Input::GetVKey(VK_SHIFT) == true && Action_Walk == true)	//Zキー入力で速度アップ---------
 	{
+		//SE間隔(仮)
+		movesecond+=2;
+
 		//主人公移動
 		if (Action_direction == true) {
 			m_vx -= 0.6;
@@ -564,7 +582,7 @@ void CObjHero::Action()
 
 		};
 		//アニメーションのコマ間隔
-		if (m_ani_time2 > 4)
+		if (m_ani_time2 > 6)
 		{
 			m_ani++;		//アニメーションのコマを1つ進める
 			m_ani_time2 = 0;
@@ -577,11 +595,10 @@ void CObjHero::Action()
 			m_ani_time2++;
 
 		}
-
-		if (m_ani == 6)
+		if (m_ani == 6)//アニメーションが終わるとオブジェクト削除
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			this->SetStatus(false);//オブジェクト削除
+			Hits::DeleteHitBox(this);//ヒットボックス削除
 
 			//主人公のHPがゼロになった時ゲームオーバー画面に移行する
 			Scene::SetScene(new CSceneGameOver());
@@ -624,7 +641,7 @@ void CObjHero::Draw()
 	dst.m_right = (64 - 64.0f  *  m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
-	if (m_del==false)
+	if (m_del==false)//主人公が死亡していなければ真
 	{
 		//歩きモーション--------------------------------
 		if (Action_Walk == true && Action_Jump == false) {
@@ -665,15 +682,15 @@ void CObjHero::Draw()
 
 			//切り取り位置
 			src.m_top = 0.0f;
-			src.m_left = 0.0f + 6 * 80;
-			src.m_right = 80.0 + 6 * 80;
+			src.m_left = 480.0f ;
+			src.m_right = 560.0 ;
 			src.m_bottom = 96.0f;
 			//描画　　　　　　　　　　　    回転
 			Draw::Draw(18, &src, &dst, c, 0.0f);
 
 		}
 	}
-	if(m_del==true)
+	else
 	{   //描画
 		Draw::Draw(35, &m_eff, &dst, c, 0.0f);
 	}
@@ -742,6 +759,58 @@ void CObjHero::Draw()
 
 	Draw::Draw(27, &src, &dst, c, 0.0f);
 }
+
+/*
+
+/*
+if (movesecond >= 21 && m_hit_down == true)
+{
+	Audio::Start(8);
+	movesecond = 0;
+}
+
+//ダメージブロック
+if (m_block_type == 5)
+hp -= 0.5;
+
+
+	}
+	else if (Action_ani_flag != true)//キー入力がない場合は静止フレームにする
+	{
+	m_ani_time += 1;//アニメーションタイムを+1加算
+	m_ani_move = 0;//静止アニメーションデータを指定
+
+	
+
+	}
+	if (m_hit_down == false)//ジャンプアニメーション
+	{
+		m_ani_move = 2;//ジャンプアニメーションデータを指定
+
+		if (jumpsecond >= 10)
+		{
+			m_ani_time += 1;//アニメーションタイムを+1加算
+			if (SE_flag == false)
+				Audio::Start(10);//SE再生(降下)
+
+			SE_flag = true;
+			jumpsecond = 0;
+		}
+		else
+			jumpsecond = 100;
+	}
+	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
+	{
+		Audio::Stop(10);
+		SE_flag = false;
+		Audio::Start(9);
+*/
+
+
+
+
+
+
 
 
 

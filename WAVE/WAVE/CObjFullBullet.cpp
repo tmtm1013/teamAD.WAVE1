@@ -16,7 +16,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjFullBullet::CObjFullBullet(float x, float y,float vx)
+CObjFullBullet::CObjFullBullet(float x, float y)
 {
 	m_bx = x;
 	m_by = y;

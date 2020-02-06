@@ -82,7 +82,7 @@ void SceneBossStage::InitScene()
 
 	//SE“Ç‚İ‚İ
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// ’Êí’e ”­Ë‰¹“Ç‚İ‚İ----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// ‚ê‚ñ’e ”­Ë‰¹“Ç‚İ‚İ----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// ‚ê‚ñ’e ”­Ë‰¹“Ç‚İ‚İ----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// —†ù’e ”­Ë‰¹“Ç‚İ‚İ----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    ‹ZØ‚è‘Ö‚¦‚Ì‰¹(’Êí’e)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----‹ZØ‚è‘Ö‚¦‚Ì‰¹(‚ê‚ñ’e)----

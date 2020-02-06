@@ -17,8 +17,8 @@ using namespace GameL;
 //コンストラクタ
 CObjBullet::CObjBullet(float x, float y)
 {
-	m_bx = x;
-	m_by = y;
+	m_bx = x ;
+	m_by = y ;
 	
 }
 

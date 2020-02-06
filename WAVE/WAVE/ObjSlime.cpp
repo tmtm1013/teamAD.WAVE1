@@ -90,7 +90,7 @@ void CObjSlime::Init()
 	//攻撃アニメーション
 	m_attack = false;
 	m_ani_frame2 = 0;
-	m_ani_max_time2 = 4;
+	m_ani_max_time2 = 6;
 
 
 	//消滅エフェクト
@@ -317,7 +317,7 @@ void CObjSlime::Action()
 
 		};
 		//アニメーションのコマ間隔
-		if (m_ani_time2 > 2)
+		if (m_ani_time2 > 4)
 		{
 			m_ani++;		//アニメーションのコマを1つ進める
 			m_ani_time2 = 0;
@@ -396,10 +396,10 @@ void CObjSlime::Draw()
 
 
 			//切り取り位置の設定
-			src.m_top = 48.0f;
-			src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-			src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-			src.m_bottom = 96.0f;
+			src.m_top = 49.0f;
+			src.m_left = 1.0f + AniDataack[m_ani_frame2] * 47;
+			src.m_right = 47.0f + AniDataack[m_ani_frame2] * 47;
+			src.m_bottom = 94.0f;
 
 			//描画
 			Draw::Draw(12, &src, &dst, c, 0.0f);
@@ -420,9 +420,9 @@ void CObjSlime::Draw()
 
 
 			// 切り取り位置の設定
-			src.m_top = 0.0f;
-			src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-			src.m_right = 48.0f + AniData[m_ani_frame] * 48;
+			src.m_top = 1.0f;
+			src.m_left = 1.0f + AniData[m_ani_frame] * 47;
+			src.m_right = 47.0f + AniData[m_ani_frame] * 47;
 			src.m_bottom = 48.0f;
 
 			//描画
