@@ -142,6 +142,11 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_purple.png", 29, TEX_SIZE_512);
 
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
+
+
 	//音楽情報の読み込み
 	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
 	Audio::Start(24);//音楽スタート

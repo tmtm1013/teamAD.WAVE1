@@ -38,6 +38,7 @@ void CObjBullet::Init()
 
 	bx = 0.0f;
 	by = 0.0f;
+	m_bxp = 0.0f;
 
 	m_sx = 16.0f;  //画像サイズBlockHit関数に渡す用
 	m_sy = 16.0f;
@@ -163,8 +164,12 @@ void CObjBullet::Action()
 	m_vx *= BULLET_SPEED;
 	m_vy *= BULLET_SPEED;
 
+	//主人公期と誘導弾丸で角度をとる。
+	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	m_bxp = obj->GetVX();
+
 	//移動ベクトルを座標に加算する
-	m_bx += m_vx;
+	m_bx += m_vx - m_bxp;
 	m_by += m_vy;
 
 	//敵機オブジェクトと接触したら弾丸消去

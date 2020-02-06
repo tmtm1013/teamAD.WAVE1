@@ -9,16 +9,22 @@ using namespace GameL;
 class CObjFullBullet :public CObj
 {
 public:
-	CObjFullBullet(float x, float y);  //コンストラクタ
+	CObjFullBullet(float x, float y,float vx);  //コンストラクタ
 	~CObjFullBullet() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-	float m_bx;    //弾丸の X 方向の位置用変数
-	float m_by;    //弾丸の Y 方向の位置用変数
+	float m_bx;    //主人公の X 方向の位置用変数
+	float m_by;    //主人公の Y 方向の位置用変数
+
+	float m_bxp;  //弾丸の現在の位置保存用
+	float m_byp;  //弾丸の現在の位置保存用
+	
 	float m_vx;    //弾丸の X 方向の速度用変数
 	float m_vy;    //弾丸の Y 方向の速度用変数
+
+
 
 	float bx;      //弾丸の X ベクトル値収納用変数 
 	float by;      //弾丸の Y ベクトル値収納用変数
@@ -28,6 +34,8 @@ private:
 
 	float m_mou_bx;//マウスの X 方向の位置用変数
 	float m_mou_by;//マウスの Y 方向の位置用変数
+
+
 
 	bool m_hit_up;
 	bool m_hit_down;

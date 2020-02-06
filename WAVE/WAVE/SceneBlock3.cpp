@@ -161,6 +161,9 @@ void CSceneBlock3::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
@@ -177,7 +180,7 @@ void CSceneBlock3::InitScene()
 
 	//溶岩壁オブジェクト作成
 	CObjDangerWall* objdw = new CObjDangerWall();
-	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 0);
+	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 5);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();

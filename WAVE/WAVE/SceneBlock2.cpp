@@ -159,6 +159,8 @@ void CSceneBlock2::InitScene()
 	//ドラゴン攻撃エフェクト画像
 	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
 
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

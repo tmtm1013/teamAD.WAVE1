@@ -279,7 +279,7 @@ void CObjFlyingenemy::Action()
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
 
-		m_hp -= 10;
+		m_hp -= 5;
 
 		Audio::Start(13);
 	}
