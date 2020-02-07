@@ -26,7 +26,6 @@ void CObjClear::Action()
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
-
 }
 
 //ドロー
@@ -47,10 +46,10 @@ void CObjClear::Draw()
 
 
 	//表示位置の設定
-	dst.m_top = -200.0f;
+	dst.m_top = 0.0;
 	dst.m_left = 0.0f;
-	dst.m_right = 1000.0f;
-	dst.m_bottom = 800.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 600.0f;
 
 	//描画
 	Draw::Draw(6, &src, &dst, c, 0.0f);
@@ -59,14 +58,12 @@ void CObjClear::Draw()
 	float cc[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	wchar_t str[128];
 	swprintf_s(str, L"得点 : %d点", ((UserData*)Save::GetData())->m_point);
-	Font::StrDraw(str, 650, 10, 20, cc);
+	Font::StrDraw(str, 650, 650, 650, cc);
+	
 
-
-	Font::StrDraw(L"GAME CLEAR", 220, 100, 72, c);
+	//Font::StrDraw(L"GAME CLEAR", 220, 100, 72, c);
 
 	Font::StrDraw(L"Enter to Title", 180, 450, 62, c);
-
-	Draw::LoadImageW(L"Clear.png", 6, TEX_SIZE_512);
 
 
 }

@@ -264,7 +264,7 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-			b_hp_now -= 15;
+			b_hp_now -= 30;
 
 			Audio::Start(12);
 	}

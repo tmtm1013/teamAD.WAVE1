@@ -290,7 +290,7 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 		{
 
-			m_hp -= 15;
+			m_hp -= 30;
 
 			Audio::Start(12);
 		}

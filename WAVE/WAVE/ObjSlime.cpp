@@ -261,8 +261,8 @@ void CObjSlime::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 15;
-
+		m_hp -= 30;
+		Audio::Start(12);
 	}
 
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
@@ -270,15 +270,14 @@ void CObjSlime::Action()
 	{
 
 		m_hp -= 10;
-
+		Audio::Start(13);
 
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-		m_hp -= 30;
-
+		m_hp -= 20;
 
 		Audio::Start(14);
 	}

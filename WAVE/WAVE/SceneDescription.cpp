@@ -104,12 +104,17 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
+
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

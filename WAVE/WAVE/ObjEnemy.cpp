@@ -233,7 +233,7 @@ void CObjEnemy::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		
-		m_hp -= 15;
+		m_hp -= 60;
 
 		Audio::Start(12);
 	}
