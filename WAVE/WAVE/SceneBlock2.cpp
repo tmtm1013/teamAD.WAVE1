@@ -76,7 +76,7 @@ void CSceneBlock2::InitScene()
 	Audio::Start(22);//音楽スタート
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
@@ -158,6 +158,12 @@ void CSceneBlock2::InitScene()
 
 	//ドラゴン攻撃エフェクト画像
 	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
+
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
+	//必殺技回復アイテムグラフィック読み込み
+	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
 
 
 	//ボリュームを1.0に戻す

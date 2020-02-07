@@ -198,9 +198,6 @@
     <ClInclude Include="GameL\DrawTexture.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>SceneStage</Filter>
     </ClInclude>
@@ -311,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="ObjMain.h">
       <Filter>Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

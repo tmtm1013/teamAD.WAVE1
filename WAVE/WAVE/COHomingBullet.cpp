@@ -60,6 +60,7 @@ void CObjHomingBullet::Init()
 	leng = 0;
 	m_vx = 8.0;
 	m_vy = 8.0f;
+	m_bxp = 0.0f;
 	x = 0;
 	y = 0;
 	button = false;
@@ -169,8 +170,10 @@ void CObjHomingBullet::Action()
 
 	leng = sqrt(leng);
 
-	m_x += (x / leng)*m_vx;
-	m_y += (y / leng)*m_vy;
+	m_bxp = obj->GetVX();//主人公のベクトル値を持ってくる
+
+	m_x +=  (((x / leng)*m_vx) - m_bxp);
+	m_y +=    (y / leng)*m_vy;
 	button = true;
 
 

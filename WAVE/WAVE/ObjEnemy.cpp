@@ -106,11 +106,8 @@ void CObjEnemy::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
 	//通常速度
-	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
-
 
 
 	//主人公の位置情報をここで取得
