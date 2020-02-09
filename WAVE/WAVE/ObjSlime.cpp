@@ -85,7 +85,7 @@ void CObjSlime::Init()
 	m_rnd = 0;//ジャンプ用ランダム変数
 
 	//HP
-	m_hp = 100;
+	m_hp = 30;
 
 	//攻撃アニメーション
 	m_attack = false;

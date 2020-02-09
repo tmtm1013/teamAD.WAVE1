@@ -73,18 +73,6 @@
     <ClCompile Include="SceneItem.cpp">
       <Filter>Item</Filter>
     </ClCompile>
-    <ClCompile Include="ObjGren.cpp">
-      <Filter>Item</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBackground.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjCursor.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMain.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
       <Filter>Title</Filter>
     </ClCompile>
@@ -157,6 +145,21 @@
     <ClCompile Include="ObjClear.cpp">
       <Filter>Clear</Filter>
     </ClCompile>
+    <ClCompile Include="ObjMethod.cpp">
+      <Filter>UI\操作方法</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBackground.cpp">
+      <Filter>UI\プレイ背景</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>UI\照準カーソル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMain.cpp">
+      <Filter>UI\得点</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLoading.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -198,9 +201,6 @@
     <ClInclude Include="GameL\DrawTexture.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>SceneStage</Filter>
-    </ClInclude>
     <ClInclude Include="GameL\HitBoxManager.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
@@ -236,15 +236,6 @@
     </ClInclude>
     <ClInclude Include="SceneItem.h">
       <Filter>Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGren.h">
-      <Filter>Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBackground.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjCursor.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>Title</Filter>
@@ -306,10 +297,25 @@
     <ClInclude Include="ObjDangerWall.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>Clear</Filter>
-    </ClInclude>
     <ClInclude Include="GameHead.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMethod.h">
+      <Filter>UI\操作方法</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBackground.h">
+      <Filter>UI\プレイ背景</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCursor.h">
+      <Filter>UI\照準カーソル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>UI\得点</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjLoading.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -373,6 +379,18 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{83babad7-3f20-4694-ba7f-c3e683b5876a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\操作方法">
+      <UniqueIdentifier>{454eafd1-0752-4061-88b8-b90b8ad991bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\プレイ背景">
+      <UniqueIdentifier>{a8b77ddf-11bf-4131-9c86-fd7da353c782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\照準カーソル">
+      <UniqueIdentifier>{c29ed778-aefd-4b12-a979-f1cc00c725fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\得点">
+      <UniqueIdentifier>{6e3b791e-3127-471f-8f00-5b77a08cbfb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

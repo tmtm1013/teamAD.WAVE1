@@ -67,7 +67,7 @@ void CObjEnemy::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.4f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 

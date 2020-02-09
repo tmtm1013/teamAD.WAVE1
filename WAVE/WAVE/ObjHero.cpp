@@ -178,6 +178,7 @@ void CObjHero::Action()
 		bullet_type = 3;//弾丸の種類を指定
 	}
 
+	/*
 	//弾丸アニメーション
 	if (bullet_type == 1)
 	{
@@ -208,6 +209,8 @@ void CObjHero::Action()
 		}
 
 	}
+	*/
+
 	//弾丸発射頻度制御
 	m_time += 0.1;
 
