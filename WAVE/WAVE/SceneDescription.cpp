@@ -80,6 +80,8 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------íÖínâπÇÃì«Ç›çûÇ›----
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+
 
 	//âπäyì«Ç›çûÇ›
 	Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
