@@ -97,6 +97,8 @@ public:CObjHero() {}
 	bool m_hit_right;
 	bool flag;
 
+	bool Method_flag;
+
 	//ステータス関係
 	int hp;
 	int hp_max;
