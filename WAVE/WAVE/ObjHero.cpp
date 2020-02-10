@@ -461,6 +461,7 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
 	{
 		hp += 60;
+		Audio::Start(19);
 		if (hp >= 300)//hp‚ª300ˆÈã‚É‚È‚éê‡300‚Ò‚Á‚½‚è‚Éã‘‚«II‚½‚¢‚ ‚èI
 		{
 			hp = 300;
@@ -469,9 +470,10 @@ void CObjHero::Action()
 		
 
 	//•KŽE‹Z‰ñ”‰ñ•œ
-	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2)
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2) {
 		attackpoint_now += 1;
-	
+		Audio::Start(18);
+	}
 	//‰“‹——£“G‚ÌUŒ‚ÚG‚ÅHero‚ÌHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
@@ -604,6 +606,9 @@ void CObjHero::Action()
 	if (hp <= 0)
 	{
 		hp = 0;
+		
+		if(m_del==false)
+		Audio::Start(17);
 		m_del = true;
 	}
 		

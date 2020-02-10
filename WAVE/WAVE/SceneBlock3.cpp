@@ -100,7 +100,9 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//“G‚ªålŒö‚ÌUŒ‚‚É“–‚½‚Á‚½‚Ì‰¹
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//“G‚ªålŒö‚ÌUŒ‚‚É“–‚½‚Á‚½‚Ì‰¹
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//–‚–@UŒ‚
-
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//‚©‚«•X
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//‰ñ•œ
 
 
 
