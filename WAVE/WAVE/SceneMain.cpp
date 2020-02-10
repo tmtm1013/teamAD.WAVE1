@@ -196,22 +196,13 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 17);
 
 
-
-	enter_time = 0;
 }
 
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	enter_time++;
-	if (Input::GetVKey('Q') == true && enter_time > 16)
-	{
-		enter_time = 0;
-		//操作説明表示
-		CObjMethod* md = new CObjMethod();
-		Objs::InsertObj(md, OBJ_METHOD, 18);
+	//Method_flag = false;
 
-	}
 	
-
+	
 }

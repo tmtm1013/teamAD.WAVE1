@@ -105,6 +105,8 @@ void CObjHero::Init()
 
 	flag = true;
 
+	Method_flag=false;
+
 	Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
@@ -404,6 +406,22 @@ void CObjHero::Action()
 	{
 		jump_time = 0.0f;
 	}
+	
+	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
+	{
+		Method_flag = true;//処理を止めるフラグを切り替える
+
+
+	}
+	if (Input::GetVKey('Q') == false && Method_flag == true)
+	{
+		//操作説明表示
+		CObjMethod* md = new CObjMethod();
+		Objs::InsertObj(md, OBJ_METHOD, 18);
+		Method_flag = false;
+	}
+
+	
 	//ジャンプアニメーション用
 	if (m_hit_down == false) {
 		//アニメーション関数の呼び出し
@@ -412,6 +430,8 @@ void CObjHero::Action()
 		
 		Action_Jump = true;
 	}
+
+	//flag = false;//フラグを初期化
 
 	//主人公の向きを制御
 	//マウスの位置を取得
