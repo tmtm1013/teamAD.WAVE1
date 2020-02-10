@@ -42,7 +42,7 @@ void CObjDescription::Action()
 void CObjDescription::Draw()
 {
 
-	float c[4] = { 1,1,1,1 };
+	float c[4] = { 0,0,0,1 };
 
 
 	RECT_F src;//描画元切り取り位置
@@ -69,16 +69,16 @@ void CObjDescription::Draw()
 	
 	Font::StrDraw(L"操作説明" ,330,50,30,c);
 
-	Font::StrDraw(L"左移動　　　　Aキー             右移動　　　　Dキー", 130, 100, 20, c);
+	Font::StrDraw(L"左移動: A　Key 右移動: D Key", 130, 100, 25, c);
 
-	Font::StrDraw(L"ジャンプ　　　Spaceキー", 125, 130, 20, c);
+	Font::StrDraw(L"ジャンプ: Space Key", 125, 130, 25, c);
 
-	//Font::StrDraw(L"ダッシュ　　　Zキー", 455, 130, 20, c);
+	Font::StrDraw(L"ダッシュ: 移動 + Shift", 455, 130, 25, c);
 
-	Font::StrDraw(L"攻撃　　　マウス左クリック", 129, 160, 20, c);
+	Font::StrDraw(L"攻撃: マウス左クリック", 130, 160, 25, c);
 
-	Font::StrDraw(L"攻撃切り替え　1(ぬ）キー：単発　2(ふ)キー：連射　", 180, 200, 20, c);
+	Font::StrDraw(L"攻撃切り替え　1(ぬ）キー：単発　2(ふ)キー：連射　", 180, 200, 25, c);
 
-	Font::StrDraw(L"穴に落ちたらゲームスタート", 215, 240, 30, c);
+	Font::StrDraw(L"ゲームスタート→↓", 215, 240, 30, c);
 
 }

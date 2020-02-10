@@ -153,6 +153,11 @@ void CSceneMain::InitScene()
 	//必殺技回復アイテムグラフィック読み込み
 	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
 
+	//ロードグラフィック読み込み
+	Draw::LoadImageW(L"Title.png", 37, TEX_SIZE_512);//かき氷グラフィック読み込み
+
+	//操作説明グラフィック読み込み
+	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
 
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);
@@ -185,13 +190,24 @@ void CSceneMain::InitScene()
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
+
+
+
+	enter_time = 0;
 }
 
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	
-	 
+	enter_time++;
+	if (Input::GetVKey('Q') == true && enter_time > 16)
+	{
+		enter_time = 0;
+		//操作説明表示
+		CObjMethod* md = new CObjMethod();
+		Objs::InsertObj(md, OBJ_METHOD, 18);
+
+	}
 	
 
 }

@@ -178,6 +178,7 @@ void CObjHero::Action()
 		bullet_type = 3;//弾丸の種類を指定
 	}
 
+	/*
 	//弾丸アニメーション
 	if (bullet_type == 1)
 	{
@@ -208,6 +209,8 @@ void CObjHero::Action()
 		}
 
 	}
+	*/
+
 	//弾丸発射頻度制御
 	m_time += 0.1;
 
@@ -487,7 +490,7 @@ void CObjHero::Action()
 			flag = true;
 		}
 		//ブロック情報を持ってくる
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 		CObjEnemy*obj = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);//通常敵機の位置情報をここで取得
 		if (obj != nullptr) {
@@ -526,9 +529,29 @@ void CObjHero::Action()
 			m_vx = KnockBack(m_px, ex);
 		}
 	}
-	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr) {//主人公がOBJ_DANGER_WALLに当たった時の処理
+	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr)//主人公がOBJ_DANGER_WALLに当たっているかどうかの判定
+	{
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
+	}
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
+	{
+		hp_time--;//ダメージ加算制限処理
+
+		if (hp_time <= 0.0f)//
+		{
+			m_vx += 3.0f;//主人公ノックバック
+			hp -= 20;//主人公のHP減算
+			hp_time=10.6f;//ダメージ加算までの時間
+		}
+	}
+	if (m_block_type == 3)//主人公がBossブロックを踏むとステージ移行
+	{
+		this->SetStatus(false);//主人公オブジェクト削除
+		Hits::DeleteHitBox(this);//ヒットボックス削除
+
+		//bossステージに移行
+		Scene::SetScene(new SceneBossStage());
 	}
 
 	//主人公移動速度Max制限

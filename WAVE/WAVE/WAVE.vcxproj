@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -168,10 +168,11 @@
     <ClCompile Include="ObjGameOver.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjGren.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
+    <ClCompile Include="ObjLoading.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjMethod.cpp" />
     <ClCompile Include="ObjRevolutionBullet.cpp" />
     <ClCompile Include="ObjSlime.cpp" />
     <ClCompile Include="ObjTime.cpp" />
@@ -236,12 +237,13 @@
     <ClInclude Include="ObjClear.h" />
     <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjFlyingenemy.h" />
-    <ClInclude Include="ObjGren.h" />
     <ClInclude Include="ObjHero.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
+    <ClInclude Include="ObjLoading.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjMethod.h" />
     <ClInclude Include="ObjRevolutionBullet.h" />
     <ClInclude Include="ObjSlime.h" />
     <ClInclude Include="ObjTime.h" />

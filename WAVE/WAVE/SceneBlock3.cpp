@@ -104,7 +104,7 @@ void CSceneBlock3::InitScene()
 
 
 
-//弾丸グラフィック読み込み
+    //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	///敵弾丸グラフィック読み込み

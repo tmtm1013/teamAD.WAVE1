@@ -69,7 +69,7 @@ void CObjEnemyJump::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.1f;  //通常速度
+	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
@@ -264,7 +264,7 @@ void CObjEnemyJump::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-			b_hp_now -= 15;
+			b_hp_now -= 30;
 
 			Audio::Start(12);
 	}

@@ -15,9 +15,11 @@ using namespace GameL;
 
 void CObjTitle::Init()
 {
-	Audio::LoadAudio(1, L"SEgan/k.wav", SOUND_TYPE::EFFECT);
 
-	Draw::LoadImage(L"Title.png", 1, TEX_SIZE_1024);
+
+	//音楽スタート
+	Audio::Start(0);
+
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -35,6 +37,7 @@ void CObjTitle::Init()
 
 void CObjTitle::Action()
 {
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -43,30 +46,21 @@ void CObjTitle::Action()
 	m_mou_l = Input::GetMouButtonL();
 
 	//マウスの位置とクリックする場所で当たり判定
-	if (m_mou_x > 240 && m_mou_x < 550 && m_mou_y > 400 && m_mou_y < 450)
+	if (m_mou_x > 440 && m_mou_x < 800 && m_mou_y > 440 && m_mou_y < 490)
 	{
-		b = 0.0f;
-		
 		//マウスのボタンが押されたらメインに移行
-		if (m_mou_r == true || m_mou_l == true&&flag==true)
+		if (m_mou_r == true || m_mou_l == true)
 		{
 			Audio::Start(1);
-			t = 0.0f;
-			flag = false;
+
+			//ボリュームを1.0に戻す
+			float v = Audio::VolumeMaster(0);
+			v = Audio::VolumeMaster(0.5 - v);
+
+			this->SetStatus(false);//オブジェクト削除
 			
 		}
 	}
-	else
-	{
-		b = 1.0f;
-	}
-	if (flag == false)
-		time++;
-	if (time >= 20)
-		Scene::SetScene(new CSceneDescription());
-
-
-	
 }
 
 void CObjTitle::Draw()
@@ -83,16 +77,16 @@ void CObjTitle::Draw()
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1024.0f;
-	src.m_bottom = 1024.0f;
+	src.m_bottom = 570.0f;
 
 	//表示位置
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f;
+	dst.m_bottom = 500.0f;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(15, &src, &dst, c, 0.0f);
 
 	
 	/*
@@ -112,7 +106,7 @@ void CObjTitle::Draw()
 	  */       //   R    G    B    透過
 	float d[4] = { 0, 0, b, t };
 	
-	Font::StrDraw(L"GAME START", 240, 400, 60, d);
+	Font::StrDraw(L"ゲームスタート", 440, 440, 40, d);
 	
 }
 

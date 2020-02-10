@@ -15,7 +15,7 @@ public:
 	void Action();	 //アクション
 	void Draw();	 //ドロー
 private:
-	float bx, by;
+	
 
 	float m_vx;
 	float m_vy;
@@ -37,19 +37,11 @@ private:
 	bool m_hit_right;
 	bool flag;
 
-	int hp;
-	int hp_max;
-	int hp_now;
-	float hp_time;
-
 	float top;
 	float left;
 	float right;
 	float bottom;
 
 	int m_block_type;
-
-	float h_x;//ヒーローの位置取得用変数
-	float h_y;//ヒーローの位置取得用変数
 
 };

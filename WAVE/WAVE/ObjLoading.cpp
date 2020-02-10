@@ -2,6 +2,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 
+#include "ObjLoading.h"
 #include "GameHead.h"
 #include "SceneMain.h"
 
@@ -9,38 +10,38 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjBackground::Init()
+void CObjLoading::Init()
 {
 	if (((UserData*)Save::GetData())->Scenecontinue == 0) {
-		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"village1.png", 37, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
-		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"Background.png", 37, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 2) {
-		Draw::LoadImageW(L"stage2.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"stage2.png", 37, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 3) {
-		Draw::LoadImageW(L"hstage1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"hstage1.png", 37, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
-		Draw::LoadImageW(L"hstage2.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"hstage2.png", 37, TEX_SIZE_1024);
 	}
 }
 
 //アクション
-void CObjBackground::Action()
+void CObjLoading::Action()
 {
 
 
 }
 
 //ドロー
-void CObjBackground::Draw()
+void CObjLoading::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -60,5 +61,5 @@ void CObjBackground::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(9, &src, &dst, c, 0.0f);
+	Draw::Draw(37, &src, &dst, c, 0.0f);
 }

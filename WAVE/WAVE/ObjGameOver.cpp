@@ -65,7 +65,7 @@ void CObjGameOver::Action()
 		//マウスのボタンが押されたらタイトル画面
 		if (m_mou_r == true)
 		{
-			Scene::SetScene(new CSceneTitle());
+			Scene::SetScene(new CSceneDescription());
 			Audio::Stop(24); //BGMストップ
 		}
 	}
@@ -75,11 +75,8 @@ void CObjGameOver::Action()
 
 
 
-	/*
-	if (Input::GetMouButtonL() == true)
-	{
-		Scene::SetScene()
-	}*/
+	
+	
 }
 
 
