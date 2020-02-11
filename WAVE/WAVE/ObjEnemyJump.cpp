@@ -146,9 +146,11 @@ void CObjEnemyJump::Action()
 		{
 			//主人公が移動していない時のプログラム
 			m_vx += m_speed_power;
-			m_posture = 1.0;
-			m_ani_time += 1;
 			
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 1.0f);
+
 
 			if (m_hit_left == true)//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 				m_vy = -13;
@@ -166,9 +168,11 @@ void CObjEnemyJump::Action()
 
 			//主人公が移動していない時のプログラム
 			m_vx -= m_speed_power;
-			m_posture = 0.0;
-			m_ani_time += 1;
-		
+
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 0.0f);
+
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_left == true)
@@ -193,17 +197,7 @@ void CObjEnemyJump::Action()
 
 			
 		}
-		//アニメーション
-		if (m_ani_time > m_ani_max_time)
-		{
-			m_ani_frame += 1;
-			m_ani_time = 0;
-		}
-		//アニメーション
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-		}
+		
 
 	}
 

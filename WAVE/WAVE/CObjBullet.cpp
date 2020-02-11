@@ -30,8 +30,8 @@ void CObjBullet::Init()
 	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_BULLET, 1);
 
 
-	m_vx = 0.1f;
-	m_vy = -0.1f;
+	m_vx = 1.0f;
+	m_vy = -1.0f;
 
 	m_mou_bx = 0.0f;
 	m_mou_by = 0.0f;
@@ -111,7 +111,7 @@ void CObjBullet::Action()
 			m_ani_time++;
 		}
 
-		if (m_ani == 4)
+		if (m_ani == 9)
 		{
 
 

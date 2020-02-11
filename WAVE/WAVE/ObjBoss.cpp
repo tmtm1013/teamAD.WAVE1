@@ -161,20 +161,16 @@ void CObjBoss::Action()
 	//攻撃アニメーションの時歩くモーションに入らない
 	if (m_attack == false&& m_attack2 == false) {
 		//----アニメーション動作間隔----
+
+		
 		if (m_time_a >= 4)
 		{
-			m_ani_time += 1;
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, NULL);
 			m_time_a = 0;
 		}
-		if (m_ani_time > m_ani_max_time)
-		{
-			m_ani_frame += 1;
-			m_ani_time = 0;
-		}
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-		}
+		
 
 	}
 	//攻撃アニメーション単発

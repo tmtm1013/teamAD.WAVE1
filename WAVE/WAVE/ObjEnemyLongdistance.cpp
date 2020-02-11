@@ -155,66 +155,35 @@ void CObjEnemyLongdistance::Action()
 		//ここが主人公の向きに移動する条件を書く。
 		if ((m_px + block->GetScroll()) < x)//右
 		{
-
 			//主人公が移動していない時のプログラム
 			m_vx += m_speed_power;
-			m_posture = 1.0;
-			m_ani_time += 1;
-
-
-
+			
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 1.0f);
 		}
 		else//左
 		{
-
 			//主人公が移動していない時のプログラム
 			m_vx -= m_speed_power;
-			m_posture = 0.0;
-			m_ani_time += 1;
-
-
-
+			
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 0.0f);
 		}
-
-		//アニメーション
-		if (m_ani_time > m_ani_max_time)
-		{
-			m_ani_frame += 1;
-			m_ani_time = 0;
-
-		}
-		//アニメーション
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-
-		}
+	
 	}
 
 	//攻撃アニメーション
 	if (m_attack == true) {
 
 
-
-		m_ani_time += 1;
-
-
-		if (m_ani_time > m_ani_max_time2)
-		{
-			m_ani_frame2 += 1;
-			m_ani_time = 0;
-		}
-
-
+		//アニメーション関数の呼び出し
+		Anime(&m_ani_time, &m_ani_max_time2, &m_ani_frame2, &m_posture,
+			1, 3, NULL);
 		//アニメーション
 		if (m_ani_frame2 == 3)
-		{
-			m_ani_frame2 = 0;
-
 			m_attack = false;
-		}
-
-
 
 	}
 

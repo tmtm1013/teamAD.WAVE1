@@ -113,11 +113,6 @@ void CObjLastBoss::Action()
 		m_move = false;
 	}
 
-	//----アニメーション動作間隔---
-
-	Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-		1, 2, NULL);
-
 
 
 
@@ -199,8 +194,11 @@ void CObjLastBoss::Action()
 	{
 		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
-		m_posture = 1.0;
-		m_ani_time += 1;
+
+		//アニメーション動作間隔
+		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+			1, 2, 1.0f);
+		
 		m_ani_move = 1;
 
 		//ランダムで決まる数値が1の時ジャンプする
@@ -216,8 +214,11 @@ void CObjLastBoss::Action()
 
 		//主人公が移動していない時のプログラム
 		m_vx -= m_speed_power;
-		m_posture = 0.0;
-		m_ani_time += 1;
+
+		//アニメーション動作間隔
+		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+			1, 2, 0.0f);
+
 		m_ani_move = 1;
 
 		//ランダムで決まる数値が1の時ジャンプする
@@ -232,6 +233,8 @@ void CObjLastBoss::Action()
 		}
 
 	}
+	
+
 
 	//位置の更新
 	m_px += m_vx;
