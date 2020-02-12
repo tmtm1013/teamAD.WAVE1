@@ -11,9 +11,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-
-
-
 //イニシャライズ
 void CObjMethod::Init()
 {
@@ -21,8 +18,6 @@ void CObjMethod::Init()
 	flag = false; //他の処理に移行しないフラグ
 
 }
-
-
 //アクション
 void CObjMethod::Action()
 {
@@ -30,17 +25,22 @@ void CObjMethod::Action()
 	if (flag == true)//他の処理に移行しない処理
 		while (1) {//他の処理に移行しないための無限ループ
 		
-			if (Input::GetMouButtonL() == true ) {//マウス左 が押されると真
+			
+			if (Input::GetVKey('Q') == true) {//マウス左 が押されると真
 
 				flag = false;//処理を止めるフラグを切り替える
+
 			}
-			else if (Input::GetMouButtonL() == false && flag == false)
+			if (Input::GetVKey('Q') == false && flag == false)
 			{
 				this->SetStatus(false);//操作説明削除
-			
+
 				break;//ループを抜ける
 			}
 		}
+	
+
+
 	
 
 }
@@ -48,6 +48,8 @@ void CObjMethod::Action()
 void CObjMethod::Draw()
 {
 	
+	flag = true;//画像を表示した後、他の処理に移行しないフラグを真にする
+
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
@@ -69,7 +71,7 @@ void CObjMethod::Draw()
 	//描画
 	Draw::Draw(38, &src, &dst, c, 0.0f);
 
-	flag = true;//画像を表示した後、他の処理に移行しないフラグを真にする
+	
 }
 
 

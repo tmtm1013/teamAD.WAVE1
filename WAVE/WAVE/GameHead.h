@@ -35,6 +35,8 @@ enum OBJ_NAME
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
 	OBJ_REVOLUTION_BULLET,
+	OBJ_GRENADE,
+
 
 	OBJ_BACKGROUND,
 
@@ -141,6 +143,7 @@ extern float kazu;
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
 #include "ObjRevolutionBullet.h"
+#include "ObjGrenade.h"
 
 
 #include "ObjTitle.h"
@@ -176,5 +179,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock3//CSceneDescription////CSceneMain//CSceneBlock2//CSceneMain//
+#define SET_GAME_START CSceneBlock3//SceneBossStage//CSceneDescription//CSceneBlock2//CSceneMain//CObjTitle//CSceneMain//
 //-----------------------------------------------

@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage33.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage333.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -74,6 +74,8 @@ void CSceneBlock3::InitScene()
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 		//音楽読み込み
+	Audio::LoadAudio(25, L"maguma2.wav", BACK_MUSIC);//マグマ
+	Audio::Start(25);//音楽スタート
 	Audio::LoadAudio(23, L"back3.wav", BACK_MUSIC);
 	Audio::Start(23);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
@@ -100,14 +102,16 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
-
-
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
 
 
     //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
-	///敵弾丸グラフィック読み込み
+	//敵弾丸グラフィック読み込み
 	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み

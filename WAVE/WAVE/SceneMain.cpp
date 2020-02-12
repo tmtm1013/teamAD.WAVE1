@@ -84,11 +84,13 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
-	
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+
 	//音楽読み込み
 	Audio::LoadAudio(21, L"back1.wav", BACK_MUSIC);
-
-
 
 
 	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
@@ -167,7 +169,7 @@ void CSceneMain::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
+	v = Audio::VolumeMaster(0.4 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
@@ -194,23 +196,13 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(s, OBJ_MAIN, 17);
 
 
-
-	enter_time = 0;
 }
 
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	/*
-	enter_time++;
-	if (Input::GetVKey('Q') == true && enter_time > 16)
-	{
-		enter_time = 0;
-		//操作説明表示
-		CObjMethod* md = new CObjMethod();
-		Objs::InsertObj(md, OBJ_METHOD, 18);
+	//Method_flag = false;
 
-	}
 	
-	*/
+	
 }

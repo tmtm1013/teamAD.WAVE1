@@ -105,6 +105,8 @@ void CObjHero::Init()
 
 	flag = true;
 
+	Method_flag=false;
+
 	Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
@@ -404,6 +406,22 @@ void CObjHero::Action()
 	{
 		jump_time = 0.0f;
 	}
+	
+	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
+	{
+		Method_flag = true;//処理を止めるフラグを切り替える
+
+
+	}
+	if (Input::GetVKey('Q') == false && Method_flag == true)
+	{
+		//操作説明表示
+		CObjMethod* md = new CObjMethod();
+		Objs::InsertObj(md, OBJ_METHOD, 18);
+		Method_flag = false;
+	}
+
+	
 	//ジャンプアニメーション用
 	if (m_hit_down == false) {
 		//アニメーション関数の呼び出し
@@ -412,6 +430,8 @@ void CObjHero::Action()
 		
 		Action_Jump = true;
 	}
+
+	//flag = false;//フラグを初期化
 
 	//主人公の向きを制御
 	//マウスの位置を取得
@@ -441,6 +461,7 @@ void CObjHero::Action()
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
 	{
 		hp += 60;
+		Audio::Start(19);
 		if (hp >= 300)//hpが300以上になる場合300ぴったりに上書き！！たいあり！
 		{
 			hp = 300;
@@ -449,16 +470,17 @@ void CObjHero::Action()
 		
 
 	//必殺技回数回復
-	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2)
+	if (hit->CheckObjNameHit(OBJ_AITEM) != nullptr && attackpoint_now <= 2) {
 		attackpoint_now += 1;
-	
+		Audio::Start(18);
+	}
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 30 * guard;
-
+			Audio::Start(11);
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -482,7 +504,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f){   
 
 			hp -= 5 * guard;//ダメージ量×ガード値
-
+			Audio::Start(10);
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
@@ -531,12 +553,20 @@ void CObjHero::Action()
 	}
 	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr)//主人公がOBJ_DANGER_WALLに当たっているかどうかの判定
 	{
+		Audio::Start(26);
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
+
+		if (m_block_type == 5){
+			Audio::Start(26);
+		}
+		else{
+
+		}
 
 		if (hp_time <= 0.0f)//
 		{
@@ -584,6 +614,9 @@ void CObjHero::Action()
 	if (hp <= 0)
 	{
 		hp = 0;
+		
+		if(m_del==false)
+		Audio::Start(17);
 		m_del = true;
 	}
 		
