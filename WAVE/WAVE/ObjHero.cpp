@@ -553,12 +553,20 @@ void CObjHero::Action()
 	}
 	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr)//主人公がOBJ_DANGER_WALLに当たっているかどうかの判定
 	{
+		Audio::Start(26);
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
+
+		if (m_block_type == 5){
+			Audio::Start(26);
+		}
+		else{
+
+		}
 
 		if (hp_time <= 0.0f)//
 		{
