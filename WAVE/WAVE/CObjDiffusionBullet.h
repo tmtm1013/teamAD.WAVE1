@@ -56,6 +56,8 @@ private:
 	float m_r; //角度保存用変数
 	float m_s; //弾スピード用変数
 
+	float m_sx, m_sy;
+
 	int m_time;
 
 	float x;

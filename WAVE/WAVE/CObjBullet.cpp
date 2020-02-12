@@ -39,7 +39,7 @@ void CObjBullet::Init()
 	bx = 0.0f;
 	by = 0.0f;
 	m_bxp = 0.0f;
-
+	
 	m_sx = 16.0f;  //画像サイズBlockHit関数に渡す用
 	m_sy = 16.0f;
 
@@ -78,6 +78,8 @@ void CObjBullet::Action()
 	{
 		m_del = true;
 		hit->SetInvincibility(true);
+		m_vx = 0.0f;
+		m_vy = 0.0f;
 	}
 	if (m_del == true)
 	{
@@ -218,18 +220,21 @@ void CObjBullet::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
+		//表示位置の設定
+	dst.m_top = -16.0f + m_by;
+	dst.m_left = -16.0f + m_bx;
+	dst.m_right = 32.0f + m_bx;
+	dst.m_bottom = 32.0f + m_by;
+
+
+
+
 	//弾丸の状態で描画を変更
 	if (m_del == true)
 	{
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-		//表示位置の設定
-		dst.m_top = -12.0f + m_by;
-		dst.m_left = -10.0f + m_bx;
-		dst.m_right = 26.0f + m_bx;
-		dst.m_bottom = 24.0f + m_by;
-
-		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 		//着弾アニメーション
+		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
+	
                                                                
 	}
 	else
@@ -241,26 +246,10 @@ void CObjBullet::Draw()
 		src.m_right = 512.0f;
 		src.m_bottom = 512.0f;
 
-		//表示位置の設定
-		dst.m_top = -16.0f + m_by;
-		dst.m_left = -16.0f + m_bx;
-		dst.m_right = 32.0f + m_bx;
-		dst.m_bottom = 32.0f + m_by;
-
+	
 		//描画
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 
 	
 }
-
-
-// m_bx += speed * cosf((90)*3.14 / 180.0f);
-//m_by += speed * sinf((90)*3.14 / 180.0f);
-
-//m_vx += speed * cos(angle / 180 * 3.14);
-//m_vy += speed * sin(angle / 180 * 3.14);
-
-//m_bx = m_vx;
-//m_by = m_vy;
-//if (flag == true)

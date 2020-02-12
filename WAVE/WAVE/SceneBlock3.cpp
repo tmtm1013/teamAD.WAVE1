@@ -74,6 +74,8 @@ void CSceneBlock3::InitScene()
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 		//音楽読み込み
+	Audio::LoadAudio(25, L"maguma2.wav", BACK_MUSIC);//マグマ
+	Audio::Start(25);//音楽スタート
 	Audio::LoadAudio(23, L"back3.wav", BACK_MUSIC);
 	Audio::Start(23);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
@@ -103,13 +105,13 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
 	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
-
-
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
 
     //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
-	///敵弾丸グラフィック読み込み
+	//敵弾丸グラフィック読み込み
 	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み

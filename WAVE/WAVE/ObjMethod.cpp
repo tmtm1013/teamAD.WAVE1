@@ -38,10 +38,6 @@ void CObjMethod::Action()
 				break;//ループを抜ける
 			}
 		}
-	
-
-
-	
 
 }
 //ドロー
@@ -49,6 +45,12 @@ void CObjMethod::Draw()
 {
 	
 	flag = true;//画像を表示した後、他の処理に移行しないフラグを真にする
+
+	//得点を描画：右上
+	float cc[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	wchar_t str[128];
+	swprintf_s(str, L"Qキーでゲームに戻る");
+	Font::StrDraw(str, 450, 400, 20, cc);
 
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 

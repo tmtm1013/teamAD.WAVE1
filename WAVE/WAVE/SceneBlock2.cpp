@@ -92,7 +92,8 @@ void CSceneBlock2::InitScene()
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
 	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
-
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
 
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
@@ -156,7 +157,10 @@ void CSceneBlock2::InitScene()
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 
 	//ドラゴン攻撃エフェクト画像
-	Draw::LoadImageW(L"image1234.png", 23, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
+	//ドラゴン攻撃エフェクト画像
+	Draw::LoadImageW(L"image1234.png", 28, TEX_SIZE_512);
 
 	//ドラゴン攻撃エフェクト画像
 	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
@@ -166,6 +170,9 @@ void CSceneBlock2::InitScene()
 
 	//必殺技回復アイテムグラフィック読み込み
 	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
+
+	//ギミック氷柱用画像
+	Draw::LoadImageW(L"turara.png", 37, TEX_SIZE_256);//氷柱用ギミック画像
 
 
 	//ボリュームを1.0に戻す
