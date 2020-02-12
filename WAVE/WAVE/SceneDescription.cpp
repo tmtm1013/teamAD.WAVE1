@@ -81,7 +81,7 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
-
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ÉKÅ[Éh
 
 	//âπäyì«Ç›çûÇ›
 	//Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
