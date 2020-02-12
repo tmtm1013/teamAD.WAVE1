@@ -4,6 +4,8 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
 #include "GameHead.h"
+#include "UtilityModule.h"
+
 #include "GameL\UserData.h"
 //#include "Graf.h"
 
@@ -42,9 +44,9 @@ void CObjLastBoss::Init()
 	m_time_a = 0;
 
 	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 4;    //アニメーション間隔幅
+	m_ani_max_time = 10;    //アニメーション間隔幅
 
-	Boss_hp_max = 100;//ENEMYのHP
+	Boss_hp_max = 2000;//ENEMYのHP
 	Boss_hp_now = Boss_hp_max;
 
 	//blockとの衝突状態確認用
@@ -75,9 +77,6 @@ void CObjLastBoss::Init()
 //アクション
 void CObjLastBoss::Action()
 {
-	//アニメーション動作タイム
-	m_time_a++;
-
 	int d;
 
 	//ブロックとの当たり判定
@@ -90,7 +89,6 @@ void CObjLastBoss::Action()
 	
 	//通常速度
 	m_speed_power = 0.14f;
-	m_ani_max_time = 2;
 
 	//乱数の種を初期化
 	srand(time(NULL));
@@ -115,21 +113,11 @@ void CObjLastBoss::Action()
 		m_move = false;
 	}
 
-	//----アニメーション動作間隔----
-	if (m_time_a >= 4)
-	{
-		m_ani_time += 1;
-		m_time_a = 0;
-	}
-	if (m_ani_time > m_ani_max_time)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
-	}
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-	}
+	//----アニメーション動作間隔---
+
+	Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+		1, 2, NULL);
+
 
 
 
@@ -137,7 +125,7 @@ void CObjLastBoss::Action()
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-	m_vy += 9.8 / (16.0f);
+	//m_vy += 9.8 / (16.0f);
 
 	
 	//ブロック情報を持ってくる
@@ -257,7 +245,7 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		Boss_hp_now -= 15;
+		Boss_hp_now -= 30;
 
 		Audio::Start(12);
 	}
@@ -294,7 +282,6 @@ void CObjLastBoss::Action()
 
 		//Audio::Stop(24);//音楽ストップ
 
-
 	}
 
 
@@ -306,13 +293,13 @@ void CObjLastBoss::Draw()
 {
 	//スクロール情報取得
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	/*
+	
 	//歩くアニメーション情報を登録
-	int AniData[6] =
+	int AniData[2] =
 	{
-		0, 1, 2, 3, 4, 5,
+		0, 1, 
 	};
-	*/
+	
 
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -322,8 +309,8 @@ void CObjLastBoss::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f/* + AniData[m_ani_frame] * 230*/;
-	src.m_right = 512.0f /*+ AniData[m_ani_frame] * 230*/;
+	src.m_left = 0.0f + AniData[m_ani_frame] * 512;
+	src.m_right = 512.0f + AniData[m_ani_frame] * 512;
 	src.m_bottom = 512.0f;
 
 	//ブロック情報を持ってくる

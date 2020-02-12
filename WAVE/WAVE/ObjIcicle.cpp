@@ -220,7 +220,7 @@ void CObjIcicle::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	//歩くアニメーション情報を登録
+	//アニメーション情報を登録
 	int AniData[2][6] =
 	{
 		0, 1, 2, 3, 4, 5, //敵が歩くモーション

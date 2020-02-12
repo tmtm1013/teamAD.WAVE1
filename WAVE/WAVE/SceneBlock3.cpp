@@ -39,7 +39,7 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage33.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage333.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -51,7 +51,7 @@ void CSceneBlock3::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			
+
 			if (w >= 10)
 			{
 				count += 3;
@@ -87,7 +87,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
@@ -100,11 +100,13 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
 
 
 
-
-//弾丸グラフィック読み込み
+    //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	///敵弾丸グラフィック読み込み
@@ -117,8 +119,8 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
-	
+	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
@@ -136,6 +138,9 @@ void CSceneBlock3::InitScene()
 
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
+
+	//溶岩壁
+	Draw::LoadImageW(L"LavaAni1.png", 16, TEX_SIZE_512);
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
@@ -158,6 +163,12 @@ void CSceneBlock3::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
+	//必殺技回復アイテムグラフィック読み込み
+	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
@@ -172,9 +183,9 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
-	//背景のオブジェクト作成
-	CObjDangerWall* objdw = new CObjDangerWall(0,64);
-	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 0);
+	//溶岩壁オブジェクト作成
+	CObjDangerWall* objdw = new CObjDangerWall();
+	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 5);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();

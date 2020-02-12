@@ -25,6 +25,7 @@ void CObjRevolutionBullet::Init()
 {
 	m_vx = 0.0f;//弾丸のX軸方向の速度
     m_vy = 1.0f;//弾丸のY軸方向の速度
+	m_bxp = 0.0f;//主人公のvx格納用変数
 	x = 0;  //主人公のX軸位置情報
 	y = 0;  //主人公のY軸位置情報
 
@@ -127,7 +128,11 @@ void CObjRevolutionBullet::Action()
 	theta += omega;
 	Cx += 1 * pos;//中心の位置を右に移動
 
-	m_x += m_vx * pos;
+	//主人公期と誘導弾丸で角度をとる。
+	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	m_bxp = obj->GetVX();
+
+	m_x += ( m_vx * pos) - m_bxp;
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);

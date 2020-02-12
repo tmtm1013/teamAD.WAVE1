@@ -263,19 +263,16 @@ void CObjEnemyLongdistance::Action()
 	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
 
 
-
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
-
-		m_hp -= 15;
+		m_hp -= 30;
 
 		Audio::Start(12);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 	{
-
 		m_hp -= 10;
 
 		Audio::Start(13);
@@ -283,15 +280,13 @@ void CObjEnemyLongdistance::Action()
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
-
-		m_hp -= 40;
+		m_hp -= 60;
 
 		Audio::Start(14);
 	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
-
 		m_hp -= 50;
 
 

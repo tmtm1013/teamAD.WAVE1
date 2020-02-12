@@ -75,5 +75,7 @@ private:
 	float pl_x;//現在のプレイヤーXの位置を保存用変数
 	float pl_y;//現在のプレイヤーYの位置を保存用変数
 
+	float m_bxp;
+
 	bool button;
 };
