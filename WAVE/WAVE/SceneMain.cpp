@@ -147,6 +147,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
 
+
+	//弾丸消滅エフェクト
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+
 	//弾丸消滅エフェクト
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
 	//敵消滅アニメーション画像読込

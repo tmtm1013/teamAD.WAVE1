@@ -171,8 +171,7 @@ void CObjEnemy::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
 
-
-
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_attack = true;
@@ -265,7 +264,6 @@ void CObjEnemy::Action()
 	);
 
 
-   
 
 	// 落下した敵を消去する。
 	if (m_py > 600.0f)
@@ -283,8 +281,6 @@ void CObjEnemy::Action()
 
 		m_del = true;//着弾エフェクト移行用フラグ
 		hit->SetInvincibility(true);//判定無効
-
-		
 
 
 	}
@@ -347,6 +343,7 @@ void CObjEnemy::Draw()
 { 
 //ブロック情報を持ってくる
 	
+
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//歩くアニメーション情報を登録
 	int AniData[6] =
