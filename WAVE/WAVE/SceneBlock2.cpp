@@ -165,6 +165,9 @@ void CSceneBlock2::InitScene()
 	//必殺技回復アイテムグラフィック読み込み
 	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
 
+	//必殺技回復アイテムグラフィック読み込み
+	Draw::LoadImageW(L"turara.png", 37, TEX_SIZE_512);//かき氷グラフィック読み込み
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

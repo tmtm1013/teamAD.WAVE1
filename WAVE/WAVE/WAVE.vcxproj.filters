@@ -145,9 +145,6 @@
     <ClCompile Include="ObjClear.cpp">
       <Filter>Clear</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMethod.cpp">
-      <Filter>UI\操作方法</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBackground.cpp">
       <Filter>UI\プレイ背景</Filter>
     </ClCompile>
@@ -157,9 +154,7 @@
     <ClCompile Include="ObjMain.cpp">
       <Filter>UI\得点</Filter>
     </ClCompile>
-    <ClCompile Include="ObjLoading.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
+    <ClCompile Include="ObjGren.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -300,9 +295,6 @@
     <ClInclude Include="GameHead.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMethod.h">
-      <Filter>UI\操作方法</Filter>
-    </ClInclude>
     <ClInclude Include="ObjBackground.h">
       <Filter>UI\プレイ背景</Filter>
     </ClInclude>
@@ -315,9 +307,7 @@
     <ClInclude Include="ObjMain.h">
       <Filter>UI\得点</Filter>
     </ClInclude>
-    <ClInclude Include="ObjLoading.h">
-      <Filter>UI</Filter>
-    </ClInclude>
+    <ClInclude Include="ObjGren.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bullet">

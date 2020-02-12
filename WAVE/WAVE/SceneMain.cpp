@@ -84,9 +84,11 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
-
+	
 	//音楽読み込み
 	Audio::LoadAudio(21, L"back1.wav", BACK_MUSIC);
+
+
 
 
 	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
@@ -199,6 +201,7 @@ void CSceneMain::InitScene()
 //実行中メソッド
 void CSceneMain::Scene()
 {
+	/*
 	enter_time++;
 	if (Input::GetVKey('Q') == true && enter_time > 16)
 	{
@@ -209,5 +212,5 @@ void CSceneMain::Scene()
 
 	}
 	
-
+	*/
 }

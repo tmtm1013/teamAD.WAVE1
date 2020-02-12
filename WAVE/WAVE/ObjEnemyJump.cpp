@@ -408,10 +408,10 @@ void CObjEnemyJump::Draw()
 
 
 				//êÿÇËéÊÇËà íuÇÃê›íË
-				src.m_top = 48.0f;
-				src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-				src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-				src.m_bottom = 96.0f;
+				src.m_top = 49.0f;
+				src.m_left = 1.0f + AniDataack[m_ani_frame2] * 49;
+				src.m_right = 47.0f + AniDataack[m_ani_frame2] * 47;
+				src.m_bottom = 95.0f;
 
 				//ï`âÊ
 				Draw::Draw(12, &src, &dst, c, 0.0f);
@@ -433,10 +433,10 @@ void CObjEnemyJump::Draw()
 
 
 				// êÿÇËéÊÇËà íuÇÃê›íË
-				src.m_top = 0.0f;
-				src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-				src.m_right = 48.0f + AniData[m_ani_frame] * 48;
-				src.m_bottom = 48.0f;
+				src.m_top = 1.0f;
+				src.m_left = 1.0f + AniData[m_ani_frame] * 47;
+				src.m_right = 47.0f + AniData[m_ani_frame] * 47;
+				src.m_bottom = 47.0f;
 
 				//ï`âÊ
 				Draw::Draw(12, &src, &dst, c, 0.0f);
