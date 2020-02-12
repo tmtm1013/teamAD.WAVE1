@@ -31,7 +31,7 @@ void CObjDescription::Init()
 void CObjDescription::Action()
 {
 
-
+	//Audio::Start(60);
 
 
 

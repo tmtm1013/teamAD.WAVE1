@@ -143,8 +143,6 @@ void CSceneMain::InitScene()
 	//土中のグラフィック読み込み
 	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
-	
-
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
@@ -170,7 +168,7 @@ void CSceneMain::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(1.0 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 
 

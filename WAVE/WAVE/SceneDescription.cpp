@@ -83,6 +83,9 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
 
+
+	Audio::LoadAudio(30, L"tutorial.wav", BACK_MUSIC);
+
     //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
@@ -95,7 +98,7 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
 
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);	//ゲームオーバーのグラフィック読み込み
 
@@ -113,9 +116,21 @@ void CSceneDescription::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
+
+	//音楽スタート
+
+	//Audio::LoadAudio(60, L"tutorial.wav", SOUND_TYPE::EFFECT);
+	//Audio::Start(60);
+
+
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.8f);
+	Audio::Start(30);//音楽スタート
+
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.3 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

@@ -30,7 +30,7 @@ void CObjBackground::Init()
 		backnum = 9;
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
-		Draw::LoadImageW(L"hstage2.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"gc1.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
 }

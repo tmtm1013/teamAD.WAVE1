@@ -27,6 +27,7 @@ CSceneClear::~CSceneClear()
 //初期化メソッド
 void CSceneClear::InitScene()
 {
+	Draw::LoadImageW(L"gc00.png", 6, TEX_SIZE_512);
 
 	//クリア画面オブジェクト作成
 	CObjClear*objr = new CObjClear();
