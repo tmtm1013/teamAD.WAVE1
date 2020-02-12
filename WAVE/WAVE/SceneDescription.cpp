@@ -84,9 +84,12 @@ void CSceneDescription::InitScene()
 
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"SEgan/k.wav", SOUND_TYPE::EFFECT);
-	
+
+	Audio::LoadAudio(0, L"tutorial.wav", BACK_MUSIC);
+	Audio::Start(0);
+
 	Draw::LoadImage(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
 
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512); //弾丸グラフィック読み込み
@@ -121,11 +124,6 @@ void CSceneDescription::InitScene()
 
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
-
-
-	//タイトルオブジェクト作成
-	CObjTitle* tl = new CObjTitle();
-	Objs::InsertObj(tl, OBJ_TITLE, 11);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

@@ -480,7 +480,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f)
 		{
 			hp -= 30 * guard;
-
+			Audio::Start(11);
 			flag = false;
 			hp_time = 1.6f;
 		}
@@ -504,7 +504,7 @@ void CObjHero::Action()
 		if (flag == true && hp_time <= 0.0f){   
 
 			hp -= 5 * guard;//ダメージ量×ガード値
-
+			Audio::Start(10);
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
