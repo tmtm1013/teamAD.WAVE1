@@ -158,6 +158,9 @@
     <ClCompile Include="ObjMethod.cpp">
       <Filter>UI\操作方法</Filter>
     </ClCompile>
+    <ClCompile Include="ObjGrenade.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -313,6 +316,9 @@
     <ClInclude Include="ObjGren.h" />
     <ClInclude Include="ObjMethod.h">
       <Filter>UI\操作方法</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGrenade.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -49,7 +49,7 @@ void CObjCursor::Action()
 	m_mou_py = (float)Input::GetPosY();
 	if (time>=1)
 	{
-		m_r += 4.0f;
+		m_r += 2.0f;
 
 	}
 	
@@ -75,8 +75,8 @@ void CObjCursor::Draw()
 
 	//ï\é¶à íuÇÃê›íË
 	dst.m_top    = -20.0f + m_mou_py ;
-	dst.m_left   = -20.0f + m_mou_px ;
-	dst.m_right  =  28.0f + m_mou_px ;
+	dst.m_left   = -16.0f + m_mou_px ;
+	dst.m_right  =  32.0f + m_mou_px ;
 	dst.m_bottom =  28.0f + m_mou_py ;
 
 

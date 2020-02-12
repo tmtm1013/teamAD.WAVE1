@@ -225,7 +225,7 @@ void CObjHero::Action()
 			Audio::Start(2);
 
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-			CObjBullet* obj_b = new CObjBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+			CObjBullet* obj_b = new CObjBullet(m_px + 30.0f, m_py + 25.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			//Audio::Start(6);//薬莢落下音
@@ -255,7 +255,7 @@ void CObjHero::Action()
 		//m_SEtime++;
 		
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
+		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 25.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = 0.0f;
@@ -470,6 +470,7 @@ void CObjHero::Action()
 
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 8, m_py + 10);//ヒットボックスの最新
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
@@ -491,15 +492,26 @@ void CObjHero::Action()
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
-		if (flag == true && hp_time <= 0.0f)
-		{
-			hp -= 30 * guard;
-			Audio::Start(11);
-			flag = false;
-			hp_time = 1.6f;
+		
+		if (flag == true && hp_time <= 0.0f) {
+
+			if (guard_flag == true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 30;//ダメージ量×ガード値
+				Audio::Start(11);
+			}
+
+			flag = false;//主人公HP減算量管理フラグ 
+			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
-		if (hp_time >= 0.0f)
+		if (hp_time >= 0.0f) {
 			flag = true;
+		}
 		
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -511,7 +523,31 @@ void CObjHero::Action()
 			m_vx = KnockBack(m_px, x);//ノックバック関数
 		}
 	}
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
 
+		if (flag == true && hp_time <= 0.0f) {
+
+			if (guard_flag == true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 30;//ダメージ量×ガード値
+				Audio::Start(26);
+			}
+
+			flag = false;//主人公HP減算量管理フラグ 
+			hp_time = 1.6f;//主人公HP減算量管理タイム
+		}
+		if (hp_time >= 0.0f) {
+			flag = true;
+		}
+		
+		
+	}
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -519,11 +555,12 @@ void CObjHero::Action()
 
 			if (guard_flag==true)
 			{
-				hp -= 5 * guard;//ダメージ量×ガード値
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
 				//Audio::Start(27);
 			}
 			else {
-				hp -= 5;//ダメージ量×ガード値
+				hp -= 10;//ダメージ量×ガード値
 				Audio::Start(10);
 			}
 		
@@ -613,8 +650,7 @@ void CObjHero::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	//ヒットボックスの最新
-	hit->SetPos(m_px + 8, m_py + 10);
+	
 	
 
 	//主人公が画面下に落ちたらゲームオーバーに移行

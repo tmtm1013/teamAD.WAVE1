@@ -27,6 +27,12 @@ void CObjGrenade::Init()
 	m_sx = 16.0f;  //画像サイズBlockHit関数に渡す用
 	m_sy = 16.0f;
 
+	m_hit_up=false;
+    m_hit_down=false;
+	m_hit_left=false;
+	m_hit_right=false;
+
+
 	flag = true;
 
 	HitCheck = false;
@@ -34,7 +40,7 @@ void CObjGrenade::Init()
 	button = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 16, 16, ELEMENT_ENEMY, OBJ_GRENADE, 1);
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, OBJ_GRENADE, OBJ_GRENADE, 1);
 
 }
 
@@ -52,52 +58,53 @@ void CObjGrenade::Action()
 			this->SetStatus(false);
 		}
 		*/
+	
 
-		//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockBulletHit(&m_x, &m_y, true, &m_sx, &m_sy,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
-	);
+	
 
-		//弾の移動ベクトルm_vx,m_vy
-	m_x += m_vx;
-	m_y += m_vy;
+	
+	
+	
+	//弾丸が画面端に到達すると弾丸が跳ねかえる処理
+	
+	if (m_hit_up == true || m_hit_down == true  && button == false)
+	{
 
-	//自由落下運動
-	m_vy += 9.8 / (16.0f);
+		m_vy += -10;//弾丸のベクトルY値を反転
+		button = true;
 
+		m_hit_up = false;
+		m_hit_down = false;
+		m_hit_left = false;
+		m_hit_right = false;
+	}
+	if (m_hit_left == true || m_hit_right == true && button == false)
+	{
+
+		m_vx+= -10;//弾丸のベクトルX値を反転
+		button = true;
+
+		m_hit_up = false;
+		m_hit_down = false;
+		m_hit_left = false;
+		m_hit_right = false;
+	}
+	
+	if (m_y < 0.0f)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+	}
 
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true && button == true) {
 
 		for (int i = 360 / 24; i <= 360; i += 360 / 24)
 		{
 			//弾丸オブジェクト
-			CObjDiffusionBullet* obj_ex = new CObjDiffusionBullet(m_x, m_y, i);//オブジェ作成
-			Objs::InsertObj(obj_ex, OBJ_HOMING_BULLET, 1);
+			CObjAngleBullet* obj_a = new CObjAngleBullet(m_x, m_y, i,5.0f);//オブジェ作成
+			Objs::InsertObj(obj_a, OBJ_ANGLE_BULLET, 23);
+		
 		}
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
-	}
-
-	//弾丸が画面端に到達すると弾丸が跳ねかえる処理
-	if (m_hit_left == true || m_hit_right == true && button == false)
-	{
-
-		m_vx *= -1;//弾丸のベクトルX値を反転
-		button = true;
-
-	}
-	if (m_hit_up == true || m_hit_down == true  && button == false)
-	{
-
-		m_vy *= -1;//弾丸のベクトルY値を反転
-		button = true;
-
-	}
-	
-	if (m_y < 0.0f)
-	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
@@ -121,9 +128,20 @@ void CObjGrenade::Action()
 	{
 		this->SetStatus(false);//オブジェクトを破棄する
 	}
-	*/
+	*/	//ブロックとの当たり判定
+	CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_x, &m_y, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
+
 	
-	
+		//弾の移動ベクトルm_vx,m_vy
+	m_x += m_vx;
+	m_y += m_vy;
+
+	//自由落下運動
+	m_vy += 9.8 / (16.0f);
 }
 
 //ドロー

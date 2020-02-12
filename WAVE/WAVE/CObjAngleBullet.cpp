@@ -45,7 +45,7 @@ void CObjAngleBullet::Init()
 	m_hit_right = false;
 
     //当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_ANGLE_BULLET, OBJ_HOMING_BULLET, 1);
+	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_ANGLE_BULLET, OBJ_ANGLE_BULLET, 1);
 }
 
 //アクション
