@@ -24,6 +24,7 @@ private:
 
 	float bx;      //弾丸の X ベクトル値収納用変数 
 	float by;      //弾丸の Y ベクトル値収納用変数
+	float m_bxp;   //主人公の X 移動ベクトル値格納用変数
 
 	float m_sx;   //サイズ用
 	float m_sy;

@@ -25,6 +25,8 @@ public:
 	float m_x;
 	float m_y;
 
+
+	
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
 
@@ -54,6 +56,7 @@ public:
 	);
 
 private:
+
 	void BlockDraw(float x, float y, RECT_F *dst, float c[]);
 
 	int m_map[10][200];

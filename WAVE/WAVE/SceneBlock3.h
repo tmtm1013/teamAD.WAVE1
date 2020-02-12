@@ -37,3 +37,47 @@ private:
 	int EnemyLongdistance;//遠距離攻撃型敵用変数
 	int EnemyLongdistanceleft;//遠距離攻撃型敵用変数
 };
+
+/*
+if (movesecond >= 21 && m_hit_down == true)
+{
+	Audio::Start(8);
+	movesecond = 0;
+}
+
+//ダメージブロック
+if (m_block_type == 5)
+hp -= 0.5;
+
+
+	}
+	else if (Action_ani_flag != true)//キー入力がない場合は静止フレームにする
+	{
+	m_ani_time += 1;//アニメーションタイムを+1加算
+	m_ani_move = 0;//静止アニメーションデータを指定
+
+	movesecond = 100;
+
+	}
+	if (m_hit_down == false)//ジャンプアニメーション
+	{
+		m_ani_move = 2;//ジャンプアニメーションデータを指定
+
+		if (jumpsecond >= 10)
+		{
+			m_ani_time += 1;//アニメーションタイムを+1加算
+			if (SE_flag == false)
+				Audio::Start(10);//SE再生(降下)
+
+			SE_flag = true;
+			jumpsecond = 0;
+		}
+		else
+			jumpsecond = 100;
+	}
+	if (m_hit_down == true && SE_flag == true)//落下後Blockと接触時に着地音を鳴らす
+	{
+		Audio::Stop(10);
+		SE_flag = false;
+		Audio::Start(9);
+*/

@@ -33,6 +33,7 @@ void CObjAngleBullet::Init()
 
 	m_vx = cos(3.14f / 180.0f*m_r);
 	m_vy = sin(3.14f / 180.0f*m_r);
+	m_bxp = 0.0f;//主人公のベクトル値を格納するよう
 
 	m_sx = 16.0f;
 	m_sy = 16.0f;
@@ -53,6 +54,12 @@ void CObjAngleBullet::Action()
     //HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x, m_y);
+
+
+
+	//主人公期と誘導弾丸で角度をとる。
+	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	m_bxp = obj->GetVX();//主人公のベクトル値を持ってくる
 
 	//移動
 	m_x += m_vx * m_speed;
@@ -172,8 +179,8 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(20, &m_eff, &dst, c, 0.0f);
-		//着弾アニメーション
+		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
+		
 	}
 	else
 	{
@@ -190,6 +197,6 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 52.0f + m_x;
 		dst.m_bottom = 48.0f + m_y;
 
-		Draw::Draw(40, &src, &dst, c, 0.0f);
+		Draw::Draw(24, &src, &dst, c, 0.0f);
 	}
 }

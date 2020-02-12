@@ -85,15 +85,23 @@ void CObjSlime::Init()
 	m_rnd = 0;//ジャンプ用ランダム変数
 
 	//HP
-	m_hp = 100;
+	m_hp = 30;
 
 	//攻撃アニメーション
 	m_attack = false;
 	m_ani_frame2 = 0;
-	m_ani_max_time2 = 4;
+	m_ani_max_time2 = 6;
+
+
+	//消滅エフェクト
+	m_ani = 0;
+	m_ani_time2 = 0;
+	m_del = false;
+
+
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 48, 48, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 
@@ -125,10 +133,12 @@ void CObjSlime::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
+
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
+
 
 
 	if (m_attack == false) {
@@ -162,13 +172,9 @@ void CObjSlime::Action()
 
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
-			if (m_hit_left == true)
+			if (m_hit_right == true)
 			{
-
-
 				m_vy = -13;
-
-
 			}
 
 			//ランダムで決まる数値が1の時ジャンプする
@@ -206,7 +212,7 @@ void CObjSlime::Action()
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 32 + block->GetScroll(), m_py);
+	hit->SetPos(m_px  + block->GetScroll(), m_py + 12);
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
@@ -255,8 +261,8 @@ void CObjSlime::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		m_hp -= 15;
-
+		m_hp -= 30;
+		Audio::Start(12);
 	}
 
 	//敵と弾丸が接触したらHPが減る
@@ -264,17 +270,16 @@ void CObjSlime::Action()
 	{
 
 		m_hp -= 10;
-
+		Audio::Start(13);
 
 	}
-
 	//敵と弾丸が接触したらHPが減る
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 	{
 
-		m_hp -= 1;
+		m_hp -= 20;
 
-
+		Audio::Start(14);
 	}
 
 	//落下した敵を消去する。
@@ -287,21 +292,57 @@ void CObjSlime::Action()
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
+		//敵を動かさないようにする。
+		m_vx = 0;
+		m_vy = 0;
 
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
-		//敵が消滅したら+100点
-		((UserData*)Save::GetData())->m_point += 100;
-
-
-		//アイテムオブジェクト作成	
-		CObjAitem*obju = new CObjAitem(m_px, m_py);
-		Objs::InsertObj(obju, OBJ_AITEM, 7);
-
+		m_del = true;//着弾エフェクト移行用フラグ
+		hit->SetInvincibility(true);//判定無効
 
 	}
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[5] =
+		{
 
+
+			{0,  0,  204 ,200},
+			{0, 204, 408 ,200},
+			{0, 408, 612,200},
+			{0, 612,816, 200},
+			{0, 816,1020,200},
+
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time2 > 4)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time2 = 0;
+
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
+
+			m_ani_time2++;
+
+		}
+
+		if (m_ani == 5)
+		{
+
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+
+		}
+
+		return;
+
+	}
 
 }
 
@@ -334,33 +375,57 @@ void CObjSlime::Draw()
 
 
 	//表示位置の設定
-	dst.m_top = -66.0f + m_py;
-	dst.m_left = (132.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_right = (132 - 132.0f * m_posture) + m_px + block->GetScroll();
-	dst.m_bottom = 66.0f + m_py;
+	dst.m_top = 0.0f + m_py;
+	dst.m_left = (50.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_right = (50 - 50.0f * m_posture) + m_px + block->GetScroll();
+	dst.m_bottom = 73.0f + m_py;
 
 
 	if (m_attack == true) {
+		//弾丸の状態で描画を変更if (m_del == true)
+		if (m_del == true)
+		{
 
-		//切り取り位置の設定
-		src.m_top = 48.0f;
-		src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-		src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-		src.m_bottom = 96.0f;
+			Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+			//着弾アニメーション
 
-		//描画
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
+		else
+		{
+
+
+			//切り取り位置の設定
+			src.m_top = 49.0f;
+			src.m_left = 1.0f + AniDataack[m_ani_frame2] * 47;
+			src.m_right = 47.0f + AniDataack[m_ani_frame2] * 47;
+			src.m_bottom = 94.0f;
+
+			//描画
+			Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
 	}
-	else {
+	else
+	{
+		//弾丸の状態で描画を変更if (m_del == true)
+		if (m_del == true)
+		{
+
+			Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+			//着弾アニメーション
+
+		}
+		else
+		{
 
 
-		// 切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-		src.m_right = 48.0f + AniData[m_ani_frame] * 48;
-		src.m_bottom = 48.0f;
+			// 切り取り位置の設定
+			src.m_top = 1.0f;
+			src.m_left = 1.0f + AniData[m_ani_frame] * 47;
+			src.m_right = 47.0f + AniData[m_ani_frame] * 47;
+			src.m_bottom = 48.0f;
 
-		//描画
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+			//描画
+			Draw::Draw(12, &src, &dst, c, 0.0f);
+		}
 	}
 }

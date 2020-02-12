@@ -35,13 +35,17 @@ enum OBJ_NAME
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
 	OBJ_REVOLUTION_BULLET,
+	OBJ_GRENADE,
+
 
 	OBJ_BACKGROUND,
 
 	OBJ_FLYINGENEMY,
 	OBJ_ENEMYJUMP,
+	OBJ_SlIME,
 	OBJ_ENEMYLONGDISTANCE,
 	OBJ_BOSS,
+	OBJ_DANGER_WALL,
 	
 
 
@@ -53,6 +57,9 @@ enum OBJ_NAME
 	OBJ_LASTBOSS,
 	OBJ_AITEM,
 	OBJ_ATTACK_POINT,
+	OBJ_METHOD,
+	OBJ_LOADING,
+
 };
 //------------------------------------------------
 
@@ -123,10 +130,12 @@ extern float kazu;
 //エネミーオブジェクトヘッダー
 #include "ObjEnemy.h"
 #include "ObjEnemyJump.h"
+#include "ObjSlime.h"
 #include "ObjEnemyLongdistance.h"
 #include "ObjFlyingenemy.h"
 #include "ObjBoss.h"
 #include "ObjSlime.h"
+#include "ObjDangerWall.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
@@ -134,6 +143,7 @@ extern float kazu;
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
 #include "ObjRevolutionBullet.h"
+#include "ObjGrenade.h"
 
 
 #include "ObjTitle.h"
@@ -144,6 +154,10 @@ extern float kazu;
 #include "ObjGameOver.h"
 #include "ObjItem.h"
 #include "ObjTime.h"
+#include "ObjMethod.h"
+#include "ObjLoading.h"
+
+
 #include "ObjGren.h"
 #include "ObjDescription.h"
 #include "ObjLastBoss.h"

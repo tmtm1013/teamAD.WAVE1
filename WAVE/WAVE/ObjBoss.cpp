@@ -278,8 +278,8 @@ void CObjBoss::Action()
 			
 				m_time2 = 0;
 				//弾丸オブジェクト
-				CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll()+50, m_py-50, 40);//オブジェ作成
-				Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 1);
+				CObjHomingBullet* obj_bo = new CObjHomingBullet(m_px + block->GetScroll()+50, m_py-50, 20);//オブジェ作成
+				Objs::InsertObj(obj_bo, OBJ_HOMING_BULLET, 20);
 				m_attack = true;//攻撃アニメーション移行用フラグ
 			//敵を動かさないようにする。
 				m_vx = 0;
@@ -290,7 +290,7 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 		{
 
-			m_hp -= 15;
+			m_hp -= 30;
 
 			Audio::Start(12);
 		}

@@ -37,20 +37,10 @@ void CSceneTitle::InitScene()
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
-
-	CObjTitle* p = new CObjTitle();
-	Objs::InsertObj(p, OBJ_TITLE, 10);
+	
 
 
-	//音楽読み込み
-	Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
 
-	//ボリュームを1.0に戻す
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.5 - v);
-
-	//音楽スタート
-	Audio::Start(0);
 	
 
 

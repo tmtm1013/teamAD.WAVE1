@@ -9,7 +9,7 @@
 #include "GameL\HitBoxManager.h"
 
 
-#define FULL_BULLET_SPEED (5.0f)
+#define FULL_BULLET_SPEED (6.0f)
 
 
 //使用するネームスペース
@@ -20,6 +20,7 @@ CObjFullBullet::CObjFullBullet(float x, float y)
 {
 	m_bx = x;
 	m_by = y;
+	
 
 
 	//当たり判定用のHitBoxを作成
@@ -39,6 +40,7 @@ void CObjFullBullet ::Init()
 
 	bx = 0.0f;
 	by = 0.0f;
+	m_bxp = 0.0f;
 
 	m_sx = 16;   //サイズ用
 	m_sy = 16;
@@ -46,6 +48,7 @@ void CObjFullBullet ::Init()
 	m_time = 0.0f;
 
 	flag = true;
+
 
 	//float Volume = Audio::VolumeMaster(-0.2f);
 
@@ -64,41 +67,49 @@ void CObjFullBullet::Action()
 
 
 
-		//マウスの位置を取得
-		if (flag == true)
-		{
-			m_mou_bx = (float)Input::GetPosX();
-			m_mou_by = (float)Input::GetPosY();
+	//マウスの位置を取得
+	if (flag == true)
+	{
+		m_mou_bx = (float)Input::GetPosX();
+		m_mou_by = (float)Input::GetPosY();
 
-			bx = (m_mou_bx - m_bx)*m_vx;
-			by = (m_by - m_mou_by)*m_vy;
+		bx = (m_mou_bx - m_bx)*m_vx;
+		by = (m_by - m_mou_by)*m_vy;
 
-			flag = false;
-		}
 
-		float r = 0.0f;
-		r = bx * bx + by * by;
-		r = sqrt(r);//r をルートを求める
+		flag = false;
+	}
 
-		//長さが0かどうか調べる
-		if (r == 0.0f)
-		{
-			;//0なら何もしない
-		}
-		else
-		{
-			//正規化を行う
-			m_vx = 1.0f / r * bx;
-			m_vy = 1.0f / r * by;
-		}
+	float r = 0.0f;
+	r = bx * bx + by * by;
+	r = sqrt(r);//r をルートを求める
 
-		//弾丸に速度つける
-		m_vx *= FULL_BULLET_SPEED;
-		m_vy *= FULL_BULLET_SPEED;
+	//長さが0かどうか調べる
+	if (r == 0.0f)
+	{
+		;//0なら何もしない
+	}
+	else
+	{
+		//正規化を行う
+		m_vx = 1.0f / r * bx;
+		m_vy = 1.0f / r * by;
+	}
 
-		//移動ベクトルを座標に加算する
-		m_bx += m_vx;
-		m_by += m_vy;
+	//弾丸に速度つける
+	m_vx *= FULL_BULLET_SPEED;
+	m_vy *= FULL_BULLET_SPEED;
+
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//主人公期と誘導弾丸で角度をとる。
+	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	m_bxp = obj->GetVX();
+
+	//移動ベクトルを座標に加算する
+	m_bx += m_vx - m_bxp;
+	m_by += m_vy;
+
 	
 
 	//HitBoxの位置の変更
@@ -149,6 +160,8 @@ void CObjFullBullet::Action()
 void CObjFullBullet::Draw()
 {
 
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -160,14 +173,15 @@ void CObjFullBullet::Draw()
 	src.m_left = 0.0f;
 	src.m_right = 512.0f;
 	src.m_bottom = 512.0f;
-
+	
 	//表示位置の設定
 	dst.m_top = -16.0f + m_by;
 	dst.m_left = -16.0f + m_bx;
 	dst.m_right = 32.0f + m_bx;
 	dst.m_bottom = 32.0f + m_by;
-
-
+	
+		
+	
 	//描画
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 

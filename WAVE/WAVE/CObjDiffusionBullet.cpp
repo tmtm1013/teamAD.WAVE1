@@ -29,10 +29,15 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y, float r)
 //イニシャライズ
 void CObjDiffusionBullet::Init()
 {
+
+
+
 	//弾丸の角度を求める
 	m_vx = cos(M_PI / 180.0*m_r);
 	m_vy = sin(M_PI / 180.0*m_r);
 
+	m_bxp = 0.0f;
+	
 	m_time = 0.0f;
 
 	m_s = B_S;//弾丸のスピード
@@ -51,15 +56,21 @@ void CObjDiffusionBullet::Action()
 
 	m_time += 0.1f;
 
-	m_bx += m_vx * m_s;//敵の位置から求めた角度にベクトル(スピード)を入れていく
-	m_by += m_vy * m_s;
+	
+
+	
 
 	//主人公期と誘導弾丸で角度をとる。
 	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
-	//主人公の座標を変数に保存する
+	//主人公の現在座標とのベクトル値を変数に保存する
 	pl_x = obj->GetX();//主人公のX座標
 	pl_y = obj->GetY();//主人公のY座標
+	m_bxp = obj->GetVX();
+
+
+	m_bx += (m_vx * m_s) - m_bxp;//敵の位置から求めた角度にベクトル(スピード)を入れていく
+	m_by += m_vy * m_s;
+
 
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
@@ -111,23 +122,23 @@ void CObjDiffusionBullet::Action()
 //ドロー
 void CObjDiffusionBullet::Draw()
 {
-	float c[4] = { 0.0f,1.0f,0.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
 
 	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 126.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 32.0f;
+	src.m_top = 600.0f;
+	src.m_left = 200.0f;
+	src.m_right = 400.0f;
+	src.m_bottom = 800.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_by;
-	dst.m_left = 0.0f + m_bx;
-	dst.m_right = 32.0f + m_bx;
+	dst.m_left = -5.0f + m_bx;
+	dst.m_right = 27.0f + m_bx;
 	dst.m_bottom = 32.0f + m_by;
 	//描画
-	Draw::Draw(0, &src, &dst, c, m_r);
+	Draw::Draw(34, &src, &dst, c, m_r);
 
 
 

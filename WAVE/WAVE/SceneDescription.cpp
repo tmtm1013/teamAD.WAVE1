@@ -63,17 +63,15 @@ void CSceneDescription::InitScene()
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
-	//グラフィック読み込み
-	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
 
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
@@ -82,6 +80,7 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(9, L"SEgan/landingpoint.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 
 
 	Audio::LoadAudio(30, L"tutorial.wav", BACK_MUSIC);
@@ -108,6 +107,7 @@ void CSceneDescription::InitScene()
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); //ボス
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
+
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
@@ -147,21 +147,25 @@ void CSceneDescription::InitScene()
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	//カーソル作成
+	CObjCursor* obj_c = new CObjCursor();
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+
 }
 
 //実行中メソッド
 void CSceneDescription::Scene()
-{
-	
+{ 
 
-	bool flag;
+	bool flag;//主人公領域判定格納フラグ
 
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-	flag=CheckWindow(x, y, 0 , 0, 800, 570);
+	flag = CheckWindow(x, y, 0 , 0, 800, 570);///領域外ならfalse
 	if (flag == false)
 		Scene::SetScene(new CSceneMain());
 }

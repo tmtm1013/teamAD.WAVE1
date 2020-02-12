@@ -69,16 +69,9 @@ void CSceneMain::InitScene()
 	
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
 	
-	//Draw::LoadImageW(L"image1.png", 1, TEX_SIZE_512);
-	Draw::LoadImageW(L"Animation/EDGE3.png", 1, TEX_SIZE_1024);//  主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE4.png", 3, TEX_SIZE_1024);//  主人公 (ジャンプ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/EDGE3.png", 16, TEX_SIZE_1024);// 主人公 (  前進  ) グラフィック読み込み
-	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
-
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
@@ -91,15 +84,28 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
+
 
 	//音楽読み込み
 	Audio::LoadAudio(21, L"back1.wav", BACK_MUSIC);
+
+
+	Draw::LoadImageW(L"Animation/EDGE4.png", 1, TEX_SIZE_1024);//  主人公 (  ジャンプ  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/wait21.png", 2, TEX_SIZE_1024);// 主人公 (  待機  ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
+
+
+
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
 
 	//弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_1024);
-
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
@@ -109,9 +115,6 @@ void CSceneMain::InitScene()
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-
-	//手榴弾グラフィック読み込み
-	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_1024);
@@ -125,24 +128,14 @@ void CSceneMain::InitScene()
 	//ボス
 	Draw::LoadImageW(L"Animation/motion1.png", 13, TEX_SIZE_2048); 
 
-	//弾丸を飛ばす敵
-	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); 
-
-	//アイスブロックのグラフィックの読み込み
-	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
-
-	//ダメージブロックのグラフィックの読み込み
-	Draw::LoadImageW(L"dblock1.png", 17, TEX_SIZE_512);
-
-	//氷柱のグラフィック読み込み
-	Draw::LoadImageW(L"icicle.png", 24, TEX_SIZE_512);
-
 	//敵弾丸グラフィック読み込み
-	Draw::LoadImageW(L"M.png", 21, TEX_SIZE_256);
+	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//土中のグラフィック読み込み
 	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 	//グラフィック読み込み
 	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
@@ -155,13 +148,26 @@ void CSceneMain::InitScene()
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
-
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
 
-	//グラフィック読み込み
+	//弾丸消滅エフェクト
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	//敵消滅アニメーション画像読込
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
-	
+
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
+	//必殺技回復アイテムグラフィック読み込み
+	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
+
+	//ロードグラフィック読み込み
+	Draw::LoadImageW(L"Title.png", 37, TEX_SIZE_512);//かき氷グラフィック読み込み
+
+	//操作説明グラフィック読み込み
+	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
+
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);
 	Audio::Start(21);//音楽スタート
@@ -179,17 +185,7 @@ void CSceneMain::InitScene()
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
-	/*
-	//bossオブジェクト作成
-	CObjEnemyJump2* objz = new CObjEnemyJump2(600,300);
-	Objs::InsertObj(objz, OBJ_ENEMYJUMP2, 12);
-	*/
-	/*
-	//BOSSオブジェクト作成
-	CObjBoss* objboss = new CObjBoss(600,300);
-	Objs::InsertObj(objboss, OBJ_BOSS, 10);
-	*/
-
+	
 	//背景のオブジェクト作成
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
@@ -205,13 +201,15 @@ void CSceneMain::InitScene()
 	//スコア表示
 	CObjMain* s = new CObjMain();
 	Objs::InsertObj(s, OBJ_MAIN, 17);
+
+
 }
 
 //実行中メソッド
 void CSceneMain::Scene()
 {
-	
-	 
-	
+	//Method_flag = false;
 
+	
+	
 }

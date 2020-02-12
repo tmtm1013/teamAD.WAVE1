@@ -67,7 +67,7 @@ void CObjEnemy::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.4f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 
@@ -106,11 +106,8 @@ void CObjEnemy::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
 	//通常速度
-	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
-
 
 
 	//主人公の位置情報をここで取得
@@ -130,8 +127,7 @@ void CObjEnemy::Action()
 			m_vx += m_speed_power;
 			m_posture = 1.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
-
+			
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_left == true)
@@ -149,7 +145,7 @@ void CObjEnemy::Action()
 			m_vx -= m_speed_power;
 			m_posture = 0.0;
 			m_ani_time += 1;
-			m_ani_move = 1;
+		
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_right == true)
@@ -237,7 +233,7 @@ void CObjEnemy::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		
-		m_hp -= 15;
+		m_hp -= 60;
 
 		Audio::Start(12);
 	}
@@ -333,6 +329,11 @@ void CObjEnemy::Action()
 			//敵が消滅したら+100点
 			((UserData*)Save::GetData())->m_point += 10;
 
+
+			//アイテムオブジェクト作成	
+			CObjAitem*obju = new CObjAitem(m_px, m_py);
+			Objs::InsertObj(obju, OBJ_AITEM, 7);
+
 		}
 
 		return;
@@ -380,7 +381,7 @@ void CObjEnemy::Draw()
 
 
 		if (m_attack== true) {
-			//弾丸の状態で描画を変更
+			//弾丸の状態で描画を変更if (m_del == true)
 			if (m_del == true)
 			{
 

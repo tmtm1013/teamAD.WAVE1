@@ -119,13 +119,13 @@ void CObjAitem::Draw()
 
 
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
-	dst.m_top = 0.0f + m_iy;
-	dst.m_left = 0.0f + m_ix + block->GetScroll();
-	dst.m_right = 64.0f + m_ix + block->GetScroll();
-	dst.m_bottom = 64.0f + m_iy + 15;
+	dst.m_top = 20.0f + m_iy;
+	dst.m_left = 8.0f + m_ix + block->GetScroll();
+	dst.m_right = 58.0f + m_ix + block->GetScroll();
+	dst.m_bottom = 70.0f + m_iy ;
 
 
 	//•`‰æ
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(36, &src, &dst, c, 0.0f);
 
 }

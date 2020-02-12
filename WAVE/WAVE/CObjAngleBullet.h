@@ -31,6 +31,8 @@ private:
 	float m_y;  //オブジェクトの位置Y
 	float m_vx;	//オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
+	float m_bxp;//主人公のベクトル値を格納する用
+
 	float m_sx; //サイズ用
 	float m_sy;
 

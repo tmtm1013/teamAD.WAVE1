@@ -11,23 +11,21 @@ using namespace GameL;
 //イニシャライズ
 void CObjBackground::Init()
 {
-	if (((UserData*)Save::GetData())->Scenecontinue ==0) {
+	if (((UserData*)Save::GetData())->Scenecontinue == 0) {
 		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
-		backnum = 9;
+
 	}
-	backnum = 0;
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
 		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
-		backnum=9;
+
 	}
-	if (((UserData*)Save::GetData())->Scenecontinue == 2){
+	if (((UserData*)Save::GetData())->Scenecontinue == 2) {
 		Draw::LoadImageW(L"stage2.png", 9, TEX_SIZE_1024);
-		backnum = 9;
+
 	}
-		
 	if (((UserData*)Save::GetData())->Scenecontinue == 3) {
 		Draw::LoadImageW(L"hstage1.png", 9, TEX_SIZE_1024);
-		backnum = 9;
+
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
 		Draw::LoadImageW(L"gc1.png", 9, TEX_SIZE_1024);
@@ -63,5 +61,5 @@ void CObjBackground::Draw()
 	dst.m_bottom = 600.0f;
 
 	//描画
-	Draw::Draw(backnum, &src, &dst, c, 0.0f);
+	Draw::Draw(9, &src, &dst, c, 0.0f);
 }

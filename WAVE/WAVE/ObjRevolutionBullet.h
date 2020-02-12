@@ -18,23 +18,29 @@ private:
 	float m_y;
 	float m_vx;	//オブジェクトの移動用ベクトル
 	float m_vy;
+	float m_bxp;//主人公のVX値格納用変数
+	float leng;
 
 	float Angle;
 	float R;
 	float Cx, Cy;
 
+	float omega;
+	float rad;
+	float theta;
+	float r;
 	int second;
 
 	float x;
 	float y;
-	short int pos;
 
 	bool flag; //弾丸バウンド制御用フラグ
 
 	float pl_x;//現在のプレイヤーXの位置を保存用変数
 	float pl_y;//現在のプレイヤーYの位置を保存用変数
-
 	bool button;
+
+	short int pos;
 
 	float m_r;  //移動する角度
 	float m_speed;  //速度

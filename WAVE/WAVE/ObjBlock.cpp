@@ -35,26 +35,20 @@ void CObjBlock::Action()
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
-
-
-	//後方スクロールライン
-	if (hx < 350)
-	{
-		hero->SetX(350);
-		m_scroll -= hero->GetVX();
-	}
-
-	//前方スクロールライン
-	if (hx > 450)
-	{
-		hero->SetX(450);
-		m_scroll -= hero->GetVX();
-	}
-
-
-
-
 	
+		//後方スクロールライン
+	if (hx < 290)
+	{
+		m_scroll -= hero->GetVX();
+		hero->SetX(290);
+	}
+	//前方スクロールライン
+	if (hx > 300)
+	{
+		m_scroll -= hero->GetVX();
+		hero->SetX(300);
+	}
+
 	//敵出現ライン
 	//主人公の位置+500を敵出現ラインにする
 	float line = hx + (-m_scroll) + 500;
@@ -233,9 +227,6 @@ void CObjBlock::Draw()
 				if (m_map[i][j] == 2)
 				{
 					//アイスブロック
-
-				
-					
 
 					//アイスブロックの描画
 					BlockDraw(320.0f + 64.0f, 0.0f, &dst, c);
@@ -423,11 +414,11 @@ void CObjBlock::BlockHit(
 							*down = true;
 							*y = by - 64.0f;
 							//種類を渡すのスタートとゴールのみ変更する
-							if (m_map[i][j] >= 3)
+							if (m_map[i][j] == 3)//ゴールブロック
 								*bt = m_map[i][j];
-							else if (m_map[i][j] >= 2)
+							else if (m_map[i][j] == 2)//アイスブロック
 								*bt = m_map[i][j];
-							else if (m_map[i][j] >= 5)
+							else if (m_map[i][j] == 5)//ダメージブロック
 								*bt = m_map[i][j];
 							*vy = 0.0f;
 
@@ -484,7 +475,7 @@ void CObjBlock::BlockBulletHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 16> bx) && (*x + (-scroll) < bx + 64) && (*y + 24 > by) && (*y < by + 64))
+				if ((*x + (-scroll) + 14> bx) && (*x + (-scroll) < bx + 64) && (*y + 22 > by) && (*y < by + 64))
 				{
 					//上下左右判定
 
