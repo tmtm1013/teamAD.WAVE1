@@ -35,6 +35,8 @@ enum OBJ_NAME
 	OBJ_HOMING_BULLET,
 	OBJ_ANGLE_BULLET,
 	OBJ_REVOLUTION_BULLET,
+	OBJ_GRENADE,
+
 
 	OBJ_BACKGROUND,
 
@@ -141,6 +143,7 @@ extern float kazu;
 #include "COHomingBullet.h "
 #include "CObjAngleBullet.h"
 #include "ObjRevolutionBullet.h"
+#include "ObjGrenade.h"
 
 
 #include "ObjTitle.h"
