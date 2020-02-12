@@ -107,7 +107,7 @@ void CObjHero::Init()
 
 	Method_flag=false;
 
-	Guard_flag = false;//ガード用フラグ
+	guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
 	//当たり判定用のHitBoxを作成
@@ -300,9 +300,9 @@ void CObjHero::Action()
 
 	//ガード管理用変数を初期化
 	guard = 1;
+	guard_flag = false;
 
-	//左に移動時の処理
-	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)
+	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)	//左に移動時の処理-----------
 	{
 
 		//主人公移動
@@ -322,8 +322,7 @@ void CObjHero::Action()
 
 		Action_direction = false;
 	}
-	//左に移動時の処理
-	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)
+	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)//左に移動時の処理------------
 	{
 		//主人公移動
 		m_vx -= 0.5f;
@@ -345,6 +344,7 @@ void CObjHero::Action()
 	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL() == false && m_del == false)//ガードアクション-----------
 	{
 		Action_guard = true;
+		guard_flag = true;
 		
 		guard = 0;//ダメージを無効化
 	}
@@ -406,7 +406,21 @@ void CObjHero::Action()
 	{
 		jump_time = 0.0f;
 	}
+
+
+
+
+	if (Input::GetVKey('P') == true && m_del == false)
+	{
+
+		//弾丸オブジェクト
+		CObjGrenade* obj_gre = new CObjGrenade(m_px, m_py);//オブジェ作成
+		Objs::InsertObj(obj_gre, OBJ_GRENADE, 1);
+	}
 	
+
+
+
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
 		Method_flag = true;//処理を止めるフラグを切り替える
@@ -503,8 +517,15 @@ void CObjHero::Action()
 	{
 		if (flag == true && hp_time <= 0.0f){   
 
-			hp -= 5 * guard;//ダメージ量×ガード値
-
+			if (guard_flag==true)
+			{
+				hp -= 5 * guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 5;//ダメージ量×ガード値
+			}
+			
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
@@ -749,7 +770,7 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 1600.0f*(hp/(float)hp_max);
+	src.m_right = 1600.0f * (hp/(float)hp_max);
 	src.m_bottom = 123.0f;
 
 	//表示位置設定
