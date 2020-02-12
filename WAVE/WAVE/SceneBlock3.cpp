@@ -51,7 +51,7 @@ void CSceneBlock3::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			
+
 			if (w >= 10)
 			{
 				count += 3;
@@ -87,7 +87,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
-	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
+	Audio::LoadAudio(3, L"SEgan/magic.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
 	Audio::LoadAudio(4, L"SEgan/cannon1.wav", SOUND_TYPE::EFFECT);// 螺旋弾 発射音読み込み----
 	Audio::LoadAudio(5, L"SEgan/NomalM.wav", SOUND_TYPE::EFFECT);//    技切り替え時の音(通常弾)----
 	Audio::LoadAudio(6, L"SEgan/FullM.wav", SOUND_TYPE::EFFECT);//----技切り替え時の音(れん弾)----
@@ -104,7 +104,7 @@ void CSceneBlock3::InitScene()
 
 
 
-//弾丸グラフィック読み込み
+    //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
 	///敵弾丸グラフィック読み込み
@@ -118,7 +118,7 @@ void CSceneBlock3::InitScene()
 
 	//回復薬グラフィック読み込み
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
-	
+
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
@@ -136,6 +136,9 @@ void CSceneBlock3::InitScene()
 
 	//アイスブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"blocka1.png", 15, TEX_SIZE_512);
+
+	//溶岩壁
+	Draw::LoadImageW(L"LavaAni1.png", 16, TEX_SIZE_512);
 
 	//ダメージブロックのグラフィックの読み込み
 	Draw::LoadImageW(L"dblock2.png", 17, TEX_SIZE_512);
@@ -158,6 +161,12 @@ void CSceneBlock3::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
+	//主人公死亡アニメーション画像読み込み
+	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
+
+	//必殺技回復アイテムグラフィック読み込み
+	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
@@ -172,9 +181,9 @@ void CSceneBlock3::InitScene()
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
-	//背景のオブジェクト作成
-	CObjDangerWall* objdw = new CObjDangerWall(0,64);
-	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 0);
+	//溶岩壁オブジェクト作成
+	CObjDangerWall* objdw = new CObjDangerWall();
+	Objs::InsertObj(objdw, OBJ_DANGER_WALL, 5);
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();

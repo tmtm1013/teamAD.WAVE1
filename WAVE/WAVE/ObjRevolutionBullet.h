@@ -18,6 +18,7 @@ private:
 	float m_y;
 	float m_vx;	//オブジェクトの移動用ベクトル
 	float m_vy;
+	float m_bxp;//主人公のVX値格納用変数
 	float leng;
 
 	float Angle;

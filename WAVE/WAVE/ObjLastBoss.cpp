@@ -44,7 +44,7 @@ void CObjLastBoss::Init()
 	m_speed_power = 0.5f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	Boss_hp_max = 100;//ENEMYのHP
+	Boss_hp_max = 2000;//ENEMYのHP
 	Boss_hp_now = Boss_hp_max;
 
 	//blockとの衝突状態確認用
@@ -257,7 +257,7 @@ void CObjLastBoss::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 
-		Boss_hp_now -= 15;
+		Boss_hp_now -= 30;
 
 		Audio::Start(12);
 	}
@@ -293,7 +293,6 @@ void CObjLastBoss::Action()
 		Scene::SetScene(new CSceneClear());
 
 		//Audio::Stop(24);//音楽ストップ
-
 
 	}
 

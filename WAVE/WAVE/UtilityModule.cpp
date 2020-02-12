@@ -98,7 +98,7 @@ float GetAtan2Angle(float w, float h)
 //int ani_frame       アニメーションフレームの数の指定
 //float posture       描画の向きを指定
 void Anime(int* m_ani_time, float* m_ani_max_time, int* m_ani_frame, float* m_posture,
-	int ani_time, int ani_frame, float posture)
+	int ani_time, int ani_frame_max, float posture)
 {
 	*m_ani_time += ani_time;
 
@@ -108,7 +108,7 @@ void Anime(int* m_ani_time, float* m_ani_max_time, int* m_ani_frame, float* m_po
 		*m_ani_time = 0;
 	}
 	//アニメーション
-	if (*m_ani_frame == ani_frame)
+	if (*m_ani_frame == ani_frame_max)
 	{
 		*m_ani_frame = 0;
 

@@ -67,7 +67,7 @@ void CObjEnemy::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.4f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 
@@ -106,11 +106,8 @@ void CObjEnemy::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-
 	//通常速度
-	m_speed_power = 0.1f;
 	m_ani_max_time = 2;
-
 
 
 	//主人公の位置情報をここで取得
@@ -236,7 +233,7 @@ void CObjEnemy::Action()
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		
-		m_hp -= 15;
+		m_hp -= 60;
 
 		Audio::Start(12);
 	}

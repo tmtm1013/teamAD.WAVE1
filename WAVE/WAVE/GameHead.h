@@ -55,6 +55,9 @@ enum OBJ_NAME
 	OBJ_LASTBOSS,
 	OBJ_AITEM,
 	OBJ_ATTACK_POINT,
+	OBJ_METHOD,
+	OBJ_LOADING,
+
 };
 //------------------------------------------------
 
@@ -148,6 +151,10 @@ extern float kazu;
 #include "ObjGameOver.h"
 #include "ObjItem.h"
 #include "ObjTime.h"
+#include "ObjMethod.h"
+#include "ObjLoading.h"
+
+
 #include "ObjGren.h"
 #include "ObjDescription.h"
 #include "ObjLastBoss.h"
@@ -169,5 +176,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneBlock3//CSceneTitle//CSceneClear//CSceneBlock2//SceneBossStage//CSceneBlock2//CSceneMain////CSceneTitle////
+#define SET_GAME_START CSceneDescription//CSceneBlock2//CSceneBlock2//CSceneMain//CSceneBlock2//CSceneMain//
 //-----------------------------------------------
