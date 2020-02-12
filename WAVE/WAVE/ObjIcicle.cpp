@@ -62,7 +62,6 @@ void CObjIcicle::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
-	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
 	m_speed_power = 0.0f;  //通常速度
@@ -82,7 +81,8 @@ void CObjIcicle::Init()
 	//氷柱ＨＰ
 	m_hp = 10;
 
-	//エフェクト用フラグ
+	m_ani = 0;
+	m_ani_time2 = 0;
 	m_del = false;
 
 	//当たり判定用のHitBoxを作成
@@ -105,9 +105,6 @@ void CObjIcicle::Action()
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-
-	//摩擦の計算   -(運動energy X 摩擦係数)
-	//m_vx += -(m_vx*0.098);
 
 	//主人公とiCICLEの距離判定
 	if ((m_px - 100.0 + block->GetScroll()) < x)
@@ -173,28 +170,17 @@ void CObjIcicle::Action()
 	);
 
 	
-
-	// 落下した敵を消去する。
-	if (m_py > 600.0f)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
-	}
-
 	//地面と接触したときにＨＰを減らす。
 	if (m_hit_down == true) 
 	{
-
 		m_hp = -1;
 	}
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
-
-
+		
 		m_del = true;
 		
-
 	}
 	if (m_del == true)
 	{
@@ -204,12 +190,12 @@ void CObjIcicle::Action()
 		{
 
 
+
 			{0,  0,  204 ,200},
 			{0, 204, 408 ,200},
 			{0, 408, 612,200},
 			{0, 612,816, 200},
 			{0, 816,1020,200},
-
 
 		};
 		//アニメーションのコマ間隔
@@ -248,10 +234,10 @@ void CObjIcicle::Draw()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//描画カラー情報
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 0.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
+	RECT_F dst;//描画先表示位置+
 
 	
 	//表示位置の設定
@@ -266,15 +252,15 @@ void CObjIcicle::Draw()
 	if (m_del==true) {
 
 		//描画
-		Draw::Draw(37, &src, &dst, c, 0.0f);
+		Draw::Draw(21, &m_eff, &dst, c, 0.0f);
 	}
 	else
 	{
 
 		//切り取り位置の設定
 		src.m_top = 0.0f;
-		src.m_left = 220.0f ;
-		src.m_right = 100.0f ;
+		src.m_left = 0.0f ;
+		src.m_right = 512.0f ;
 		src.m_bottom = 512.0f;
 
 

@@ -172,6 +172,7 @@
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjMethod.cpp" />
     <ClCompile Include="ObjRevolutionBullet.cpp" />
     <ClCompile Include="ObjSlime.cpp" />
     <ClCompile Include="ObjTime.cpp" />
@@ -242,6 +243,7 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjMethod.h" />
     <ClInclude Include="ObjRevolutionBullet.h" />
     <ClInclude Include="ObjSlime.h" />
     <ClInclude Include="ObjTime.h" />

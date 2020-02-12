@@ -239,6 +239,8 @@ void CObjBoss::Action()
 		m_px += m_vx;
 		m_py += m_vy;
 
+
+
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -258,6 +260,8 @@ void CObjBoss::Action()
 				CObjAngleBullet*obj_b;
 				for (int i = 01; i < 360; i += 20)
 				{
+
+
 					m_time = 0;
 					//弾丸オブジェクト
 					CObjAngleBullet* obj_b = new CObjAngleBullet(m_px + block->GetScroll()+50, m_py-100, i, 5.0f);//オブジェ作成

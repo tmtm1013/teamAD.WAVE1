@@ -83,10 +83,10 @@ void CObjAngleBullet::Action()
 		//リソース着弾アニメーション位置
 		RECT_F ani_src[4] =
 		{
-			{32, 0, 32,64},
-			{32,32, 64,64},
-			{32,64, 96,64},
-			{32,96,128,64},
+			{37, 13, 22,56},
+			{37,45, 54,56},
+			{37,77, 86,56},
+			{37,109,118,56},
 		};
 		//アニメーションのコマ間隔
 		if (m_ani_time > 2)
@@ -179,7 +179,7 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
+		Draw::Draw(28, &m_eff, &dst, c, 0.0f);
 		
 	}
 	else

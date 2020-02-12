@@ -65,7 +65,7 @@
       <Filter>GameOver</Filter>
     </ClCompile>
     <ClCompile Include="SceneClear.cpp">
-      <Filter>Clear</Filter>
+      <Filter>Enemy\Clear</Filter>
     </ClCompile>
     <ClCompile Include="ObjItem.cpp">
       <Filter>Item</Filter>
@@ -143,7 +143,7 @@
       <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="ObjClear.cpp">
-      <Filter>Clear</Filter>
+      <Filter>Enemy\Clear</Filter>
     </ClCompile>
     <ClCompile Include="ObjBackground.cpp">
       <Filter>UI\プレイ背景</Filter>
@@ -155,6 +155,9 @@
       <Filter>UI\得点</Filter>
     </ClCompile>
     <ClCompile Include="ObjGren.cpp" />
+    <ClCompile Include="ObjMethod.cpp">
+      <Filter>UI\操作方法</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h">
@@ -221,10 +224,10 @@
       <Filter>GameOver</Filter>
     </ClInclude>
     <ClInclude Include="ObjClear.h">
-      <Filter>Clear</Filter>
+      <Filter>Enemy\Clear</Filter>
     </ClInclude>
     <ClInclude Include="SceneClear.h">
-      <Filter>Clear</Filter>
+      <Filter>Enemy\Clear</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>Item</Filter>
@@ -308,6 +311,9 @@
       <Filter>UI\得点</Filter>
     </ClInclude>
     <ClInclude Include="ObjGren.h" />
+    <ClInclude Include="ObjMethod.h">
+      <Filter>UI\操作方法</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bullet">
@@ -330,9 +336,6 @@
     </Filter>
     <Filter Include="GameOver">
       <UniqueIdentifier>{00cd8d14-5dec-44f9-ba66-c045ca90aac1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Clear">
-      <UniqueIdentifier>{2e60c30d-460d-4235-b826-57cd301fd23a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Item">
       <UniqueIdentifier>{324e840a-11ab-4999-889e-dbc7c6ce9726}</UniqueIdentifier>
@@ -381,6 +384,9 @@
     </Filter>
     <Filter Include="UI\得点">
       <UniqueIdentifier>{6e3b791e-3127-471f-8f00-5b77a08cbfb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\Clear">
+      <UniqueIdentifier>{2e60c30d-460d-4235-b826-57cd301fd23a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
