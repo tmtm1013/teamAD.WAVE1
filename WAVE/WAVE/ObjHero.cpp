@@ -524,10 +524,10 @@ void CObjHero::Action()
 			}
 			else {
 				hp -= 5;//ダメージ量×ガード値
+				Audio::Start(10);
 			}
+		
 			
-			hp -= 5 * guard;//ダメージ量×ガード値
-			Audio::Start(10);
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
@@ -584,14 +584,10 @@ void CObjHero::Action()
 	{
 		hp_time--;//ダメージ加算制限処理
 
-		if (m_block_type == 5){
+		if (m_block_type == 5)//ダメージ音再生
 			Audio::Start(26);
-		}
-		else{
-
-		}
-
-		if (hp_time <= 0.0f)//
+		
+		if (hp_time <= 0.0f)//主人公のダメージ制御
 		{
 			m_vx += 3.0f;//主人公ノックバック
 			hp -= 20;//主人公のHP減算
