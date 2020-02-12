@@ -310,7 +310,7 @@ void CObjHero::Action()
 		m_vx += HERO_MOVE;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			1, 12, 0.0f);
+			ANI_TIME, ANI_FRAME_MAX, RISET_ANI_POS);
 
 		movesecond++;
 		if (movesecond >= 63 && m_hit_down == true)
@@ -377,14 +377,14 @@ void CObjHero::Action()
 		}
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			  2, 12, m_posture);
+			ANI_TIME_SHIFT, ANI_FRAME_MAX, m_posture);
 	}
 	//SPACEキー入力でジャンプ
 	if (Input::GetVKey(VK_SPACE) == true && m_del == false)
 	{
 		
 		if (m_hit_down == true && m_py > 100)
-			m_vy =-16.0f;
+			m_vy = HERO_MOVE_JUMP;
 		/*
 		else if (jump_time < 100 && m_hit_down == false && m_py > 100)
 		{
@@ -404,7 +404,7 @@ void CObjHero::Action()
 	}
 	else if (m_hit_down == true)
 	{
-		jump_time = 0.0f;
+		jump_time = RISET_JUMP_S;
 	}
 	
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
@@ -426,7 +426,7 @@ void CObjHero::Action()
 	if (m_hit_down == false) {
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time_Jump, &m_ani_max_time_Jump, &m_ani_frame_Jump, &m_posture,
-			1, 10, NULL);
+			ANI_TIME, ANI_FRAME_JUMP, NULL);
 		
 		Action_Jump = true;
 	}
@@ -452,8 +452,6 @@ void CObjHero::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	hp_time -= 0.1;
-
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
 
@@ -474,15 +472,19 @@ void CObjHero::Action()
 		attackpoint_now += 1;
 		Audio::Start(18);
 	}
+
+	//主人公のダメージ判定の間隔
+	hp_time -= HERO_HP_TIME_INT;
+
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= 30 * guard;
+			hp -= HERO_GUARD_DMAGE * guard;
 
 			flag = false;
-			hp_time = 1.6f;
+			hp_time = HERO_HP_TIME_INT_G;
 		}
 		if (hp_time >= 0.0f)
 			flag = true;
@@ -553,8 +555,8 @@ void CObjHero::Action()
 	}
 	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr)//主人公がOBJ_DANGER_WALLに当たっているかどうかの判定
 	{
-		m_vx += 6.0f;//主人公ノックバック
-		hp -= 30;//主人公のHP減算
+		m_vx += HERO_NOCK_BUCK;//主人公ノックバック
+		hp -= HERO_HP_SUB;//主人公のHP減算
 	}
 	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
 	{
@@ -562,9 +564,9 @@ void CObjHero::Action()
 
 		if (hp_time <= 0.0f)//
 		{
-			m_vx += 3.0f;//主人公ノックバック
-			hp -= 20;//主人公のHP減算
-			hp_time=10.6f;//ダメージ加算までの時間
+			m_vx += HERO_NOCK_BUCK_ICE;//主人公ノックバック
+			hp -= HERO_HP_SUB_ICE;//主人公のHP減算
+			hp_time = HERO_NOCK_BUCK_TIME;//ダメージ加算までの時間
 		}
 	}
 	if (m_block_type == 3)//主人公がBossブロックを踏むとステージ移行
@@ -577,21 +579,21 @@ void CObjHero::Action()
 	}
 
 	//主人公移動速度Max制限
-	if (m_vx >= 10)
-		m_vx = 10;
-	if (m_vx <= -10)
-		m_vx = -10;
+	if (m_vx >= HERO_MOVE_SPEED_MAX)
+		m_vx = HERO_MOVE_SPEED_MAX;
+	if (m_vx <= HERO_MOVE_SPEED_MIN)
+		m_vx = HERO_MOVE_SPEED_MIN;
 
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
 	//ヒットボックスの最新
-	hit->SetPos(m_px + 8, m_py + 10);
+	hit->SetPos(m_px + HERO_SET_HIT_BOX_X, m_py + HERO_SET_HIT_BOX_Y);
 	
 
 	//主人公が画面下に落ちたらゲームオーバーに移行
-	if ( m_py > 600.0f)
+	if ( m_py > WINDOW_BOTTOM)
 	{
 		
 		this->SetStatus(false);
@@ -603,9 +605,9 @@ void CObjHero::Action()
 	}
 
 	//HPが0以下になると死亡アニメーション作動
-	if (hp <= 0)
+	if (hp <= RISET_HERO_HP)
 	{
-		hp = 0;
+		hp = RISET_HERO_HP;
 		
 		if(m_del==false)
 		Audio::Start(17);
@@ -633,7 +635,7 @@ void CObjHero::Action()
 		if (m_ani_time2 > 6)
 		{
 			m_ani++;		//アニメーションのコマを1つ進める
-			m_ani_time2 = 0;
+			m_ani_time2 = RISET_ANI_TIME;
 
 			m_eff = ani_src[m_ani];
 		}

@@ -10,13 +10,27 @@ using namespace GameL;
 #define HERO_Y (500.0f)
 #define HERO_SPEED (0.5f)
 #define HERO_GUARD (1)
+#define RISET_HERO_HP (0)
 #define HERO_HP (300)
 #define HERO_HP_MAX (300)
 #define HERO_HP_TIME (0.0f)
+#define HERO_HP_TIME_INT (0.1)
+#define HERO_HP_TIME_INT_G (1.6)
+#define HERO_HP_SUB (30)
+#define HERO_HP_SUB_ICE (20)
 #define HERO_ATP_MAX (3)
 #define HERO_MOVE (0.5f)
+#define HERO_MOVE_SPEED_MAX (10)
+#define HERO_MOVE_SPEED_MIN (-10)
 #define HERO_MOVE_DUSH (0.6f)
+#define HERO_MOVE_JUMP (-16.0f)
+#define HERO_GUARD_DMAGE (30)
 #define RISET_HERO_GUARD (1)
+#define HERO_NOCK_BUCK (6.0f)
+#define HERO_NOCK_BUCK_ICE (3.0f)
+#define HERO_NOCK_BUCK_TIME (10.6f)
+#define HERO_SET_HIT_BOX_X (8)
+#define HERO_SET_HIT_BOX_Y (10)
 
 #define SIZE_X (64.0f)
 #define SIZE_Y (64.0f)
@@ -58,11 +72,13 @@ using namespace GameL;
 #define RISET_ANI_FRAME_WAIT (0)
 #define RISET_ANI_FRAME_JUMP (0)
 #define ANI_FRAME_MAX (12)
+#define ANI_FRAME_JUMP (10)
 #define ANI_FRAME_WAIT (9)
 #define ANI_POS (1.0f)
 #define ANI_MAX_TIME_JUMP (4)
 #define ANI_TIME_JUMP (0)
 #define ANI_TIME (1)
+#define ANI_TIME_SHIFT (2)
 #define ANI_MOVE_1 (3)
 #define ANI_MOVE_2 (4)
 #define ANI_MOVE_3 (5)
@@ -75,6 +91,8 @@ using namespace GameL;
 //弾丸発射間隔初期化
 #define RISET_TIME (0.0f)
 
+//ウィンドウ設定
+#define WINDOW_BOTTOM (600.0f)
 
 //音楽関係
 #define RESET_AUD_TIME (0.0f) //音楽の時間初期化
