@@ -174,6 +174,7 @@ void CObjIcicle::Action()
 	if (m_hit_down == true) 
 	{
 		m_hp = -1;
+
 	}
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 	if (m_hp <= 0)
@@ -218,7 +219,7 @@ void CObjIcicle::Action()
 			
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
-
+			Audio::Start(28);
 			
 		}
 
