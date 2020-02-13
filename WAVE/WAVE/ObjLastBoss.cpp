@@ -113,11 +113,6 @@ void CObjLastBoss::Action()
 		m_move = false;
 	}
 
-	//----アニメーション動作間隔---
-
-	Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-		1, 2, NULL);
-
 
 
 
@@ -139,20 +134,20 @@ void CObjLastBoss::Action()
 	m_time3++;
 	if (m_time3 > 200)
 	{
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		//if (!(x + 100.0f > m_px && x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 
-			for (int i = 1; i < 360; i += 20)
+			for (int i = 0; i < 2; i++)
 			{
 
 				m_time3 = 0;
 				//弾丸オブジェクト
-				CObjRevolutionBullet* obj_r = new CObjRevolutionBullet(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
-				Objs::InsertObj(obj_r, OBJ_HOMING_BULLET,24);
+				CObjGrenade* obj_gr = new CObjGrenade(m_px+100 + block->GetScroll(), m_py);//オブジェ作成
+				Objs::InsertObj(obj_gr, OBJ_GRENADE,24);
 
 				Audio::Start(0);
 			}
-		}
+		//}
 	}
 
 	//BOSSの周り20°間隔で発射
@@ -169,7 +164,7 @@ void CObjLastBoss::Action()
 				m_time = 0;
 				//弾丸オブジェクト
 				CObjAngleBullet* obj_a = new CObjAngleBullet(m_px + block->GetScroll(), m_py, i, 5.0f);//オブジェ作成
-				Objs::InsertObj(obj_a, OBJ_HOMING_BULLET, 23);
+				Objs::InsertObj(obj_a, OBJ_ANGLE_BULLET, 23);
 				Audio::Start(0);
 
 			}
@@ -184,7 +179,7 @@ void CObjLastBoss::Action()
 
 			m_time2 = 0;
 			//弾丸オブジェクト
-			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 20);//オブジェ作成
+			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 24);//オブジェ作成
 			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
 			Audio::Start(0);
 
@@ -199,8 +194,11 @@ void CObjLastBoss::Action()
 	{
 		//主人公が移動していない時のプログラム
 		m_vx += m_speed_power;
-		m_posture = 1.0;
-		m_ani_time += 1;
+
+		//アニメーション動作間隔
+		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+			1, 2, 1.0f);
+		
 		m_ani_move = 1;
 
 		//ランダムで決まる数値が1の時ジャンプする
@@ -216,8 +214,11 @@ void CObjLastBoss::Action()
 
 		//主人公が移動していない時のプログラム
 		m_vx -= m_speed_power;
-		m_posture = 0.0;
-		m_ani_time += 1;
+
+		//アニメーション動作間隔
+		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+			1, 2, 0.0f);
+
 		m_ani_move = 1;
 
 		//ランダムで決まる数値が1の時ジャンプする
@@ -232,6 +233,8 @@ void CObjLastBoss::Action()
 		}
 
 	}
+	
+
 
 	//位置の更新
 	m_px += m_vx;

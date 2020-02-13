@@ -24,7 +24,7 @@ void CObjClear::Action()
 	//エンターキーを押してシーン：ゲームTitleに移行する
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
-		Scene::SetScene(new CSceneTitle());
+		Scene::SetScene(new CSceneDescription());
 	}
 }
 

@@ -151,7 +151,7 @@ public:CObjHero() {}
 	  float m_time;  //弾丸発射可能頻度制御
 	  int bullet_type;//弾丸の種類
 
-	  bool Guard_flag;//ガード用フラグ
+	  bool guard_flag;//ガード用フラグ
 	  int  guard;     //ガード用変数
 
 	  float m_vx;    //移動ベクトル
@@ -174,7 +174,7 @@ public:CObjHero() {}
 	  float m_speed_power;  //スピードパワー
 	  float m_ani_max_time; //アニメーション動作間隔最大値
 	  float m_ani_max_time_Jump;
-	  int m_ani_time_Jump;
+	  int   m_ani_time_Jump;
 	  int   m_ani_move;//アニメーション切り替え用
 
 	  bool SE_flag;

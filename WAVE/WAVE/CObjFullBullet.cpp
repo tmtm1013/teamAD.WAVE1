@@ -21,9 +21,7 @@ CObjFullBullet::CObjFullBullet(float x, float y)
 	m_bx = x;
 	m_by = y;
 	
-
-
-	//当たり判定用のHitBoxを作成
+	   	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_bx, m_by, 16, 16, ELEMENT_WHITE, OBJ_FULL_BULLET, 1);
 
 	//Audio::LoadAudio(11, L"SEgan/FullSoundHit.wav", SOUND_TYPE::EFFECT);//-------着地音の読み込み----
@@ -111,13 +109,11 @@ void CObjFullBullet::Action()
 	m_by += m_vy;
 
 	
-
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx, m_by);
 
-
-
+	
 	//敵機オブジェクトと接触したら弾丸消去
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{

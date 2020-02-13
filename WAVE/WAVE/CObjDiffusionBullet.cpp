@@ -30,7 +30,8 @@ CObjDiffusionBullet::CObjDiffusionBullet(float x, float y, float r)
 void CObjDiffusionBullet::Init()
 {
 
-
+	m_sx = 16.0f;
+	m_sy = 16.0f;
 
 	//弾丸の角度を求める
 	m_vx = cos(M_PI / 180.0*m_r);
@@ -49,7 +50,7 @@ void CObjDiffusionBullet::Action()
 
 	//ブロックとの当たり判定
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockBulletHit(&m_bx, &m_by, true, &m_bx, &m_by,
+	pb->BlockBulletHit(&m_bx, &m_by, true, &m_sx, &m_sy,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
@@ -89,6 +90,7 @@ void CObjDiffusionBullet::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 		m_time = 0.0f;
 	}
+	/*
 	//領域外に出たら弾丸を破棄する
 	if (m_bx > 800.0f)
 	{
@@ -100,6 +102,7 @@ void CObjDiffusionBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+	*/
 	if (m_by < 0.0f)
 	{
 		this->SetStatus(false);
@@ -110,8 +113,7 @@ void CObjDiffusionBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
-	
-
+	//ブロックとの当たり判定
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に消去命令を出す。

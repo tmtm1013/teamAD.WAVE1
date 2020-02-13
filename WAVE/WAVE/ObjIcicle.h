@@ -63,6 +63,12 @@ private:
 	int m_hp;
 
 
+	int m_ani;//着弾アニメーション用
+	int m_ani_time2;//エフェクトアニメーション用間隔用タイム
+	bool m_del;//消去チェック
+	RECT_F m_eff;//着弾エフェクト描画用
+
+
 	float m_f;
 
 };

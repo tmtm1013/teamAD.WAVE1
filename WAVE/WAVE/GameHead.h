@@ -100,7 +100,7 @@ struct UserData
 extern float m_hp;
 extern float kazu;
 
-
+extern short int g_MapChenge;//解放マップ管理用
 
 
 //------------------------------------------------
@@ -177,5 +177,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain//CSceneBlock2//CSceneMain//CObjTitle//CSceneBlock2//CSceneMain//
-//-----------------------------------------------
+#define SET_GAME_START CSceneMain //CSceneDescription//SceneBossStage//CSceneDescription//CSceneBlock2//CSceneMain//CObjTitle//CSceneMain//
+                         

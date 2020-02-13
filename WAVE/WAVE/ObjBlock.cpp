@@ -37,16 +37,18 @@ void CObjBlock::Action()
 
 	
 		//後方スクロールライン
-	if (hx < 290)
+	if (hx < 295)
 	{
+		
+		hero->SetX(295);
 		m_scroll -= hero->GetVX();
-		hero->SetX(290);
 	}
 	//前方スクロールライン
 	if (hx > 300)
 	{
-		m_scroll -= hero->GetVX();
+		
 		hero->SetX(300);
+		m_scroll -= hero->GetVX();
 	}
 
 	//敵出現ライン
