@@ -170,7 +170,7 @@ void CObjLastBoss::Action()
 			m_time2 = 0;
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 24);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 24);
 			Audio::Start(0);
 
 

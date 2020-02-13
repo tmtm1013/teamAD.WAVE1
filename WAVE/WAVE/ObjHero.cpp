@@ -149,6 +149,9 @@ void CObjHero::Action()
 	jumpsecond++;
 	m_SEtime++;
 
+	//ガード管理用変数を初期化
+	guard = 1;
+
 	//アニメーションフラグ初期化
 	Action_Waiting = false;
 	Action_Walk = false;
@@ -299,8 +302,6 @@ void CObjHero::Action()
 		&m_block_type
 	);
 
-	//ガード管理用変数を初期化
-	guard = 1;
 
 	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)	//左に移動時の処理-----------
 	{
@@ -343,7 +344,7 @@ void CObjHero::Action()
 	}
 	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL() == false && m_del == false)//ガードアクション-----------
 	{
-		Action_guard = true;
+		Action_guard = true;//ガードフラグを真にする
 		
 		guard = 0;//ダメージを無効化
 	}
@@ -405,25 +406,9 @@ void CObjHero::Action()
 		jump_time = RISET_JUMP_S;
 	}
 
-
-
-
-	if (Input::GetVKey('P') == true && m_del == false)
-	{
-
-		//弾丸オブジェクト
-		CObjGrenade* obj_gre = new CObjGrenade(m_px, m_py);//オブジェ作成
-		Objs::InsertObj(obj_gre, OBJ_GRENADE, 1);
-	}
-	
-
-
-
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
-		
 		Method_flag = true;//処理を止めるフラグを切り替える
-
 	}
 	if (Input::GetVKey('Q') == false && Method_flag == true)
 	{
@@ -496,7 +481,7 @@ void CObjHero::Action()
 		
 		if (flag == true && hp_time <= 0.0f) {
 
-			if (guard_flag == true)
+			if (Action_guard == true)
 			{
 				Audio::Start(27);
 				hp -= guard;//ダメージ量×ガード値
@@ -529,7 +514,7 @@ void CObjHero::Action()
 
 		if (flag == true && hp_time <= 0.0f) {
 
-			if (guard_flag == true)
+			if (Action_guard == true)
 			{
 				Audio::Start(27);
 				hp -= guard;//ダメージ量×ガード値
@@ -554,7 +539,7 @@ void CObjHero::Action()
 	{
 		if (flag == true && hp_time <= 0.0f){   
 
-			if (guard_flag==true)
+			if (Action_guard ==true)
 			{
 				Audio::Start(27);
 				hp -= guard;//ダメージ量×ガード値

@@ -53,7 +53,7 @@ void CObjAngleBullet::Action()
 {
     //HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+	hit->SetPos(m_x - m_bxp, m_y);
 
 
 
@@ -110,11 +110,6 @@ void CObjAngleBullet::Action()
 		return;
 
 	}
-
-	if (m_x < 0)
-	{
-		this->SetStatus(false);
-	}
 	if (  m_hit_up == true
 		||m_hit_down == true
 		||m_hit_left == true
@@ -131,7 +126,6 @@ void CObjAngleBullet::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 
 	}
-	
 	if (m_y < 0.0f)
 	{
 		this->SetStatus(false);
