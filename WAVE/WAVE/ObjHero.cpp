@@ -111,7 +111,7 @@ void CObjHero::Init()
 	Method_flag=false;
 
 	Guard_flag = false;//ガード用フラグ
-	guard = HERO_GUARD;//ガード用変数
+	guard = 1;//ガード用変数
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, HIT_BOX_X, HIT_BOX_Y, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -226,7 +226,7 @@ void CObjHero::Action()
 			Audio::Start(2);
 
 			//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-			CObjBullet* obj_b = new CObjBullet(m_px + BULLET_ADD_X, m_py + BULLET_ADD_Y); //弾丸オブジェクト作成
+			CObjBullet* obj_b = new CObjBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 			Objs::InsertObj(obj_b, OBJ_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 			//Audio::Start(6);//薬莢落下音
@@ -256,7 +256,7 @@ void CObjHero::Action()
 		//m_SEtime++;
 		
 		//弾丸オブジェクト作成             //発射位置を主人公の位置+offset値
-		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + BULLET_ADD_X, m_py + BULLET_ADD_Y); //弾丸オブジェクト作成
+		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
 		m_time = RESET_AUD_TIME;
@@ -300,10 +300,9 @@ void CObjHero::Action()
 	);
 
 	//ガード管理用変数を初期化
-	guard = RISET_HERO_GUARD;
+	guard = 1;
 
-	//左に移動時の処理
-	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)
+	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)	//左に移動時の処理-----------
 	{
 
 		//主人公移動
@@ -323,8 +322,7 @@ void CObjHero::Action()
 
 		Action_direction = false;
 	}
-	//左に移動時の処理
-	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)
+	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)//左に移動時の処理------------
 	{
 		//主人公移動
 		m_vx -= HERO_MOVE;
@@ -346,8 +344,8 @@ void CObjHero::Action()
 	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL() == false && m_del == false)//ガードアクション-----------
 	{
 		Action_guard = true;
-
-		guard = RISET_HERO_GUARD;//ダメージを無効化
+		
+		guard = 0;//ダメージを無効化
 	}
 	else if(m_del==false)//キー入力がない場合は静止フレームにする---
 	{
@@ -406,7 +404,21 @@ void CObjHero::Action()
 	{
 		jump_time = RISET_JUMP_S;
 	}
+
+
+
+
+	if (Input::GetVKey('P') == true && m_del == false)
+	{
+
+		//弾丸オブジェクト
+		CObjGrenade* obj_gre = new CObjGrenade(m_px, m_py);//オブジェ作成
+		Objs::InsertObj(obj_gre, OBJ_GRENADE, 1);
+	}
 	
+
+
+
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
 		Method_flag = true;//処理を止めるフラグを切り替える
@@ -454,6 +466,7 @@ void CObjHero::Action()
 
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 8, m_py + 10);//ヒットボックスの最新
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
@@ -481,13 +494,14 @@ void CObjHero::Action()
 	{
 		if (flag == true && hp_time <= 0.0f)
 		{
-			hp -= HERO_GUARD_DMAGE * guard;
+			hp -= 30 * guard;
 
 			flag = false;
-			hp_time = HERO_HP_TIME_INT_G;
+			hp_time = 1.6f;
 		}
-		if (hp_time >= 0.0f)
+		if (hp_time >= 0.0f) {
 			flag = true;
+		}
 		
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -499,14 +513,48 @@ void CObjHero::Action()
 			m_vx = KnockBack(m_px, x);//ノックバック関数
 		}
 	}
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
 
+		if (flag == true && hp_time <= 0.0f) {
+
+			if (guard_flag == true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 30;//ダメージ量×ガード値
+				Audio::Start(26);
+			}
+
+			flag = false;//主人公HP減算量管理フラグ 
+			hp_time = 1.6f;//主人公HP減算量管理タイム
+		}
+		if (hp_time >= 0.0f) {
+			flag = true;
+		}
+		
+		
+	}
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f){   
 
-			hp -= 5 * guard;//ダメージ量×ガード値
-
+			if (guard_flag==true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 10;//ダメージ量×ガード値
+				Audio::Start(10);
+			}
+		
+			
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
@@ -555,14 +603,17 @@ void CObjHero::Action()
 	}
 	if (hit->CheckObjNameHit(OBJ_DANGER_WALL) != nullptr)//主人公がOBJ_DANGER_WALLに当たっているかどうかの判定
 	{
-		m_vx += HERO_NOCK_BUCK;//主人公ノックバック
-		hp -= HERO_HP_SUB;//主人公のHP減算
+		m_vx += 6.0f;//主人公ノックバック
+		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
 
-		if (hp_time <= 0.0f)//
+		if (m_block_type == 5)//ダメージ音再生
+			Audio::Start(26);
+		
+		if (hp_time <= 0.0f)//主人公のダメージ制御
 		{
 			m_vx += HERO_NOCK_BUCK_ICE;//主人公ノックバック
 			hp -= HERO_HP_SUB_ICE;//主人公のHP減算
@@ -589,7 +640,7 @@ void CObjHero::Action()
 	m_py += m_vy;
 
 	//ヒットボックスの最新
-	hit->SetPos(m_px + HERO_SET_HIT_BOX_X, m_py + HERO_SET_HIT_BOX_Y);
+	hit->SetPos(m_px + 8, m_py + 10);
 	
 
 	//主人公が画面下に落ちたらゲームオーバーに移行
@@ -751,7 +802,7 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 1600.0f*(hp/(float)hp_max);
+	src.m_right = 1600.0f * (hp/(float)hp_max);
 	src.m_bottom = 123.0f;
 
 	//表示位置設定
