@@ -126,7 +126,14 @@ void CObjIcicle::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 5.0+ block->GetScroll(), m_py);
 	
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
 
+		m_hp -= 20;
+
+
+	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
@@ -180,6 +187,8 @@ void CObjIcicle::Action()
 	if (m_hp <= 0)
 	{
 		
+	 	if (m_del==false)
+			Audio::Start(28);
 		m_del = true;
 		
 	}
@@ -219,7 +228,6 @@ void CObjIcicle::Action()
 			
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
-			Audio::Start(28);
 			
 		}
 

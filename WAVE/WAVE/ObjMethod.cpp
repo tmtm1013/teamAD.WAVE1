@@ -33,8 +33,8 @@ void CObjMethod::Action()
 			}
 			if (Input::GetVKey('Q') == false && flag == false)
 			{
+				Audio::Start(30);
 				this->SetStatus(false);//‘€ìà–¾íœ
-
 				break;//ƒ‹[ƒv‚ğ”²‚¯‚é
 			}
 		}

@@ -423,8 +423,8 @@ void CObjHero::Action()
 
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
+		
 		Method_flag = true;//処理を止めるフラグを切り替える
-
 
 	}
 	if (Input::GetVKey('Q') == false && Method_flag == true)
@@ -433,6 +433,7 @@ void CObjHero::Action()
 		CObjMethod* md = new CObjMethod();
 		Objs::InsertObj(md, OBJ_METHOD, 18);
 		Method_flag = false;
+		Audio::Start(29);
 	}
 
 	
@@ -617,18 +618,27 @@ void CObjHero::Action()
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
 
-		if (m_block_type == 5)//ダメージ音再生
-			Audio::Start(26);
-		
 		if (hp_time <= 0.0f)//主人公のダメージ制御
 		{
+			Audio::Start(31);
 			m_vx += 3.0f;//主人公ノックバック
 			hp -= 20;//主人公のHP減算
-			hp_time=10.6f;//ダメージ加算までの時間
+			hp_time = 12.8f;//ダメージ加算までの時間
+		}
+	}
+	if (m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
+	{
+		hp_time--;//ダメージ加算制限処理
+
+		if (hp_time <= 0.0f)//主人公のダメージ制御
+		{
+			Audio::Start(26);
+			hp -= 20;//主人公のHP減算
+			hp_time = 10.6f;//ダメージ加算までの時間
 		}
 	}
 	if (m_block_type == 3)//主人公がBossブロックを踏むとステージ移行
