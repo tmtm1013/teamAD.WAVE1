@@ -110,7 +110,7 @@ void CObjHero::Init()
 
 	Method_flag=false;
 
-	Guard_flag = false;//ガード用フラグ
+	//Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
 	//当たり判定用のHitBoxを作成

@@ -463,13 +463,13 @@ void CObjEnemyJump::Draw()
 		//êÿÇËéÊÇËà íuê›íË
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 248.0 * (b_hp_now / (float)b_hp_max);
+		src.m_right = 248.0;
 		src.m_bottom = 12.0f;
 
 		//ï\é¶à íuê›íË
 		dst.m_top = 582.0f;
-		dst.m_left = 46.0f;
-		dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+		dst.m_left = 50.0f;
+		dst.m_right = 50 + (700.0f * (b_hp_now / (float)b_hp_max));
 		dst.m_bottom = 593.0f;
 
 		//ï`âÊ
