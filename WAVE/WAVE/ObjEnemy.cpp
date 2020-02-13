@@ -319,11 +319,11 @@ void CObjEnemy::Action()
 			//敵が消滅したら+100点
 			((UserData*)Save::GetData())->m_point += 10;
 
-
+			
 			//アイテムオブジェクト作成	
 			CObjAitem*obju = new CObjAitem(m_px, m_py);
 			Objs::InsertObj(obju, OBJ_AITEM, 7);
-
+			
 		}
 
 		return;

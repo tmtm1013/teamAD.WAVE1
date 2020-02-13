@@ -65,7 +65,7 @@ void CObjBoss::Init()
 	m_ani_frame = 1;   //静止フレームを初期にする
 	m_time_a = 0;
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 1.0f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
 	Boss_hp_max = 1500;//ENEMYのHP

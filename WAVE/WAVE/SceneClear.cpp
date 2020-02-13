@@ -70,28 +70,33 @@ void CSceneClear::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
 
-
-	
-
-
 	int map[10][200];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 200; j++)
 		{
+		
+
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
 			count += 2;
+		
+
 		}
 
 
 	}
+
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
+
+
+
+	Draw::LoadImageW(L"gc02.png", 6, TEX_SIZE_512);
 
 	//クリア画面オブジェクト作成
 	CObjClear*objr = new CObjClear();
@@ -108,8 +113,6 @@ void CSceneClear::InitScene()
 	//音楽スタート
 	Audio::Start(0);
 	
-
-
 
 }
 //実行中メソッド

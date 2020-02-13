@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p= Save::ExternalDataOpen(L"stage111.csv", &size);//外部データ読み込み
+	p= Save::ExternalDataOpen(L"stage0111.csv", &size);//外部データ読み込み
 	
 	int map[10][200];
 	int count = 1;
@@ -123,7 +123,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_1024);
+	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_1024);
 
 	//ゴールブロックのグラフィック読み込み
 	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
@@ -142,6 +142,11 @@ void CSceneMain::InitScene()
 
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
+	//グラフィック読み込み
+	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+	Draw::LoadImageW(L"EhitEff.png", 24, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
@@ -179,7 +184,8 @@ void CSceneMain::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.4 - v);
+	v = Audio::VolumeMaster(0.5 - v);
+
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

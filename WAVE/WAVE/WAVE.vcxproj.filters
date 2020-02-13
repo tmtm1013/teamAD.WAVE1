@@ -1,410 +1,273 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="ObjDangerWall.cpp" />
+    <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="GameL\Audio.cpp" />
+    <ClCompile Include="GameL\DirectXDevice.cpp" />
+    <ClCompile Include="GameL\DrawFont.cpp" />
+    <ClCompile Include="GameL\DrawTexture.cpp" />
+    <ClCompile Include="GameL\GameL_Main.cpp" />
+    <ClCompile Include="GameL\HitBoxManager.cpp" />
+    <ClCompile Include="GameL\MultiThread.cpp" />
+    <ClCompile Include="GameL\SceneManager.cpp" />
+    <ClCompile Include="GameL\SceneObjManager.cpp" />
+    <ClCompile Include="GameL\SetWindow.cpp" />
+    <ClCompile Include="GameL\UserData.cpp" />
+    <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="ObjLoading.cpp" />
+    <ClCompile Include="ObjMethod.cpp" />
+    <ClCompile Include="UtilityModule.cpp" />
     <ClCompile Include="ObjHero.cpp">
-      <Filter>Hero</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>Scene\タイトル画面</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\Audio.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\DrawFont.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\DrawTexture.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\GameL_Main.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\HitBoxManager.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\SceneObjManager.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\SetWindow.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\WinInputs.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\UserData.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\SceneManager.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameOver.cpp">
-      <Filter>Scene\ゲームオーバー画面</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneClear.cpp">
-      <Filter>Scene\クリア画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjTitle.cpp">
-      <Filter>Scene\タイトル画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameOver.cpp">
-      <Filter>Scene\ゲームオーバー画面</Filter>
-    </ClCompile>
-    <ClCompile Include="GameL\DirectXDevice.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>SceneStage\ステージ1</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock2.cpp">
-      <Filter>SceneStage\ステージ2</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock3.cpp">
-      <Filter>SceneStage\ステージ3</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjDescription.cpp">
-      <Filter>SceneStage\チュートリアル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneDescription.cpp">
-      <Filter>SceneStage\チュートリアル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBossStage.cpp">
-      <Filter>SceneStage\ボスステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyJump.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFlyingenemy.cpp">
-      <Filter>Enemy\フライング</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>Enemy\ランディング</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjLastBoss.cpp">
-      <Filter>Enemy\ラストボス</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemyLongdistance.cpp">
-      <Filter>Enemy\フライング</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBoss.cpp">
-      <Filter>Enemy\ラストボス</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>Module</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjSlime.cpp">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjClear.cpp">
-      <Filter>Scene\クリア画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMethod.cpp">
-      <Filter>UI\操作方法</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBackground.cpp">
-      <Filter>UI\プレイ背景</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjCursor.cpp">
-      <Filter>UI\照準カーソル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjLoading.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjDangerWall.cpp">
-      <Filter>Enemy\溶岩壁</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjIcicle.cpp">
-      <Filter>Enemy\氷柱</Filter>
+      <Filter>主人公</Filter>
     </ClCompile>
     <ClCompile Include="ObjBlock.cpp">
-      <Filter>SceneStage\マップ作成</Filter>
+      <Filter>ステージ</Filter>
     </ClCompile>
-    <ClCompile Include="CObjDiffusionBullet.cpp">
-      <Filter>Bullet\拡散弾</Filter>
+    <ClCompile Include="SceneBlock2.cpp">
+      <Filter>ステージ</Filter>
     </ClCompile>
-    <ClCompile Include="CObjBullet.cpp">
-      <Filter>Bullet\ノーマル弾</Filter>
+    <ClCompile Include="SceneBlock3.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ステージ</Filter>
     </ClCompile>
     <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>Bullet\フル弾</Filter>
+      <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="COHomingBullet.cpp">
-      <Filter>Bullet\ホーミング弾</Filter>
+    <ClCompile Include="CObjDiffusionBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CObjAngleBullet.cpp">
-      <Filter>Bullet\敵拡散弾</Filter>
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBoss.cpp">
+      <Filter>Bullet\敵\ボス</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLastBoss.cpp">
+      <Filter>Bullet\敵\ボス</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>Bullet\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyJump.cpp">
+      <Filter>Bullet\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemyLongdistance.cpp">
+      <Filter>Bullet\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFlyingenemy.cpp">
+      <Filter>Bullet\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjSlime.cpp">
+      <Filter>Bullet\敵</Filter>
     </ClCompile>
     <ClCompile Include="ObjRevolutionBullet.cpp">
-      <Filter>Bullet\回転弾</Filter>
+      <Filter>Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ObjAitem.cpp">
-      <Filter>Item\アタックポイント回復アイテム</Filter>
+    <ClCompile Include="ObjCursor.cpp">
+      <Filter>ゲームオーバー＆クリア</Filter>
     </ClCompile>
-    <ClCompile Include="ObjItem.cpp">
-      <Filter>Item\主人公回復アイテム</Filter>
+    <ClCompile Include="ObjClear.cpp">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneClear.cpp">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjGrenade.cpp">
-      <Filter>Bullet\グレネード</Filter>
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
+      <Filter>氷柱</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjIcicle.cpp">
+      <Filter>氷柱</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBackground.cpp">
+      <Filter>背景</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjAitem.cpp">
+      <Filter>アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="Objgate.cpp">
+      <Filter>gate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjDangerWall.h" />
+    <ClInclude Include="ObjDescription.h" />
+    <ClInclude Include="ObjGrenade.h" />
+    <ClInclude Include="ObjCursor.h" />
+    <ClInclude Include="GameL\Audio.h" />
+    <ClInclude Include="GameL\DirectXDevice.h" />
+    <ClInclude Include="GameL\DrawFont.h" />
+    <ClInclude Include="GameL\DrawTexture.h" />
+    <ClInclude Include="GameL\HitBoxManager.h" />
+    <ClInclude Include="GameL\MultiThread.h" />
+    <ClInclude Include="GameL\SceneManager.h" />
+    <ClInclude Include="GameL\SceneObjManager.h" />
+    <ClInclude Include="GameL\SetWindow.h" />
+    <ClInclude Include="GameL\UserData.h" />
+    <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="ObjLoading.h" />
+    <ClInclude Include="ObjMethod.h" />
+    <ClInclude Include="UtilityModule.h" />
     <ClInclude Include="ObjHero.h">
-      <Filter>Hero</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>Scene\タイトル画面</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\Audio.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\UserData.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameOver.h">
-      <Filter>Scene\ゲームオーバー画面</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjClear.h">
-      <Filter>Scene\クリア画面</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneClear.h">
-      <Filter>Scene\クリア画面</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTitle.h">
-      <Filter>Scene\タイトル画面</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>SceneStage\ステージ1</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock2.h">
-      <Filter>SceneStage\ステージ2</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock3.h">
-      <Filter>SceneStage\ステージ3</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjDescription.h">
-      <Filter>SceneStage\チュートリアル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDescription.h">
-      <Filter>SceneStage\チュートリアル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBossStage.h">
-      <Filter>SceneStage\ボスステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyJump.h">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFlyingenemy.h">
-      <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>Enemy\ランディング</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjLastBoss.h">
-      <Filter>Enemy\ラストボス</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyLongdistance.h">
-      <Filter>Enemy\フライング</Filter>
-    </ClInclude>
-    <ClInclude Include="OBJBoss.h">
-      <Filter>Enemy\ラストボス</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>Module</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjSlime.h">
-      <Filter>Enemy\ジャンプ</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMethod.h">
-      <Filter>UI\操作方法</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBackground.h">
-      <Filter>UI\プレイ背景</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjCursor.h">
-      <Filter>UI\照準カーソル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjLoading.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjDangerWall.h">
-      <Filter>Enemy\溶岩壁</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjIcicle.h">
-      <Filter>Enemy\氷柱</Filter>
+      <Filter>主人公</Filter>
     </ClInclude>
     <ClInclude Include="ObjBlock.h">
-      <Filter>SceneStage\マップ作成</Filter>
+      <Filter>ステージ</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBullet.h">
-      <Filter>Bullet\ノーマル弾</Filter>
+    <ClInclude Include="SceneBlock2.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock3.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ステージ</Filter>
     </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
-      <Filter>Bullet\フル弾</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjDiffusionBullet.h">
-      <Filter>Bullet\拡散弾</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="COHomingBullet.h">
-      <Filter>Bullet\ホーミング弾</Filter>
+    <ClInclude Include="CObjBullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
-      <Filter>Bullet\敵拡散弾</Filter>
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="COHomingBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJBoss.h">
+      <Filter>Bullet\敵\ボス</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjLastBoss.h">
+      <Filter>Bullet\敵\ボス</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>Bullet\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyJump.h">
+      <Filter>Bullet\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemyLongdistance.h">
+      <Filter>Bullet\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFlyingenemy.h">
+      <Filter>Bullet\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSlime.h">
+      <Filter>Bullet\敵</Filter>
     </ClInclude>
     <ClInclude Include="ObjRevolutionBullet.h">
-      <Filter>Bullet\回転弾</Filter>
+      <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ObjAitem.h">
-      <Filter>Item\アタックポイント回復アイテム</Filter>
+    <ClInclude Include="ObjClear.h">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneClear.h">
+      <Filter>ゲームオーバー＆クリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjIcicle.h">
+      <Filter>氷柱</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBackground.h">
+      <Filter>背景</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>タイトル</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
-      <Filter>Item\主人公回復アイテム</Filter>
+      <Filter>アイテム</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGrenade.h">
-      <Filter>Bullet\グレネード</Filter>
+    <ClInclude Include="ObjAitem.h">
+      <Filter>アイテム</Filter>
     </ClInclude>
-    <ClInclude Include="GameHead.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="Objgate.h">
+      <Filter>gate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Hero">
-      <UniqueIdentifier>{7b88d6c7-3f4f-4507-96b5-f4ae3d2ed33f}</UniqueIdentifier>
+    <Filter Include="gate">
+      <UniqueIdentifier>{cef96f0c-27b3-4928-a571-e1afc7e7cbc3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Enemy">
-      <UniqueIdentifier>{068b63bf-2ad5-4af5-a336-637ec4505d56}</UniqueIdentifier>
+    <Filter Include="主人公">
+      <UniqueIdentifier>{12b0127c-1426-4e88-a261-8a32ad140f30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneStage">
-      <UniqueIdentifier>{d2dfec54-8162-495a-950a-6f8c0cfd2ac7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="リソースファイル">
-      <UniqueIdentifier>{456e3cbb-0e76-4864-b82b-8f8edfd780ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item">
-      <UniqueIdentifier>{324e840a-11ab-4999-889e-dbc7c6ce9726}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\ステージ1">
-      <UniqueIdentifier>{88ad5944-e152-4bc6-a10d-eeec3557a524}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\ステージ2">
-      <UniqueIdentifier>{b1c831fb-1d83-4eb6-beb1-e7345b187aca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\ステージ3">
-      <UniqueIdentifier>{931f25cd-2427-49d7-a331-d5e64d953f6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\チュートリアル">
-      <UniqueIdentifier>{f26583f3-0209-4759-9704-7eeaf0ea3be0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\ボスステージ">
-      <UniqueIdentifier>{1b5502f1-2452-456e-8cb0-8d70b07b7b23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\ジャンプ">
-      <UniqueIdentifier>{c60441ed-bf75-44d6-9e1a-fac29f32947c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\フライング">
-      <UniqueIdentifier>{0e283d79-983d-40f9-8e7f-92fda2dcf916}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\ランディング">
-      <UniqueIdentifier>{49104eb1-7112-4067-b163-ef41500fae75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\ラストボス">
-      <UniqueIdentifier>{1e814ebf-4b0d-453b-b0f5-ab943c4becc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Module">
-      <UniqueIdentifier>{6d8a6783-f4dc-475e-a64e-564746f9d727}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{83babad7-3f20-4694-ba7f-c3e683b5876a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\操作方法">
-      <UniqueIdentifier>{454eafd1-0752-4061-88b8-b90b8ad991bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\プレイ背景">
-      <UniqueIdentifier>{a8b77ddf-11bf-4131-9c86-fd7da353c782}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\照準カーソル">
-      <UniqueIdentifier>{c29ed778-aefd-4b12-a979-f1cc00c725fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\溶岩壁">
-      <UniqueIdentifier>{b58cb2f7-da18-4473-b598-2aea0dbe0970}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\氷柱">
-      <UniqueIdentifier>{e04b64f9-0c46-4444-9b46-bbe89a334e30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneStage\マップ作成">
-      <UniqueIdentifier>{45493de4-dfd0-4a6c-928f-df8349d0d86b}</UniqueIdentifier>
+    <Filter Include="ステージ">
+      <UniqueIdentifier>{c9f24e5c-63d5-49bc-89bf-dc35b012368b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Bullet">
-      <UniqueIdentifier>{d09c2a64-3b54-44c5-9494-c981ced79ae0}</UniqueIdentifier>
+      <UniqueIdentifier>{095c33cf-b510-44d3-aec6-ae6f02d95f82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\ノーマル弾">
-      <UniqueIdentifier>{15a654f2-f928-4be1-80e7-860b98aa913b}</UniqueIdentifier>
+    <Filter Include="Bullet\敵">
+      <UniqueIdentifier>{88348992-ab4d-4bc0-a9af-94fdd156440f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\フル弾">
-      <UniqueIdentifier>{138a5786-9570-41db-94c5-96e892188ed2}</UniqueIdentifier>
+    <Filter Include="Bullet\敵\ボス">
+      <UniqueIdentifier>{1c936913-c0f3-4c64-9d95-cdf885a82718}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\拡散弾">
-      <UniqueIdentifier>{88313e44-e9cd-4947-8430-3a45e1e1fa52}</UniqueIdentifier>
+    <Filter Include="ゲームオーバー＆クリア">
+      <UniqueIdentifier>{c249bd14-17f6-4c66-be79-64dcf5530730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\ホーミング弾">
-      <UniqueIdentifier>{4c04f536-c38f-4ca1-ba1c-5b782c46b132}</UniqueIdentifier>
+    <Filter Include="氷柱">
+      <UniqueIdentifier>{548c7c4b-5167-4940-8da2-7fd2fd30ff99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\敵拡散弾">
-      <UniqueIdentifier>{1bd604d9-72bf-4ef0-a06b-a2bb3082809b}</UniqueIdentifier>
+    <Filter Include="背景">
+      <UniqueIdentifier>{bd312381-6e13-466d-b76f-3b675679c664}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Bullet\回転弾">
-      <UniqueIdentifier>{ffd9f5d4-7c39-4961-8c39-2c554fa53b86}</UniqueIdentifier>
+    <Filter Include="タイトル">
+      <UniqueIdentifier>{7240dca2-34fe-4bb7-802a-24f1eb6b1bb4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{2c8afeaa-9da4-4076-b397-310f59cbc6b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\クリア画面">
-      <UniqueIdentifier>{2e60c30d-460d-4235-b826-57cd301fd23a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\ゲームオーバー画面">
-      <UniqueIdentifier>{00cd8d14-5dec-44f9-ba66-c045ca90aac1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\タイトル画面">
-      <UniqueIdentifier>{40e016e0-c1d8-46fe-9257-2e15dff428a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\アタックポイント回復アイテム">
-      <UniqueIdentifier>{117b0e41-5069-4c34-9198-312a339508dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\主人公回復アイテム">
-      <UniqueIdentifier>{9137e97a-cb27-4d7b-9fb1-739757a9ad8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Bullet\グレネード">
-      <UniqueIdentifier>{900e870e-16bb-44cf-8e10-00f8cdd2b05d}</UniqueIdentifier>
+    <Filter Include="アイテム">
+      <UniqueIdentifier>{ea08e6f1-779a-426f-bd3f-c8e1545e15f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
