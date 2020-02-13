@@ -153,6 +153,7 @@ void CSceneMain::InitScene()
 
 	//弾丸消滅エフェクト
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
+
 	//敵消滅アニメーション画像読込
 	Draw::LoadImageW(L"shoumetu.png", 21, TEX_SIZE_2048);
 

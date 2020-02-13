@@ -63,16 +63,19 @@ private:
 	int m_time;
 
 	float flag;
-
+	//攻撃アニメーション用変数
 	bool m_attack;//攻撃アニメーションフラグ
 	int m_ani_frame2;//攻撃アニメーション用タイム
 	float m_ani_max_time2; //アニメーション動作間隔最大値
 
 
-
+	//エフェクトアニメーション用変数
 	int m_ani;//着弾アニメーション用
 	int m_ani_time2;//エフェクトアニメーション用間隔用タイム
 	bool m_del;//消去チェック
 	RECT_F m_eff;//着弾エフェクト描画用
+
+	
+
 
 };

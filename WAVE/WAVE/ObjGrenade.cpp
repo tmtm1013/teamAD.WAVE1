@@ -40,7 +40,7 @@ void CObjGrenade::Init()
 	button = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 64, 64, OBJ_GRENADE, OBJ_GRENADE, 1);
+	Hits::SetHitBox(this, m_x, m_y, 90, 90, OBJ_GRENADE, OBJ_GRENADE, 1);
 
 }
 
@@ -49,7 +49,7 @@ void CObjGrenade::Action()
 {
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+	hit->SetPos(m_x+25, m_y+25);
 
 
 	/*
@@ -153,16 +153,16 @@ void CObjGrenade::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 126.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 32.0f;
+	src.m_left = 0.0f;
+	src.m_right = 512.0f;
+	src.m_bottom =415.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_y;
 	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	dst.m_right = 130.0f + m_x;
+	dst.m_bottom = 130.0f + m_y;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(36, &src, &dst, c, 0.0f);
 }

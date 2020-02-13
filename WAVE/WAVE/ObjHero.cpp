@@ -502,7 +502,7 @@ void CObjHero::Action()
 				//Audio::Start(27);
 			}
 			else {
-				hp -= 30;//ダメージ量×ガード値
+				hp -= 10;//ダメージ量×ガード値
 				Audio::Start(11);
 			}
 
