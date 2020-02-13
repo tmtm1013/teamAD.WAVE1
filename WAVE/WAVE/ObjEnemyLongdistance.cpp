@@ -278,6 +278,9 @@ void CObjEnemyLongdistance::Action()
 		m_vx = 0;
 		m_vy = 0;
 
+
+		if (m_del == false)
+			Audio::Start(25);
 		m_del = true;//着弾エフェクト移行用フラグ
 
 		hit->SetInvincibility(true);//判定無効
