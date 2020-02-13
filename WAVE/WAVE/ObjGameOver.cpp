@@ -15,6 +15,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+
 //イニシャライズ
 void CObjGameOver::Init()
 {
@@ -53,6 +54,12 @@ void CObjGameOver::Action()
 				Scene::SetScene(new CSceneBlock3());
 				Audio::Stop(24); //BGMストップ
 			}
+			else if (((UserData*)Save::GetData())->Scenecontinue == 4)
+			{
+				Scene::SetScene(new SceneBossStage());
+				Audio::Stop(24); //BGMストップ
+			}
+			
 
 			
 		}

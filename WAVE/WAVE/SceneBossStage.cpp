@@ -95,8 +95,17 @@ void SceneBossStage::InitScene()
 	Audio::LoadAudio(13, L"SEgan/tyu.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(14, L"SEgan/dai.wav", SOUND_TYPE::EFFECT);//敵が主人公の攻撃に当たった時の音
 	Audio::LoadAudio(15, L"SEgan/MAFlying.wav", SOUND_TYPE::EFFECT);//魔法攻撃
+	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
+	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
 
-	
+
 
 	//Font作成
 	Font::SetStrTex(L"0123456789分秒");
@@ -183,20 +192,10 @@ void SceneBossStage::InitScene()
 	CObjEnemy* obje = new CObjEnemy();
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 	*/
-	//タイムオブジェクト作成
-	CObjTime* objt = new CObjTime();
-	Objs::InsertObj(objt, OBJ_TIME, 11);
-
-
+	
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
-	//スコア表示
-	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 17);
-
-
 
 	/*//テスト用:弾丸オブジェクト作成
 	CObjBullet* obj_b =new CObjBullet();//弾丸オブジェクト

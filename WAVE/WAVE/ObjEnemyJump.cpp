@@ -146,9 +146,11 @@ void CObjEnemyJump::Action()
 		{
 			//主人公が移動していない時のプログラム
 			m_vx += m_speed_power;
-			m_posture = 1.0;
-			m_ani_time += 1;
 			
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 1.0f);
+
 
 			if (m_hit_left == true)//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 				m_vy = -13;
@@ -166,9 +168,11 @@ void CObjEnemyJump::Action()
 
 			//主人公が移動していない時のプログラム
 			m_vx -= m_speed_power;
-			m_posture = 0.0;
-			m_ani_time += 1;
-		
+
+			//アニメーション関数の呼び出し
+			Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+				1, 4, 0.0f);
+
 
 			//左右のブロックに触れたときジャンプしてブロックを乗り越えるようにした。
 			if (m_hit_left == true)
@@ -193,17 +197,7 @@ void CObjEnemyJump::Action()
 
 			
 		}
-		//アニメーション
-		if (m_ani_time > m_ani_max_time)
-		{
-			m_ani_frame += 1;
-			m_ani_time = 0;
-		}
-		//アニメーション
-		if (m_ani_frame == 4)
-		{
-			m_ani_frame = 0;
-		}
+		
 
 	}
 
@@ -297,6 +291,8 @@ void CObjEnemyJump::Action()
 	//HPが0になったら破棄
 	if (b_hp_now <= 0)
 	{
+		b_hp_now = 0;
+
 		//敵を動かさないようにする。
 		m_vx = 0;
 		m_vy = 0;
@@ -408,10 +404,10 @@ void CObjEnemyJump::Draw()
 
 
 				//切り取り位置の設定
-				src.m_top = 48.0f;
-				src.m_left = 0.0f + AniDataack[m_ani_frame2] * 48;
-				src.m_right = 48.0f + AniDataack[m_ani_frame2] * 48;
-				src.m_bottom = 96.0f;
+				src.m_top = 49.0f;
+				src.m_left = 1.0f + AniDataack[m_ani_frame2] * 49;
+				src.m_right = 47.0f + AniDataack[m_ani_frame2] * 47;
+				src.m_bottom = 95.0f;
 
 				//描画
 				Draw::Draw(12, &src, &dst, c, 0.0f);
@@ -433,10 +429,10 @@ void CObjEnemyJump::Draw()
 
 
 				// 切り取り位置の設定
-				src.m_top = 0.0f;
-				src.m_left = 0.0f + AniData[m_ani_frame] * 48;
-				src.m_right = 48.0f + AniData[m_ani_frame] * 48;
-				src.m_bottom = 48.0f;
+				src.m_top = 1.0f;
+				src.m_left = 1.0f + AniData[m_ani_frame] * 47;
+				src.m_right = 47.0f + AniData[m_ani_frame] * 47;
+				src.m_bottom = 47.0f;
 
 				//描画
 				Draw::Draw(12, &src, &dst, c, 0.0f);
@@ -472,8 +468,8 @@ void CObjEnemyJump::Draw()
 
 		//表示位置設定
 		dst.m_top = 582.0f;
-		dst.m_left = 46.0f;
-		dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+		dst.m_left = 50.0f;
+		dst.m_right = 50 + (700.0f * (b_hp_now / (float)b_hp_max));
 		dst.m_bottom = 593.0f;
 
 		//描画

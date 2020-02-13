@@ -62,7 +62,6 @@ void CObjIcicle::Init()
 	m_vy = 0.0f;
 	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
 
-	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
 	m_speed_power = 0.0f;  //通常速度
@@ -75,14 +74,16 @@ void CObjIcicle::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+
 	//主人公との当たり判定
 	HitCheck = false;
 
-
+	//氷柱ＨＰ
 	m_hp = 10;
 
-
-
+	m_ani = 0;
+	m_ani_time2 = 0;
+	m_del = false;
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ICICLE, 1);
@@ -105,9 +106,6 @@ void CObjIcicle::Action()
 	float y = obj->GetYY();
 
 
-	//摩擦の計算   -(運動energy X 摩擦係数)
-	//m_vx += -(m_vx*0.098);
-
 	//主人公とiCICLEの距離判定
 	if ((m_px - 100.0 + block->GetScroll()) < x)
 		HitCheck = true;
@@ -116,8 +114,6 @@ void CObjIcicle::Action()
 	if (m_hit_down == false && HitCheck == true)
 		m_vy += 9.8 / (16.0f);//自由落下運動
 
-	if (m_hit_down==true)
-		m_hp =- 1;
 	
 	
 	//位置の更新
@@ -125,12 +121,19 @@ void CObjIcicle::Action()
 	m_py += m_vy;
 
 
-
     
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 5.0+ block->GetScroll(), m_py);
 	
+	//敵と弾丸が接触したらHPが減る
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+
+		m_hp -= 20;
+
+
+	}
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
@@ -174,44 +177,63 @@ void CObjIcicle::Action()
 	);
 
 	
-
-	// 落下した敵を消去する。
-	if (m_py > 600.0f)
+	//地面と接触したときにＨＰを減らす。
+	if (m_hit_down == true) 
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);//敵が落下した場合敵を消去する。
+		m_hp = -1;
+
 	}
-
-
 	//HPが0になったら破棄
 	if (m_hp <= 0)
 	{
-		flag = true;
+		
+	 	if (m_del==false)
+			Audio::Start(28);
+		m_del = true;
+		
+	}
+	if (m_del == true)
+	{
+		//着弾アニメーション
+		//リソース着弾アニメーション位置
+		RECT_F ani_src[5] =
+		{
 
 
 
+			{0,  0,  204 ,200},
+			{0, 204, 408 ,200},
+			{0, 408, 612,200},
+			{0, 612,816, 200},
+			{0, 816,1020,200},
 
-		//Scene::SetScene(new CSceneBlock2());//テスト
+		};
+		//アニメーションのコマ間隔
+		if (m_ani_time2 > 2)
+		{
+			m_ani++;		//アニメーションのコマを1つ進める
+			m_ani_time2 = 0;
 
+			m_eff = ani_src[m_ani];
+		}
+		else
+		{
 
+			m_ani_time2++;
 
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		}
 
+		if (m_ani == 5)
+		{
+			
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			
+		}
 
-
-
-		//敵が消滅したら+100点
-		//((UserData*)Save::GetData())->m_point += 100;
-
-
-
-		//敵消滅でシーンをゲームクリアに移行する
-		//Scene::SetScene(new CSceneClear());
+		return;
 
 	}
-
-
 }
 
 //ドロー
@@ -220,25 +242,11 @@ void CObjIcicle::Draw()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	//アニメーション情報を登録
-	int AniData[2][6] =
-	{
-		0, 1, 2, 3, 4, 5, //敵が歩くモーション
-		0, 1, 2, 3, //攻撃モーション
-	};
-
-
 	//描画カラー情報
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 0.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
-
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 220.0f    + AniData[m_ani_move][m_ani_frame] * 100;
-	src.m_right = 100.0f + AniData[m_ani_move][m_ani_frame] * 100;
-	src.m_bottom = 512.0f;
+	RECT_F dst;//描画先表示位置+
 
 	
 	//表示位置の設定
@@ -248,7 +256,26 @@ void CObjIcicle::Draw()
 	dst.m_bottom = 70.0f + m_py;
 
 
-	//描画
-	Draw::Draw(33, &src, &dst, c, 0.0f);
 
+	//エフェクト移行用if分
+	if (m_del==true) {
+
+		//描画
+		Draw::Draw(21, &m_eff, &dst, c, 0.0f);
+	}
+	else
+	{
+
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f ;
+		src.m_right = 512.0f ;
+		src.m_bottom = 512.0f;
+
+
+		//描画
+		Draw::Draw(33, &src, &dst, c, 0.0f);
+
+
+	}
 }

@@ -43,7 +43,7 @@ void CSceneDescription::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"tutorial2.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -55,15 +55,7 @@ void CSceneDescription::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			if (w >= 10)
-			{
-				count += 3;
-
-			}
-			else
-			{
-				count += 2;
-			}
+			count += 2;
 
 		}
 	}
@@ -89,23 +81,34 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(10, L"SEgan/HitD.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
 
 
-	Audio::LoadAudio(30, L"tutorial.wav", BACK_MUSIC);
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
+	Audio::LoadAudio(1, L"SEgan/k.wav", SOUND_TYPE::EFFECT);
 
-    //弾丸グラフィック読み込み
-	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
+	Audio::LoadAudio(0, L"tutorial.wav", BACK_MUSIC);
+	Audio::Start(0);
+
+	Draw::LoadImage(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
+
+	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512); //弾丸グラフィック読み込み
 
 	//Enemyグラフィック読み込み
 	Draw::LoadImageW(L"Animation/motion2.png", 5, TEX_SIZE_2048); //敵グラフィック
 
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
-	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
 
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);	//ゲームオーバーのグラフィック読み込み
 
@@ -116,8 +119,6 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
-	//土中のグラフィック読み込み
-	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
@@ -126,21 +127,12 @@ void CSceneDescription::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 
-
-	//音楽スタート
-
-	//Audio::LoadAudio(60, L"tutorial.wav", SOUND_TYPE::EFFECT);
-	//Audio::Start(60);
-
-
-	//バックミュージックスタート
-	float Volume = Audio::VolumeMaster(-0.8f);
-	Audio::Start(30);//音楽スタート
-
+	//プレイヤー必殺技画像
+	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.5 - v);
+	v = Audio::VolumeMaster(0.3 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

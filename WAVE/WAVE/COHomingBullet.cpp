@@ -40,6 +40,7 @@ float  CObjHomingBullet::GetBY()
 	return m_py;
 
 }
+
 //コンストラクタ
 CObjHomingBullet::CObjHomingBullet(float x, float y,int ani)
 {
@@ -66,6 +67,14 @@ void CObjHomingBullet::Init()
 	button = false;
 
 
+	m_hit_up=false;
+	m_hit_down=false;
+	m_hit_left=false;
+    m_hit_right=false;
+
+	//当たっているblockの種類を確認用
+	m_block_type = 0;
+
 	m_eff.m_top = 32;
 	m_eff.m_left = 0;
 	m_eff.m_right = 32.0;
@@ -76,7 +85,7 @@ void CObjHomingBullet::Init()
 	m_del = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_x, m_y, 16, 16, OBJ_HOMING_BULLET, OBJ_HOMING_BULLET,  1);
+	Hits::SetHitBox(this, m_x, m_y, 16, 16, ELEMENT_MAGIC, OBJ_HOMING_BULLET,  1);
 }
 
 //アクション
@@ -99,7 +108,7 @@ void CObjHomingBullet::Action()
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_del = true;
-		hit->SetInvincibility(true);
+		//hit->SetInvincibility(true);
 	}
 	if (m_del == true)
 	{

@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -163,11 +163,9 @@
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjItem.cpp" />
     <ClCompile Include="ObjLoading.cpp" />
-    <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjMethod.cpp" />
     <ClCompile Include="ObjRevolutionBullet.cpp" />
     <ClCompile Include="ObjSlime.cpp" />
-    <ClCompile Include="ObjTime.cpp" />
     <ClCompile Include="SceneBlock2.cpp" />
     <ClCompile Include="SceneBlock3.cpp" />
     <ClCompile Include="SceneBossStage.cpp" />
@@ -227,11 +225,9 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h" />
     <ClInclude Include="ObjLoading.h" />
-    <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjMethod.h" />
     <ClInclude Include="ObjRevolutionBullet.h" />
     <ClInclude Include="ObjSlime.h" />
-    <ClInclude Include="ObjTime.h" />
     <ClInclude Include="SceneBlock2.h" />
     <ClInclude Include="SceneBlock3.h" />
     <ClInclude Include="SceneBossStage.h" />

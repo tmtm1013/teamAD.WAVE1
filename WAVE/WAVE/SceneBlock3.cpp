@@ -75,6 +75,8 @@ void CSceneBlock3::InitScene()
 		//Draw::LoadImageW(L"image1.png",1,TEX_SIZE_512);
 
 		//音楽読み込み
+	Audio::LoadAudio(25, L"maguma2.wav", BACK_MUSIC);//マグマ
+	Audio::Start(25);//音楽スタート
 	Audio::LoadAudio(23, L"back3.wav", BACK_MUSIC);
 	Audio::Start(23);//音楽スタート
 	//Audio::Loadaudio(1, L"wav".BACK_MUSIC);
@@ -104,13 +106,18 @@ void CSceneBlock3::InitScene()
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
 	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
-
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
 
 
     //弾丸グラフィック読み込み
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512);
 
-	///敵弾丸グラフィック読み込み
+	//敵弾丸グラフィック読み込み
 	Draw::LoadImageW(L"M.png", 20, TEX_SIZE_256);
 
 	//Enemyグラフィック読み込み
@@ -195,23 +202,9 @@ void CSceneBlock3::InitScene()
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//タイムオブジェクト作成
-	CObjTime* objt = new CObjTime();
-	Objs::InsertObj(objt, OBJ_TIME, 11);
-
-	
-
-
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-
-	//スコア表示
-	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 17);
-
-	
-
 }
 
 //実行中メソッド

@@ -87,6 +87,12 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(18, L"SEgan/kakigoori.wav", SOUND_TYPE::EFFECT);//かき氷
 	Audio::LoadAudio(19, L"SEgan/kaihuku.wav", SOUND_TYPE::EFFECT);//回復
+	Audio::LoadAudio(26, L"SEgan/yakeruoto.wav", SOUND_TYPE::EFFECT);//溶岩ブロックを踏んだ時の音
+	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
 
 
 	//音楽読み込み
@@ -114,7 +120,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_1024);
@@ -150,6 +156,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"HPGauge02_red.png", 29, TEX_SIZE_512);
+
+
+	//弾丸消滅エフェクト
+	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
 
 	//弾丸消滅エフェクト
 	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
@@ -189,19 +199,9 @@ void CSceneMain::InitScene()
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
 	
-	//タイムオブジェクト作成
-	CObjTime* objt = new CObjTime();
-	Objs::InsertObj(objt, OBJ_TIME, 11);
-
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-	
-	//スコア表示
-	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 17);
-
-
 }
 
 //実行中メソッド

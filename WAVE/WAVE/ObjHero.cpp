@@ -12,6 +12,7 @@
 #define ANIMAITON_FRAME (8)
 
 
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -52,48 +53,50 @@ float  CObjHero::GetYY()
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 300.0f; //主人公の X 位置
-	m_py = 500.0f; //主人公の Y 位置
-
-	m_sx = 64.0f;  //画像サイズBlockHit関数に渡す用
-	m_sy = 64.0f;
-
-	m_mou_px = 0.0f;//向き
-	m_mou_py = 0.0f;
 	
-	m_mou_pr = 0.0f; //マウスのReftの状態
-	m_mou_pl = 0.0f; //マウスのLightの状態
+	m_px = HERO_X; //主人公の X 位置
+	m_py = HERO_Y; //主人公の Y 位置
+
+	m_sx = SIZE_X;  //画像サイズBlockHit関数に渡す用
+	m_sy = SIZE_Y;
+
+	m_mou_px = RISET_MOU_X;//向き
+	m_mou_py = RISET_MOU_Y;
+	
+	m_mou_pr = RISET_MOU_R; //マウスのReftの状態
+	m_mou_pl = RISET_MOU_L; //マウスのLightの状態
 
 	m_f = true;   //弾丸制御
 	m_gf = true;  //グレネード発射フラグ
-	m_time = 0.0f; //弾丸発射頻度制限
+	m_time = RISET_TIME; //弾丸発射頻度制限
 	bullet_type = 1;//弾丸の種類(初期ハンドガン)
 
-	m_vx = 0.0f;    //移動ベクトル
-	m_vy = 0.0f;
-	m_posture = 0.0f;  //右向き0.0f 左向き1.0f
+	m_vx = RISET_BEC_X;    //移動ベクトル
+	m_vy = RISET_BEC_Y;
+	m_posture = RISET_POS;  //右向き0.0f 左向き1.0f
 
-	m_ani_time = 0;  //左右移動・静止アニメーションタイム制御
+	m_ani_time = RISET_ANI_TIME;  //左右移動・静止アニメーションタイム制御
 
 	m_ani = 0;//死亡アニメーションフレーム管理用
 	m_ani_time2 = 0;//死亡アニメーションフレーム動作間隔
 	m_del = false;//死亡アニメーション動作フラグ
 
-	top = 0.0; //切り取り位置管理用
-	left = 0.0;
-	right = 80.0;
-	bottom = 96.0;
-	ani_num = 0; //描画番号管理用
 
-	m_SEtime = 0;    //装着時のSE制御
-	movesecond = 0;  //左右移動時のアニメーション/SE制御
-	jumpsecond = 0;  //ジャンプ時のアニメーション/SE制御
-	jump_time = 0.0f;//ジャンプ時間管理用変数
+	top = RISET_TOP; //切り取り位置管理用
+	left = RISET_LEFT;
+	right = RISET_RIGHT;
+	bottom = RISET_BOTTOM;
+	ani_num = RISET_ANI_NUM; //描画番号管理用
+
+	m_SEtime = RISET_SE_TIME;    //装着時のSE制御
+	movesecond = RISET_MOVE_S;  //左右移動時のアニメーション/SE制御
+	jumpsecond = RISET_JUMP_S;  //ジャンプ時のアニメーション/SE制御
+	jump_time = RISET_JUMP_TIME;//ジャンプ時間管理用変数
 
 	SE_flag = true;//SE制御用フラグ
 
-	m_speed_power = 0.5f;  //通常速度
-	m_ani_max_time = 4;    //アニメーション間隔幅
+	m_speed_power = HERO_SPEED;  //通常速度
+	m_ani_max_time = RISET_ANI_TIME_MAX;    //アニメーション間隔幅
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -101,33 +104,31 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	m_block_type = 0;
+	m_block_type = BROCK_TYPE;
 
 	flag = true;
 
 	Method_flag=false;
 
-	Guard_flag = false;//ガード用フラグ
+	//Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 50, 50, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, HIT_BOX_X, HIT_BOX_Y, ELEMENT_PLAYER, OBJ_HERO, 1);
 
-	hp = 300;//主人公のヒットポイント用
-	hp_max = 300;
+	hp = HERO_HP;//主人公のヒットポイント用
+	hp_max = HERO_HP_MAX;
 	hp_now = hp_max;
-	hp_time = 0.0f;//主人公のヒットポイント制御用
-	Remainingammo = 3;
+	hp_time = HERO_HP_TIME;//主人公のヒットポイント制御用
 
 	//必殺技回数
-	attackpoint_max = 3;
+	attackpoint_max = HERO_ATP_MAX;
 	attackpoint_now = attackpoint_max;
 
 
-	
-	m_ani_frame = 0;
-	m_ani_frame_Waiting = 0;
-	m_ani_frame_Jump = 0;
+	m_ani_frame = RISET_ANI_FRAME;
+	m_ani_frame_Waiting = ANI_FRAME_WAIT;
+	m_ani_frame_Jump = RISET_ANI_FRAME_JUMP;
 
 
 	Action_Waiting = false;
@@ -136,8 +137,8 @@ void CObjHero::Init()
 	Action_Jump = false;
 	Action_guard = false;
 	
-	m_ani_max_time_Jump = 4;
-	m_ani_time_Jump = 0;
+	m_ani_max_time_Jump = ANI_MAX_TIME_JUMP;
+	m_ani_time_Jump = ANI_TIME_JUMP;
 }
 
 //アクション
@@ -157,25 +158,25 @@ void CObjHero::Action()
 	//武器切り替え(1～3)
 	if (Input::GetVKey('1') == true)//通常弾
 	{
-		if (m_SEtime >= 12) {
+		if (m_SEtime >= WEP_CHA_SE_TIME) {
 			Audio::Start(5);//SE再生(装備音)
-			m_SEtime = 0;
+			m_SEtime = RISET_SE_TIME;
 		}
 		bullet_type = 1;//弾丸の種類を指定
 	}
 	if (Input::GetVKey('2') == true)//れん弾
 	{
-		if (m_SEtime >= 12) {
+		if (m_SEtime >= WEP_CHA_SE_TIME) {
 			Audio::Start(6);//SE再生(装備音)
-			m_SEtime = 0;
+			m_SEtime = RISET_SE_TIME;
 		}
 		bullet_type = 2;//弾丸の種類を指定
 	}
 	if (Input::GetVKey('3') == true)//螺旋弾
 	{
-		if (m_SEtime >= 12) {
+		if (m_SEtime >= WEP_CHA_SE_TIME) {
 			Audio::Start(7);//SE再生(装備音)
-			m_SEtime = 0;
+			m_SEtime = RISET_SE_TIME;
 		}
 		bullet_type = 3;//弾丸の種類を指定
 	}
@@ -186,8 +187,8 @@ void CObjHero::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			m_ani_time += 1;//アニメーションタイムを+1加算
-			m_ani_move = 3;//アニメーションデータを指定
+			m_ani_time += ANI_TIME;//アニメーションタイムを+1加算
+			m_ani_move = ANI_MOVE_1;//アニメーションデータを指定
 		}
 
 	}
@@ -196,8 +197,8 @@ void CObjHero::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			m_ani_time += 1;//アニメーションタイムを+1加算
-			m_ani_move = 4;//アニメーションデータを指定
+			m_ani_time += ANI_TIME;//アニメーションタイムを+1加算
+			m_ani_move = ANI_MOVE_2;//アニメーションデータを指定
 		}
 
 	}
@@ -206,15 +207,15 @@ void CObjHero::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			m_ani_time += 1;//アニメーションタイムを+1加算
-			m_ani_move = 5;//アニメーションデータを指定
+			m_ani_time += ANI_TIME;//アニメーションタイムを+1加算
+			m_ani_move = ANI_MOVE_3;//アニメーションデータを指定
 		}
 
 	}
 	*/
 
 	//弾丸発射頻度制御
-	m_time += 0.1;
+	m_time += BULLET_TIME;
 
 	//通常弾発射-----------------------------------------------------------------
 	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 1 )
@@ -230,7 +231,7 @@ void CObjHero::Action()
 
 			//Audio::Start(6);//薬莢落下音
 			m_f = false;
-			m_time = 0.0f;
+			m_time = RESET_AUD_TIME;
 
 		}
 	}
@@ -247,7 +248,7 @@ void CObjHero::Action()
 		if (movesecond >= 21 && m_hit_down == true)//SE制御
 		{
 			//Audio::Start(3);
-			movesecond = 0;
+			movesecond = RISET_MOVE_S;
 		}
 
 		//発射音を鳴らす
@@ -258,11 +259,11 @@ void CObjHero::Action()
 		CObjFullBullet* obj_fb = new CObjFullBullet(m_px + 30.0f, m_py + 30.0f); //弾丸オブジェクト作成
 		Objs::InsertObj(obj_fb, OBJ_FULL_BULLET, 6);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
-		m_time = 0.0f;
+		m_time = RESET_AUD_TIME;
 		//Audio::Start(7);//薬莢落下音
 	}
 	//必殺技-----------------------------------------------------------------------
-	if (Input::GetMouButtonL() == true && m_time >= 4.0f&&bullet_type == 3 &&
+	if (Input::GetMouButtonL() == true && m_time >= BULLET_INTERVAL &&bullet_type == 3 &&
 		attackpoint_now <= 3 && attackpoint_now > 0)
 	{
 		if (m_f == true)
@@ -277,7 +278,7 @@ void CObjHero::Action()
 			}
 			//Audio::Start(6);//薬莢落下音
 			m_f = false;
-			m_time = 0.0f;
+			m_time = RESET_AUD_TIME;
 
 
 			attackpoint_now--;
@@ -301,15 +302,14 @@ void CObjHero::Action()
 	//ガード管理用変数を初期化
 	guard = 1;
 
-	//左に移動時の処理
-	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)
+	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)	//左に移動時の処理-----------
 	{
 
 		//主人公移動
-		m_vx += 0.5;
+		m_vx += HERO_MOVE;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			1, 12, 0.0f);
+			ANI_TIME, ANI_FRAME_MAX, RISET_ANI_POS);
 
 		movesecond++;
 		if (movesecond >= 63 && m_hit_down == true)
@@ -322,14 +322,13 @@ void CObjHero::Action()
 
 		Action_direction = false;
 	}
-	//左に移動時の処理
-	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)
+	else if (Input::GetVKey('A') == true && Action_guard == false && m_del == false)//左に移動時の処理------------
 	{
 		//主人公移動
-		m_vx -= 0.5f;
+		m_vx -= HERO_MOVE;
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			  1, 12, 1.0f);
+			ANI_TIME, ANI_FRAME_MAX, ANI_POS);
 
 		movesecond++;
 		if (movesecond >= 63 && m_hit_down == true)
@@ -352,39 +351,38 @@ void CObjHero::Action()
 	{
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame_Waiting, &m_posture,
-			1, 9, NULL);
-		movesecond = 100;
+			ANI_TIME, ANI_FRAME_WAIT, NULL);
 
 		//待機モーション向き
 		if (Action_direction == false)
-			m_posture = 0.0f;//アニメーション向き変更
+			m_posture = RISET_ANI_POS;//アニメーション向き変更
 		else
-			m_posture = 1.0f;	//アニメーション向き変更
+			m_posture = ANI_POS;	//アニメーション向き変更
 
 		Action_Waiting = true;
 	}
-	if (Input::GetVKey(VK_SHIFT) == true && Action_Walk == true)	//Zキー入力で速度アップ---------
+	if (Input::GetVKey(VK_SHIFT) == true && Action_Walk == true)	//Shiftキー入力で速度アップ---------
 	{
 		//SE間隔(仮)
 		movesecond+=2;
 
 		//主人公移動
 		if (Action_direction == true) {
-			m_vx -= 0.6;
+			m_vx -= HERO_MOVE_DUSH;
 		}
 		else {
-			m_vx += 0.6;
+			m_vx += HERO_MOVE_DUSH;
 		}
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			  2, 12, m_posture);
+			ANI_TIME_SHIFT, ANI_FRAME_MAX, m_posture);
 	}
 	//SPACEキー入力でジャンプ
 	if (Input::GetVKey(VK_SPACE) == true && m_del == false)
 	{
 		
 		if (m_hit_down == true && m_py > 100)
-			m_vy =-16.0f;
+			m_vy = HERO_MOVE_JUMP;
 		/*
 		else if (jump_time < 100 && m_hit_down == false && m_py > 100)
 		{
@@ -404,13 +402,27 @@ void CObjHero::Action()
 	}
 	else if (m_hit_down == true)
 	{
-		jump_time = 0.0f;
+		jump_time = RISET_JUMP_S;
+	}
+
+
+
+
+	if (Input::GetVKey('P') == true && m_del == false)
+	{
+
+		//弾丸オブジェクト
+		CObjGrenade* obj_gre = new CObjGrenade(m_px, m_py);//オブジェ作成
+		Objs::InsertObj(obj_gre, OBJ_GRENADE, 1);
 	}
 	
+
+
+
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
+		
 		Method_flag = true;//処理を止めるフラグを切り替える
-
 
 	}
 	if (Input::GetVKey('Q') == false && Method_flag == true)
@@ -419,6 +431,7 @@ void CObjHero::Action()
 		CObjMethod* md = new CObjMethod();
 		Objs::InsertObj(md, OBJ_METHOD, 18);
 		Method_flag = false;
+		Audio::Start(29);
 	}
 
 	
@@ -426,7 +439,7 @@ void CObjHero::Action()
 	if (m_hit_down == false) {
 		//アニメーション関数の呼び出し
 		Anime(&m_ani_time_Jump, &m_ani_max_time_Jump, &m_ani_frame_Jump, &m_posture,
-			1, 10, NULL);
+			ANI_TIME, ANI_FRAME_JUMP, NULL);
 		
 		Action_Jump = true;
 	}
@@ -452,10 +465,9 @@ void CObjHero::Action()
 	//自由落下運動
 	m_vy += 9.8 / (16.0f);
 
-	hp_time -= 0.1;
-
 	//自身のヒットボックスを持ってくる
 	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 8, m_py + 10);//ヒットボックスの最新
 
 	//回復薬に当たるとhpを+する
 	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
@@ -474,6 +486,10 @@ void CObjHero::Action()
 		attackpoint_now += 1;
 		Audio::Start(18);
 	}
+
+	//主人公のダメージ判定の間隔
+	hp_time -= HERO_HP_TIME_INT;
+
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
@@ -484,8 +500,9 @@ void CObjHero::Action()
 			flag = false;
 			hp_time = 1.6f;
 		}
-		if (hp_time >= 0.0f)
+		if (hp_time >= 0.0f) {
 			flag = true;
+		}
 		
 		//ブロック情報を持ってくる
 		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -497,14 +514,48 @@ void CObjHero::Action()
 			m_vx = KnockBack(m_px, x);//ノックバック関数
 		}
 	}
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
 
+		if (flag == true && hp_time <= 0.0f) {
+
+			if (guard_flag == true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 30;//ダメージ量×ガード値
+				Audio::Start(26);
+			}
+
+			flag = false;//主人公HP減算量管理フラグ 
+			hp_time = 1.6f;//主人公HP減算量管理タイム
+		}
+		if (hp_time >= 0.0f) {
+			flag = true;
+		}
+		
+		
+	}
 	//OBJ_ENEMYと当たると主人公がダメージを 1 受ける  OBJ_HOMING_BULLETと当たるとダメージを1受ける
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
 		if (flag == true && hp_time <= 0.0f){   
 
-			hp -= 5 * guard;//ダメージ量×ガード値
-
+			if (guard_flag==true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 10;//ダメージ量×ガード値
+				Audio::Start(10);
+			}
+		
+			
 			flag = false;//主人公HP減算量管理フラグ 
 			hp_time = 1.6f;//主人公HP減算量管理タイム
 		}
@@ -556,15 +607,27 @@ void CObjHero::Action()
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
 
-		if (hp_time <= 0.0f)//
+		if (hp_time <= 0.0f)//主人公のダメージ制御
 		{
+			Audio::Start(31);
 			m_vx += 3.0f;//主人公ノックバック
 			hp -= 20;//主人公のHP減算
-			hp_time=10.6f;//ダメージ加算までの時間
+			hp_time = 12.8f;//ダメージ加算までの時間
+		}
+	}
+	if (m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
+	{
+		hp_time--;//ダメージ加算制限処理
+
+		if (hp_time <= 0.0f)//主人公のダメージ制御
+		{
+			Audio::Start(26);
+			hp -= 20;//主人公のHP減算
+			hp_time = 10.6f;//ダメージ加算までの時間
 		}
 	}
 	if (m_block_type == 3)//主人公がBossブロックを踏むとステージ移行
@@ -577,10 +640,10 @@ void CObjHero::Action()
 	}
 
 	//主人公移動速度Max制限
-	if (m_vx >= 10)
-		m_vx = 10;
-	if (m_vx <= -10)
-		m_vx = -10;
+	if (m_vx >= HERO_MOVE_SPEED_MAX)
+		m_vx = HERO_MOVE_SPEED_MAX;
+	if (m_vx <= HERO_MOVE_SPEED_MIN)
+		m_vx = HERO_MOVE_SPEED_MIN;
 
 	//位置の更新
 	m_px += m_vx;
@@ -591,7 +654,7 @@ void CObjHero::Action()
 	
 
 	//主人公が画面下に落ちたらゲームオーバーに移行
-	if ( m_py > 600.0f)
+	if ( m_py > WINDOW_BOTTOM)
 	{
 		
 		this->SetStatus(false);
@@ -603,9 +666,9 @@ void CObjHero::Action()
 	}
 
 	//HPが0以下になると死亡アニメーション作動
-	if (hp <= 0)
+	if (hp <= RISET_HERO_HP)
 	{
-		hp = 0;
+		hp = RISET_HERO_HP;
 		
 		if(m_del==false)
 		Audio::Start(17);
@@ -633,7 +696,7 @@ void CObjHero::Action()
 		if (m_ani_time2 > 6)
 		{
 			m_ani++;		//アニメーションのコマを1つ進める
-			m_ani_time2 = 0;
+			m_ani_time2 = RISET_ANI_TIME;
 
 			m_eff = ani_src[m_ani];
 		}
@@ -749,7 +812,7 @@ void CObjHero::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 1600.0f*(hp/(float)hp_max);
+	src.m_right = 1600.0f * (hp/(float)hp_max);
 	src.m_bottom = 123.0f;
 
 	//表示位置設定
