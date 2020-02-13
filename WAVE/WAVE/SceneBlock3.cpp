@@ -40,7 +40,7 @@ void CSceneBlock3::InitScene()
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
 	//p = Save::ExternalDataOpen(L"stage03.csv", &size);//外部データ読み込み
-	p = Save::ExternalDataOpen(L"stage003.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage033.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;

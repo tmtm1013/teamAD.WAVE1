@@ -16,9 +16,7 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjLoading.cpp" />
-    <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjMethod.cpp" />
-    <ClCompile Include="ObjTime.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
     <ClCompile Include="ObjHero.cpp">
       <Filter>主人公</Filter>
@@ -141,9 +139,7 @@
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjLoading.h" />
-    <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjMethod.h" />
-    <ClInclude Include="ObjTime.h" />
     <ClInclude Include="UtilityModule.h" />
     <ClInclude Include="ObjHero.h">
       <Filter>主人公</Filter>

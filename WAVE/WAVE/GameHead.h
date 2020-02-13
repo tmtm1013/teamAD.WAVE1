@@ -181,5 +181,5 @@ extern short int g_MapChenge;//解放マップ管理用
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneDescription//CSceneBlock3//CSceneDescription//CSceneMain//SceneBossStage//CSceneBlock2//CSceneTitle//
+#define SET_GAME_START CSceneDescription//CSceneBlock3//CSceneBlock2//CSceneBlock3//CSceneBlock3//CSceneDescription//CSceneMain//SceneBossStage//CSceneBlock2//CSceneTitle//
 //-----------------------------------------------
