@@ -62,7 +62,7 @@ void CObjAngleBullet::Action()
 	m_bxp = obj->GetVX();//主人公のベクトル値を持ってくる
 
 	//移動
-	m_x += m_vx * m_speed;
+	m_x += (m_vx * m_speed) - m_bxp;//敵の位置から求めた角度にベクトル(スピード)を入れていく
 	m_y -= m_vy * m_speed;
 
 	//ブロックとの当たり判定
@@ -83,10 +83,10 @@ void CObjAngleBullet::Action()
 		//リソース着弾アニメーション位置
 		RECT_F ani_src[4] =
 		{
-			{37, 13, 22,56},
-			{37,45, 54,56},
-			{37,77, 86,56},
-			{37,109,118,56},
+			{36, 12, 21,55},
+			{36,44, 53,55},
+			{36,76, 85,55},
+			{36,108,117,55},
 		};
 		//アニメーションのコマ間隔
 		if (m_ani_time > 2)
@@ -179,7 +179,7 @@ void CObjAngleBullet::Draw()
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 32.0f + m_y;
 
-		Draw::Draw(28, &m_eff, &dst, c, 0.0f);
+		Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 		
 	}
 	else

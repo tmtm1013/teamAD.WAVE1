@@ -470,7 +470,7 @@ void CObjHero::Action()
 	hit->SetPos(m_px + 8, m_py + 10);//ヒットボックスの最新
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300 || Input::GetVKey('O') == true)
 	{
 		hp += 60;
 		Audio::Start(19);

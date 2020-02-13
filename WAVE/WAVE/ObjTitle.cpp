@@ -26,7 +26,7 @@ void CObjTitle::Init()
 	m_mou_l = false;
 
 	time = 0;
-	flag = true;
+	flag = false;
 
 	b = 1.0f;
 	t = 1.0f;
@@ -38,29 +38,39 @@ void CObjTitle::Init()
 void CObjTitle::Action()
 {
 
-	//マウスの位置を取得
-	m_mou_x = (float)Input::GetPosX();
-	m_mou_y = (float)Input::GetPosY();
-	//マウスのボタンの状態
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
 
-	//マウスの位置とクリックする場所で当たり判定
-	if (m_mou_x > 440 && m_mou_x < 800 && m_mou_y > 440 && m_mou_y < 490)
-	{
-		//マウスのボタンが押されたらメインに移行
-		if (m_mou_r == true || m_mou_l == true)
-		{
-			Audio::Start(1);
 
-			//ボリュームを1.0に戻す
-			float v = Audio::VolumeMaster(0);
-			v = Audio::VolumeMaster(0.5 - v);
 
-			this->SetStatus(false);//オブジェクト削除
-			
+	if (flag == true)//他の処理に移行しない処理
+		while (1) {
+			//マウスの位置を取得
+			m_mou_x = (float)Input::GetPosX();
+			m_mou_y = (float)Input::GetPosY();
+			//マウスのボタンの状態
+			m_mou_r = Input::GetMouButtonR();
+			m_mou_l = Input::GetMouButtonL();
+			//他の処理に移行しないための無限ループ
+			//マウスの位置とクリックする場所で当たり判定
+			if (m_mou_x > 440 && m_mou_x < 800 && m_mou_y > 440 && m_mou_y < 490)
+			{
+				//マウスのボタンが押されたらメインに移行
+				if (m_mou_r == true || m_mou_l == true)
+				{
+					Audio::Start(1);
+
+					//ボリュームを1.0に戻す
+					float v = Audio::VolumeMaster(0);
+					v = Audio::VolumeMaster(0.5 - v);
+
+					this->SetStatus(false);//オブジェクト削除
+					break;
+
+				}
+			}
+
+		
 		}
-	}
+	
 }
 
 void CObjTitle::Draw()
@@ -83,7 +93,7 @@ void CObjTitle::Draw()
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
-	dst.m_bottom = 500.0f;
+	dst.m_bottom = 600.0f;
 
 	//描画
 	Draw::Draw(15, &src, &dst, c, 0.0f);
@@ -106,7 +116,9 @@ void CObjTitle::Draw()
 	  */       //   R    G    B    透過
 	float d[4] = { 0, 0, b, t };
 	
-	Font::StrDraw(L"ゲームスタート", 440, 440, 40, d);
+	Font::StrDraw(L">>ゲームスタート<<", 440, 440, 40, d);
+
+	flag = true;
 	
 }
 

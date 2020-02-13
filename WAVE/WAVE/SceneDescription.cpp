@@ -95,7 +95,7 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(0, L"tutorial.wav", BACK_MUSIC);
 	Audio::Start(0);
 
-	Draw::LoadImage(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
+	Draw::LoadImageW(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
 
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512); //弾丸グラフィック読み込み
 
@@ -151,8 +151,13 @@ void CSceneDescription::InitScene()
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//カーソル作成
+	CObjTitle* obj_tl = new CObjTitle();
+	Objs::InsertObj(obj_tl, OBJ_CURSOR, 15);
+
+
+	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 16);
 
 }
 

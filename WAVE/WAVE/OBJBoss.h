@@ -35,6 +35,9 @@ private:
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
 
+	int Boss_hp_max;//ENEMYのHP
+	int Boss_hp_now;
+
 	//移動の向き制御用
 	bool m_move;
 

@@ -85,7 +85,7 @@ void CObjEnemyJump::Init()
 	m_rnd = 0;//ジャンプ用ランダム変数
 
 	//ボスHP
-	b_hp_max = 200;
+	b_hp_max = 1000;
 	b_hp_now = b_hp_max;
 
 	//攻撃アニメーション

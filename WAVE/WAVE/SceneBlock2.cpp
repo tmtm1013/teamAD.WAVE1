@@ -171,6 +171,9 @@ void CSceneBlock2::InitScene()
 
 	//ドラゴン攻撃エフェクト画像
 	Draw::LoadImageW(L"kakyuu.png", 24, TEX_SIZE_256);
+	//ボスのHPグラフィック読み込み
+	Draw::LoadImageW(L"HPGauge02_bg_01.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"HPGauge02_purple.png", 29, TEX_SIZE_512);
 
 	//主人公死亡アニメーション画像読み込み
 	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
