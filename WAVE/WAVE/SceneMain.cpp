@@ -143,9 +143,7 @@ void CSceneMain::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 	//グラフィック読み込み
-	Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
-	Draw::LoadImageW(L"FhitEff5.png", 22, TEX_SIZE_512);
-	Draw::LoadImageW(L"HhitEff1.png", 23, TEX_SIZE_512);
+	//Draw::LoadImageW(L"image1234.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"EhitEff.png", 24, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
@@ -178,6 +176,9 @@ void CSceneMain::InitScene()
 
 	//操作説明グラフィック読み込み
 	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
+
+	Draw::LoadImageW(L"Black.png", 39, TEX_SIZE_256);//選択可視化グラフィック読み込み
+
 
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.8f);

@@ -26,8 +26,7 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_MAIN,
 	OBJ_TIME,
-
-	OBJ_GATE,
+	OBJ_WEAPON_TYPE,
 
 	OBJ_ICICLE,
 
@@ -139,7 +138,7 @@ extern short int g_MapChenge;//解放マップ管理用
 #include "ObjSlime.h"
 #include "ObjDangerWall.h"
 
-#include "Objgate.h"
+#include "ObjWeaponType.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"

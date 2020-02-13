@@ -130,6 +130,9 @@ void CSceneDescription::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
+	Draw::LoadImageW(L"Black.png", 39, TEX_SIZE_256);//選択可視化グラフィック読み込み
+
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);
