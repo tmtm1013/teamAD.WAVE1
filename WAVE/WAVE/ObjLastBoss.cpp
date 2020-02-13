@@ -262,6 +262,8 @@ void CObjLastBoss::Action()
 	if (Boss_hp_now <= 0)
 	{
 
+		Boss_hp_now = 0;
+
 		//ボス消滅でシーンをクリア画面に移行する
 		Scene::SetScene(new CSceneClear());
 
@@ -343,8 +345,8 @@ void CObjLastBoss::Draw()
 
 	//表示位置設定
 	dst.m_top = 582.0f;
-	dst.m_left = 46.0f;
-	dst.m_right = 751.0f * (Boss_hp_now / (float)Boss_hp_max);
+	dst.m_left = 50.0f;
+	dst.m_right = 50 + (700.0f * (Boss_hp_now / (float)Boss_hp_max));
 	dst.m_bottom = 593.0f;
 
 	//描画

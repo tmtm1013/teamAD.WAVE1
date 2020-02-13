@@ -85,7 +85,7 @@ void CObjEnemyJump::Init()
 	m_rnd = 0;//ジャンプ用ランダム変数
 
 	//ボスHP
-	b_hp_max = 200;
+	b_hp_max = 1000;
 	b_hp_now = b_hp_max;
 
 	//攻撃アニメーション
@@ -291,10 +291,13 @@ void CObjEnemyJump::Action()
 	//HPが0になったら破棄
 	if (b_hp_now <= 0)
 	{
+		b_hp_now = 0;
+
 		//敵を動かさないようにする。
 		m_vx = 0;
 		m_vy = 0;
-
+		if (m_del == false)
+			Audio::Start(25);
 		m_del = true;//着弾エフェクト移行用フラグ
 		hit->SetInvincibility(true);//判定無効
 
@@ -466,8 +469,8 @@ void CObjEnemyJump::Draw()
 
 		//表示位置設定
 		dst.m_top = 582.0f;
-		dst.m_left = 46.0f;
-		dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+		dst.m_left = 50.0f;
+		dst.m_right = 50 + (700.0f * (b_hp_now / (float)b_hp_max));
 		dst.m_bottom = 593.0f;
 
 		//描画

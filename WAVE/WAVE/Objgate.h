@@ -7,11 +7,10 @@ using namespace GameL;
 
 
 //オブジェクト：敵
-class CObjBoss :public CObj
+class CObjgate :public CObj
 {
-public:
-	CObjBoss(float x, float y);
-	   ~CObjBoss() {};
+public:CObjgate(float x, float y);
+	   ~CObjgate() {};
 	   void Init();   //イニシャライズ
 	   void Action(); //アクション
 	   void Draw();   //ドロー
@@ -22,34 +21,23 @@ public:
 	   void SetYY(float y);//位置情報Y変更用
 
 
+
+
 private:
 	float m_px;    //位置
 	float m_py;
 	float m_vx;    //移動ベクトル
 	float m_vy;
+
 	float m_posture;  //姿勢
 
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
-	int m_time_a;
+	int m_ani_move;
+
 	float m_speed_power;  //スピードパワー
 	float m_ani_max_time; //アニメーション動作間隔最大値
 
-	int Boss_hp_max;//ENEMYのHP
-	int Boss_hp_now;
-
-	//移動の向き制御用
-	bool m_move;
-
-	//ENEMYのHP
-	int m_hp;
-
-	//弾丸用プログラム
-	int m_time;
-	int m_time2;
-	
-	//マップ移動用数値
-	int kazu;
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;
@@ -57,9 +45,24 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
-	bool m_attack;//単発攻撃アニメーションフラグ
-	bool m_attack2;//範囲攻撃アニメーションフラグ
-	int m_ani_frame2;//攻撃アニメーション用タイム
-	float m_ani_max_time2; //アニメーション動作間隔最大値
-	float m_ani_max_time3; //アニメーション動作間隔最大値
+	int m_block_type;
+
+	//主人公との当たり判定用フラグ
+	bool HitCheck;
+
+	//移動の向き制御用
+	bool m_move;
+
+
+
+	//アイテムフラグ
+	bool flag;
+
+
+	//ENEMYのHP
+	int m_hp;
+
+
+	float m_f;
+
 };

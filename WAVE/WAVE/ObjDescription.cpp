@@ -31,7 +31,7 @@ void CObjDescription::Init()
 void CObjDescription::Action()
 {
 
-
+	//Audio::Start(60);
 
 
 
@@ -67,7 +67,7 @@ void CObjDescription::Draw()
 	//Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	
-	Font::StrDraw(L"操作説明" ,330,50,30,c);
+	Font::StrDraw(L"操作説明" ,330,50,40,c);
 
 	Font::StrDraw(L"左移動: A　Key 右移動: D Key", 130, 100, 25, c);
 
@@ -78,7 +78,10 @@ void CObjDescription::Draw()
 	Font::StrDraw(L"攻撃: マウス左クリック", 130, 160, 25, c);
 
 	Font::StrDraw(L"攻撃切り替え　1(ぬ）キー：単発　2(ふ)キー：連射　", 180, 200, 25, c);
+	Font::StrDraw(L"操作説明表示: Qキー", 215, 240, 25, c);
 
-	Font::StrDraw(L"ゲームスタート→↓", 215, 240, 30, c);
 
+	Font::StrDraw(L"ゲームスタート→", 250, 300, 40, c);
+
+	
 }

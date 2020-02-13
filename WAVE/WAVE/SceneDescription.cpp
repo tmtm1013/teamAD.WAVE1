@@ -82,6 +82,11 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
+
 
 	//音楽読み込み
 	//Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
@@ -90,7 +95,7 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(0, L"tutorial.wav", BACK_MUSIC);
 	Audio::Start(0);
 
-	Draw::LoadImage(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
+	Draw::LoadImageW(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
 
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512); //弾丸グラフィック読み込み
 
@@ -99,7 +104,7 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
@@ -146,8 +151,13 @@ void CSceneDescription::InitScene()
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//カーソル作成
+	CObjTitle* obj_tl = new CObjTitle();
+	Objs::InsertObj(obj_tl, OBJ_CURSOR, 15);
+
+
+	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 16);
 
 }
 
