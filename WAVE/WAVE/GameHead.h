@@ -147,13 +147,11 @@ extern short int g_MapChenge;//解放マップ管理用
 
 
 #include "ObjTitle.h"
-#include "ObjMain.h"
 #include "ObjClear.h"
 #include "ObjBackground.h"
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
-#include "ObjTime.h"
 #include "ObjMethod.h"
 #include "ObjLoading.h"
 
@@ -179,5 +177,5 @@ extern short int g_MapChenge;//解放マップ管理用
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain //CSceneDescription//SceneBossStage//CSceneDescription//CSceneBlock2//CSceneMain//CObjTitle//CSceneMain//
+#define SET_GAME_START CSceneMain//SceneBossStage //CSceneDescription////CSceneDescription//CSceneBlock2//CSceneMain//CObjTitle//CSceneMain//
                          

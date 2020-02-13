@@ -291,6 +291,8 @@ void CObjEnemyJump::Action()
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 	if (b_hp_now <= 0)
 	{
+		b_hp_now = 0;
+
 		//“G‚ð“®‚©‚³‚È‚¢‚æ‚¤‚É‚·‚éB
 		m_vx = 0;
 		m_vy = 0;
@@ -466,8 +468,8 @@ void CObjEnemyJump::Draw()
 
 		//•\Ž¦ˆÊ’uÝ’è
 		dst.m_top = 582.0f;
-		dst.m_left = 46.0f;
-		dst.m_right = 751.0f * (b_hp_now / (float)b_hp_max);
+		dst.m_left = 50.0f;
+		dst.m_right = 50 + (700.0f * (b_hp_now / (float)b_hp_max));
 		dst.m_bottom = 593.0f;
 
 		//•`‰æ

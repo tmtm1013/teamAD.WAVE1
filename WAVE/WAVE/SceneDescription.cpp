@@ -104,7 +104,7 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);//回復薬グラフィック読み込み
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
