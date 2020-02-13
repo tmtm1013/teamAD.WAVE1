@@ -147,13 +147,11 @@ extern float kazu;
 
 
 #include "ObjTitle.h"
-#include "ObjMain.h"
 #include "ObjClear.h"
 #include "ObjBackground.h"
 //#include "CObjHomingBullet.h"
 #include "ObjGameOver.h"
 #include "ObjItem.h"
-#include "ObjTime.h"
 #include "ObjMethod.h"
 #include "ObjLoading.h"
 

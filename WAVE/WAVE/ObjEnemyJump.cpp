@@ -297,6 +297,8 @@ void CObjEnemyJump::Action()
 	//HPが0になったら破棄
 	if (b_hp_now <= 0)
 	{
+		b_hp_now = 0;
+
 		//敵を動かさないようにする。
 		m_vx = 0;
 		m_vy = 0;
@@ -467,7 +469,7 @@ void CObjEnemyJump::Draw()
 		//切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 248.0;
+		src.m_right = 248.0 * (b_hp_now / (float)b_hp_max);
 		src.m_bottom = 12.0f;
 
 		//表示位置設定

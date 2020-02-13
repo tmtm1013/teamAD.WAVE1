@@ -183,19 +183,9 @@ void CSceneMain::InitScene()
 	CObjBackground* objbg = new CObjBackground();
 	Objs::InsertObj(objbg, OBJ_BACKGROUND, 0);
 	
-	//タイムオブジェクト作成
-	CObjTime* objt = new CObjTime();
-	Objs::InsertObj(objt, OBJ_TIME, 11);
-
 	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
-	
-	//スコア表示
-	CObjMain* s = new CObjMain();
-	Objs::InsertObj(s, OBJ_MAIN, 17);
-
-
 }
 
 //実行中メソッド

@@ -4,9 +4,6 @@
     <ClCompile Include="ObjHero.cpp">
       <Filter>Hero</Filter>
     </ClCompile>
-    <ClCompile Include="ObjTime.cpp">
-      <Filter>Scene\タイトル画面</Filter>
-    </ClCompile>
     <ClCompile Include="SceneTitle.cpp">
       <Filter>Scene\タイトル画面</Filter>
     </ClCompile>
@@ -115,9 +112,6 @@
     <ClCompile Include="ObjCursor.cpp">
       <Filter>UI\照準カーソル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMain.cpp">
-      <Filter>UI\得点</Filter>
-    </ClCompile>
     <ClCompile Include="ObjLoading.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -161,9 +155,6 @@
   <ItemGroup>
     <ClInclude Include="ObjHero.h">
       <Filter>Hero</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTime.h">
-      <Filter>Scene\タイトル画面</Filter>
     </ClInclude>
     <ClInclude Include="SceneTitle.h">
       <Filter>Scene\タイトル画面</Filter>
@@ -264,9 +255,6 @@
     <ClInclude Include="ObjCursor.h">
       <Filter>UI\照準カーソル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>UI\得点</Filter>
-    </ClInclude>
     <ClInclude Include="ObjLoading.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -366,9 +354,6 @@
     </Filter>
     <Filter Include="UI\照準カーソル">
       <UniqueIdentifier>{c29ed778-aefd-4b12-a979-f1cc00c725fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\得点">
-      <UniqueIdentifier>{6e3b791e-3127-471f-8f00-5b77a08cbfb7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Enemy\溶岩壁">
       <UniqueIdentifier>{b58cb2f7-da18-4473-b598-2aea0dbe0970}</UniqueIdentifier>

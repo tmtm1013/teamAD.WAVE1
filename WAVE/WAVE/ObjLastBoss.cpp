@@ -274,7 +274,7 @@ void CObjLastBoss::Action()
 
 	}
 	//HPが0になったら破棄
-	if (Boss_hp_now <= 0)
+	if (Boss_hp_now = 0)
 	{
 
 		//ボス消滅でシーンをクリア画面に移行する
