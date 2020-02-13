@@ -39,7 +39,8 @@ void CSceneBlock3::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage333.csv", &size);//外部データ読み込み
+	//p = Save::ExternalDataOpen(L"stage03.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage003.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -125,7 +126,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
 
 	//ゴールブロックのグラフィック読み込み
-	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"block02.png", 11, TEX_SIZE_512);
 
 	//ジャンプする敵
 	Draw::LoadImageW(L"Animation/slime.png", 12, TEX_SIZE_512);
@@ -169,6 +170,9 @@ void CSceneBlock3::InitScene()
 	//必殺技回復アイテムグラフィック読み込み
 	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
 
+	//門グラフィック読み込み
+	Draw::LoadImageW(L"gate1.png", 40, TEX_SIZE_512);
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
@@ -194,6 +198,8 @@ void CSceneBlock3::InitScene()
 	//タイムオブジェクト作成
 	CObjTime* objt = new CObjTime();
 	Objs::InsertObj(objt, OBJ_TIME, 11);
+
+	
 
 
 	//カーソル作成

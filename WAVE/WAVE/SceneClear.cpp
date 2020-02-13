@@ -34,7 +34,6 @@ void CSceneClear::InitScene()
 	Draw::LoadImageW(L"Animation/EDGE5.png", 3, TEX_SIZE_1024);//  主人公 (前進) グラフィック読み込み
 	Draw::LoadImageW(L"Animation/Action.png", 18, TEX_SIZE_1024);//主人公 ( ガード ) グラフィック読み込み
 
-
 	//SE読み込み
 	Audio::LoadAudio(2, L"SEgan/nomal.wav", SOUND_TYPE::EFFECT);// 通常弾 発射音読み込み----
 	Audio::LoadAudio(3, L"SEgan/FullSound.wav", SOUND_TYPE::EFFECT);// れん弾 発射音読み込み----
@@ -58,32 +57,33 @@ void CSceneClear::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
 
-
-	
-
-
 	int map[10][200];
 	int count = 1;
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 200; j++)
 		{
+		
+
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
 			count += 2;
+		
+
 		}
 
 
 	}
+
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
 
 
-	Draw::LoadImageW(L"gc00.png", 6, TEX_SIZE_512);
+	Draw::LoadImageW(L"gc02.png", 6, TEX_SIZE_512);
 
 	//クリア画面オブジェクト作成
 	CObjClear*objr = new CObjClear();
@@ -103,8 +103,6 @@ void CSceneClear::InitScene()
 	//音楽スタート
 	Audio::Start(0);
 	
-
-
 
 }
 //実行中メソッド

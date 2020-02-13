@@ -27,6 +27,8 @@ enum OBJ_NAME
 	OBJ_MAIN,
 	OBJ_TIME,
 
+	OBJ_GATE,
+
 	OBJ_ICICLE,
 
 	OBJ_BULLET,
@@ -137,6 +139,8 @@ extern float kazu;
 #include "ObjSlime.h"
 #include "ObjDangerWall.h"
 
+#include "Objgate.h"
+
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
 #include "CObjDiffusionBullet.h"
@@ -179,5 +183,5 @@ extern float kazu;
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneDescription//SceneBossStage//CSceneTitle//CSceneBlock3//CSceneMain//CSceneBlock2
+#define SET_GAME_START CSceneDescription//CSceneBlock3//CSceneDescription//CSceneMain//SceneBossStage//CSceneBlock2//CSceneTitle//
 //-----------------------------------------------

@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p= Save::ExternalDataOpen(L"stage111.csv", &size);//外部データ読み込み
+	p= Save::ExternalDataOpen(L"stage01.csv", &size);//外部データ読み込み
 	
 	int map[10][200];
 	int count = 1;
@@ -117,7 +117,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
-	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_1024);
+	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_1024);
 
 	//ゴールブロックのグラフィック読み込み
 	Draw::LoadImageW(L"Blockg1.png", 11, TEX_SIZE_512);
@@ -175,7 +175,6 @@ void CSceneMain::InitScene()
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.5 - v);
-
 
 
 	//blockオブジェクト作成

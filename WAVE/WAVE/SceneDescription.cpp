@@ -43,7 +43,7 @@ void CSceneDescription::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial2.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -55,7 +55,15 @@ void CSceneDescription::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			if (w >= 10)
+			{
+				count += 3;
+
+			}
+			else
+			{
+				count += 2;
+			}
 
 		}
 	}
@@ -97,7 +105,7 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
-	Draw::LoadImageW(L"grass1.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
 
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);	//ゲームオーバーのグラフィック読み込み
 
@@ -108,6 +116,8 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
