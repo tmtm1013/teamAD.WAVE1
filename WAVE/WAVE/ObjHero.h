@@ -101,6 +101,8 @@ using namespace GameL;
 #define BROCK_TYPE (0)
 
 
+
+
 //シーン:主人公
 class CObjHero :public CObj
 {
@@ -115,7 +117,9 @@ public:CObjHero() {}
 	   float GetVY() { return m_vy; }
 	   float GetVX() { return m_vx; }
 	   int GetBT() { return m_block_type; }
-	   float GetVK_SPACE() { return m_vy; };
+	   float GetVK_SPACE() { return m_vy; }
+
+	   int Get_bullet_type() { return bullet_type; }
 
 	   void SetX(float x) { m_px = x; }
 	   void SetY(float y) { m_py = y; }
@@ -149,6 +153,7 @@ public:CObjHero() {}
 	  bool  m_f;     //弾丸発射制御用
 	  bool  m_gf;     //グレネード発射用フラグ
 	  float m_time;  //弾丸発射可能頻度制御
+
 	  int bullet_type;//弾丸の種類
 
 	  bool guard_flag;//ガード用フラグ

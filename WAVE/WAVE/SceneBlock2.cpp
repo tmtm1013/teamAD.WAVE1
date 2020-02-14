@@ -186,6 +186,8 @@ void CSceneBlock2::InitScene()
 
 	//操作説明グラフィック読み込み
 	Draw::LoadImageW(L"UI/Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
+	//武器種類画像
+	Draw::LoadImageW(L"buki.png", 40, TEX_SIZE_1024);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
