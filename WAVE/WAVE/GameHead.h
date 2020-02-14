@@ -26,8 +26,7 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_MAIN,
 	OBJ_TIME,
-
-	OBJ_GATE,
+	OBJ_WEAPON_TYPE,
 
 	OBJ_ICICLE,
 
@@ -139,7 +138,7 @@ extern short int g_MapChenge;//解放マップ管理用
 #include "ObjSlime.h"
 #include "ObjDangerWall.h"
 
-#include "Objgate.h"
+#include "ObjWeaponType.h"
 
 #include "CObjBullet.h"
 #include "CObjFullBullet.h"
@@ -181,5 +180,5 @@ extern short int g_MapChenge;//解放マップ管理用
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneDescription//CSceneBlock3//CSceneBlock2//CSceneBlock3//CSceneBlock3//CSceneDescription//CSceneMain//SceneBossStage//CSceneBlock2//CSceneTitle//
-//-----------------------------------------------
+#define SET_GAME_START CSceneBlock2//SceneBossStage//CSceneBlock2//CSceneMain //CSceneDescription//CSceneDescription//CSceneMain//CObjTitle//CSceneMain//
+                         

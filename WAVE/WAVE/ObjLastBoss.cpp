@@ -43,7 +43,7 @@ void CObjLastBoss::Init()
 	m_ani_frame = 1;   //静止フレームを初期にする
 	m_time_a = 0;
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 0.2f;  //通常速度
 	m_ani_max_time = 10;    //アニメーション間隔幅
 
 	Boss_hp_max = 2000;//ENEMYのHP
@@ -58,6 +58,8 @@ void CObjLastBoss::Init()
 	m_move = false;//true=右
 
 	m_rnd = 0;
+	//ボス移動方向フラグ
+	mover = false;
 
 	m_ani_move = 0;
 
@@ -87,22 +89,12 @@ void CObjLastBoss::Action()
 	);
 
 	
-	//通常速度
-	m_speed_power = 0.14f;
-
-	//乱数の種を初期化
-	srand(time(NULL));
-	//1～100のランダムな数値
-	m_rnd = rand() % 10 + 1;
-
-
-
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
 
-
+	/*
 	//ここに敵が主人公の向きに移動する条件を書く。
 	if (x <= m_px)//右
 	{
@@ -112,7 +104,7 @@ void CObjLastBoss::Action()
 	{
 		m_move = false;
 	}
-
+	*/
 
 
 
@@ -122,7 +114,6 @@ void CObjLastBoss::Action()
 	//自由落下運動
 	//m_vy += 9.8 / (16.0f);
 
-	
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -134,8 +125,7 @@ void CObjLastBoss::Action()
 	m_time3++;
 	if (m_time3 > 200)
 	{
-		//if (!(x + 100.0f > m_px && x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
-
+		
 
 			for (int i = 0; i < 2; i++)
 			{
@@ -147,7 +137,7 @@ void CObjLastBoss::Action()
 
 				Audio::Start(0);
 			}
-		//}
+		
 	}
 
 	//BOSSの周り20°間隔で発射
@@ -155,7 +145,7 @@ void CObjLastBoss::Action()
 	if (m_time > 300)//50の間隔で拡散弾攻撃をする
 	{
 
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		//if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			//19発同時発射
 			CObjAngleBullet*obj_b;
@@ -168,79 +158,71 @@ void CObjLastBoss::Action()
 				Audio::Start(0);
 
 			}
-		}
+		
 	}
 
 	m_time2++;//通常遠距離攻撃に間隔をつけるためのインクリメント
 	if (m_time2 > 100) {
 
 
-		if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
+		//if (!(x + 100.0f > m_px&&x - 100.0f < m_px)) {//主人公が敵の近くに来た時遠距離攻撃をしなくするプログラム
 
 			m_time2 = 0;
 			//弾丸オブジェクト
 			CObjHomingBullet* obj_b = new CObjHomingBullet(m_px + block->GetScroll(), m_py, 24);//オブジェ作成
-			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
+			Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 24);
 			Audio::Start(0);
 
 
-		}
-
-
-	}
-
-	//ここが主人公の向きに移動する条件を書く。
-	if ((m_px + block->GetScroll()) < x)//右
-	{
-		//主人公が移動していない時のプログラム
-		m_vx += m_speed_power;
-
-		//アニメーション動作間隔
-		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
-			1, 2, 1.0f);
 		
-		m_ani_move = 1;
 
-		//ランダムで決まる数値が1の時ジャンプする
-		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-			if (m_hit_down == true)//敵が地面にいるときジャンプする
-				m_vy = -16;
-		}
 
 	}
-	else//左
-	{
+	if (mover == false) {
 
-		//主人公が移動していない時のプログラム
-		m_vx -= m_speed_power;
 
 		//アニメーション動作間隔
 		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
 			1, 2, 0.0f);
+		//主人公が移動していない時のプログラム
+		m_vx -= m_speed_power;
 
-		m_ani_move = 1;
+		//ここが主人公の向きに移動する条件を書く。
+		if (m_hit_right == true)//右
+		{
 
-		//ランダムで決まる数値が1の時ジャンプする
-		if (m_rnd == 1) {//m_rndがランダムの数値が入る変数
-
-			if (m_hit_down == true)//敵が地面にいるときジャンプする
-			{
-				m_vy = -16;
-			}
-
+			mover = true;
 
 		}
 
 	}
-	
+	if (mover == true) {
+		//アニメーション動作間隔
+		Anime(&m_ani_time, &m_ani_max_time, &m_ani_frame, &m_posture,
+			1, 2, 1.0f);
+		//主人公が移動していない時のプログラム
+		m_vx += m_speed_power;
+		if (m_hit_left == true)//左
+		{
 
+			mover =false ;
+
+		}
+	}
 
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
 
+	//飛ぶようにしている
+	if (m_py < 300) {
+		m_vy += 0.1 / (2.0f);
+	}
+	if (m_py > 300)
+	{
+		m_vy -= 0.1 / (2.0f);
+	}
 
 
 
@@ -289,7 +271,7 @@ void CObjLastBoss::Action()
 
 	}
 
-
+	
 
 }
 

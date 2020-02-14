@@ -158,7 +158,8 @@ void SceneBossStage::InitScene()
 	Draw::LoadImageW(L"Animation/death.png", 35, TEX_SIZE_1024);//主人公 ( 死亡 ) グラフィック読み込み
 
 
-
+	//ラストボスグレネード
+	Draw::LoadImageW(L"taiyou.png", 36, TEX_SIZE_512);
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(24, L"Boss3.wav", BACK_MUSIC);
@@ -238,27 +239,7 @@ void SceneBossStage::InitScene()
 
 
 
-	m_time = 0;
-	m_time2 = 0;
-	m_time3 = 0;
-	m_time4 = 0;
-	m_time5 = 0;
-	m_time6 = 0;
-	m_time7 = 0;
-	m_time8 = 0;
-	m_time9 = 0;
-	m_time10 = 0;
-
-	Enemy = 1;
-	Enemyleft = 1;
-	EnemyJump = 1;
-	EnemyJumpleft = 1;
-	EnemyRecovery = 1;
-	EnemyRecoveryleft = 1;
-	EnemyAmmunition = 1;
-	EnemyAmmunitionleft = 1;
-	EnemyLongdistance = 1;
-	EnemyLongdistanceleft = 1;
+	
 
 }
 

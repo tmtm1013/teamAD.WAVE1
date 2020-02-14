@@ -67,7 +67,7 @@ void CObjEnemy::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;   //静止フレームを初期にする
 
-	m_speed_power = 0.4f;  //通常速度
+	m_speed_power = 0.2f;  //通常速度
 	m_ani_max_time = 2;    //アニメーション間隔幅
 	m_ani_move = 0;
 
@@ -319,11 +319,11 @@ void CObjEnemy::Action()
 			//敵が消滅したら+100点
 			((UserData*)Save::GetData())->m_point += 10;
 
-			
+			/*
 			//アイテムオブジェクト作成	
 			CObjAitem*obju = new CObjAitem(m_px, m_py);
 			Objs::InsertObj(obju, OBJ_AITEM, 7);
-			
+			*/
 		}
 
 		return;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -125,7 +125,6 @@
     <ClCompile Include="ObjAitem.cpp" />
     <ClCompile Include="ObjDangerWall.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
-    <ClCompile Include="Objgate.cpp" />
     <ClCompile Include="ObjGrenade.cpp" />
     <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
@@ -166,6 +165,7 @@
     <ClCompile Include="ObjMethod.cpp" />
     <ClCompile Include="ObjRevolutionBullet.cpp" />
     <ClCompile Include="ObjSlime.cpp" />
+    <ClCompile Include="ObjWeaponType.cpp" />
     <ClCompile Include="SceneBlock2.cpp" />
     <ClCompile Include="SceneBlock3.cpp" />
     <ClCompile Include="SceneBossStage.cpp" />
@@ -178,7 +178,6 @@
     </ClCompile>
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
-    <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +189,7 @@
     <ClInclude Include="ObjAitem.h" />
     <ClInclude Include="ObjDangerWall.h" />
     <ClInclude Include="ObjDescription.h" />
-    <ClInclude Include="Objgate.h" />
+    <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGrenade.h" />
     <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">
@@ -228,6 +227,7 @@
     <ClInclude Include="ObjMethod.h" />
     <ClInclude Include="ObjRevolutionBullet.h" />
     <ClInclude Include="ObjSlime.h" />
+    <ClInclude Include="ObjWeaponType.h" />
     <ClInclude Include="SceneBlock2.h" />
     <ClInclude Include="SceneBlock3.h" />
     <ClInclude Include="SceneBossStage.h" />
@@ -238,7 +238,6 @@
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjTitle.h" />
-    <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="UtilityModule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
