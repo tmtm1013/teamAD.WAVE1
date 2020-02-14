@@ -36,9 +36,9 @@ void CSceneGameOver::InitScene()
 	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
 
 	
-	Draw::LoadImage(L"GAMEOVER01.png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"BackGround/GAMEOVER01.png", 11, TEX_SIZE_512);
 
-	Audio::LoadAudio(24, L"GameOver4.wav", BACK_MUSIC);
+	Audio::LoadAudio(24, L"BackM/GameOver4.wav", BACK_MUSIC);
 	//バックミュージックスタート
 	Audio::Start(24);//音楽スタート
 

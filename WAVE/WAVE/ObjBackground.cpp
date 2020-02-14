@@ -12,23 +12,23 @@ using namespace GameL;
 void CObjBackground::Init()
 {
 	if (((UserData*)Save::GetData())->Scenecontinue == 0) {
-		Draw::LoadImageW(L"village1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"BackGround/village1.png", 9, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 1) {
-		Draw::LoadImageW(L"Background.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"BackGround/Background.png", 9, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 2) {
-		Draw::LoadImageW(L"stage2.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"BackGround/stage2.png", 9, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 3) {
-		Draw::LoadImageW(L"hstage1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"BackGround/hstage1.png", 9, TEX_SIZE_1024);
 
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
-		Draw::LoadImageW(L"gc1.png", 9, TEX_SIZE_1024);
+		Draw::LoadImageW(L"BackGround/gc1.png", 9, TEX_SIZE_1024);
 		backnum = 9;
 	}
 }

@@ -41,12 +41,6 @@ void CObjTitle::Action()
 	if (flag == true)//他の処理に移行しない処理
 		while (1) {//他の処理に移行しないための無限ループ
 
-	if (flag == true)//他の処理に移行しない処理
-		while (1) {//他の処理に移行しないための無限ループ
-
-			if (Input::GetVKey(VK_RETURN) == true) {//マウス左 が押されると真
-
-				flag = false;//処理を止めるフラグを切り替える
 
 			if (Input::GetVKey(VK_RETURN) == true) {//マウス左 が押されると真
 
@@ -61,7 +55,6 @@ void CObjTitle::Action()
 			}
 		}
 
-	
 	
 }
 
@@ -108,7 +101,7 @@ void CObjTitle::Draw()
 	  */       //   R    G    B    透過
 	float d[4] = { 0, 0, b, t };
 	
-	Font::StrDraw(L">>ゲームスタート<<", 440, 440, 40, d);
+	Font::StrDraw(L">>Enter Push<<", 440, 460, 40, d);
 
 	flag = true;
 	

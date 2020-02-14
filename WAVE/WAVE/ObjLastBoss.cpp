@@ -29,8 +29,7 @@ CObjLastBoss::CObjLastBoss(float x, float y)
 //イニシャライズ
 void CObjLastBoss::Init()
 {
-	Audio::LoadAudio(0, L"SEgan/Honoo.wav", SOUND_TYPE::EFFECT);
-
+	
 
 
 

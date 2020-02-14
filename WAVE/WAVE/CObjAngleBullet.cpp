@@ -51,12 +51,7 @@ void CObjAngleBullet::Init()
 //アクション
 void CObjAngleBullet::Action()
 {
-	//ブロックとの当たり判定
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockBulletHit(&m_x, &m_y, true, &m_sx, &m_sy,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
-	);
+    
 
 	//主人公期と誘導弾丸で角度をとる。
 	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -66,14 +61,32 @@ void CObjAngleBullet::Action()
 	m_x += (m_vx * m_speed) - m_bxp;//敵の位置から求めた角度にベクトル(スピード)を入れていく
 	m_y -= m_vy * m_speed;
 
+	//ブロックとの当たり判定
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockBulletHit(&m_x, &m_y, true, &m_sx, &m_sy,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x - m_bxp, m_y);
 
+
+	//敵機オブジェクトと接触したら弾丸消去
+	/*if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		this->SetStatus(false);//自身に消去命令を出す。
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
+
+	}*/
+	/*
+	
+	*/
+	
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_del = true;
-		//hit->SetInvincibility(true);
+		hit->SetInvincibility(true);
 	}
 	if (m_del == true)
 	{
@@ -108,7 +121,6 @@ void CObjAngleBullet::Action()
 		return;
 
 	}
-	
 	//ブロックと当たると弾丸削除
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
@@ -126,6 +138,7 @@ void CObjAngleBullet::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに消去する。
 	}
+
 }
 
 //ドロー
