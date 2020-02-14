@@ -69,19 +69,22 @@ void CObjDescription::Draw()
 	
 	Font::StrDraw(L"操作説明" ,330,50,40,c);
 
-	Font::StrDraw(L"左移動: A　Key 右移動: D Key", 130, 100, 25, c);
+	Font::StrDraw(L"左移動: A　Key 右移動: D Key", 170, 150, 35, c);
 
-	Font::StrDraw(L"ジャンプ: Space Key", 125, 130, 25, c);
+	Font::StrDraw(L"ジャンプ: Space Key:", 80, 200, 30, c);
 
-	Font::StrDraw(L"ダッシュ: 移動 + Shift", 455, 130, 25, c);
+	Font::StrDraw(L"ダッシュ: 移動 + Shift:", 430, 200 , 30, c);
 
-	Font::StrDraw(L"攻撃: マウス左クリック", 130, 160, 25, c);
+	Font::StrDraw(L"攻撃切り替え　1(ぬ）Key：単発　2(ふ)Key：連射:", 80, 300, 35, c);
 
-	Font::StrDraw(L"攻撃切り替え　1(ぬ）キー：単発　2(ふ)キー：連射　", 180, 200, 25, c);
-	Font::StrDraw(L"操作説明表示: Qキー", 215, 240, 25, c);
+	Font::StrDraw(L"必殺技：3（あ）Key:", 80, 350, 33, c);
+
+	Font::StrDraw(L"操作説明表示: Qキー", 430, 350, 33, c);
 
 
-	Font::StrDraw(L"ゲームスタート→", 250, 300, 40, c);
+	Font::StrDraw(L"ゲームスタート→", 250, 400, 45, c);
 
+
+	Font::StrDraw(L"攻撃: マウス左クリック(マウスカーソル攻撃照準)", 80, 250, 30, c);
 	
 }
