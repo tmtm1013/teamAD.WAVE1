@@ -127,7 +127,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"UI/Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item/Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block/block02.png", 10, TEX_SIZE_1024);
