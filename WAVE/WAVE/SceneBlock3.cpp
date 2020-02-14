@@ -40,7 +40,7 @@ void CSceneBlock3::InitScene()
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
 	//p = Save::ExternalDataOpen(L"stage03.csv", &size);//外部データ読み込み
-	p = Save::ExternalDataOpen(L"stage033.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage333.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -127,7 +127,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"Item.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"block02.png", 10, TEX_SIZE_1024);
@@ -176,6 +176,9 @@ void CSceneBlock3::InitScene()
 
 	//必殺技回復アイテムグラフィック読み込み
 	Draw::LoadImageW(L"kakigouri.png", 36, TEX_SIZE_512);//かき氷グラフィック読み込み
+
+	//操作説明グラフィック読み込み
+	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
 
 	//門グラフィック読み込み
 	Draw::LoadImageW(L"gate1.png", 40, TEX_SIZE_512);

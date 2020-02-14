@@ -43,7 +43,7 @@ void CSceneDescription::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial2.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -55,8 +55,15 @@ void CSceneDescription::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			if (w >= 10)
+			{
+				count += 3;
 
+			}
+			else
+			{
+				count += 2;
+			}
 		}
 	}
 
@@ -108,7 +115,7 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Grenade.png", 8, TEX_SIZE_512);//手榴弾グラフィック読み込み
 
-	Draw::LoadImageW(L"Block2.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
+	Draw::LoadImageW(L"grass01.png", 10, TEX_SIZE_512);//Blockのグラフィック読み込み
 
 	Draw::LoadImageW(L"GAMEOVER01.png", 11, TEX_SIZE_512);	//ゲームオーバーのグラフィック読み込み
 
@@ -119,13 +126,15 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Animation/motion3.png", 14, TEX_SIZE_2048); //弾丸を飛ばす敵
 
-
 	//HPカバーグラフィック読み込み
 	Draw::LoadImageW(L"gagecaver.png", 25, TEX_SIZE_512);
 
 	//必殺技ゲージグラフィック読み込み
 	Draw::LoadImageW(L"HP_Gauge_01_blue.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"HP_Gauge_01_bg02.png", 27, TEX_SIZE_512);
+
+	//土中のグラフィック読み込み
+	Draw::LoadImageW(L"soil1.png", 30, TEX_SIZE_512);
 
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
@@ -135,7 +144,7 @@ void CSceneDescription::InitScene()
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster(0.3 - v);
+	v = Audio::VolumeMaster(0.5 - v);
 
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);

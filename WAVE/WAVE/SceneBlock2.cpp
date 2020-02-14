@@ -41,7 +41,7 @@ void CSceneBlock2::InitScene()
 	//外部データの読み取り（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage2222.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"stage222.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -184,6 +184,8 @@ void CSceneBlock2::InitScene()
 	//ギミック氷柱用画像
 	Draw::LoadImageW(L"turara.png", 37, TEX_SIZE_256);//氷柱用ギミック画像
 
+	//操作説明グラフィック読み込み
+	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

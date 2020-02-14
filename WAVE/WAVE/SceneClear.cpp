@@ -62,13 +62,14 @@ void CSceneClear::InitScene()
 	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
-	/*
+	
 	Draw::LoadImageW(L"takara.png", 7, TEX_SIZE_512);
-	*/
+	
 	//外部データの読み取り（ステージ情報）
+	
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"tutorial1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"tutorial2.csv", &size);//外部データ読み込み
 
 	int map[10][200];
 	int count = 1;
@@ -82,7 +83,15 @@ void CSceneClear::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			if (w >= 10)
+			{
+				count += 3;
+
+			}
+			else
+			{
+				count += 2;
+			}
 		
 
 		}
@@ -90,21 +99,22 @@ void CSceneClear::InitScene()
 
 	}
 
+
+		//主人公オブジェクト作成
+	CObjHero* obj = new CObjHero();
+	Objs::InsertObj(obj, OBJ_HERO, 10);
+
 	//blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 4);
 
-
+	
 
 	Draw::LoadImageW(L"gc02.png", 6, TEX_SIZE_512);
 
 	//クリア画面オブジェクト作成
 	CObjClear*objr = new CObjClear();
 	Objs::InsertObj(objr, OBJ_CLEAR, 0);
-
-	//主人公オブジェクト作成
-	CObjHero* obj = new CObjHero();
-	Objs::InsertObj(obj, OBJ_HERO, 10);
 	
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

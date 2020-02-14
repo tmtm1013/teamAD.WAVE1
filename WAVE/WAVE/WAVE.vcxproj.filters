@@ -151,6 +151,9 @@
     <ClCompile Include="ObjRevolutionBullet.cpp">
       <Filter>Bullet\回転弾%28仮%29</Filter>
     </ClCompile>
+    <ClCompile Include="Objgate.cpp">
+      <Filter>Gimmick\洞窟</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjHero.h">
@@ -303,6 +306,9 @@
     <ClInclude Include="main.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Objgate.h">
+      <Filter>Gimmick\洞窟</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bullet">
@@ -439,6 +445,9 @@
     </Filter>
     <Filter Include="ヘッダーファイル">
       <UniqueIdentifier>{64449bbe-a831-4066-96a6-3ebda4337175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gimmick\洞窟">
+      <UniqueIdentifier>{a003bb7d-5725-482c-a3bc-afbdd4831d0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
