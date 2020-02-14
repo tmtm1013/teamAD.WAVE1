@@ -115,7 +115,9 @@ public:CObjHero() {}
 	   float GetVY() { return m_vy; }
 	   float GetVX() { return m_vx; }
 	   int GetBT() { return m_block_type; }
-	   float GetVK_SPACE() { return m_vy; };
+	   float GetVK_SPACE() { return m_vy; }
+
+	   int Get_bullet_type() { return bullet_type; }
 
 	   void SetX(float x) { m_px = x; }
 	   void SetY(float y) { m_py = y; }
