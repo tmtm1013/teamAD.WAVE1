@@ -9,10 +9,17 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjWeaponType::CObjWeaponType(int type)
+{
+	weapontype =type;
+}
+
+
 //イニシャライズ
 void CObjWeaponType::Init()
 {
-	WeaponType = 1;
+	
 }
 
 //アクション
@@ -32,8 +39,8 @@ void CObjWeaponType::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 256.0f;
+	src.m_left = 0.0f * weapontype;//　+　weapontype * 切り取り位置
+	src.m_right = 256.0f * weapontype;
 	src.m_bottom = 256.0f;
 
 	//表示位置の設定

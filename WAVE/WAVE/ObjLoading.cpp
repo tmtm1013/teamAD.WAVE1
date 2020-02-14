@@ -11,7 +11,7 @@ using namespace GameL;
 
 //イニシャライズ
 void CObjLoading::Init()
-{
+{/*
 	if (((UserData*)Save::GetData())->Scenecontinue == 0) {
 		Draw::LoadImageW(L"village1.png", 37, TEX_SIZE_1024);
 
@@ -30,7 +30,7 @@ void CObjLoading::Init()
 	}
 	if (((UserData*)Save::GetData())->Scenecontinue == 4) {
 		Draw::LoadImageW(L"hstage2.png", 37, TEX_SIZE_1024);
-	}
+	}*/
 }
 
 //アクション

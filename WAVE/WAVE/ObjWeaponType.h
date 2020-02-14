@@ -9,13 +9,13 @@ using namespace GameL;
 class CObjWeaponType :public CObj
 {
 public:
-	CObjWeaponType() {};
+	CObjWeaponType(int type);
 	~CObjWeaponType() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-	short int WeaponType;
+	short int weapontype;
 	
 };
 

@@ -18,7 +18,7 @@ void CObjCursor::Init()
 {
 	
 	//Cursorのグラフィック読み込み
-	Draw::LoadImage(L"Cursor2.png", 16, TEX_SIZE_1024);
+	Draw::LoadImageW(L"UI/Cursor2.png", 16, TEX_SIZE_1024);
 
 
 	x = 0;  //主人公のX軸位置情報
