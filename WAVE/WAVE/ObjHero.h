@@ -101,6 +101,8 @@ using namespace GameL;
 #define BROCK_TYPE (0)
 
 
+
+
 //ƒV[ƒ“:ålŒö
 class CObjHero :public CObj
 {
