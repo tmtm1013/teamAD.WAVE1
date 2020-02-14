@@ -5,7 +5,7 @@
 
 #include "GameHead.h"
 #include "ObjEnemy.h"
-#include "GameL\HitBoxManager.h"
+//#include "GameL\HitBoxManager.h"
 
 
 //使用するネームスペース
@@ -75,6 +75,7 @@ void CObjgate::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+
 	//主人公との当たり判定
 	HitCheck = false;
 
@@ -83,26 +84,28 @@ void CObjgate::Init()
 
 
 
-
+	/*
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_GATE, 2);
-
+	*/
 }
 //アクション
 void CObjgate::Action()
 {
-
+	/*
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+	
 	//通常速度
 	m_ani_max_time = 0;
 
 
+	
 	//主人公の位置情報をここで取得
 	CObjHero*obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float x = obj->GetXX();
 	float y = obj->GetYY();
+	*/
 
 
 	//摩擦の計算   -(運動energy X 摩擦係数)
@@ -127,10 +130,11 @@ void CObjgate::Action()
 
 
 
-
+	/*
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 5.0 + block->GetScroll(), m_py);
+	
 
 	//敵と弾丸が接触したらHPが減る
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
@@ -165,7 +169,7 @@ void CObjgate::Action()
 
 	}
 
-
+	
 	//ブロック当たり判定
 	int d = 0;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -173,9 +177,9 @@ void CObjgate::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy
 		, &d
 	);
+	*/
 
-
-
+	/*
 	// 落下した敵を消去する。
 	if (m_py > 600.0f)
 	{
@@ -202,7 +206,7 @@ void CObjgate::Action()
 
 	}
 
-
+	*/
 }
 
 //ドロー
@@ -233,6 +237,6 @@ void CObjgate::Draw()
 
 
 	//描画
-	Draw::Draw(40, &src, &dst, c, 0.0f);
+	Draw::Draw(37, &src, &dst, c, 0.0f);
 
 }

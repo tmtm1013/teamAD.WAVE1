@@ -125,6 +125,7 @@
     <ClCompile Include="ObjAitem.cpp" />
     <ClCompile Include="ObjDangerWall.cpp" />
     <ClCompile Include="ObjDescription.cpp" />
+    <ClCompile Include="Objgate.cpp" />
     <ClCompile Include="ObjGrenade.cpp" />
     <ClCompile Include="ObjIcicle.cpp" />
     <ClCompile Include="ObjLastBoss.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="ObjDangerWall.h" />
     <ClInclude Include="ObjDescription.h" />
     <ClInclude Include="ObjGameOver.h" />
+    <ClInclude Include="Objgate.h" />
     <ClInclude Include="ObjGrenade.h" />
     <ClInclude Include="ObjIcicle.h" />
     <ClInclude Include="ObjLastBoss.h">
