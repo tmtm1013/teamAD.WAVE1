@@ -84,17 +84,11 @@
     <ClCompile Include="ObjTitle.cpp">
       <Filter>タイトル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>タイトル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjItem.cpp">
       <Filter>ステージ\アイテム</Filter>
     </ClCompile>
     <ClCompile Include="ObjAitem.cpp">
       <Filter>ステージ\アイテム</Filter>
-    </ClCompile>
-    <ClCompile Include="Objgate.cpp">
-      <Filter>ステージ\gate</Filter>
     </ClCompile>
     <ClCompile Include="CObjFullBullet.cpp">
       <Filter>ステージ</Filter>
@@ -120,6 +114,7 @@
     <ClCompile Include="SceneDescription.cpp">
       <Filter>ステージ</Filter>
     </ClCompile>
+    <ClCompile Include="ObjWeaponType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjDangerWall.h" />
@@ -198,17 +193,11 @@
     <ClInclude Include="ObjTitle.h">
       <Filter>タイトル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>タイトル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ステージ\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="ObjAitem.h">
       <Filter>ステージ\アイテム</Filter>
-    </ClInclude>
-    <ClInclude Include="Objgate.h">
-      <Filter>ステージ\gate</Filter>
     </ClInclude>
     <ClInclude Include="CObjFullBullet.h">
       <Filter>ステージ</Filter>
@@ -234,6 +223,8 @@
     <ClInclude Include="SceneBossStage.h">
       <Filter>ステージ</Filter>
     </ClInclude>
+    <ClInclude Include="ObjGameOver.h" />
+    <ClInclude Include="ObjWeaponType.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="主人公">

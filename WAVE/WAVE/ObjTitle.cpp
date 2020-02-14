@@ -38,9 +38,24 @@ void CObjTitle::Init()
 void CObjTitle::Action()
 {
 
+	if (flag == true)//他の処理に移行しない処理
+		while (1) {//他の処理に移行しないための無限ループ
 
 
+			if (Input::GetVKey(VK_RETURN) == true) {//マウス左 が押されると真
 
+				flag = false;//処理を止めるフラグを切り替える
+
+			}
+			if (Input::GetVKey(VK_RETURN) == false && flag == false)
+			{
+				Audio::Start(30);
+				this->SetStatus(false);//操作説明削除
+				break;//ループを抜ける
+			}
+		}
+
+	/*
 	if (flag == true)//他の処理に移行しない処理
 		while (1) {
 			//マウスの位置を取得
@@ -70,7 +85,7 @@ void CObjTitle::Action()
 
 		
 		}
-	
+	*/
 }
 
 void CObjTitle::Draw()
