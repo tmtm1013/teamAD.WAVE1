@@ -127,7 +127,7 @@ void CSceneBlock3::InitScene()
 	Draw::LoadImageW(L"UI/Gagebase2.png", 6, TEX_SIZE_256);
 
 	//回復薬グラフィック読み込み
-	Draw::LoadImageW(L"ice1.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Item/ice1.png", 7, TEX_SIZE_512);
 
 	//Blockのグラフィック読み込み
 	Draw::LoadImageW(L"Block/block02.png", 10, TEX_SIZE_1024);
@@ -180,7 +180,7 @@ void CSceneBlock3::InitScene()
 	//操作説明グラフィック読み込み
 	Draw::LoadImageW(L"UI/Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
 	//門グラフィック読み込み
-	Draw::LoadImageW(L"gate1.png", 37, TEX_SIZE_512);
+	Draw::LoadImageW(L"BackGround/gate1.png", 41, TEX_SIZE_512);
 
 	//武器種類画像
 	Draw::LoadImageW(L"buki.png", 40, TEX_SIZE_1024);
