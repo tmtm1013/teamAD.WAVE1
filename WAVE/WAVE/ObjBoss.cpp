@@ -65,10 +65,13 @@ void CObjBoss::Init()
 	m_ani_frame = 1;   //静止フレームを初期にする
 	m_time_a = 0;
 
-	m_speed_power = 0.5f;  //通常速度
+	m_speed_power = 1.0f;  //通常速度
 	m_ani_max_time = 4;    //アニメーション間隔幅
 
-	m_hp = 300;//ENEMYのHP
+	Boss_hp_max = 1500;//ENEMYのHP
+	Boss_hp_now = Boss_hp_max;
+
+	
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -290,7 +293,7 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 		{
 
-			m_hp -= 30;
+			Boss_hp_now -= 30;
 
 			Audio::Start(12);
 		}
@@ -298,7 +301,7 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_FULL_BULLET) != nullptr)
 		{
 
-			m_hp -= 10;
+			Boss_hp_now -= 10;
 
 			Audio::Start(13);
 		}
@@ -306,7 +309,7 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_DIFFUSION_BULLET) != nullptr)
 		{
 
-			m_hp -= 40;
+			Boss_hp_now -= 40;
 
 			Audio::Start(14);
 		}
@@ -314,12 +317,12 @@ void CObjBoss::Action()
 		if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 		{
 
-			m_hp -= 50;
+			Boss_hp_now -= 50;
 
 
 		}
 		//HPが0になったら破棄
-		if (m_hp <= 0)
+		if (Boss_hp_now <= 0)
 		{
 
 			//ボス消滅でシーンをステージ３に移行する
@@ -430,8 +433,37 @@ void CObjBoss::Draw()
 	}
 	
 
+	//HPカバー
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0;
+	src.m_bottom = 20.0f;
 
+	//表示位置設定
+	dst.m_top = 580.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 760.0f;
+	dst.m_bottom = 595.0f;
 
+	//描画
+	Draw::Draw(28, &src, &dst, c, 0.0f);
+
+	//ボスHPグラフィック表示
+	//切り取り位置設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 248.0;
+	src.m_bottom = 12.0f;
+
+	//表示位置設定
+	dst.m_top = 582.0f;
+	dst.m_left = 50.0f;
+	dst.m_right = 50 + (700.0f * (Boss_hp_now / (float)Boss_hp_max));
+	dst.m_bottom = 593.0f;
+
+	//描画
+	Draw::Draw(29, &src, &dst, c, 0.0f);
 
 
 	

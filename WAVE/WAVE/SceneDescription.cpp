@@ -82,6 +82,11 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(11, L"SEgan/MA.wav", SOUND_TYPE::EFFECT);
 	Audio::LoadAudio(17, L"SEgan/Attackdeath.wav", SOUND_TYPE::EFFECT);//
 	Audio::LoadAudio(27, L"SEgan/Ga-do.wav", SOUND_TYPE::EFFECT);//ガード
+	Audio::LoadAudio(29, L"SEgan/opu.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(30, L"SEgan/tojiru.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(31, L"SEgan/turarahit.wav", SOUND_TYPE::EFFECT);//
+	Audio::LoadAudio(25, L"SEgan/syoumetu.wav", SOUND_TYPE::EFFECT);//
+
 
 	//音楽読み込み
 	//Audio::LoadAudio(0, L"Title.wav", BACK_MUSIC);
@@ -90,7 +95,7 @@ void CSceneDescription::InitScene()
 	Audio::LoadAudio(0, L"tutorial.wav", BACK_MUSIC);
 	Audio::Start(0);
 
-	Draw::LoadImage(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
+	Draw::LoadImageW(L"Title1.png", 15, TEX_SIZE_1024);//タイトルグラフィック読み込み
 
 	Draw::LoadImageW(L"cool.png", 4, TEX_SIZE_512); //弾丸グラフィック読み込み
 
@@ -125,6 +130,9 @@ void CSceneDescription::InitScene()
 	//プレイヤー必殺技画像
 	Draw::LoadImageW(L"hissatu.png", 34, TEX_SIZE_1024);
 
+	Draw::LoadImageW(L"Black.png", 39, TEX_SIZE_256);//選択可視化グラフィック読み込み
+
+
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
 	v = Audio::VolumeMaster(0.3 - v);
@@ -146,8 +154,13 @@ void CSceneDescription::InitScene()
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//カーソル作成
+	CObjTitle* obj_tl = new CObjTitle();
+	Objs::InsertObj(obj_tl, OBJ_CURSOR, 15);
+
+
+	//カーソル作成
 	CObjCursor* obj_c = new CObjCursor();
-	Objs::InsertObj(obj_c, OBJ_CURSOR, 12);
+	Objs::InsertObj(obj_c, OBJ_CURSOR, 16);
 
 }
 

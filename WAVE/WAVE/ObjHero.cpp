@@ -110,7 +110,7 @@ void CObjHero::Init()
 
 	Method_flag=false;
 
-	guard_flag = false;//ガード用フラグ
+	//Guard_flag = false;//ガード用フラグ
 	guard = 1;//ガード用変数
 
 	//当たり判定用のHitBoxを作成
@@ -148,6 +148,9 @@ void CObjHero::Action()
 	movesecond++;
 	jumpsecond++;
 	m_SEtime++;
+
+	//ガード管理用変数を初期化
+	guard = 1;
 
 	//アニメーションフラグ初期化
 	Action_Waiting = false;
@@ -299,8 +302,6 @@ void CObjHero::Action()
 		&m_block_type
 	);
 
-	//ガード管理用変数を初期化
-	guard = 1;
 
 	if (Input::GetVKey('D') == true && Action_guard == false && m_del == false)	//左に移動時の処理-----------
 	{
@@ -343,7 +344,7 @@ void CObjHero::Action()
 	}
 	else if (Input::GetMouButtonR() == true && m_hit_down == true && Input::GetMouButtonL() == false && m_del == false)//ガードアクション-----------
 	{
-		Action_guard = true;
+		Action_guard = true;//ガードフラグを真にする
 		
 		guard = 0;//ダメージを無効化
 	}
@@ -405,25 +406,9 @@ void CObjHero::Action()
 		jump_time = RISET_JUMP_S;
 	}
 
-
-
-
-	if (Input::GetVKey('P') == true && m_del == false)
-	{
-
-		//弾丸オブジェクト
-		CObjGrenade* obj_gre = new CObjGrenade(m_px, m_py);//オブジェ作成
-		Objs::InsertObj(obj_gre, OBJ_GRENADE, 1);
-	}
-	
-
-
-
 	if (Input::GetVKey('Q') == true)// Q 操作説明表示処理
 	{
 		Method_flag = true;//処理を止めるフラグを切り替える
-
-
 	}
 	if (Input::GetVKey('Q') == false && Method_flag == true)
 	{
@@ -431,6 +416,7 @@ void CObjHero::Action()
 		CObjMethod* md = new CObjMethod();
 		Objs::InsertObj(md, OBJ_METHOD, 18);
 		Method_flag = false;
+		Audio::Start(29);
 	}
 
 	
@@ -469,7 +455,7 @@ void CObjHero::Action()
 	hit->SetPos(m_px + 8, m_py + 10);//ヒットボックスの最新
 
 	//回復薬に当たるとhpを+する
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300)
+	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr && hp <= 300 || Input::GetVKey('O') == true)
 	{
 		hp += 60;
 		Audio::Start(19);
@@ -492,9 +478,19 @@ void CObjHero::Action()
 	//遠距離敵の攻撃接触でHeroのHPが減る
 	if (hit->CheckObjNameHit(OBJ_HOMING_BULLET) != nullptr)
 	{
-		if (flag == true && hp_time <= 0.0f)
-		{
-			hp -= 30 * guard;
+		
+		if (flag == true && hp_time <= 0.0f) {
+
+			if (Action_guard == true)
+			{
+				Audio::Start(27);
+				hp -= guard;//ダメージ量×ガード値
+				//Audio::Start(27);
+			}
+			else {
+				hp -= 10;//ダメージ量×ガード値
+				Audio::Start(11);
+			}
 
 			flag = false;
 			hp_time = 1.6f;
@@ -518,7 +514,7 @@ void CObjHero::Action()
 
 		if (flag == true && hp_time <= 0.0f) {
 
-			if (guard_flag == true)
+			if (Action_guard == true)
 			{
 				Audio::Start(27);
 				hp -= guard;//ダメージ量×ガード値
@@ -543,7 +539,7 @@ void CObjHero::Action()
 	{
 		if (flag == true && hp_time <= 0.0f){   
 
-			if (guard_flag==true)
+			if (Action_guard ==true)
 			{
 				Audio::Start(27);
 				hp -= guard;//ダメージ量×ガード値
@@ -606,18 +602,27 @@ void CObjHero::Action()
 		m_vx += 6.0f;//主人公ノックバック
 		hp -= 30;//主人公のHP減算
 	}
-	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr|| m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
+	if (hit->CheckObjNameHit(OBJ_ICICLE) != nullptr)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
 	{
 		hp_time--;//ダメージ加算制限処理
 
-		if (m_block_type == 5)//ダメージ音再生
-			Audio::Start(26);
-		
 		if (hp_time <= 0.0f)//主人公のダメージ制御
 		{
-			m_vx += HERO_NOCK_BUCK_ICE;//主人公ノックバック
-			hp -= HERO_HP_SUB_ICE;//主人公のHP減算
-			hp_time = HERO_NOCK_BUCK_TIME;//ダメージ加算までの時間
+			Audio::Start(31);
+			m_vx += 3.0f;//主人公ノックバック
+			hp -= 20;//主人公のHP減算
+			hp_time = 12.8f;//ダメージ加算までの時間
+		}
+	}
+	if (m_block_type == 5)//主人公がOBU_ICICLE(つらら)と溶岩床に当たっているかどうかの判定
+	{
+		hp_time--;//ダメージ加算制限処理
+
+		if (hp_time <= 0.0f)//主人公のダメージ制御
+		{
+			Audio::Start(26);
+			hp -= 20;//主人公のHP減算
+			hp_time = 10.6f;//ダメージ加算までの時間
 		}
 	}
 	if (m_block_type == 3)//主人公がBossブロックを踏むとステージ移行

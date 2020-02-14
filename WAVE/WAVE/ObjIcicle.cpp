@@ -79,7 +79,7 @@ void CObjIcicle::Init()
 	HitCheck = false;
 
 	//•X’Œ‚g‚o
-	m_hp = 10;
+	m_hp = 5;
 
 	m_ani = 0;
 	m_ani_time2 = 0;
@@ -110,6 +110,7 @@ void CObjIcicle::Action()
 	if ((m_px - 100.0 + block->GetScroll()) < x)
 		HitCheck = true;
 
+
 	//”»’è‚ª^‚È‚ç‚ÎICICLE‚ð—Ž‰º‚³‚¹‚é
 	if (m_hit_down == false && HitCheck == true)
 		m_vy += 9.8 / (16.0f);//Ž©—R—Ž‰º‰^“®
@@ -126,7 +127,14 @@ void CObjIcicle::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + 5.0+ block->GetScroll(), m_py);
 	
+	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
 
+		m_hp -= 20;
+
+
+	}
 	//“G‚Æ’eŠÛ‚ªÚG‚µ‚½‚çHP‚ªŒ¸‚é
 	if (hit->CheckObjNameHit(OBJ_GREN) != nullptr)
 	{
@@ -173,15 +181,28 @@ void CObjIcicle::Action()
 	//’n–Ê‚ÆÚG‚µ‚½‚Æ‚«‚É‚g‚o‚ðŒ¸‚ç‚·B
 	if (m_hit_down == true) 
 	{
-		m_hp = -1;
 
+		m_hp = -1;
+		m_del = true;
+		hit->SetInvincibility(true);
+	}
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+
+		m_del = true;
+		m_vy = 0;
+		hit->SetInvincibility(true);
 	}
 	//HP‚ª0‚É‚È‚Á‚½‚ç”jŠü
 	if (m_hp <= 0)
 	{
 		
+	 	if (m_del==false)
+			Audio::Start(28);
 		m_del = true;
-		
+		m_vy = 0;
+		hit->SetInvincibility(true);
+
 	}
 	if (m_del == true)
 	{
@@ -189,8 +210,6 @@ void CObjIcicle::Action()
 		//ƒŠƒ\[ƒX’…’eƒAƒjƒ[ƒVƒ‡ƒ“ˆÊ’u
 		RECT_F ani_src[5] =
 		{
-
-
 
 			{0,  0,  204 ,200},
 			{0, 204, 408 ,200},
@@ -219,7 +238,6 @@ void CObjIcicle::Action()
 			
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
-			Audio::Start(28);
 			
 		}
 

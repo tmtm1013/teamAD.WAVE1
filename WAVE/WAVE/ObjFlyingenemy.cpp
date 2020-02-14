@@ -281,12 +281,15 @@ void CObjFlyingenemy::Action()
 	
 	if (m_hp <= 0)
 	{
-
+		
 
 
 		//敵を動かさないようにする。
 		m_vx = 0;
 		m_vy = 0;
+
+		if (m_del == false)
+			Audio::Start(25);
 
 		m_del = true;//着弾エフェクト移行用フラグ
 
@@ -310,6 +313,7 @@ void CObjFlyingenemy::Action()
 			{0, 408, 612,200},
 			{0, 612,816, 200},
 			{0, 816,1020,200},
+
 
 		};
 		//アニメーションのコマ間隔

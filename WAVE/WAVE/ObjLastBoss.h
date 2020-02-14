@@ -52,6 +52,8 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	//“GˆÚ“®—pƒtƒ‰ƒO
+	bool mover;
 
 	int m_ani_move;
 

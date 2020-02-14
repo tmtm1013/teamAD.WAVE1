@@ -146,13 +146,11 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 11)
 			{
 				CObjSlime*obje = new CObjSlime(lx*64.0f, i*64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMY, 14);
+				Objs::InsertObj(obje, OBJ_ENEMY, 12);
 
 				//敵出現場所の0にする
 				m_map[i][lx] = 0;
 			}
-
-			
 
 			//列の中から12を探す
 			if (m_map[i][ix] == 12)
@@ -171,17 +169,28 @@ void CObjBlock::Action()
 				//アイテムオブジェクト作成	
 				CObjAitem*obje = new CObjAitem(ox*64.0f, i*64.0f);
 				Objs::InsertObj(obje, OBJ_AITEM, 7);
-				
-
 			
 
 				//敵出現場所の値を0にする
  				m_map[i][ox] = 0;
 			}
+
+			/*//列の中から30を探す
+			if (m_map[i][ox] == 30)
+			{
+				//アイテムオブジェクト作成	
+				CObjgate*obje = new CObjgate(ox*64.0f, i*64.0f);
+				Objs::InsertObj(obje, OBJ_GATE, 40);
+
+
+				//敵出現場所の値を0にする
+				m_map[i][ox] = 0;
+			}*/
 			
 	}
 	
 }
+
 
 //ドロー
 void CObjBlock::Draw()
@@ -302,8 +311,8 @@ void CObjBlock::Draw()
 
 				if (m_map[i][j] == 13)
 				{
-					;
-
+	
+				
 				}
 				
 				if (m_map[i][j] == 14)
@@ -316,6 +325,25 @@ void CObjBlock::Draw()
 				{
 					//描画
 					Draw::Draw(31, &src, &dst, c, 0.0f);
+				}
+
+				if (m_map[i][j] == 30)
+				{
+					//切り取り位置の設定
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 512.0f;
+					src.m_bottom = 512.0f;
+
+					//表示位置の設定
+					dst.m_top = i * 64.0f;
+					dst.m_left = j * 64.0f + m_scroll;
+					dst.m_right = dst.m_left + 192.0f;
+					dst.m_bottom = dst.m_top + 192.0f;
+
+					//描画
+					Draw::Draw(40, &src, &dst, c, 0.0f);
+					
 				}
 			}
 		}
