@@ -153,6 +153,7 @@ public:CObjHero() {}
 	  bool  m_f;     //弾丸発射制御用
 	  bool  m_gf;     //グレネード発射用フラグ
 	  float m_time;  //弾丸発射可能頻度制御
+
 	  int bullet_type;//弾丸の種類
 
 	  bool guard_flag;//ガード用フラグ

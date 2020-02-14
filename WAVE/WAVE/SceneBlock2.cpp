@@ -184,6 +184,8 @@ void CSceneBlock2::InitScene()
 	//ギミック氷柱用画像
 	Draw::LoadImageW(L"turara.png", 37, TEX_SIZE_256);//氷柱用ギミック画像
 
+	//武器種類画像
+	Draw::LoadImageW(L"buki.png", 40, TEX_SIZE_1024);
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);
