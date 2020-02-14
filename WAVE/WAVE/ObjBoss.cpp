@@ -264,7 +264,7 @@ void CObjBoss::Action()
 					m_time = 0;
 					//弾丸オブジェクト
 					CObjAngleBullet* obj_b = new CObjAngleBullet(m_px + block->GetScroll()+50, m_py-100, i, 5.0f);//オブジェ作成
-					Objs::InsertObj(obj_b, OBJ_HOMING_BULLET, 20);
+					Objs::InsertObj(obj_b, OBJ_ANGLE_BULLET, 20);
 
 				
 				}
@@ -282,7 +282,7 @@ void CObjBoss::Action()
 				m_time2 = 0;
 				//弾丸オブジェクト
 				CObjHomingBullet* obj_bo = new CObjHomingBullet(m_px + block->GetScroll()+50, m_py-50, 20);//オブジェ作成
-				Objs::InsertObj(obj_bo, OBJ_HOMING_BULLET, 20);
+				Objs::InsertObj(obj_bo, OBJ_HOMING_BULLET, 23);
 				m_attack = true;//攻撃アニメーション移行用フラグ
 			//敵を動かさないようにする。
 				m_vx = 0;
