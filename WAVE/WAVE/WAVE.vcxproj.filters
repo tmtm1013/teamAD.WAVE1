@@ -21,26 +21,8 @@
     <ClCompile Include="ObjHero.cpp">
       <Filter>主人公</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBlock.cpp">
-      <Filter>ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock2.cpp">
-      <Filter>ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBlock3.cpp">
-      <Filter>ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBossStage.cpp">
-      <Filter>ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneDescription.cpp">
-      <Filter>ステージ</Filter>
-    </ClCompile>
     <ClCompile Include="SceneMain.cpp">
       <Filter>ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjFullBullet.cpp">
-      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CObjDiffusionBullet.cpp">
       <Filter>Bullet</Filter>
@@ -49,9 +31,6 @@
       <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CObjAngleBullet.cpp">
-      <Filter>Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="COHomingBullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjBoss.cpp">
@@ -75,26 +54,23 @@
     <ClCompile Include="ObjSlime.cpp">
       <Filter>Bullet\敵</Filter>
     </ClCompile>
-    <ClCompile Include="ObjRevolutionBullet.cpp">
-      <Filter>Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="ObjCursor.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjClear.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="SceneClear.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjGameOver.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjGrenade.cpp">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Draw2DTex_Source.cpp">
       <Filter>氷柱</Filter>
@@ -112,13 +88,37 @@
       <Filter>タイトル</Filter>
     </ClCompile>
     <ClCompile Include="ObjItem.cpp">
-      <Filter>アイテム</Filter>
+      <Filter>ステージ\アイテム</Filter>
     </ClCompile>
     <ClCompile Include="ObjAitem.cpp">
-      <Filter>アイテム</Filter>
+      <Filter>ステージ\アイテム</Filter>
     </ClCompile>
     <ClCompile Include="Objgate.cpp">
-      <Filter>gate</Filter>
+      <Filter>ステージ\gate</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjFullBullet.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="COHomingBullet.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRevolutionBullet.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBlock2.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBlock3.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossStage.cpp">
+      <Filter>ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>ステージ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,29 +144,11 @@
     <ClInclude Include="ObjHero.h">
       <Filter>主人公</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBlock.h">
-      <Filter>ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock2.h">
-      <Filter>ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBlock3.h">
-      <Filter>ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBossStage.h">
-      <Filter>ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>ステージ</Filter>
-    </ClInclude>
     <ClInclude Include="SceneDescription.h">
       <Filter>ステージ</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
       <Filter>ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjFullBullet.h">
-      <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjDiffusionBullet.h">
       <Filter>Bullet</Filter>
@@ -175,9 +157,6 @@
       <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CObjAngleBullet.h">
-      <Filter>Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="COHomingBullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
     <ClInclude Include="OBJBoss.h">
@@ -201,17 +180,14 @@
     <ClInclude Include="ObjSlime.h">
       <Filter>Bullet\敵</Filter>
     </ClInclude>
-    <ClInclude Include="ObjRevolutionBullet.h">
-      <Filter>Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="ObjClear.h">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameOver.h">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClInclude>
     <ClInclude Include="SceneClear.h">
-      <Filter>ゲームオーバー＆クリア</Filter>
+      <Filter>ステージ\ゲームオーバー＆クリア</Filter>
     </ClInclude>
     <ClInclude Include="ObjIcicle.h">
       <Filter>氷柱</Filter>
@@ -226,19 +202,40 @@
       <Filter>タイトル</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
-      <Filter>アイテム</Filter>
+      <Filter>ステージ\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="ObjAitem.h">
-      <Filter>アイテム</Filter>
+      <Filter>ステージ\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="Objgate.h">
-      <Filter>gate</Filter>
+      <Filter>ステージ\gate</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjFullBullet.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="COHomingBullet.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRevolutionBullet.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock2.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBlock3.h">
+      <Filter>ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossStage.h">
+      <Filter>ステージ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="gate">
-      <UniqueIdentifier>{cef96f0c-27b3-4928-a571-e1afc7e7cbc3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="主人公">
       <UniqueIdentifier>{12b0127c-1426-4e88-a261-8a32ad140f30}</UniqueIdentifier>
     </Filter>
@@ -254,9 +251,6 @@
     <Filter Include="Bullet\敵\ボス">
       <UniqueIdentifier>{1c936913-c0f3-4c64-9d95-cdf885a82718}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ゲームオーバー＆クリア">
-      <UniqueIdentifier>{c249bd14-17f6-4c66-be79-64dcf5530730}</UniqueIdentifier>
-    </Filter>
     <Filter Include="氷柱">
       <UniqueIdentifier>{548c7c4b-5167-4940-8da2-7fd2fd30ff99}</UniqueIdentifier>
     </Filter>
@@ -266,8 +260,14 @@
     <Filter Include="タイトル">
       <UniqueIdentifier>{7240dca2-34fe-4bb7-802a-24f1eb6b1bb4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="アイテム">
+    <Filter Include="ステージ\gate">
+      <UniqueIdentifier>{cef96f0c-27b3-4928-a571-e1afc7e7cbc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ステージ\アイテム">
       <UniqueIdentifier>{ea08e6f1-779a-426f-bd3f-c8e1545e15f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ステージ\ゲームオーバー＆クリア">
+      <UniqueIdentifier>{c249bd14-17f6-4c66-be79-64dcf5530730}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
