@@ -864,6 +864,68 @@ void CObjHero::Draw()
 	dst.m_bottom = 75.0f;
 
 	Draw::Draw(27, &src, &dst, c, 0.0f);
+
+	//---------------------------------
+	//武器種類表示ドロー
+	if (bullet_type == 1) {
+
+
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 165.0f;
+		src.m_bottom = 165.0f;
+
+		//表示位置の設定
+		dst.m_top = 45.0f;
+		dst.m_left = 180.0f;
+		dst.m_right = 235.0f;
+		dst.m_bottom =85.0f;
+
+		Draw::Draw(40, &src, &dst, c, 0.0f);
+	}
+
+	if (bullet_type == 2) {
+
+
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 165.0f;
+		src.m_right = 330.0f;
+		src.m_bottom = 165.0f;
+
+		//表示位置の設定
+		dst.m_top = 45.0f;
+		dst.m_left = 190.0f;
+		dst.m_right = 240.0f;
+		dst.m_bottom = 85.0f;
+
+		Draw::Draw(40, &src, &dst, c, 0.0f);
+	}
+
+	if (bullet_type == 3) {
+
+
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 330.0f;
+		src.m_right = 495.0f;
+		src.m_bottom = 165.0f;
+
+		//表示位置の設定
+		dst.m_top = 45.0f;
+		dst.m_left = 190.0f;
+		dst.m_right = 243.0f;
+		dst.m_bottom = 85.0f;
+
+		Draw::Draw(40, &src, &dst, c, 0.0f);
+	}
+
+
+
+
+
+
 }
 
 /*

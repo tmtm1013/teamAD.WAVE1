@@ -151,6 +151,9 @@
     <ClCompile Include="ObjRevolutionBullet.cpp">
       <Filter>Bullet\回転弾%28仮%29</Filter>
     </ClCompile>
+    <ClCompile Include="Objgate.cpp">
+      <Filter>Gimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjHero.h">
@@ -302,6 +305,9 @@
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Objgate.h">
+      <Filter>Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
