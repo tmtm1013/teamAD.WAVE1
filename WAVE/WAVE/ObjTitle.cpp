@@ -39,37 +39,24 @@ void CObjTitle::Action()
 {
 
 
-
-
 	if (flag == true)//他の処理に移行しない処理
-		while (1) {
-			//マウスの位置を取得
-			m_mou_x = (float)Input::GetPosX();
-			m_mou_y = (float)Input::GetPosY();
-			//マウスのボタンの状態
-			m_mou_r = Input::GetMouButtonR();
-			m_mou_l = Input::GetMouButtonL();
-			//他の処理に移行しないための無限ループ
-			//マウスの位置とクリックする場所で当たり判定
-			if (m_mou_x > 440 && m_mou_x < 800 && m_mou_y > 440 && m_mou_y < 490)
-			{
-				//マウスのボタンが押されたらメインに移行
-				if (m_mou_r == true || m_mou_l == true)
-				{
-					Audio::Start(1);
+		while (1) {//他の処理に移行しないための無限ループ
 
-					//ボリュームを1.0に戻す
-					float v = Audio::VolumeMaster(0);
-					v = Audio::VolumeMaster(0.5 - v);
 
-					this->SetStatus(false);//オブジェクト削除
-					break;
+			if (Input::GetVKey(VK_RETURN) == true) {//マウス左 が押されると真
 
-				}
+				flag = false;//処理を止めるフラグを切り替える
+
 			}
-
-		
+			if (Input::GetVKey(VK_RETURN) == false && flag == false)
+			{
+				Audio::Start(30);
+				this->SetStatus(false);//操作説明削除
+				break;//ループを抜ける
+			}
 		}
+
+	
 	
 }
 

@@ -237,6 +237,6 @@ void CObjgate::Draw()
 
 
 	//•`‰æ
-	Draw::Draw(40, &src, &dst, c, 0.0f);
+	Draw::Draw(37, &src, &dst, c, 0.0f);
 
 }

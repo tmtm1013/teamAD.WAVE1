@@ -141,6 +141,9 @@ void CSceneDescription::InitScene()
 
 	Draw::LoadImageW(L"Black.png", 39, TEX_SIZE_256);//選択可視化グラフィック読み込み
 
+		//武器種類画像
+	Draw::LoadImageW(L"buki.png", 40, TEX_SIZE_1024);
+
 
 	//ボリュームを1.0に戻す
 	float v = Audio::VolumeMaster(0);

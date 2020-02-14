@@ -184,6 +184,8 @@ void CSceneBlock2::InitScene()
 	//ギミック氷柱用画像
 	Draw::LoadImageW(L"turara.png", 37, TEX_SIZE_256);//氷柱用ギミック画像
 
+	//武器種類画像
+	Draw::LoadImageW(L"buki.png", 40, TEX_SIZE_1024);
 	//操作説明グラフィック読み込み
 	Draw::LoadImageW(L"Method.png", 38, TEX_SIZE_1024);//かき氷グラフィック読み込み
 
